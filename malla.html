@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+ 
+<html lang="es">
+ 
+<head>
+<title>Consultorio ORL</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="iconfont/material-icons.css"> <!--Iconos en: https://design.google.com/icons/-->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/estilos.css" />
+</head>
+ 
+<body>
+	<header>
+		 <nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="index.html">Consultorio ORL</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li><a href="index.html"><i class="material-icons">home</i></a></li>
+				<li class="active"><a href="Cliente.html">Clientes</a></li>
+				<li><a href="ventas.html">Ingresos Egresos</a></li>
+				<li><a href="reportes.html">Reportes</a></li>
+			</ul>
+		 
+			<ul class="nav navbar-nav navbar-right">
+				<p class="navbar-text" id="horaServer"></p>
+				<p class="navbar-text" id="fechaServer"></p>                
+			 <form class="navbar-form navbar-left" role="search">
+	 
+				<div class="input-group">
+					<input type="text" class="form-control" id="txtBuscar" placeholder="Buscar">
+					<span class="input-group-btn">
+						<button type="button" class="btn btn-warning" id="btnBuscar"><span class="glyphicon glyphicon-search"></span></button>
+					</span>
+				</div>
+				
+			</form>        
+				<li><a href="configuraciones.html"><i class="material-icons">settings</i></a></li>
+				
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons">fingerprint</i> <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#" data-toggle="modal" data-target=".modal-password">Cambiar contraseña</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="#">Cerrar sesión</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div><!-- /.navbar-collapse -->
+		</div>
+	</nav>
+	</header>
+	<section>
+		 <div class="container">
+		 <h1>Turno: mañanas</h1>
+		 <p>Asignando horario a: <strong>Carlos Pariona Valencia</strong></p>
+		 <p><button type="button" class="btn btn-sm btn-primary" id="btnRecorrer">Rellenar todo el cuadro</button>
+		 <button type="button" class="btn btn-sm btn-success" id="btnr">Hacer cuadro</button></p>
+
+			 <table class="table table-bordered tablaCalendario text-center" id="mañana">
+				<thead>
+					<tr>
+					<th class="cabecera encabezado">Hora / minutos</th>
+					<th class="col-xs-2 text-center encabezado" data-column='0'>"00</th>
+					<th class="col-xs-2 text-center encabezado" data-column='10'>"10</th>
+					<th class="col-xs-2 text-center encabezado" data-column='20'>"20</th>
+					<th class="col-xs-2 text-center encabezado" data-column='30'>"30</th>
+					<th class="col-xs-2 text-center encabezado" data-column='40'>"40</th>
+					<th class="col-xs-2 text-center encabezado" data-column='50'>"50</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+					<th class="text-right encabezado">6 a.m.</th>
+						<td data-row='6' data-column='0'><div class="btn-group contenido"><button type="button" class="btn btn-sm btn-negro btnIzq"><span class="glyphicon glyphicon-backward"></span></button><button type="button" class="btn btn-sm btn-primary">Nuevo</button><button type="button" class="btn btn-sm btn-negro btnDer"><span class="glyphicon glyphicon-forward"></span></button></div></td>
+						<td data-row='6' data-column='10'><div class="btn-group contenido"><button type="button" class="btn btn-sm btn-negro btnIzq"><span class="glyphicon glyphicon-backward"></span></button><button type="button" class="btn btn-sm btn-primary">Nuevo</button><button type="button" class="btn btn-sm btn-negro btnDer"><span class="glyphicon glyphicon-forward"></span></button></div></td>
+						<td data-row='6' data-column='20'></td>
+						<td data-row='6' data-column='30' disabled></td>
+						<td data-row='6' data-column='40'></td>
+						<td data-row='6' data-column='50'></td>
+					</tr>
+					<tr>
+					<th class="text-right encabezado">7 a.m.</th>
+					<td data-row='7' data-column='0'></td>
+					<td data-row='7' data-column='10'></td>
+					<td data-row='7' data-column='20'></td>
+					<td data-row='7' data-column='30'></td>
+					<td data-row='7' data-column='40'></td>
+					<td data-row='7' data-column='50'></td>
+					</tr>
+					<tr>
+					<th class="text-right encabezado">8 a.m.</th>
+					<td data-row='8' data-column='0'></td>
+					<td data-row='8' data-column='10'></td>
+					<td data-row='8' data-column='20'></td>
+					<td data-row='8' data-column='30'></td>
+					<td data-row='8' data-column='40'></td>
+					<td data-row='8' data-column='50'></td>
+					</tr>
+					<tr>
+					<th class="text-right encabezado">9 a.m.</th>
+					<td data-row='9' data-column='0'></td>
+					<td data-row='9' data-column='10'><div class="btn-group contenido"><button type="button" class="btn btn-sm btn-negro btnIzq"><span class="glyphicon glyphicon-backward"></span></button><button type="button" class="btn btn-sm btn-success">Control</button><button type="button" class="btn btn-sm btn-negro btnDer"><span class="glyphicon glyphicon-forward"></span></button></div></td>
+					<td data-row='9' data-column='20'></td>
+					<td data-row='9' data-column='30'></td>
+					<td data-row='9' data-column='40'><div class="btn-group contenido"><button type="button" class="btn btn-sm btn-negro btnIzq"><span class="glyphicon glyphicon-backward"></span></button><button type="button" class="btn btn-sm btn-success">Control</button><button type="button" class="btn btn-sm btn-negro btnDer"><span class="glyphicon glyphicon-forward"></span></button></div></td>					<td data-row='9' data-column='50'></td>
+					</tr>
+					<thead>
+					<tr>
+						<th class="cabecera encabezado">Hora / minutos</th>
+						<th class="col-xs-2 text-center encabezado" data-column='0'>"00</th>
+						<th class="col-xs-2 text-center encabezado" data-column='10'>"10</th>
+						<th class="col-xs-2 text-center encabezado" data-column='20'>"20</th>
+						<th class="col-xs-2 text-center encabezado" data-column='30'>"30</th>
+						<th class="col-xs-2 text-center encabezado" data-column='40'>"40</th>
+						<th class="col-xs-2 text-center encabezado" data-column='50'>"50</th>
+					</tr>
+					</thead>
+				</tbody>
+			</table>
+			<h1>Turno: tardes y noches</h1>
+			<table class="table table-bordered tablaCalendario text-center" id="tarde">
+				<thead>
+					<tr>
+					<th class="col-xs-1 cabecera encabezado">Hora / minutos</th>
+					<th class="col-xs-2 text-center encabezado" data-column='0'>"00</th>
+					<th class="col-xs-2 text-center encabezado" data-column='15'>"15</th>
+					<th class="col-xs-2 text-center encabezado" data-column='30'>"30</th>
+					<th class="col-xs-2 text-center encabezado" data-column='45'>"45</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+					<th class="text-right encabezado">10 a.m.</th>
+					<td data-row='10' data-column='0'></td>
+					<td data-row='10' data-column='15'></td>
+					<td name="hola" data-row='10' data-column='30'></td>
+					<td data-row='10' data-column='45'></td>
+					</tr><tr>
+					<th class="text-right encabezado">11 a.m.</th>
+					<td data-row='11' data-column='0'></td>
+					<td data-row='11' data-column='15'></td>
+					<td data-row='11' data-column='30'><div class="btn-group contenido"><button type="button" class="btn btn-sm btn-negro btnIzq"><span class="glyphicon glyphicon-backward"></span></button><button type="button" class="btn btn-sm btn-primary">Nuevo</button><button type="button" class="btn btn-sm btn-negro btnDer"><span class="glyphicon glyphicon-forward"></span></button></div></td>
+					<td data-row='11' data-column='45'></td>
+
+					</tr><tr>
+					<th class="text-right encabezado">12 a.m.</th>
+					<td data-row='12' data-column='0'></td>
+					<td data-row='12' data-column='15'></td>
+					<td data-row='12' data-column='30'></td>
+					<td data-row='12' data-column='45'></td>
+
+					</tr><tr>
+					<th class="text-right encabezado">1 p.m.</th>
+					<td data-row='13' data-column='0'></td>
+					<td data-row='13' data-column='15'></td>
+					<td data-row='13' data-column='30'></td>
+					<td data-row='13' data-column='45'></td>
+					</tr><tr>
+					<th class="text-right encabezado">2 p.m.</th>
+					<td data-row='14' data-column='0'></td>
+					<td data-row='14' data-column='15'></td>
+					<td data-row='14' data-column='30'></td>
+					<td data-row='14' data-column='45'></td>
+					</tr><tr>
+					<th class="text-right encabezado">3 p.m.</th>
+					<td data-row='15' data-column='0'></td>
+					<td data-row='15' data-column='15'></td>
+					<td data-row='15' data-column='30'></td>
+					<td data-row='15' data-column='45'></td>
+					</tr><tr>
+					<th class="text-right encabezado">4 p.m.</th>
+					<td data-row='16' data-column='0'></td>
+					<td data-row='16' data-column='15'></td>
+					<td data-row='16' data-column='30'></td>
+					<td data-row='16' data-column='45'></td>
+					</tr><tr>
+					<th class="text-right encabezado">5 p.m.</th>
+					<td data-row='17' data-column='0'></td>
+					<td data-row='17' data-column='15'></td>
+					<td data-row='17' data-column='30'></td>
+					<td data-row='17' data-column='45'></td>
+					</tr><tr>
+					<th class="text-right encabezado">6 p.m.</th>
+					<td data-row='18' data-column='0'></td>
+					<td data-row='18' data-column='15'></td>
+					<td data-row='18' data-column='30'></td>
+					<td data-row='18' data-column='45'></td>
+					</tr><tr>
+					<th class="text-right encabezado">7 p.m.</th>
+					<td data-row='19' data-column='0'></td>
+					<td data-row='19' data-column='15'></td>
+					<td data-row='19' data-column='30'></td>
+					<td data-row='19' data-column='45'></td>
+					</tr><tr>
+					<th class="text-right encabezado">8 p.m.</th>
+					<td data-row='20' data-column='0'></td>
+					<td data-row='20' data-column='15'></td>
+					<td data-row='20' data-column='30'></td>
+					<td data-row='20' data-column='45'></td>
+					</tr><tr>
+					<th class="text-right encabezado">9 p.m.</th>
+					<td data-row='21' data-column='0'></td>
+					<td data-row='21' data-column='15'><div class="btn-group contenido"><button type="button" class="btn btn-sm btn-negro btnIzq"><span class="glyphicon glyphicon-backward"></span></button><button type="button" class="btn btn-sm btn-primary">Nuevo</button><button type="button" class="btn btn-sm btn-negro btnDer"><span class="glyphicon glyphicon-forward"></span></button></div></td>
+					<td data-row='21' data-column='30'></td>
+					<td data-row='21' data-column='45'></td>
+					</tr>
+					<thead>
+					<tr>
+					<th class="col-xs-1 cabecera encabezado">Hora / minutos</th>
+					<th class="col-xs-2 text-center encabezado" data-column='0'>"00</th>
+					<th class="col-xs-2 text-center encabezado" data-column='15'>"15</th>
+					<th class="col-xs-2 text-center encabezado" data-column='30'>"30</th>
+					<th class="col-xs-2 text-center encabezado" data-column='45'>"45</th>
+					</tr>
+				</thead>
+				</tbody>
+			</table>
+		 </div>
+	</section>
+
+
+
+	<div class="modal fade" id="modalAsignar" role="dialog">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Asignar horario</h4>
+				</div>
+				<div class="modal-body">
+					<p>¿Desea agregar la cita para la <span id="lblAsignarHoraAMPM"></span><span class="sr-only" id="lblAsignarHoraCompleta"></span>?</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-primary" id="btnAgregarConsultaHorario" data-dismiss="modal">Agregar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script src="js/jquery-2.2.3.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/moment.js"></script>
+	<script src="js/mijs.js"></script>
+	<script src="js/bootstrap-switch.js"></script>
+	<script>
+	$(document).ready(function() {
+		/*$(`td[data-row='6'][data-column='0']`).find('.btnDer').hide();
+		$(`td[data-row='21'][data-column='45']`).find('.btnizq').hide();*/
+	});
+		$('#btnRecorrer').click(function() {//Recorre todos los campos
+			$('table tbody tr').each(function(index){
+				$(this).children('td').each(function (index2){
+					var row = $(this).attr("data-row");
+					var col = $(this).attr("data-column");
+					$(this).text(row+':'+col);
+					$(this).css("background-color", "#ECF8E0");
+				})
+			})
+		});
+		$('td').hover(function() {
+			 col =$(this).attr('data-column');
+			$('.tablaCalendario').find(`th[data-column='${col}']`).css('background-color','#ffecb3');
+		}).mouseleave(function(){
+			$('.tablaCalendario').find(`th[data-column='${col}']`).css('background-color','white');
+		})
+
+		$('td').dblclick(function(){			
+			var row = $(this).attr("data-row");
+			var col = $(this).attr("data-column");
+			//console.log(row+':'+col);
+			if($(this).text()==''){//asignar un boton
+				//$(this).text(row+':'+col);
+				var hora=moment(row+':'+col,'H:mm');
+				$('#lblAsignarHoraAMPM').text(hora.format('LT'));
+				$('#lblAsignarHoraCompleta').text(row+':'+col);
+				$('#modalAsignar').modal('show');
+		}
+		});
+		$('.tablaCalendario').on('click','.btnDer',function(){
+			var sumaMinutos;
+			if($(this).parents('.tablaCalendario').attr('id')=='mañana'){sumaMinutos=10;}
+			if($(this).parents('.tablaCalendario').attr('id')=='tarde'){sumaMinutos=15;}
+			var row = parseInt($(this).parent().parent().attr("data-row"));
+			var col = parseInt($(this).parent().parent().attr("data-column"));
+			console.log('Fila clickeada: '+row+':'+col);
+			//Para la siguiente casilla
+			var nextRow;
+			var nextCol=col+sumaMinutos;
+			if(nextCol==60){nextRow=row+1;nextCol='0';console.log('Proxima fila a mover '+ (row+1)+':0');}
+			else {nextRow=row;}//console.log('Proxima columna a mover '+row+':'+nextCol);}
+
+			var proxRow = row; var proxCol=col;
+			var minutos, minutosLibre, minutosOcupado;	var estado = true;	var ocupado=0;
+			var rowLibre, colLibre;
+			var rowUltimo = row;
+			var colUltimo = col;
+
+			while (estado){
+				if(proxRow>=6 && proxRow<=9){minutos=10}
+					else{minutos=15}
+				if(proxCol==45){proxRow=proxRow+1;proxCol=0;}
+				else if(proxCol==50){proxRow=proxRow+1;proxCol=0;}
+				else{proxCol+=minutos;}
+				//console.log('actual ' + proxRow+'~'+proxCol);
+				if($(`td[data-row='${proxRow}'][data-column='${proxCol}']`).html().length==0){estado=false; rowLibre=proxRow,colLibre=proxCol}
+				else {estado=true;ocupado++;rowUltimo=proxRow;colUltimo=proxCol;}
+				//console.log(estado);
+			} 
+			//console.log('libre ' + rowLibre+'~'+colLibre);
+			//console.log('ocupado ' + rowUltimo+'~'+colUltimo);
+
+			estado = true;
+			
+			while(estado){
+				$(`td[data-row='${rowLibre}'][data-column='${colLibre}']`).html($(`td[data-row='${rowUltimo}'][data-column='${colUltimo}']`).html());
+				$(`td[data-row='${rowUltimo}'][data-column='${colUltimo}']`).html('');
+				rowLibre=rowUltimo; colLibre=colUltimo;
+				console.log('row libre '+rowLibre+' col libre ' + colLibre);
+				
+				if(rowLibre==10 && colUltimo==0){minutosOcupado=10}
+				else if(rowUltimo>=6 && rowUltimo<=9){minutosOcupado=10}
+				else{minutosOcupado=15}
+					console.log('minutos '+minutosOcupado)
+				if(colUltimo==0){rowUltimo=rowUltimo-1;colUltimo=60-minutosOcupado;}
+				else{colUltimo-=minutosOcupado;}
+				//if(rowUltimo==9 && colUltimo==50){}
+				console.log('ulti row ocupado '+rowUltimo+' ulti col ocupado ' + colUltimo);
+
+
+				//console.log('row libre '+rowLibre+' col libre ' + colLibre);
+
+				
+				
+				if(colLibre<=col && rowLibre==row){estado=false}
+					else estado = true;
+			}
+
+			/*if($(`td[data-row='${nextRow}'][data-column='${nextCol}']`).html().length==0){
+				$(`td[data-row='${nextRow}'][data-column='${nextCol}']`).html($(`td[data-row='${row}'][data-column='${col}']`).html());
+				$(`td[data-row='${row}'][data-column='${col}']`).html('');
+			}*/
+			
+		});
+
+		$('.tablaCalendario').on('click','.btnIzq',function(){
+			var sumaMinutos;
+			if($(this).parents('.tablaCalendario').attr('id')=='mañana'){sumaMinutos=10;}
+			if($(this).parents('.tablaCalendario').attr('id')=='tarde'){sumaMinutos=15;}
+			var row = parseInt($(this).parent().parent().attr("data-row"));
+			var col = parseInt($(this).parent().parent().attr("data-column"));
+			console.log($(this).parents('.tablaCalendario').attr('id'));
+			console.log('Fila clickeada: '+row+':'+col);
+			//Para la siguiente casilla
+			var nextRow;
+			var nextCol=col-sumaMinutos;
+
+			if(nextCol<0){nextRow=row-1;nextCol=60-sumaMinutos;console.log('Proxima fila a mover '+ (row-1)+':'+(60-sumaMinutos));}
+			else {nextRow=row;console.log('Proxima columna a mover '+row+':'+nextCol);}			
+			if(nextRow==9 && nextCol==45)	{nextCol=50;}
+			if($(`td[data-row='${nextRow}'][data-column='${nextCol}']`).html().length==0){
+				$(`td[data-row='${nextRow}'][data-column='${nextCol}']`).html($(`td[data-row='${row}'][data-column='${col}']`).html());
+				$(`td[data-row='${row}'][data-column='${col}']`).html('')
+			}
+
+		});
+
+		$('#btnAgregarConsultaHorario').click(function(){
+
+			var completa=moment($('#lblAsignarHoraCompleta').text(),'H:mm');
+			var row=completa.format('H');
+			var col=completa.format('m');
+			$(`td[data-row='${row}'][data-column='${col}']`).html(`<div class="btn-group contenido"><button type="button" class="btn btn-sm btn-negro btnIzq"><span class="glyphicon glyphicon-backward"></span></button><button type="button" class="btn btn-sm btn-primary">Consulta</button><button type="button" class="btn btn-sm btn-negro btnDer"><span class="glyphicon glyphicon-forward"></span></button></div>`);
+		});
+	</script>
+
+	
+</body>
+</html>

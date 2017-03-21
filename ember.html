@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Consultorio ORL</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/animate.css">
+</head>
+<style type="text/css">
+	body{background: url('./images/44.jpg')
+		
+	}
+
+	#contenedor-video{
+		padding-right: 0;
+    padding-left: 0; padding-bottom: 15px;}
+	label{font-size: 40px; }
+	hr {border: 0; height: 0; box-shadow: 0 0px 1px 1px #5c3f16;}
+	video {width: 100%;
+		background-color: black;
+	/*width: 730px !important;
+	height: 500px !important;*/
+	}
+	#hora{padding-top: 15px;color: #ffecb3 ;text-shadow: 1px 2px 5px #3e2723;}
+	#consultaActual,#consultaProxima{color: #ffecb3 ;text-shadow: 1px 2px 5px #3e2723;font-size:30px;}
+	#actualPaciente,#proximoPaciente{color:#795548;text-shadow: 1px 2px 5px #3e2723;}
+	
+</style>
+<body>
+	
+	<div class="row">
+		<div class="col-md-8" id="contenedor-video">		
+			<video controls>
+				<source src="http://localhost/video/District9.mp4" type="video/mp4"></source>
+			</video>
+			<div class="text-center"><img src="images/consultoria.png" alt=""></div>
+		</div>
+		<div class="col-md-4 container" >
+			<div class="row text-center">
+				<label class="sr-only" id="hora"></label> 
+			</div>
+			<div class="container"><br><hr><br></div>
+			<div id="actual" class="sr-only">
+				<div class="row text-center"><label id="consultaActual">Consulta actual:</label></div>
+				<div class="row text-center"><label id="actualPaciente"><i class="fa fa-user-md" style="color:#333; text-shadow: none;font-size:36px;"></i> <span id="pacActualNombre">Rodrigo Cardenas</span></label></div>	
+			</div>
+			<div class="container"><br><hr><br></div>
+			<div id="proximo" class="sr-only">
+				<div class="row text-center"><label id="consultaProxima">Próximo paciente:</label></div>
+				<div class="row text-center"><label id="proximoPaciente"><i class="fa fa-ambulance" style="color:#333; text-shadow: none;font-size:36px;"></i> <span id="pacProxNombre">Carlos Pariona </span></label></div>				
+			</div>
+			
+		</div>		
+	</div>
+	
+	<script src="js/jquery-2.2.3.min.js"></script>
+	<script src="js/moment.js"></script>
+	<script src="./node_modules/socket.io/node_modules/socket.io-client/socket.io.js"></script>
+	<script src="js/socketCliente.js"></script>
+</body>
+	<script>
+		$('#hora').text(moment().format('h:mm:ss a'));
+		setInterval(function(){$('#hora').text(moment().format('h:mm:ss a'));},'1000');
+		var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+		$('#hora').removeClass('sr-only').addClass('animated bounceInDown').one(animationEnd,function() {
+			$('#actual').removeClass('sr-only').addClass('animated bounceInDown').one(animationEnd,function() {
+				$('#proximo').removeClass('sr-only').addClass('animated bounceInDown');
+			});
+		});
+		$('img').click(function() {
+			$('#actual').removeClass('animated bounceInDown').addClass('animated flipOutY').one(animationEnd,function() {
+				$('#pacActualNombre').text('Carlos Pariona Valencia');
+				$('#actual').removeClass('animated flipOutY').addClass('animated flipInY').one(animationEnd,function() {
+					$('#proximo').removeClass('animated bounceInDown').addClass('animated flipOutY').one(animationEnd,function() {					
+					$('#pacProxNombre').text('Matilde Mucha Boris');
+					$('#proximo').removeClass('animated flipOutY').addClass('animated flipInY');
+				});
+				})
+			});			
+		});
+		$(document).ready(function(){
+			//var video_url = window.URL.createObjectURL('D:/video/33.mp4');
+			//$("video").attr("src", 'http://localhost/video/District9.mp4');
+			socket.emit('solicitarPaciente');
+			$("video").on('ended', function(){
+				//alert('El video ha finalizado!!!');
+				$('video').html('<source src="http://localhost/video/Las-tribus_olvidadas_de_Angola.mp4" type="video/mp4"></source>');
+				$('video').load();
+				
+			});
+		});
+		socket.on('siguientePaciente',function(pacienteActual, pacienteSiguiente) {
+
+			if(pacienteActual!='' && pacienteSiguiente!=''){
+				console.log(pacienteActual);
+				console.log(pacienteSiguiente);
+			}
+			if(pacienteActual!='' && pacienteSiguiente=='' ){console.log(pacienteActual);console.log('No hay siguientes pacientes en espera');}
+			if(pacienteActual=='' && pacienteSiguiente=='' ){console.log('No hay ningun paciente en cola');}
+			
+		});
+
+		
+	</script>
+</html>

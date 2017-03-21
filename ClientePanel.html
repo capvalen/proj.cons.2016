@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<link rel="stylesheet" href="iconfont/material-icons.css"> <!--Iconos en: https://design.google.com/icons/-->
+		<title>Consultorio ORL</title>
+
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/estilos.css" rel="stylesheet">
+		<link href="css/animate.css" rel="stylesheet">
+		<link href="css/bootstrap-switch.css" rel="stylesheet">
+		
+		
+	</head>
+	<body>
+		<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="index.html">Consultorio ORL</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li><a href="index.html"><i class="material-icons">home</i></a></li>
+				<li class="active"><a href="Cliente.html">Clientes</a></li>
+				<li><a href="ventas.html">Ingresos Egresos</a></li>
+				<li><a href="reportes.html">Reportes</a></li>
+			</ul>
+		 
+			<ul class="nav navbar-nav navbar-right">
+				<p class="navbar-text" id="horaServer"></p>
+				<p class="navbar-text" id="fechaServer"></p>                
+			 <form class="navbar-form navbar-left" role="search">
+	 
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Buscar">
+					<span class="input-group-btn">
+						<button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-search"></span></button>
+					</span>
+				</div>
+				
+			</form>        
+				<li><a href="configuraciones.html"><i class="material-icons">settings</i></a></li>
+				
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons">fingerprint</i> <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#" data-toggle="modal" data-target=".modal-password">Cambiar contraseña</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="#">Cerrar sesión</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div><!-- /.navbar-collapse -->
+		</div>
+	</nav>
+
+
+	<div class="container">
+		<main>
+			<div class="page-header">
+				<h1>Panel de control <small>Administración de Cliente</small></h1>
+			</div>
+			<div class="alert alert-warning alert-dismissible fade in" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> <strong>Felicidades!</strong> El cliente fue registrado con éxito. </div>
+			<div class="row">
+
+				<div class="col-sm-3 hidden-print"><div class="panel panel-negro">
+				<div class="panel-heading">Acciones permitidas</div>
+					<div class="panel-body">
+							<div class="btn-group-vertical col-sm-12" role="group" aria-label="...">
+							<button type="button" class="btn btn-default btnOpciones">Editar datos</button>
+							<button type="button" class="btn btn-default btnOpciones" id="imprHistoria">Historia clínica</button>
+							<button type="button" class="btn btn-default btnOpciones" id="btnCrearCita" data-toggle="modal" data-target=".modal-cita">Crear cita</button>
+							<button type="button" class="btn btn-default btnOpciones">Crear re-evaluación</button>
+							<button type="button" class="btn btn-default btnOpciones">Crear procedimiento</button>
+							<button type="button" class="btn btn-default btnOpciones" id="btnIngresarPago" data-toggle="modal" data-target=".modal-adelanto">Ingresar pagos</button>
+							<button type="button" class="btn btn-danger">Eliminar cliente</button>
+						</div>
+					</div></div>
+				</div><!--Fin de col-sm-3-->
+
+				<div class="col-sm-6">
+				<div class="panel panel-negro">
+					<div class="panel-heading"><h4 id="h4Nombre">CARLOS ALEX PARIONA VALENCIA</h4></div>
+					<div class="panel-body">
+							<p><span class="glyphicon glyphicon-tag"></span> N° HISTORIA CLÍNICA: <span><strong>0142536</strong></span></p> 
+							<p><span class="glyphicon glyphicon-pushpin"></span> ESTUDIANTE UNIVERSITARIO CON 29 AÑOS DE EDAD.</p> 
+						<p><span class="glyphicon glyphicon-pushpin"></span> SOLTERO.</p>
+						<p><span class="glyphicon glyphicon-pushpin"></span> DIRECCIÓN: AV. HUANCAVELICA 435 EL TAMBO </p>
+						<p><span class="glyphicon glyphicon-pushpin"></span> CONTACTO A: #971-008196 </p>	
+						
+					</div>
+				</div>					
+				</div><!--Fin de col-sm-6-->
+
+				<div class="col-sm-3 hidden-print text-center"><img src="images/man.jpg" alt=""></div>
+
+				
+			</div>
+			<div>
+			<div class="col-sm-6">
+			<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4>Historial de actividades:</h4>
+			</div>
+			<div class="panel-body">
+				<div class="list-group">
+				<a href="#!" class="list-group-item">
+					<p class="list-group-item-text"><strong>Re-evaluación: </strong>30/06/2016 </p>
+				</a>
+				<a href="#!" class="list-group-item">
+					<p class="list-group-item-text"><strong>Procedimiento: </strong>16/06/2016 - Reducción de fractura</p>
+				</a>
+				<a href="#!" class="list-group-item">
+					<p class="list-group-item-text"><strong>Consulta: </strong>14/06/2016 - Consulta médica</p>
+				</a>
+				<a href="#!" class="list-group-item">
+					<p class="list-group-item-text"><strong>Inicio: </strong>14/06/2016</p>
+				</a>
+				</div>				
+			</div>
+			</div>
+			</div>
+
+			<div class="col-sm-6">
+			<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4>Historial de pagos:</h4>
+			</div>
+			<div class="panel-body">
+				<div class="list-group">
+					<a href="#!" class="list-group-item">
+						<p class="list-group-item-text"><strong>18/06/2016 Pago: </strong>S/.600.00 canceló por rinoplastía</p>
+					</a>
+					<a href="#!" class="list-group-item">
+						<p class="list-group-item-text"><strong>14/06/2016 Adelanto: </strong>S/.30.00 por consulta</p>
+					</a>
+					<a href="#!" class="list-group-item">
+						<p class="list-group-item-text"><strong>14/06/2016 Pago: </strong>S/. 60.00 Revisión general</p>
+					</a>
+				</div>				
+			</div>
+			</div>
+			</div>
+				
+
+			</div>
+		</main>
+	</div>
+
+
+	<!--Modal Para ingresar cita-->
+	<div class="modal fade modal-cita" tabindex=-1 role="dialog">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
+					<div class="modal-tittle grey-text text-darken-3"><h4>Crear una nueva cita</h4></div>					
+				</div>
+				<div class="modal-body">
+					<div class="container-fluid form-inline">
+						<div class="form-group">
+							<label>Programar para</label>
+							<div class="input-group">
+							<input class="form-control" id="txtAsignarDias" type="text" maxlength="2" size="2"  placeholder="...días">
+							<span class="input-group-btn">
+								<button class="btn btn-default" id="asignarDias" type="button"><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></button>
+							</span>
+							</div>
+						</div>
+						<div class="form-group ">
+							<label>Fecha:</label>
+							<input class="form-control" id="dtpFechaCita" type="date">
+						</div>
+						<div class="form-group ">
+							<label>Hora:</label>
+							<input class="form-control" id="dtpHoraCita" type="time"  step="600">
+						</div>
+						<button type="button" class="btn btn-primary" id="btnProgramarCita">Programar</button>
+						<table class="container-fluid table table-hover" id="tblCitas">
+								<thead>
+									<tr>
+										<th>Hora</th>
+										<th>Datos del paciente</th>
+										<th>Acciones</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="hora">8:00 a.m.</td>
+										<td>Artega Rivera, Rocio</td>
+										<td><button class="btn btn-danger btn-sm eliminarCita">Cancelar cita</button>
+										<button class="btn btn-success btn-sm" id="btnImprimirCita"><span class="glyphicon glyphicon-print"></span></button></td>
+									</tr>
+									<tr>
+										<td class="hora">8:10 a.m.</td>
+										<td>Artega Rivera, Rocio</td>
+										<td><button class="btn btn-danger btn-sm eliminarCita">Cancelar cita</button>
+										<button class="btn btn-success btn-sm" id="btnImprimirCita"><span class="glyphicon glyphicon-print"></span></button></td>
+									</tr>
+									
+								</tbody>
+							</table>
+					</div>
+					
+				</div>
+			
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>	
+				
+			</div>
+		</div>
+		</div>
+	</div>
+
+
+
+
+	<!--Modal Para ingresar adelanto-->
+	<div class="modal fade modal-adelanto" tabindex=-1 role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
+					<div class="modal-tittle grey-text text-darken-3"><h4>Adelantos de parte del cliente</h4></div>					
+				</div>
+				<div class="modal-body">
+					<div class="alert alert-danger alert-dismissible fade in sr-only" id="divErrorPago" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> <strong>Hay un problema!</strong> <span class="mensajeError"></span> </div>
+					<p>Ingrese los campos requeridos</p>
+					<div class="container-fluid">
+						<div class="form-group col-sm-6">
+							<label for="cmbAdelanto">Por el proceso de:</label>
+							<select class="form-control" id="cmbAdelanto">
+								<option value="0">Elija un proceso</option>
+								<option value="1">Cita</option>
+								<option value="2">Procedimiento</option>
+								<option value="3">Otro</option>
+							</select>
+						</div>
+						<div class="form-group col-sm-6" lang="en-US"> 
+							<label for="txtMontoPagado">Monto pagado:</label>
+							<input type="number" class="form-control" id="txtMontoPagado" placeholder="S/. 0.00" min="0" step=".10">
+						</div>
+						<div class="form-group col-sm-6">
+							<label for="chkAdelanto">Tipo de pago:</label>
+							<input id="chkAdelanto" class="BSswitch" type="checkbox" data-off-color="warning" data-on-text="Cancela" data-off-text="Adelanta" checked="false">
+						</div>
+						<div class="form-group col-sm-6" lang="en-US"> 
+							<label for="txtObservacion">Observaciones:</label>
+							<input type="text" class="form-control" id="txtObservacion">
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>	
+					<button type="button" class="btn btn-primary" id="btnGuardarPago">Guardar</button>	
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!--Modal Para cambiar contraseña-->
+	<div class="modal fade modal-password myPrintArea" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-tittle text-primary">Cambio de contraseña</h4>
+				</div>
+				<div class="modal-body">
+					<p>Ingrese las contraseñas a cambiar</p>
+					<div class="row container-fluid">
+						<div class="form-group col-sm-6">
+							<label for="txtPassAnterior ">Contraseña anterior:</label>
+							<input type="password" class="form-control " id="txtPassAnterior" placeholder="Contraseña anterior">
+						</div>
+						<div class="form-group col-sm-6">
+							<label for="txtPassAnterior">Nueva contraseña:</label>
+							<input type="password" class="form-control " id="txtPassAnterior" placeholder="Contraseña nueva">
+						</div>
+						<div class="form-group col-sm-6">
+							<label for="txtPassAnterior">Repita la nueva contraseña:</label>
+							<input type="password" class="form-control " id="txtPassAnterior" placeholder="Repita su contraseña">
+						</div>
+						
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+					<button type="button" id="guardarContraseña" class="btn btn-primary" id="imprime">Guardar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="js/jquery-2.2.3.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/moment.js"></script>
+		<script src="js/mijs.js"></script>
+		<script src="js/jquery.PrintArea.js"></script>
+		<script src="js/jquery.printPage.js"></script>
+		<script src="js/bootstrap-switch.js"></script>
+		<script>
+			$("#imprime").click(function () {
+				//$(".myPrintArea").removeClass('sr-only');
+				$(".myPrintArea").printArea();
+				//$(".myPrintArea").addClass('sr-only');
+			});
+			$("#imprHistoria").printPage({
+				url: "imprimirHistoria.html",
+				attr: "href",
+				message:"Tu documento está siendo creado"
+			});
+			$("#btnImprimirCita").printPage({
+				url: "imprimirCita.html",
+				attr: "href",
+				message:"Tu documento está siendo creado"
+			});
+		</script>
+	</body>
+</html>

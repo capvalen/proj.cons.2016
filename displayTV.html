@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Consultorio ORL</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/estilos.css" rel="stylesheet">
+	<link href="css/sticky-footer.css" rel="stylesheet">
+	<link href="css/animate.css" rel="stylesheet">
+	<link href="css/font-awesome.min.css" rel="stylesheet">
+</head>
+<style type="text/css">
+*{font-family:"Berlin Sans FB";}
+body{background-color: #FFBF3D;}
+ /*calc(100% - 250px)*/
+.bloque-video, video{
+}
+
+.TextCambio{background-color: #FFBF3D;color: #ebebed; font-size: 45px;}
+.principal{background-color: #29323F;}
+.pase{background-color: #0d47a1;}
+.proximo{background-color: #303f9f;}
+.actual{background-color: #64347a;}
+span{font-size: 30px}
+.visible{ opacity: 1; }
+.invisible {opacity: 0; }
+.mayuscula{text-transform: capitalize;}
+
+</style>
+<body>
+	<div class="container-fluid">
+
+	<div class="row TextCambio">
+		<div class="col-sm-12 text-center container textosA " id="principal">			
+		</div>
+		<div class="col-sm-12 text-center container textos hidden" id="pase">			
+		</div>
+		<div class="col-sm-12 text-center container textos hidden" id="proximo">			
+		</div>
+		<div class="col-sm-12 text-center container textos hidden" id="actual">			
+		</div>
+	</div>
+	<audio class="audioDemo sr-only" > 
+				<source src="audio/helium.ogg" type="audio/ogg">
+			</audio>
+	
+
+	</div>
+	<script src="js/jquery-2.2.3.min.js"></script>
+	<script src="./node_modules/socket.io/node_modules/socket.io-client/socket.io.js"></script>
+	<script src="js/socketCliente.js"></script>
+	<script>
+	$.numVideo=1;
+	$.videosLista='';
+	$(document).ready(function(){
+		socket.emit('solicitarNumeroVideo');
+		
+		cambiarTextosOrden();
+		//var myTimer =setInterval(cambiarTextosOrden, 4000);
+		$.timer = new Timer(function() {
+				cambiarTextosOrden();
+		}, 10000);
+		
+		//var listaVideo = []; //listaVideo.push('a'); //agrega un item a listaVideo
+		//dir /b> 00_lista.txt crea una lista con todos los arhivos
+		$.get('http://192.168.1.106/consultorio/video/00_lista.txt',function(data) {
+			
+			$.videosLista= data.split("\n");;
+			console.log($.videosLista);
+			//console.log(listaVideo[2]);
+		});
+		$("audio").trigger('load');
+		socket.emit('solicitarPaciente');
+		
+
+		$("video").on('ended', function(){
+			//alert('El video ha finalizado!!!');
+			//console.log(`<source src="video/${videosLista[numVideo]}" type="video/mp4"></source>`);
+			$('video').html(`<source src="http://localhost/consultorio/video/${$.videosLista[$.numVideo]}" type="video/mp4"></source>`);
+			$('video').load();
+			proximoVideo();
+			
+			//console.log(numVideo);
+		});
+
+	});
+	function proximoVideo () {
+		if($.numVideo<$.videosLista.length-2){socket.emit('actualizarnumVideo', $.numVideo); $.numVideo++; }
+		else{$.numVideo=1;socket.emit('actualizarnumVideo', 0);}
+		console.log($.numVideo);
+	}
+	var idCambio =2, idProximo=false;
+	var cambios=['principal','pase','proximo', 'actual'];
+	var NombresHtml=['<span>Centro médico especializado en Otorrinolaringología</span><p> <i class="fa fa-user-md" aria-hidden="true"></i> Dr. David Balbin Villaverde</p>',
+		'<span>En consulta:</span><p>Aún no hay pacientes en la lista</p>',
+		'<span><div class="col-xs-5 col-xs-offset-1">Estamos en Facebook:</div> <div class="col-xs-5">También en la Web</div></span><p 	class="mayuscula"><div class="col-xs-5 col-xs-offset-1"><i class="fa fa-facebook-official" aria-hidden="true"></i> ORL Huancayo</div> <div class="col-xs-5"><i class="fa fa-globe" aria-hidden="true"></i> ConsultorioORL.com</div></p>',
+		'<span>Por favor, pase al módulo:</span><p class="mayuscula">Aún no hay pacientes en la lista</p>'];
+
+
+	socket.on('solicitadoNumeroVideo',function(dato) {
+		$.numVideo=dato;
+	});
+
+	function cambiarTextosOrden () {
+		//console.log('len'+ cambios.length)
+		//console.log('clic '+idCambio);
+		
+		/*$(`#${cambios[idCambio]}`).removeClass('hidden').addClass('animated bounceOutRight').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+			
+			$(`#${cambios[idCambio]}`).removeClass('animated bounceOutRight');
+			$(`#${cambios[idCambio]}`).addClass('hidden');
+			if(idCambio==cambios.length-2){idCambio=0;}
+			else{idCambio++;}
+			//console.log('prox '+idCambio);
+			$(`#${cambios[idProximo]}`).removeClass('hidden').addClass('animated bounceInLeft').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+				$(`#${cambios[idProximo]}`).removeClass('animated bounceInLeft');
+			});
+		});
+		idProximo=idCambio+1;*/
+
+		$('.textosA').addClass('animated bounceOutRight').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+			$('.textosA').removeClass('animated bounceOutRight');
+			$('.textosA').removeClass(cambios[idCambio]);
+			if(idCambio<cambios.length-2){idCambio++;}
+			else{idCambio=0;}
+			$('.textosA').removeClass(cambios[3]);
+			
+			if(idProximo==true){$('.textosA').html(NombresHtml[3]).addClass(cambios[3]);idCambio=1; }
+			else{$('.textosA').html(NombresHtml[idCambio]).addClass(cambios[idCambio]);}	
+
+			$('.textosA').addClass('animated bounceInLeft').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+				$('.textosA').removeClass('animated bounceInLeft');
+				idProximo=false;
+				});
+			//console.log(idCambio);
+		});
+			
+			//console.log(cambios[idCambio] + ' '+cambios[ idProximo]);
+	
+		/*$(`#${cambios[idCambio]}`).removeClass('hidden').addClass('animated bounceOutRight').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+			
+			$(`#${cambios[idCambio]}`).removeClass('animated bounceOutRight').addClass('hidden');
+			/*if(idCambio==cambios.length-2){idCambio=0;}
+			else{idCambio++;}
+			
+			switch(idProximo){
+				case 0: $(`#${cambios[0]}`).removeClass('hidden').addClass('animated bounceInLeft').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {$(`#${cambios[0]}`).removeClass('animated bounceInLeft');});idCambio=1; idProximo=2;break;
+				case 1: $(`#${cambios[1]}`).removeClass('hidden').addClass('animated bounceInLeft').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {$(`#${cambios[1]}`).removeClass('animated bounceInLeft');});idCambio=2;idProximo=0;break;
+				case 2: $(`#${cambios[2]}`).removeClass('hidden').addClass('animated bounceInLeft').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {$(`#${cambios[2]}`).removeClass('animated bounceInLeft');});idCambio=0;idProximo=1;break;
+				case 3: $(`#${cambios[3]}`).removeClass('hidden').addClass('animated bounceInLeft').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {$(`#${cambios[3]}`).removeClass('animated bounceInLeft');});idCambio=2;idProximo=0;break;
+			}
+
+			
+		});*/
+		//idProximo=idCambio+1;
+		//console.log('idactual ' + idCambio );
+		//console.log('idpro '+ idProximo );
+
+	}
+	/*$('img').click(function() {
+		idProximo=true;
+		cambiarTextosOrden();
+		$.timer.reset(30000);
+	});*/
+
+	socket.on('siguientePaciente',function(pacienteActual, pacienteSiguiente) {
+		idProximo=true;
+		cambiarTextosOrden();
+		$.timer.reset(30000);
+		if(pacienteActual!='' && pacienteSiguiente!=''){
+			NombresHtml[1]=`<span>En consulta:</span><p class="mayuscula">${pacienteActual}</p>`;
+			NombresHtml[2]=`<span><span><div class="col-xs-5 col-xs-offset-1">Estamos en Facebook:</div> <div class="col-xs-5">También en la Web</div></span><p 	class="mayuscula"><div class="col-xs-5 col-xs-offset-1"><i class="fa fa-facebook-official" aria-hidden="true"></i> ORL Huancayo</div> <div class="col-xs-5"><i class="fa fa-globe" aria-hidden="true"></i> ConsultorioORL.com</div></p>`;
+			NombresHtml[3]=`<span>Por favor, pase al módulo:</span><p class="mayuscula"><i class="fa fa-user-circle"></i> ${pacienteActual}</p>`;
+			$("audio").prop("volume", 0.3);
+			$("audio").trigger('play');
+
+			//console.log(pacienteActual);
+			//console.log(pacienteSiguiente);
+		}
+		if(pacienteActual!='' && pacienteSiguiente=='' ){
+			NombresHtml[1]=`<span>En consulta:</span><p class="mayuscula"> ${pacienteActual}</p>`;
+			NombresHtml[2]=`<span><div class="col-xs-5 col-xs-offset-1">Estamos en Facebook:</div> <div class="col-xs-5">También en la Web</div></span><p 	class="mayuscula"><div class="col-xs-5 col-xs-offset-1"><i class="fa fa-facebook-official" aria-hidden="true"></i> ORL Huancayo</div> <div class="col-xs-5"><i class="fa fa-globe" aria-hidden="true"></i> ConsultorioORL.com</div></p>`;
+			NombresHtml[3]=`<span>Por favor, pase al módulo:</span><p class="mayuscula"><i class="fa fa-user-circle"></i> ${pacienteActual}</p>`;
+			$("audio").prop("volume", 0.3);
+			$("audio").trigger('play');
+			//console.log(pacienteActual);console.log('No hay siguientes pacientes en espera');
+		}
+		if(pacienteActual=='' && pacienteSiguiente=='' ){
+			NombresHtml[1]=`<span>En consulta:</span><p class="mayuscula">No hay pacientes en la lista</p>`;
+			NombresHtml[2]=`<span><div class="col-xs-5 col-xs-offset-1">Estamos en Facebook:</div> <div class="col-xs-5">También en la Web</div></span><p 	class="mayuscula"><div class="col-xs-5 col-xs-offset-1"><i class="fa fa-facebook-official" aria-hidden="true"></i> ORL Huancayo</div> <div class="col-xs-5"><i class="fa fa-globe" aria-hidden="true"></i> ConsultorioORL.com</div></p>`;
+			//console.log('No hay ningun paciente en cola');
+		}
+
+	});
+	function Timer(fn, t) {
+		var timerObj = setInterval(fn, t);
+
+		this.stop = function() {
+				if (timerObj) {
+						clearInterval(timerObj);
+						timerObj = null;
+				}
+				return this;
+		}
+
+		// start timer using current settings (if it's not already running)
+		this.start = function() {
+				if (!timerObj) {
+						this.stop();
+						timerObj = setInterval(fn, t);
+				}
+				return this;
+		}
+
+		// start with new interval, stop current interval
+		this.reset = function(newT) {
+				t = newT;
+				return this.stop().start();
+		}
+	}
+	</script>
+</body>
+</html>

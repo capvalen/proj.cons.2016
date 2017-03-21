@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<link rel="stylesheet" href="iconfont/material-icons.css"> <!--Iconos en: https://design.google.com/icons/-->
+		<title>Consultorio ORL</title>
+
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/estilos.css" rel="stylesheet">
+		<link href="css/animate.css" rel="stylesheet">
+		<link href="css/bootstrap-switch.css" rel="stylesheet">
+		
+		
+	</head>
+	<body>
+		<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="index.html">Consultorio ORL</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li><a href="index.html"><i class="material-icons">home</i></a></li>
+				<li class="active"><a href="Cliente.html"><i class="material-icons">group</i> Clientes</a></li>
+				<li><a href="ventas.html"><i class="material-icons">monetization_on</i> Economía</a></li>
+				<li><a href="reportes.html"><i class="material-icons">attach_file</i> Reportes</a></li>
+			</ul>
+		 
+			<ul class="nav navbar-nav navbar-right">
+				<p class="navbar-text" id="horaServer"></p>
+				<p class="navbar-text" id="fechaServer"></p>                
+			 <form class="navbar-form navbar-left" role="search">
+	 
+				<div class="input-group">
+					<input type="text" class="form-control" id="txtBuscar" placeholder="Buscar">
+					<span class="input-group-btn">
+						<button type="button" class="btn btn-warning" id="btnBuscar"><span class="glyphicon glyphicon-search"></span></button>
+					</span>
+				</div>
+				
+			</form>        
+				<li><a href="configuraciones.html"><i class="material-icons">settings</i></a></li>
+				
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons">fingerprint</i> <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#" data-toggle="modal" data-target=".modal-password">Cambiar contraseña</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="php/cerrarSesion.php">Cerrar sesión</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div><!-- /.navbar-collapse -->
+		</div>
+	</nav>
+
+
+	<div class="container">
+		<main>
+			<div class="page-header">
+				<h1>Panel de control <small>Clientes</small></h1>
+			</div>
+				<div class="row well">
+					<div class="col-sm-6 col-md-4">
+						<div class="thumbnail text-center"><br>							
+							<a  class="btn deep-purple white-text btn-circle-grande right"  id="btnNuevoCliente" border="0" data-toggle="modal" data-target=".modal-nuevoCliente"><i class="material-icons icono-grande">contact_mail</i></a>
+							<div class="caption"><hr>
+								<h3 class="indigo-text">Nuevo cliente</h3>
+								<p class="indigo-text">Inserte un nuevo cliente que viene por primera vez.</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4">
+						<div class="thumbnail text-center"><br>							
+							<a href="ClienteLista.html" class="btn light-green  white-text btn-circle-grande right"><i class="material-icons icono-grande">group</i></a>
+							<div class="caption"><hr>
+								<h3 class="indigo-text">Listar pacientes</h3>
+								<p class="indigo-text">Liste los pacientes programados para el día hoy.</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4">
+						<div class="thumbnail text-center"><br>							
+							<a href="#" id="alistarUltimos" class="btn blue darken-1  white-text btn-circle-grande right"><i class="material-icons icono-grande">dns</i></a>
+							<div class="caption"><hr>
+								<h3 class="indigo-text">Últimos pacientes registrados</h3>
+								<p class="indigo-text">Puede consultar los 15 últimos pacientes registrados.</p>
+							</div>
+						</div>
+					</div>
+
+				</div>
+		</main>
+	</div>
+	
+
+	<!--Modal Para Ingresar nuevo cliente-->
+	<div class="modal fade modal-nuevoCliente" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-tittle text-primary"><i class="material-icons">contact_mail</i> Registro de nuevo cliente</h4>
+				</div>
+				<div class="modal-body">
+					<div class="alert alert-warning sr-only" id="mensajeErrorCliente" role="alert"><strong>Alerta! </strong><span id="contenidoErrorCliente"></span></div>
+					<div class="row container-fluid form-group">
+					
+					<div class="col-sm-3">
+						<label for="cmbProcedencia">Procedencia:</label>
+						<div class="btn-group">
+							<select class="form-control btn-primary" id="cmbProcedencia">
+								<option value='0'>Lugar de procedencia</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<label for="cmbTipoPersona">Tipo:</label>
+						<select id="cmbTipoPersona" class="form-control">
+									<option value="1" select>Mayor de edad</option>
+									<option value="2">Menor de edad</option>
+									<option value="3">No posee Dni</option>
+								</select>
+					</div>
+					<div class="col-sm-3">
+						<label for="txtDni">Documento de Identidad:</label>
+							<input type="text" class="form-control" id="txtDni" placeholder="D.N.I." maxlength="8" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')">
+					</div>
+					<div class="form-group col-sm-3">
+							<label for="chkSexo">Género:</label>
+							<input id="chkSexo" type="checkbox" data-off-color="warning"  data-off-text="Dama" data-on-text="Varón" checked="false" class="BSswitch">
+						</div>
+					</div>
+					<div class="container-fluid form-inline">						
+						<div class="row">
+						<div class="form-group col-sm-4">
+							<label for="txtApellidoPaterno">Apellido paterno:</label>
+							<input type="text" class="form-control mayuscula" id="txtApellidoPaterno" placeholder="Apellido paterno" required size="30" >
+						</div>
+						<div class="form-group col-sm-4">
+							<label for="txtApellidoMaterno">Apellido materno:</label>
+							<input type="text" class="form-control mayuscula" id="txtApellidoMaterno" placeholder="Apellido materno" size="30">
+						</div>
+						<div class="form-group col-sm-4">
+							<label for="txtNombres">Nombres:</label>
+							<input type="text" class="form-control mayuscula" id="txtNombres" placeholder="Nombres" size="30">
+						</div></div><br>
+						<div class="row">
+						<div class="form-group col-sm-3">
+							<label for="dtpFechaNacimiento">Fecha de nacimiento:</label>
+							<input type="date" class="form-control " id="dtpFechaNacimiento">
+						</div>
+						<div class="col-sm-3">
+						<label for="cmbEstadoCivil">Estado civil:</label>
+							<div class="btn-group">
+								<select class="form-control" id="cmbEstadoCivil">
+									<option value="0">Estado Civil</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-sm-3">
+						<label for="cmbGrado">Estudios:</label>
+							<div class="btn-group">
+								<div class="btn-group">
+								<select class="form-control" id="cmbGrado">
+									<option value="0">Grado de estudios</option>
+								</select>
+							</div>
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<label for="cmbOcupacion">Ocupación:</label>
+							<select id="cmbOcupacion" class="form-control">
+								<option value="0">Su ocupación</option>
+							</select>
+						</div>
+						</div><br>
+						<div class="row">
+							<div class="col-sm-6">
+								<label for="txtDireccion">Dirección de domicilio:</label>
+								<input type="text" class="form-control mayuscula" id="txtDireccion" placeholder="Dirección de domicilio" size="45">
+							</div>
+							<div class="col-sm-3">
+								<label for="txtTelefono">Teléfono:</label>
+								<input type="text" class="form-control " id="txtTelefono" placeholder="Teléfono">
+							</div>
+							<div class="col-sm-3">
+								<label for="txtCelular">Celular:</label>
+								<input type="text" class="form-control " id="txtCelular" placeholder="Celular">
+							</div>
+						</div><br>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-error" data-dismiss="modal"><span class="glyphicon glyphicon-remove-circle"></span> Cancelar</button>
+						<button type="button" class="btn btn-success" id="btnGuardarCliente"><span class="glyphicon glyphicon-ok"></span> Guardar</button>
+					</div>
+			</div>
+		</div>
+	</div></div>
+
+
+	<!--Modal Para listar los últimos registrados-->
+	<div class="modal fade modal-ultimosRegistrados" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-tittle text-primary">Listado de los 15 últimos clientes registrados</h4>
+				</div>
+				<div class="modal-body">
+					<table class="table table-condensed tablita">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>N° Historia</th>
+								<th>Nombres</th>
+								<th>Tiempo</th>
+								<th>@</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row">1</th>
+								<td>Mark</td>
+								<td>Otto</td>
+								<td class="hidden">0003</td>
+								<td><a class="btn btn-sm btn-success" href="#" role="button">Ver <span class="glyphicon glyphicon-user"></span></a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!--Modal Para mostrar los resultados de la búsqueda-->
+	<div class="modal fade modal-resultadosBusqueda" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-tittle text-primary">Resultados de la búsqueda</h4>
+				</div>
+				<div class="modal-body">
+					<p>Se encontró <strong></strong> coincidencias</p>
+					<table class="table table-condensed tablita">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>N° Historia</th>
+								<th>Nombres</th>
+								<th>Edad</th>
+								<th>@</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row">1</th>
+								<td>Mark</td>
+								<td>Otto</td>
+								<td class="hidden">0003</td>
+								<td><a class="btn btn-sm btn-success" href="#" role="button">Ver <span class="glyphicon glyphicon-user"></span></a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!--Modal Para ingresar monto externo-->
+	<div class="modal fade modal-ingreso" tabindex=-1 role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
+					<div class="modal-tittle text-primary"><h4>Ingreso de soles a caja</h4></div>					
+				</div>
+				<div class="modal-body">
+					<div class="alert alert-danger alert-dismissible fade in sr-only" id="divErrorPago" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> <strong>Hay un problema!</strong> <span class="mensajeError"></span> </div>
+					<p>¿Cuánto ingresa a caja y por qué motivo?</p>
+					<div class="container-fluid">
+						
+						<div class="form-group col-sm-6" lang="en-US"> 
+							<label for="txtMontoPagado">Monto ingresando (S/.):</label>
+							<input type="number" class="form-control" id="txtMontoPagado" placeholder="S/. 0.00" min="0" step=".10">
+						</div>
+						<div class="form-group col-sm-6"> 
+							<label for="txtObservacion">Motivo:</label>
+							<input type="text" class="form-control mayuscula" id="txtMotivo" placeholder="¿Por qué ingresa a caja?">
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>	
+					<button type="button" class="btn btn-primary" id="btnGuardarIngreso">Guardar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!--Modal Para cambiar contraseña-->
+	<div class="modal fade modal-password" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-tittle text-primary">Cambio de contraseña</h4>
+				</div>
+				<div class="modal-body">
+					<p>Ingrese las contraseñas a cambiar</p>
+					<div class="row container-fluid">
+						<div class="form-group col-sm-6">
+							<label for="txtPassAnterior ">Contraseña anterior:</label>
+							<input type="password" class="form-control " id="txtPassAnterior" placeholder="Contraseña anterior">
+						</div>
+						<div class="form-group col-sm-6">
+							<label for="txtPassAnterior">Nueva contraseña:</label>
+							<input type="password" class="form-control " id="txtPassAnterior" placeholder="Contraseña nueva">
+						</div>
+						<div class="form-group col-sm-6">
+							<label for="txtPassAnterior">Repita la nueva contraseña:</label>
+							<input type="password" class="form-control " id="txtPassAnterior" placeholder="Repita su contraseña">
+						</div>
+						
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-primary">Guardar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="js/jquery-2.2.3.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/mijs.js"></script>
+		<script src="js/moment.js"></script>
+		<script src="./node_modules/socket.io/node_modules/socket.io-client/socket.io.js"></script>
+		<script src="./node_modules/moment-precise-range-plugin/moment-precise-range.js"></script>
+		<script src="js/socketCliente.js"></script>
+		<script src="js/bootstrap-switch.js"></script>
+	
+		
+		<script>
+			
+			$('#dtpFechaNacimiento').val(moment().format('YYYY-MM-DD'));
+			
+		</script>
+	</body>
+</html>

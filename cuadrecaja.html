@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<link rel="stylesheet" href="iconfont/material-icons.css"> <!--Iconos en: https://design.google.com/icons/-->
+		<title>Consultorio ORL</title>
+
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/estilos.css" rel="stylesheet">
+		<link href="css/animate.css" rel="stylesheet">
+		
+	</head>
+	<body>
+		<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="index.html">Consultorio ORL</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li><a href="index.html"><i class="material-icons">home</i></a></li>
+				<li ><a href="Cliente.html"><i class="material-icons">group</i> Clientes</a></li>
+				<li><a href="ventas.html"><i class="material-icons">monetization_on</i> Economía</a></li>
+				<li class="active"><a href="reportes.html"><i class="material-icons">attach_file</i> Reportes</a></li>
+			</ul>
+		 
+			<ul class="nav navbar-nav navbar-right">
+				<p class="navbar-text" id="horaServer"></p>
+				<p class="navbar-text" id="fechaServer"></p>                
+			 <form class="navbar-form navbar-left" role="search">
+	 
+				<div class="input-group">
+					<input type="text" class="form-control" id="txtBuscar" placeholder="Buscar">
+					<span class="input-group-btn">
+						<button type="button" class="btn btn-warning" id="btnBuscar"><span class="glyphicon glyphicon-search"></span></button>
+					</span>
+				</div>
+				
+			</form>        
+				<li><a href="configuraciones.html"><i class="material-icons">settings</i></a></li>
+				
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons">fingerprint</i> <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#" data-toggle="modal" data-target=".modal-password">Cambiar contraseña</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="#">Cerrar sesión</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div><!-- /.navbar-collapse -->
+		</div>
+	</nav>
+
+
+	<div class="container">
+		<main>
+			<div class="page-header">
+				<h1>Cuadre de caja <small>Diario</small></h1>
+			</div>
+				<ul class="nav nav-tabs">
+					<li class="active"><a data-toggle="tab" href="#home">Turno de diurno <span class="label label-success">S/. 2500.00</span></a></li>
+					<li><a data-toggle="tab" href="#menu1">Turno de nocturno <span class="label label-success">S/. 830.20</span></a></li>
+					<li><a data-toggle="tab" href="#menu1">Días anteriores</a></li>
+					
+				</ul>
+				<div class="tab-content">
+					<div id="home" class="tab-pane fade in active">
+						<div class="container col-sm-9 col-sm-offset-1"><br>
+							<div class="panel panel-negro">
+								<div class="panel-heading">Datos</div>
+								<div class="panel-body well">
+									<div class="row container form-inline col-sm-offset-1 col-sm-6">
+										<label for="">Desde las 8.00 a.m. hasta las: </label>
+										<input type="time" class="form-control" value="14:00:00">
+									</div>
+								</div>
+							</div>
+							<div class="panel panel-negro">
+								<div class="panel-heading">Consultas <div class="pull-right"><span class="badge">S/. 1730.00</span></div></div>
+								<div class="panel-body well">
+									<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+										<div class="panel panel-lavanda">
+											<div class="panel-heading" role="tab">
+												<h4 class="panel-title">
+													<span class="collapsed" role="button" data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+														Pacientes independientes
+													</span><div class="pull-right"><span class="badge">S/. 1500.00</span></div>
+												</h4>
+											</div>
+											<div id="collapseOne" class="panel-collapse collapse" role="tabpanel" >
+												<div class="panel-body panelCuadre">
+													<p><div class="col-sm-8">Augusto Pacheco Timoteo</div><div class="col-sm-4">S/. 60.00</div></p>
+													<p><div class="col-sm-8">Ricardo Cotrina Satornicio</div><div class="col-sm-4">S/. 60.00</div></p>
+												</div>
+											</div>
+										</div>
+										<div class="panel panel-lavanda">
+											<div class="panel-heading" role="tab">
+												<h4 class="panel-title">
+													<span class="collapsed" role="button" data-toggle="collapse"  href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+														Pacientes de Puno
+													</span><div class="pull-right"><span class="badge">S/. 70.00</span></div>
+												</h4>
+											</div>
+											<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" >
+												<div class="panel-body panelCuadre">
+													<p><div class="col-sm-6">Augusto Pacheco Timoteo</div><div class="col-sm-6">S/. 70.00</div></p>													
+												</div>
+											</div>
+										</div>
+										<div class="panel panel-lavanda">
+											<div class="panel-heading" role="tab">
+												<h4 class="panel-title">
+													<span class="collapsed" role="button" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+														Pacientes de Cayetano
+													</span><div class="pull-right"><span class="badge">S/. 90.00</span></div>
+												</h4>
+											</div>
+											<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" >
+												<div class="panel-body panelCuadre">
+													<p><div class="col-sm-6">Augusto Pacheco Timoteo</div><div class="col-sm-6">S/. 45.00</div></p>
+													<p><div class="col-sm-6">Ricardo Cotrina Satornicio</div><div class="col-sm-6">S/. 45.00</div></p>
+												</div>
+											</div>
+										</div>
+										<div class="panel panel-lavanda">
+											<div class="panel-heading" role="tab">
+												<h4 class="panel-title">
+													<span class="collapsed" role="button" data-toggle="collapse" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+														Pacientes de Convenio
+													</span><div class="pull-right"><span class="badge">S/. 90.00</span></div>
+												</h4>
+											</div>
+											<div id="collapseFour" class="panel-collapse collapse" role="tabpanel" >
+												<div class="panel-body panelCuadre">
+													<p><div class="col-sm-6">Don Mateo Pacheco Timoteo</div><div class="col-sm-6">S/. 45.00</div></p>
+													<p><div class="col-sm-6">Ricardo Cotrina Satornicio</div><div class="col-sm-6">S/. 45.00</div></p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="panel panel-negro">
+								<div class="panel-heading">Procedimientos <div class="pull-right"><span class="badge">S/. 1730.00</span></div></div>
+								<div class="panel-body well">
+									<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+										<div class="panel panel-verde">
+											<div class="panel-heading" role="tab">
+												<h4 class="panel-title">
+													<span class="collapsed" role="button" data-toggle="collapse" href="#collapsefive" aria-expanded="false" aria-controls="collapsefive">
+														Curación
+													</span><div class="pull-right"><span class="badge">S/. 1500.00</span></div>
+												</h4>
+											</div>
+											<div id="collapsefive" class="panel-collapse collapse" role="tabpanel" >
+												<div class="panel-body panelCuadre">
+													<p><div class="col-sm-6">Augusto Pacheco Timoteo</div><div class="col-sm-6">S/. 60.00</div></p>
+													<p><div class="col-sm-6">Ricardo Cotrina Satornicio</div><div class="col-sm-6">S/. 60.00</div></p>
+												</div>
+											</div>
+										</div>
+										<div class="panel panel-verde">
+											<div class="panel-heading" role="tab">
+												<h4 class="panel-title">
+													<span class="collapsed" role="button" data-toggle="collapse"  href="#collapsesix" aria-expanded="false" aria-controls="collapsesix">
+														Reducción
+													</span><div class="pull-right"><span class="badge">S/. 70.00</span></div>
+												</h4>
+											</div>
+											<div id="collapsesix" class="panel-collapse collapse" role="tabpanel" >
+												<div class="panel-body panelCuadre">
+													<p><div class="col-sm-6">Augusto Pacheco Timoteo</div><div class="col-sm-6">S/. 70.00</div></p>													
+												</div>
+											</div>
+										</div>
+										<div class="panel panel-verde">
+											<div class="panel-heading" role="tab">
+												<h4 class="panel-title">
+													<span class="collapsed" role="button" data-toggle="collapse" href="#collapseseven" aria-expanded="false" aria-controls="collapseseven">
+														Cauterización
+													</span><div class="pull-right"><span class="badge">S/. 90.00</span></div>
+												</h4>
+											</div>
+											<div id="collapseseven" class="panel-collapse collapse" role="tabpanel" >
+												<div class="panel-body panelCuadre">
+													<p><div class="col-sm-6">Augusto Pacheco Timoteo</div><div class="col-sm-6">S/. 45.00</div></p>
+													<p><div class="col-sm-6">Ricardo Cotrina Satornicio</div><div class="col-sm-6">S/. 45.00</div></p>
+												</div>
+											</div>
+										</div>
+										<div class="panel panel-verde">
+											<div class="panel-heading" role="tab">
+												<h4 class="panel-title">
+													<span class="collapsed" role="button" data-toggle="collapse" href="#collapseeight" aria-expanded="false" aria-controls="collapseeight">
+														Laringoscopía
+													</span><div class="pull-right"><span class="badge">S/. 90.00</span></div>
+												</h4>
+											</div>
+											<div id="collapseeight" class="panel-collapse collapse" role="tabpanel" >
+												<div class="panel-body panelCuadre">
+													<p><div class="col-sm-6">Don Mateo Pacheco Timoteo</div><div class="col-sm-6">S/. 45.00</div></p>
+													<p><div class="col-sm-6">Ricardo Cotrina Satornicio</div><div class="col-sm-6">S/. 45.00</div></p>
+												</div>
+											</div>
+										</div>
+										<div class="panel panel-verde">
+											<div class="panel-heading" role="tab">
+												<h4 class="panel-title">
+													<span class="collapsed" role="button" data-toggle="collapse" href="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+														Rellenado de certificado médico
+													</span><div class="pull-right"><span class="badge">S/. 90.00</span></div>
+												</h4>
+											</div>
+											<div id="collapseNine" class="panel-collapse collapse" role="tabpanel" >
+												<div class="panel-body panelCuadre">
+													<p><div class="col-sm-6">Don Mateo Pacheco Timoteo</div><div class="col-sm-6">S/. 45.00</div></p>
+													<p><div class="col-sm-6">Ricardo Cotrina Satornicio</div><div class="col-sm-6">S/. 45.00</div></p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="panel panel-negro">
+								<div class="panel-heading">Egresos en el turno<div class="pull-right"><span class="badge">S/. 200.00</span></div></div>	
+								<div class="panel-body well">
+									<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+										<div class="panel panel-cielo">
+											<div class="panel-heading" role="tab">
+												<h4 class="panel-title">
+													<span class="collapsed" role="button" data-toggle="collapse" href="#collapsefive" aria-expanded="false" aria-controls="collapsefive">
+														Curación
+													</span><div class="pull-right"><span class="badge">S/. 1500.00</span></div>
+												</h4>
+											</div>
+											<div id="collapsefive" class="panel-collapse collapse" role="tabpanel" >
+												<div class="panel-body panelCuadre">
+													<p><div class="col-sm-6">Augusto Pacheco Timoteo</div><div class="col-sm-6">S/. 60.00</div></p>
+													<p><div class="col-sm-6">Ricardo Cotrina Satornicio</div><div class="col-sm-6">S/. 60.00</div></p>
+												</div>
+											</div>
+										</div>
+										<div class="panel panel-cielo">
+											<div class="panel-heading" role="tab">
+												<h4 class="panel-title">
+													<span class="collapsed" role="button" data-toggle="collapse"  href="#collapsesix" aria-expanded="false" aria-controls="collapsesix">
+														Reducción
+													</span><div class="pull-right"><span class="badge">S/. 70.00</span></div>
+												</h4>
+											</div>
+											<div id="collapsesix" class="panel-collapse collapse" role="tabpanel" >
+												<div class="panel-body panelCuadre">
+													<p><div class="col-sm-6">Augusto Pacheco Timoteo</div><div class="col-sm-6">S/. 70.00</div></p>													
+												</div>
+											</div>
+										</div>										
+									</div>
+								</div>
+							</div>
+							<div class="panel panel-negro">
+								<div class="panel-heading">Resumen</div>
+								<div class="panel-body well text-center">
+									<h5>Ingresos: S/. 2700.00</h5>
+									<h5>Egresos: S/. (200.00)</h5>
+									<h4>Total: <span>S/. 2500.00</span></h4>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="menu1" class="tab-pane fade ">
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, obcaecati consequatur repellat cum architecto unde et hic quibusdam tempore dolores commodi odit delectus eum voluptatum ad aperiam recusandae officia fuga.
+					</div>
+					<div id="menu2" class="tab-pane fade">
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est, molestias, alias dignissimos amet porro a enim eius nisi mollitia blanditiis dolorum commodi quidem labore voluptates distinctio voluptas magnam! Obcaecati, similique.
+					</div>
+				</div>
+		</main>
+	</div>
+	
+
+	
+
+
+	<!--Modal Para mostrar los resultados de la búsqueda-->
+	<div class="modal fade modal-resultadosBusqueda" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-tittle text-primary">Resultados de la búsqueda</h4>
+				</div>
+				<div class="modal-body">
+					<p>Se encontró <strong></strong> coincidencias</p>
+					<table class="table table-condensed tablita">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>N° Historia</th>
+								<th>Nombres</th>
+								<th>Edad</th>
+								<th>@</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row">1</th>
+								<td>Mark</td>
+								<td>Otto</td>
+								<td class="hidden">0003</td>
+								<td><a class="btn btn-sm btn-success" href="#" role="button">Ver <span class="glyphicon glyphicon-user"></span></a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!--Modal Para cambiar contraseña-->
+	<div class="modal fade modal-password" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-tittle text-primary">Cambio de contraseña</h4>
+				</div>
+				<div class="modal-body">
+					<p>Ingrese las contraseñas a cambiar</p>
+					<div class="row container-fluid">
+						<div class="form-group col-sm-6">
+							<label for="txtPassAnterior ">Contraseña anterior:</label>
+							<input type="password" class="form-control " id="txtPassAnterior" placeholder="Contraseña anterior">
+						</div>
+						<div class="form-group col-sm-6">
+							<label for="txtPassAnterior">Nueva contraseña:</label>
+							<input type="password" class="form-control " id="txtPassAnterior" placeholder="Contraseña nueva">
+						</div>
+						<div class="form-group col-sm-6">
+							<label for="txtPassAnterior">Repita la nueva contraseña:</label>
+							<input type="password" class="form-control " id="txtPassAnterior" placeholder="Repita su contraseña">
+						</div>
+						
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-primary">Guardar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="js/jquery-2.2.3.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/mijs.js"></script>
+		<script src="js/moment.js"></script>
+		<script src="./node_modules/socket.io/node_modules/socket.io-client/socket.io.js"></script>
+		<script src="./node_modules/moment-precise-range-plugin/moment-precise-range.js"></script>
+		<script src="js/socketCliente.js"></script>
+		
+		<script>
+			
+			
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<link rel="stylesheet" href="iconfont/material-icons.css"> <!--Iconos en: https://design.google.com/icons/-->
+		<title>Consultorio ORL</title>
+
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">		
+		<link href="css/animate.css" rel="stylesheet">
+		<link href="css/bootstrap-switch.css" rel="stylesheet">
+		<link href="css/estilos.css" rel="stylesheet">
+		
+	</head>
+	<body>
+		<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="index.html">Consultorio ORL</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li><a href="index.html"><i class="material-icons">home</i></a></li>
+				<li class="active"><a href="Cliente.html"><i class="material-icons">group</i> Clientes</a></li>
+				<li><a href="ventas.html"><i class="material-icons">monetization_on</i> Economía</a></li>
+				<li><a href="reportes.html"><i class="material-icons">attach_file</i> Reportes</a></li>
+			</ul>
+		 
+			<ul class="nav navbar-nav navbar-right">
+				<p class="navbar-text" id="horaServer"></p>
+				<p class="navbar-text" id="fechaServer"></p>                
+			 <form class="navbar-form navbar-left" role="search">
+	 
+				<div class="input-group">
+					<input type="text" class="form-control" id="txtBuscar" placeholder="Buscar">
+					<span class="input-group-btn">
+						<button type="button" class="btn btn-warning" id="btnBuscar"><span class="glyphicon glyphicon-search"></span></button>
+					</span>
+				</div>
+				
+			</form>        
+				<li><a href="configuraciones.html"><i class="material-icons">settings</i></a></li>
+				
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons">fingerprint</i> <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#" data-toggle="modal" data-target=".modal-password">Cambiar contraseña</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="#">Cerrar sesión</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div><!-- /.navbar-collapse -->
+		</div>
+	</nav>
+
+
+	<div class="container">
+		<main>
+			<div class="page-header">
+				<h1>Panel de control <small>Listado de pacientes programados</small></h1>
+			</div>
+				<div class="row">
+
+					<div class="center-block col-sm-9 " style="float: none;">
+						<div class="form-inline ">
+							<label>Listado para fecha: </label>
+							<input class="form-control" id="dtpFecha" type="date">
+							<a class="btn btn-negro" id="btnlistarFechaDtp"><span class="glyphicon glyphicon-triangle-right"></span></a>
+						</div><br>
+						<label>Fecha: </label>
+						<div class="row">
+							<div class="col-lg-6">
+								<div class="input-group">
+									<span class="input-group-btn">
+										<button class="btn btn-default" type="button" id="btnDownFecha"><span class="glyphicon glyphicon-chevron-down"></span></button>
+									</span>
+									<input type="text" class="form-control readonly " id='txtFechaMovible' placeholder="Search for..." >
+									<span class="input-group-btn">
+										<button class="btn btn-default" type="button" id="btnUpFecha"><span class="glyphicon glyphicon-chevron-up"></button>
+									</span>
+								</div><!-- /input-group -->
+							</div><!-- /.col-lg-6 -->
+
+						</div><br>
+						<div class="form-inline">
+							<label> Filtro: </label>
+						<div class="btn-group" data-toggle="buttons">
+							<label class="btn btn-primary" id="btnFiltroListaTodos">
+								<input type="radio" name="options" autocomplete="off" checked> Todos
+							</label>
+							<label class="btn btn-success"  id="btnFiltroListaNuevos">
+								<input type="radio" name="options" autocomplete="off"> Nuevos
+							</label>
+							<label class="btn btn-info" id="btnFiltroListaRevaluados">
+								<input type="radio" name="options" autocomplete="off"> Revaluados
+							</label>
+							<label class="btn btn-warning" id="btnFiltroListaProcedimientos">
+								<input type="radio" name="options" autocomplete="off"> Procedimientos
+							</label>
+						</div>
+						</div><br>
+
+						<table class="table tablita" id="listadoFinal">
+						<thead>
+							<tr>
+								<th>Hora</th>
+								<th>Datos del paciente</th>
+								<th>Tipo</th>
+								<th>Origen</th>
+								<th>Estado</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="hora">8:30</td>
+								<td>Artega Rivera, Rocio</td>
+								<td class="tipo">Procedimiento</td>
+								<td>Privado</td>
+								<td>A</td>
+								<td>
+								<button class="btn btn-danger btnIcono mitooltip" id='pruebita' data-placement="left" title="Cancelar cita"><i class="material-icons">delete_forever</i></button>
+								<button class="btn btn-success btnIcono mitooltip" data-placement="top" title="Cambiar horario"><i class="material-icons">file_download</i></button>
+								<button class="btn btn-primary btnIcono mitooltip"  data-placement="right" title="Más detalles"><i class="material-icons">more_horiz</i></button>
+								</td>
+							</tr>
+								
+						</tbody>
+					</table>
+
+				</div>
+		</main>
+	</div>
+
+
+	<!--Modal Para mostrar los resultados de la búsqueda-->
+	<div class="modal fade modal-resultadosBusqueda" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-tittle text-primary">Resultados de la búsqueda</h4>
+				</div>
+				<div class="modal-body">
+					<p>Se encontró <strong></strong> coincidencias</p>
+					<table class="table table-condensed tablita">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>N° Historia</th>
+								<th>Nombres</th>
+								<th>Edad</th>
+								<th>@</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row">1</th>
+								<td>Mark</td>
+								<td>Otto</td>
+								<td class="hidden">0003</td>
+								<td><a class="btn btn-sm btn-success" href="#" role="button">Ver <span class="glyphicon glyphicon-user"></span></a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+	<!--Modal Para cambiar contraseña-->
+	<div class="modal fade modal-password" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-tittle text-primary">Cambio de contraseña</h4>
+				</div>
+				<div class="modal-body">
+					<p>Ingrese las contraseñas a cambiar</p>
+					<div class="row container-fluid">
+						<div class="form-group col-sm-6">
+							<label for="txtPassAnterior ">Contraseña anterior:</label>
+							<input type="password" class="form-control " id="txtPassAnterior" placeholder="Contraseña anterior">
+						</div>
+						<div class="form-group col-sm-6">
+							<label for="txtPassAnterior">Nueva contraseña:</label>
+							<input type="password" class="form-control " id="txtPassAnterior" placeholder="Contraseña nueva">
+						</div>
+						<div class="form-group col-sm-6">
+							<label for="txtPassAnterior">Repita la nueva contraseña:</label>
+							<input type="password" class="form-control " id="txtPassAnterior" placeholder="Repita su contraseña">
+						</div>
+						
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-primary">Guardar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="js/jquery-2.2.3.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/bootstrap-switch.js"></script>
+		<script src="js/mijs.js"></script>
+		<script src="js/moment.js"></script>
+		
+		<script src="js/socketCliente.js"></script>
+		<script>
+			
+			$('#dtpFecha').val(moment().format('YYYY-MM-DD'));
+			moment.locale('es');
+			$('#txtFechaMovible').val(moment().format('[Hoy] dddd[,] DD [de] MMMM [de] YYYY'));
+			
+			socket.emit('listarCitasHoy',$('#dtpFecha').val());
+			socket.on('listadoCitas',function (dato) {
+				$('table tbody').empty();
+				console.log(dato);
+				dato.map(function(elemento,index){
+					$('table tbody').append(`<tr>
+								<th class="hora">${elemento.hora.replace('AM','a.m.').replace('PM','p.m.')}</th>
+								<td class="mayuscula">${elemento.nombres.toLowerCase()}</td>
+								<td class="tipo">${elemento.descripcion}</td>
+								<td class="mayuscula">${elemento.prodDetalle.toLowerCase()}</td>
+								<td>A</td>
+								<td>								
+								<button class="btn btn-primary btnIcono mitooltip" id="${elemento.idCliente}"  data-placement="right" title="Más detalles"><i class="material-icons">person_pin</i></button>
+								</td>
+							</tr>`)
+				});				
+			});
+			$('#dtpFecha').change(function(){
+				socket.emit('listarCitasHoy',$('#dtpFecha').val());
+			});
+			$('table').on('click','.btnIcono',function () {				
+				window.location.href =`ClientePanel.php?id=${$(this).attr('id')}`;
+			})
+			$('#btnUpFecha').click(function(){
+				var nuevaFecha=moment($('#dtpFecha').val(),'YYYY-MM-DD');
+				nuevaFecha.add(1,'days');
+				$('#dtpFecha').val(nuevaFecha.format('YYYY-MM-DD'));
+				$('#txtFechaMovible').val(nuevaFecha.format('dddd[,] DD [de] MMMM [de] YYYY'));
+				$('#dtpFecha').change();
+			});
+			$('#btnDownFecha').click(function(){
+				var nuevaFecha=moment($('#dtpFecha').val(),'YYYY-MM-DD');
+				nuevaFecha.subtract(1,'days');
+				$('#dtpFecha').val(nuevaFecha.format('YYYY-MM-DD'));
+				$('#txtFechaMovible').val(nuevaFecha.format('dddd[,] DD [de] MMMM [de] YYYY'));
+				$('#dtpFecha').change();
+			});
+
+
+		</script>
+		<script>
+
+		</script>
+	</body>
+</html>

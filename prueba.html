@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<h3>ini</h3>
+	<input type="submit" onSubmit="misubida()" value="clickame" id="miboton">
+	
+	<div class="result"></div>
+	<form action="text.php" METHOD="POST" onsubmit="myFunction()">
+		  Enter name: <input type="text" name="nombre">
+		  Another name: <input type="text" name="otro">
+		  <input type="submit" value="Submit">
+		  <input type="button" id="boton" value="otro boton">
+		</form>
+
+
+
+	<script src="js/jquery-2.2.3.min.js"></script>
+	<script>
+		$('#boton').click(function() {
+			$('h3').text('nuevo');
+		});
+		
+	</script>
+	<script>
+	
+	 
+	
+	</script>
+
+</body>
+</html>
