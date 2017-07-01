@@ -131,7 +131,7 @@ if(isset($_SESSION['usuario'])){?>
 							<a href="#" id="alistarUltimos" class="btn blue darken-1  white-text btn-circle-grande right"><i class="material-icons icono-grande">dns</i></a>
 							<div class="caption"><hr>
 								<h3 class="indigo-text">Últimos pacientes registrados</h3>
-								<p class="indigo-text">Puede consultar los 15 últimos pacientes registrados.</p>
+								<p class="indigo-text">Puede ver los 15 últimos pacientes registrados.</p>
 							</div>
 						</div>
 					</div>
@@ -150,6 +150,15 @@ if(isset($_SESSION['usuario'])){?>
 							<div class="caption"><hr>
 								<h3 class="indigo-text">Crear un nuevo usuario</h3>
 								<p class="indigo-text">Ud. puede crear un nuevo usuario para nuevos personales.</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4">
+						<div class="thumbnail text-center" id="thumCrearUsuario"><br>							
+							<a href="#" id="alistarUltimos" class="btn red darken-1  white-text btn-circle-grande right"><i class="material-icons icono-grande">transfer_within_a_station</i></a>
+							<div class="caption"><hr>
+								<h3 class="indigo-text">Resumen pacientes para hoy</h3>
+								<p class="indigo-text">Ud. puede ver todos los pacientes nuevos el día de hoy.</p>
 							</div>
 						</div>
 					</div>

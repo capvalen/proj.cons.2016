@@ -203,8 +203,23 @@ $("#imprHistoria").click(function() {
 	moment.locale('en');
 	hora=encodeURIComponent(moment().format('LT'));
 
+	var hoy = moment();
+	var b =moment(datosGenerales.cliFechaNacimiento, 'YYYY-MM-DD');
+	var duracion = moment.duration(hoy.diff(b));
+	var edadReal='';
+
+
+	if (duracion.years()==0){
+		edadReal=encodeURIComponent(duracion.months() + ' MES ' + duracion.days() +' DIAS');
+		
+	}else{
+		edadReal=encodeURIComponent(duracion.years() + ' AÑO ' + duracion.months() + ' MES ');
+		
+	}
+
+
 	urlImpr='imprimirHistoria.php?nombres='+nom+'&idHistoria='+idHi+'&ocupacion='+ocup+'&estado='+est+'&sexo='+sex+'&edad='+
-					edad+'&direccion='+dire+'&nacimiento='+naci+'&motivo='+moti+'&registro='+regisfe+'&tipopaciente='+tippac+'&usunom='+usunom+'&celular='+celul;
+					edadReal+'&direccion='+dire+'&nacimiento='+naci+'&motivo='+moti+'&registro='+regisfe+'&tipopaciente='+tippac+'&usunom='+usunom+'&celular='+celul;
 	console.log(urlImpr);
 	//window.open(urlImpr,'_blank');
 	loadPrintDocument(this,{

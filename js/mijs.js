@@ -716,7 +716,7 @@ $('#btnAgregarConsultaHorario').click(function(){
 										  <div class="panel-body">
 										  	<p class="pagos"></p>
 											<p class="pconsulta">Consulta creada para las <span class="phora">${moment(fechaHoraC,'YYYY-MM-DD H:mm').format('h:mm a')}</span> del día <span class="pdia">${moment(fechaHoraC).format('dddd[,] DD [de] MMMM [de] YYYY')}</span>. <em class="userResponsable mayuscula">${usuario.nombreCompleto}</em>
-											<br><span class="text-muted"><small>Registrado el: <span class="creadoEn">${moment().format('dddd[,] DD [de] MMMM [de] YYYY')}</span>. </small></span></p>
+											<br><span class="text-muted"><small>Registrado el: <span class="creadoEn">${moment().format('dddd[,] DD [de] MMMM [de] YYYY [ a las ] h[:]mm a')}</span>. </small></span></p>
 											<div class="form-group">
 												<button type="button" class="btn btn-success btn-outline btnImprimirConsulta" id="btnImprimirConsulta${dato.id}" ><span class="glyphicon glyphicon-print"></span> Imprimir voucher</button>
 												<button type="button" class="btn btn-amarillo btn-outline btnPagar" id="btnPagar${dato.id}" ><span class="glyphicon glyphicon-piggy-bank"></span> Pagar</button>
@@ -758,7 +758,7 @@ $('#btnAgregarConsultaHorario').click(function(){
 							<div id="Reg${dato.id}" class="panel-collapse collapse in" role="tabpanel" >
 							  <div class="panel-body">
 								<p class="pconsulta">Consulta creada para las <span class="phora">${moment(fechaHoraC,'YYYY-MM-DD H:mm').format('h:mm a')}</span> del día <span class="pdia">${moment(fechaHoraC).format('dddd[,] DD [de] MMMM [de] YYYY')}</span>. <em class="userResponsable mayuscula">${usuario.nombreCompleto}</em>
-								<br><span class="text-muted"><small>Registrado el: <span class="creadoEn">${moment().format('dddd[,] DD [de] MMMM [de] YYYY')}</span>. </small></span></p>
+								<br><span class="text-muted"><small>Registrado el: <span class="creadoEn">${moment().format('dddd[,] DD [de] MMMM [de] YYYY [ a las ] h[:]mm a')}</span>. </small></span></p>
 								<p class="pagos"></p>
 								<div class="form-group">
 									<button type="button" class="btn btn-success btn-outline btnImprimirConsulta" id="btnImprimirRevaluación${dato.id}" ><span class="glyphicon glyphicon-print"></span> Imprimir voucher</button>
@@ -802,7 +802,7 @@ $('#btnAgregarConsultaHorario').click(function(){
 								<div id="Reg${dato.id}" class="panel-collapse collapse in" role="tabpanel" >
 								  <div class="panel-body">
 									<p class="pconsulta">Consulta creada para las <span class="phora">${moment(fechaHoraC,'YYYY-MM-DD H:mm').format('h:mm a')}</span> del día <span class="pdia">${moment(fechaHoraC).format('dddd[,] DD [de] MMMM [de] YYYY')}</span>. <em class="userResponsable mayuscula">${usuario.nombreCompleto}</em>
-									<br><span class="text-muted"><small>Registrado el: <span class="creadoEn">${moment().format('dddd[,] DD [de] MMMM [de] YYYY')}</span>. </small></span></p>
+									<br><span class="text-muted"><small>Registrado el: <span class="creadoEn">${moment().format('dddd[,] DD [de] MMMM [de] YYYY [ a las ] h[:]mm a')}</span>. </small></span></p>
 									<p class="pagos"></p>
 									<div class="form-group">
 										<button type="button" class="btn btn-success btn-outline btnImprimirConsulta" id="btnImprimirProcedimiento${dato.id}" ><span class="glyphicon glyphicon-print"></span> Imprimir voucher</button>
@@ -1292,7 +1292,7 @@ function solicitarDatosClientePanel(idCliente){
 							<div id="Reg${elemento.idreg}" class="panel-collapse collapse" role="tabpanel" >
 							  <div class="panel-body">						  	
 								<p class="pconsulta">Consulta creada para las <span class="phora">${moment(elemento.regFecha).format('h:mm a')}</span> del día <span class="pdia">${moment(elemento.regFecha).format('dddd[,] DD [de] MMMM [de] YYYY')}</span>. <em class="userResponsable mayuscula">${elemento.usuNombre}</em>
-								<br><span class="text-muted"><small>Registrado el: <span class="creadoEn">${moment(elemento.regCreado).format('dddd[,] DD [de] MMMM [de] YYYY')}</span>. </small></span></p>
+								<br><span class="text-muted"><small>Registrado el: <span class="creadoEn">${moment(elemento.regCreado).format('dddd[,] DD [de] MMMM [de] YYYY [ a las ] h[:]mm a')}</span>. </small></span></p>
 								<p class="pagos"></p>
 								<div class="form-group">
 									<button type="button" class="btn btn-success btn-outline btnImprimirConsulta" id="btnImprimir${elemento.descripcion}${elemento.idreg}" ><span class="glyphicon glyphicon-print"></span> Imprimir voucher</button>
@@ -1324,7 +1324,7 @@ function solicitarDatosClientePanel(idCliente){
 							<div id="Reg${elemento.idreg}" class="panel-collapse collapse" role="tabpanel" >
 							  <div class="panel-body">						  	
 								<p  class="pconsulta">Consulta creada para las <span class="phora">${moment(elemento.regFecha).format('h:mm a')}</span> del día <span class="pdia">${moment(elemento.regFecha).format('dddd[,] DD [de] MMMM [de] YYYY')}</span>. <em class="userResponsable mayuscula">${elemento.usuNombre}</em>
-								<br><span class="text-muted"><small>Registrado el: <span class="creadoEn">${moment(elemento.regCreado).format('dddd[,] DD [de] MMMM [de] YYYY')}</span>. </small></span></p>
+								<br><span class="text-muted"><small>Registrado el: <span class="creadoEn">${moment(elemento.regCreado).format('dddd[,] DD [de] MMMM [de] YYYY [ a las ] h[:]mm a')}</span>. </small></span></p>
 								<p class="pagos"></p>
 								<div class="form-group">
 									${botones}

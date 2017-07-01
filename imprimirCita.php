@@ -18,7 +18,7 @@
 			<img src="images/consultoria.png">
 			<h4 class="text-center"><strong><?php echo $_GET['motivo'] ?></strong></h4>
 				<div class="row">
-					<div class="text-center mayuscula"><strong>Próxima visita para: </strong><br>
+					<div class="text-center mayuscula"><strong>Para: </strong><br>
 					<strong><?php echo $_GET['dia']  ?></strong> a las <strong><?php echo $_GET['hora'] ?></strong></div>
 					<div class="text-center"><span><?php echo $_GET['observacion'] ?></span></div>
 					<hr>
@@ -28,7 +28,7 @@
 					<div class="piePagina">
 					Av. 13 de Noviembre 832 - El Tambo - Huancayo<br>
 					Telf. 1: (064) 789440 / Telf. 2: (064) 243247 / RPM: #956 428880<br>
-					<em class="piePagina">Generado el día <span class="piePagina"  id='sfecha'><?php echo $_GET['sfecha'] ?></span> Ud. fue atendido por <span class="piePagina"><?php echo ucwords($_GET['nomUsuario']) ?></span>.</em></div>
+					<em class="piePagina">Éste registro fue generado el día <span class="piePagina"  id='sfecha'><?php echo $_GET['sfecha'] ?></span> y Ud. fue atendido por <span class="piePagina"><?php echo ucwords($_GET['nomUsuario']) ?></span>.</em></div>
 				</div>
 			
 		</div>
