@@ -15,7 +15,7 @@ if(isset($_SESSION['usuario'])){
 	<link rel="stylesheet" href="css/icofont.css"> <!--Iconos en: https://design.google.com/icons/-->
 	
 	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/inicio.css" rel="stylesheet">
+	<link href="css/inicio.css?version=1.0" rel="stylesheet">
 	<link href="css/animate.css" rel="stylesheet">
 	<title>Consultorio ORL</title>
 	<link rel="shortcut icon" href="images/favicon.png">
@@ -59,7 +59,7 @@ if(isset($_SESSION['usuario'])){
 			
 			<div class="form-group text-center">
 				<button class="btn btn-danger btn-outline" id="btnCancelar"><i class="icofont icofont-logout"></i> Cancelar</button>
-				<button class="btn btn-morado btn-outline" id="btnAcceder"><i class="icofont icofont-key"></i> Iniciar</button>
+				<button class="btn btn-morado btn-outline" id="btnAcceder"><div class="fa-spin sr-only"><i class="icofont icofont-spinner"></i> </div><i class="icofont icofont-key"></i> Iniciar</button>
 			</div>
 			<div class="form-group text-center text-danger hidden" id="divError">Error en alguno de los datos, complételos todos cuidadosamente.</div>
 			
@@ -88,6 +88,7 @@ if(isset($_SESSION['usuario'])){
 			 }
 		});
 		$('#btnAcceder').click(function() {
+			$('.fa-spin').removeClass('sr-only');$('.icofont-key').addClass('sr-only');
 			$.ajax({
 				type:'POST',
 				url: 'php/validarLogin.php',
@@ -104,6 +105,7 @@ if(isset($_SESSION['usuario'])){
 								$(this).removeClass('animated wobble');
 						});
 						$('#txtUsuario').select();
+						$('.fa-spin').addClass('sr-only');$('.icofont-key').removeClass('sr-only');
 						//console.log(iduser);
 						console.log('error en los datos')}
 				}

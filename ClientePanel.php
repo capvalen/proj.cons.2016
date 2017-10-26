@@ -110,12 +110,9 @@ if(isset($_SESSION['usuario'])){?>
 			<div class="alert alert-warning alert-white rounded alert-dismissible fade in hidden" id="mnjClienteRegistrado" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
 			<div class="icon"><i class="icofont icofont-check-circled"></i></div>
              <strong>Felicidades!</strong> <span id="texto"></span> </div></div>
-             <div class="row" style="margin-right: 45px; margin-left: 45px;">
-             	<div class="alert alert-success alert-white rounded alert-dismissible fade in hidden" id="mnjCitaRegistrada" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-				<div class="icon"><i class="icofont icofont-check-circled"></i></div>
-             	<strong>Felicidades!</strong> La cita se agregó para <span id="lblMnjCita"></span></div>
-             </div>
-			
+			<div class="row alert alert-success alert-white rounded alert-dismissible fade in hidden" id="mnjCitaRegistrada" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+			<div class="icon"><i class="icofont icofont-check-circled"></i></div>
+             <strong>Felicidades!</strong> La cita se agregó para <span id="lblMnjCita"></span></div>
 			
 			<!-- Nav tabs -->
 			<ul class="nav nav-tabs" id="ulTabs" role="tablist">

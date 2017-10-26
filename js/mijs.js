@@ -9,6 +9,7 @@ var idRegistroMovible=0;
 var motivProcedimiento;
 var listaRegistrosCliente;
 $.fn.modal.prototype.constructor.Constructor.DEFAULTS.backdrop = 'static'; //Para que no cierre el modal, cuando hacen clic en cualquier parte
+$('input').focus(function(){   this.select(); }); // Selecciona todo el contenido en un input
 $('.thumbnail').mouseenter(function(){
 	$(this).children('.btn').addClass('animated bounce').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', 
 		function(){
@@ -119,6 +120,8 @@ $('#btnCrearCita').click(function(){
 	prepararModalCitas();
 	asignarCalendarioABD=true;
 	geneIdConsulta=3;
+	$.queMichiEs='nuevaCita';
+	//$('#dtpControladorFechasv2').val(moment().format('YYYY-MM-DD')); $('#dtpControladorFechasv2').change();
 	$('.nav-tabs a[href="#calendar"]').tab('show');}
 	//solicitar via socket las citas de los clientes de hoy
 
@@ -536,11 +539,15 @@ $('#btnActualizarProgramacionCita').click(function() {
 $('#btnCrearRevaluacion').click(function () {
 	if(!$(this).hasClass('disabled')){
 	geneIdConsulta=4; asignarCalendarioABD=true;
+	//$('#dtpControladorFechasv2').val(moment().format('YYYY-MM-DD')); $('#dtpControladorFechasv2').change();
+	$.queMichiEs='nuevaRevaluacion';
 	$('.nav-tabs a[href="#calendar"]').tab('show');
 	}
 });
 $('#btnCrearProcedimiento').click(function () {
 	if(!$(this).hasClass('disabled')){
+	//$('#dtpControladorFechasv2').val(moment().format('YYYY-MM-DD')); $('#dtpControladorFechasv2').change();
+	$.queMichiEs='nuevoProcedimiento';
 	$('.modal-motivoProcedimiento').modal('show');
 	}
 });
@@ -824,15 +831,24 @@ $('#btnAgregarConsultaHorario').click(function(){
 	idRegistroMovible=0;
 
 });
-
+$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+	
+var target = $(e.target).attr("href");
+//console.log(target);
+if(target=='#calendar'){
+	//$.queMichiEs='nada'; console.log('tabnada')
+	$('#dtpControladorFechasv2').val(moment().format('YYYY-MM-DD')); $('#dtpControladorFechasv2').change();
+}
+$('html body').animate({scrollTop: 130}, 800);
+});
 $('a[aria-controls="home"]').on('shown.bs.tab', function (){
-	$('html body').animate({scrollTop: 110}, 800);
+	
 	asignarCalendarioABD=false;
 	$('#mnjClienteCitadoHoy').addClass('hidden');
 });
 
 $('a[aria-controls="calendar"]').on('shown.bs.tab', function () {
-	$('html body').animate({scrollTop: 110}, 800);
+	//$('html body').animate({scrollTop: 110}, 800);
 	$('.alert').addClass('sr-only');
 	moment.locale('es');
 	$('#dtpFechaCalendario').val(moment().format('YYYY-MM-DD'));
@@ -842,6 +858,10 @@ $('a[aria-controls="calendar"]').on('shown.bs.tab', function () {
 	$('#lblDiaCalendar').text(dia.format('dddd, D [de] MMMM [de] YYYY'));
 	if(moment($("#dtpFechaCalendario").val()).isValid()){
 		socket.emit('listarCitasHoy',$("#dtpFechaCalendario").val());}*/
+
+/*nuev version*/
+	
+
 });
 
 $('a[aria-controls="messages"]').on('shown.bs.tab', function (){
@@ -869,7 +889,7 @@ $('a[aria-controls="messages"]').on('shown.bs.tab', function (){
 		$('.mitooltip').tooltip();
 	});
 	});
-	$('html body').animate({scrollTop: 110}, 800);
+	//$('html body').animate({scrollTop: 110}, 800);
 
 });
 
@@ -879,7 +899,6 @@ $('#dtpFechaCalendario').change(function () {
 	var estado=false;
 	
 	$('#lblDiaCalendar').text(dia.format('dddd, D [de] MMMM [de] YYYY'));
-	
 
 	if(dia.diff(hoy,'day')<0){$('.tablaCalendario td').html('');
 		$('#mnjClienteCitadoHoy').removeClass('hidden').find('#lblMnjCita').html(`No se puede asignar fechas anteriores a ${moment(hoy).format('LLLL')}.`);
@@ -1246,11 +1265,12 @@ function solicitarDatosClientePanel(idCliente){
 		var dato= JSON.parse(resp);
 		$('#lblNombre').text(dato.nombres.toLowerCase());
 		$('#lblOcupacion').text(dato.ocupDetalle.toLowerCase());
-		$('#lblGrado').text(dato.gradDescripcion.toLowerCase());		
+		$('#lblGrado').text(dato.gradDescripcion.toLowerCase());
+		$('#lblDni').text(dato.dni.toLowerCase());
 		$('#lblEdad').text(calcularEdadHastaHoy(dato.cliFechaNacimiento));
 		$('#lblEstado').text(dato.estcivDescripcion.toLowerCase());
 		if(dato.idHistoria ==''){$('#lblHistoria').text(`Aún no tiene número de Historia Clínica`);$('#imprHistoria').addClass('hidden');$('#crearHistoria').removeClass('hidden');}
-		else{$('#lblHistoria').html(`<strong class="text-primary"><span id="lblIdHistoria">${dato.idHistoria}</span></strong>`);$('#imprHistoria').removeClass('hidden');$('#crearHistoria').addClass('hidden');
+		else{$('#lblHistoria').html(`<strong class="yellow-text text-darken-3"><span id="lblIdHistoria">${dato.idHistoria}</span></strong>`);$('#imprHistoria').removeClass('hidden');$('#crearHistoria').addClass('hidden');
 		$('#btnCrearCita').removeClass('disabled');
 		$('#btnCrearRevaluacion').removeClass('disabled');
 		$('#btnCrearProcedimiento').removeClass('disabled');}
