@@ -523,6 +523,7 @@ $('#listRegistro').on('click','.btnModificar',function(){
 	var nuev=dia.substr(dia.search(',')+2,dia.length);
 
 	var horacio= moment(nuev.replace(/de /g,''), 'DD MMMM YYYY');
+	$.queMichiEs='actualizacion';
 	//console.log(horacio.format('YYYY-MM-DD'))
 	$('.nav-tabs a[href="#calendar"]').tab('show');
 	//$('#dtpFechaCalendario').val(horacio.format('YYYY-MM-DD'));
@@ -689,7 +690,8 @@ $('#btnAgregarConsultaHorario').click(function(){
 	var completa=moment($('#lblAsignarHoraCompleta').text(),'H:mm');
 	var row=completa.format('H');
 	var col=completa.format('m');
-	var fechaHoraC =$('#dtpFechaCalendario').val()+ ' '+row+':'+col;
+	var fechaHoraC =$('#dtpControladorFechasv2').val()+ ' '+row+':'+col;
+	//console.log(geneIdConsulta)
 	/*$(`td[data-row='${row}'][data-column='${col}']`).html(`<div class="btn-group contenido">
 		<button type="button" class="btn btn-sm btn-negro btnIzq"><span class="glyphicon glyphicon-backward"></span></button><button type="button" class="btn btn-sm btn-primary">Consulta</button>
 		<button type="button" class="btn btn-sm btn-negro btnDer"><span class="glyphicon glyphicon-forward"></span></button></div>`);*/
@@ -824,7 +826,25 @@ $('#btnAgregarConsultaHorario').click(function(){
 					}
 					
 					}); break;
-		case 6: socket.emit('updateFechaConsulta',idRegistroMovible,$('#dtpFechaCalendario').val()+ ' '+row+':'+col,usuario.idUsuario); break;
+		case 6: // socket.emit('updateFechaConsulta',idRegistroMovible,$('#dtpFechaCalendario').val()+ ' '+row+':'+col,usuario.idUsuario);
+		var nuevReg=idRegistroMovible;
+		$.ajax({url: 'php/updateMoverFechaConsulta.php', type: 'POST', data: {
+			idReg:idRegistroMovible,
+			fecha:fechaHoraC,
+			IdUser: usuario.idUsuario}
+			}). done(function (resp) { 
+			if(resp!=null){// console.log(resp) 
+				var cita= moment(fechaHoraC,'YYYY-MM-DD H:m');
+				cita.locale('es');
+				$('#mnjCitaRegistrada').removeClass('sr-only').find('#lblMnjCita').html(cita.calendar());
+				$(`#Reg${nuevReg}`).parent().removeClass('bs-callout-success').addClass('bs-callout-success').find('.lblTiempoCita').html(`${cita.calendar()}`);
+				$(`#Reg${nuevReg}`).find('.phora').text(moment(fechaHoraC,'YYYY-MM-DD H:mm').format('h:mm a'));
+				$(`#Reg${nuevReg}`).find('.pdia').text(cita.format('dddd[,] DD [de] MMMM [de] YYYY'));
+				}
+					
+				});
+
+		 break;
 		default: break;
 	}	
 	$('.nav-tabs a[href="#home"]').tab('show');
@@ -1287,6 +1307,15 @@ function solicitarDatosClientePanel(idCliente){
 		
 		$('#lblProcedencia').text(dato.prodDetalle.toLowerCase());
 		$('#datoClienteTitulo').text(dato.nombres.toLowerCase());
+		var edadCliente=moment().diff(moment(dato.cliFechaNacimiento, 'YYYY-MM-DD'), 'years');
+		//console.log(edadCliente)
+		if(dato.sexo=='F' && edadCliente<=16 ){ $('#mi_camara').find('.img-responsive').attr('src', 'images/repre_nina.png')}
+		else if(dato.sexo=='F' && edadCliente>16 && edadCliente<=40 ){ $('#mi_camara').find('.img-responsive').attr('src', 'images/repre_adulta.png')}
+		else if(dato.sexo=='F' && edadCliente>40 ){ $('#mi_camara').find('.img-responsive').attr('src', 'images/repre_mayora.png')}
+
+		if(dato.sexo=='M' && edadCliente<=16 ){ $('#mi_camara').find('.img-responsive').attr('src', 'images/repre_nino.png')}
+		else if(dato.sexo=='M' && edadCliente>16 && edadCliente<=40 ){ $('#mi_camara').find('.img-responsive').attr('src', 'images/repre_adulto.png')}
+		else if(dato.sexo=='M' && edadCliente>40 ){ $('#mi_camara').find('.img-responsive').attr('src', 'images/repre_mayor.png')}
 		datosGenerales=dato;	
 		console.log(datosGenerales);
 	});

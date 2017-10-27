@@ -16,7 +16,7 @@ if(isset($_SESSION['usuario'])){?>
 		<!-- Bootstrap -->
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/sticky-footer.css" rel="stylesheet">
-		<link href="css/estilos.css" rel="stylesheet">
+		<link href="css/estilos.css?version=1.1" rel="stylesheet">
 		<link href="css/animate.css" rel="stylesheet">
 		<link href="css/bootstrap-switch.css" rel="stylesheet">
 		<link href="css/icofont.css" rel="stylesheet">
@@ -33,6 +33,22 @@ if(isset($_SESSION['usuario'])){?>
 		-webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);
 		box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);}
 		footer{margin-top: 133px;}
+		.xs4Datos{background-color: #fff;
+			color: #ffbf01;
+			border: 1px solid #ddd;border-radius: 4px;
+			-webkit-transition: border .2s ease-in-out;
+			o-transition: border .2s ease-in-out; cursor: default;
+			padding-bottom:5px; margin-bottom: 15px;
+			transition: all 0.6s;}
+		.xs4Datos:hover{
+			background-color: #f3f3f3;
+			color: #FF5722;font-weight: 700;
+			transition: all 0.6s;
+
+		}
+		.tablita{color: #888;}
+		hr{ margin-bottom: 5px;}
+		h3{ margin-top: 5px;}
 	</style>
 		<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
@@ -106,6 +122,11 @@ if(isset($_SESSION['usuario'])){?>
 			<div class="row col-sm-5 text-center"><br><small class="text-muted" id="horaServer"></small>, <small class="text-muted" id="fechaServer"></small> <p><small class="text-muted" >Usuario:</small> <small class="text-primary"><?php echo $_SESSION['usuario'] ;?></small></p></div><br>
 			<div class="row page-header ">
 			</div>
+				<div class="row">
+					<div class="col-xs-4 text-center" id="divx4Nuevos"><div class="xs4Datos"><h3 id="h3txtNuevos"></h3><p>Nuevos</p></div></div>
+					<div class="col-xs-4 text-center" id="divx4Revaluados"><div class="xs4Datos"><h3 id="h3txtRevaluados"></h3><p>Revaluados</p></div></div>
+					<div class="col-xs-4 text-center" id="divx4Procedimientos"><div class="xs4Datos"><h3 id="h3txtProcedimientos"></h3><p>Procedimientos</p></div></div>
+				</div>
 
 				<div class="row ">
 					<div class="col-sm-6 col-md-4">
@@ -154,7 +175,7 @@ if(isset($_SESSION['usuario'])){?>
 						</div>
 					</div>
 					<div class="col-sm-6 col-md-4">
-						<div class="thumbnail text-center" id="thumCrearUsuario"><br>							
+						<div class="thumbnail text-center" id="thumResumenHoy"><br>							
 							<a href="#" id="alistarUltimos" class="btn red darken-1  white-text btn-circle-grande right"><i class="material-icons icono-grande">transfer_within_a_station</i></a>
 							<div class="caption"><hr>
 								<h3 class="indigo-text">Resumen pacientes para hoy</h3>
@@ -384,6 +405,38 @@ if(isset($_SESSION['usuario'])){?>
 		</div>
 	</div>
 
+	<!--Modal Para resumir los pacientes de hoy-->
+	<div class="modal fade modal-ResumirPacientes" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-tittle text-primary"><i class="icofont icofont-flag"></i> Resumen para hoy</h4>
+				</div>
+				<div class="modal-body">
+					<p>Tiene <strong class="text-primary" id="spanCantResumen">0</strong> pacientes por «<strong class="text-primary" id="spanTipoResumen">Consultas</strong>»</p>
+					<table class="table table-condensed tablita">
+						<thead>
+							<tr>
+								<th>N° Historia</th>
+								<th>Nombre del Cliente</th>
+								<th>Tipo</th>
+								<th>Hora</th>
+								<th>@</th>
+							</tr>
+						</thead>
+						<tbody id="divResultadoDatosCompendio">
+						</tbody>
+					</table>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-morado btn-outline" data-dismiss="modal"><i class="icofont icofont-social-meetme"></i> Ok</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 
 	<!--Modal Para cambiar contraseña-->
 	<div class="modal fade modal-password myPrintArea" tabindex="-1" role="dialog">
@@ -429,12 +482,19 @@ if(isset($_SESSION['usuario'])){?>
 		<script src="js/moment.js"></script>
 		<!-- <script src="./node_modules/socket.io-client/dist/socket.io.js"></script>  -->
 		<script src="js/moment-precise-range.js"></script> 
-		<script src="js/socketCliente.js"></script>
+		<script src="js/socketCliente.js?version=1.0.5"></script>
 		<script src="js/bootstrap-switch.js"></script>
 	
 		
 		<script>
 			listadoDatosUsuario();
+			$.ajax({url: 'php/listarContadorResumen.php', type: 'POST', data: {dia: moment().format('YYYY-MM-DD')}}).done(function (resp) {
+				var valores=JSON.parse(resp);
+				$('#h3txtNuevos').text(valores.sumaConsultas)
+				$('#h3txtRevaluados').text(valores.sumaRevaluados)
+				$('#h3txtProcedimientos').text(valores.sumaRevaluados)
+				//console.log(valores)
+			});
 			
 			
 			$('.mitooltip').tooltip();
@@ -450,7 +510,13 @@ if(isset($_SESSION['usuario'])){?>
 				//socket.emit('listarUltimosRegistrados');
 				listadoUltimosRegistrados();
 			});
-			
+			$('#thumResumenHoy').click(function(){
+				//socket.emit('listarUltimosRegistrados'); 
+				listadoPendientesParaHoy(0);
+			});
+			$('#divx4Nuevos').click(function () { listadoPendientesParaHoy(3); });
+			$('#divx4Revaluados').click(function () { listadoPendientesParaHoy(4); });
+			$('#divx4Procedimientos').click(function () { listadoPendientesParaHoy(5); });
 		</script>
 	</body>
 </html>

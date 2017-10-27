@@ -455,16 +455,54 @@ function listadoUltimosRegistrados(){
 	dato.map(function(element,index) {
 	
 	$('.modal-ultimosRegistrados').find('tbody').append(`<tr>
-							<th scope="row">${index +1}</th>
-							<td>${element.idHistoria}</td>
-							<td class="mayuscula">${element.nombres}</td>
-							<td class="hidden id">${element.idCliente}</td>
-							<td class="mayuscula">${moment(element.regFecha).toNow(true)}</td>
-							<td><a class="btn btn-sm btn-success" href="ClientePanel.php?id=${element.idCliente}" role="button">Ver <span class="glyphicon glyphicon-user"></span></a></td>
-						</tr>`);
+				<th scope="row">${index +1}.</th>
+				<td text-center><strong>${element.idHistoria}</strong></td>
+				<td class="mayuscula">${element.nombres.toLowerCase()}</td>
+				<td class="hidden id">${element.idCliente}</td>
+				<td class="mayuscula">${moment(element.regFecha).toNow(true)}</td>
+				<td><a class="btn btn-sm btn-morado btn-outline" href="ClientePanel.php?id=${element.idCliente}" role="button">Ver <span class="glyphicon glyphicon-user"></span></a></td>
+			</tr>`);
 	});
 
 	})
+}
+function listadoPendientesParaHoy(idTipo) {
+	$('#divResultadoDatosCompendio').children().remove();
+	switch(idTipo){
+		case 0: $('#spanTipoResumen').text('Consultas, Revaluados y Procedimientos'); break;
+		case 3: $('#spanTipoResumen').text('Consultas'); break;
+		case 4: $('#spanTipoResumen').text('Revaluados'); break;
+		case 5: $('#spanTipoResumen').text('Procedimientos'); break;
+	}
+
+
+	$.ajax({url: 'php/listarCitasPorFecha.php', type: 'POST', data: {dia: moment().format('YYYY-MM-DD')}}).done(function (resp) {
+		console.log(JSON.parse(resp))
+
+
+		$.each(JSON.parse(resp), function (i, dato) {
+			if(dato.idTipoMovimientos==idTipo){
+				$('#divResultadoDatosCompendio').append(`<tr>
+					<td><strong>${dato.idHistoriaClinica}</strong></td>
+					<td class="mayuscula">${dato.nombres.toLowerCase()}</td>
+					<td class="mayuscula">${dato.descripcion.toLowerCase()}</td>
+					<td class="">${dato.hora.toLowerCase()}</td>
+					<td><a class="btn btn-sm btn-success btn-outline" href="ClientePanel.php?id=${dato.idCliente}" role="button">Ver <span class="glyphicon glyphicon-user"></span></a></td>
+					</tr>`);
+			}else if(idTipo==0){
+				$('#divResultadoDatosCompendio').append(`<tr>
+					<td><strong>${dato.idHistoriaClinica}</strong></td>
+					<td class="mayuscula">${dato.nombres.toLowerCase()}</td>
+					<td class="mayuscula">${dato.descripcion.toLowerCase()}</td>
+					<td class="">${dato.hora.toLowerCase()}</td>
+					<td><a class="btn btn-sm btn-success btn-outline" href="ClientePanel.php?id=${dato.idCliente}" role="button">Ver <span class="glyphicon glyphicon-user"></span></a></td>
+					</tr>`);
+			}
+
+		});
+		$('#spanCantResumen').text($('#divResultadoDatosCompendio tr').length);
+		$('.modal-ResumirPacientes').modal('show');
+	});
 }
 
 // socket.on('listadoUltimosRegistrados',function(dato) {

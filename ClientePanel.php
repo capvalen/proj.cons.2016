@@ -16,7 +16,7 @@ if(isset($_SESSION['usuario'])){?>
 		<!-- Bootstrap -->
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/sticky-footer.css" rel="stylesheet">
-		<link href="css/estilos.css" rel="stylesheet">
+		<link href="css/estilos.css?version=1.1.6" rel="stylesheet">
 		<link href="css/animate.css" rel="stylesheet">
 		<link href="css/bootstrap-switch.css" rel="stylesheet">
 		<link rel="stylesheet" href="css/espera.css">
@@ -31,6 +31,8 @@ if(isset($_SESSION['usuario'])){?>
 <style>
 	body{background-color: #383a42;}
 	main{ background-color: #fff;	padding-bottom: 40px;margin-top: 2px; border-radius: 10px;}
+	.dropdown-menu-large .disabled > a{color: #999999!important;}
+	.dropdown-menu-large > li > ul > li > a {color: #2196F3!important;}
 </style>
 		<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
@@ -90,7 +92,7 @@ if(isset($_SESSION['usuario'])){?>
 	</nav>
 
 
-	<div class="container-fluid">
+	<div class="container-fluid" style="margin-top: 10px;">
 		<main class=" col-md-10 col-md-offset-1">
 			<div class="container hidden-md hidden-lg">
 				
@@ -110,7 +112,7 @@ if(isset($_SESSION['usuario'])){?>
 			<div class="alert alert-warning alert-white rounded alert-dismissible fade in hidden" id="mnjClienteRegistrado" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
 			<div class="icon"><i class="icofont icofont-check-circled"></i></div>
              <strong>Felicidades!</strong> <span id="texto"></span> </div></div>
-			<div class="row alert alert-success alert-white rounded alert-dismissible fade in hidden" id="mnjCitaRegistrada" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+			<div class="container alert alert-success alert-white rounded alert-dismissible fade in hidden" id="mnjCitaRegistrada" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
 			<div class="icon"><i class="icofont icofont-check-circled"></i></div>
              <strong>Felicidades!</strong> La cita se agregó para <span id="lblMnjCita"></span></div>
 			
@@ -131,25 +133,26 @@ if(isset($_SESSION['usuario'])){?>
 						<div class="panel-heading " >Acciones permitidas</div>-->
 							<div class="panel-body" id="panel-acciones">
 									<div class="btn-group-vertical col-xs-12" role="group" aria-label="...">
-									<button type="button" class="btn btn-negro btn-outline" id="btnActualizarDatos"><i class="icofont icofont-marker"></i> Editar datos</button>
-									<button type="button" class="btn btn-negro btn-outline" id="crearHistoria"><i class="material-icons">description</i> Crear Historia clínica</button>
-									<button type="button" class="btn btn-negro btn-outline" id="imprHistoria"><i class="material-icons">description</i> Ver Historia clínica</button>
-									<button type="button" class="btn btn-negro btn-outline" id="btnIngresarPagoExtraCliente"><i class="material-icons">attach_money</i> Agregar pagos extras</button>
-									<button type="button" class="btn btn-negro btn-outline disabled" id="btnCrearCita"><i class="material-icons">event_note</i> Crear cita</button>
-									<button type="button" class="btn btn-negro btn-outline disabled" id="btnCrearRevaluacion"><i class="material-icons">enhanced_encryption</i> Crear revaluación</button>
-									<button type="button" class="btn btn-negro btn-outline disabled" id="btnCrearProcedimiento"><i class="material-icons">airline_seat_flat</i> Crear procedimiento</button>
+									<button type="button" class="btn btn-cielo btn-outline" id="btnActualizarDatos"><i class="icofont icofont-marker"></i> Editar datos</button>
+									<button type="button" class="btn btn-cielo btn-outline" id="crearHistoria"><i class="material-icons">description</i> Crear historia clínica</button>
+									<button type="button" class="btn btn-cielo btn-outline" id="imprHistoria"><i class="material-icons">description</i> Ver historia clínica</button>
+									<button type="button" class="btn btn-cielo btn-outline" id="btnIngresarPagoExtraCliente"><i class="material-icons">attach_money</i> Agregar pagos extras</button>
+									<button type="button" class="btn btn-cielo btn-outline disabled" id="btnCrearCita"><i class="material-icons">event_note</i> Crear cita</button>
+									<button type="button" class="btn btn-cielo btn-outline disabled" id="btnCrearRevaluacion"><i class="material-icons">enhanced_encryption</i> Crear revaluación</button>
+									<button type="button" class="btn btn-cielo btn-outline disabled" id="btnCrearProcedimiento"><i class="material-icons">airline_seat_flat</i> Crear procedimiento</button>
 									<!--<button type="button" class="btn btn-danger hidden"  id="btnEliminarCliente">Eliminar cliente</button>-->
 								</div>
 							</div><!--</div>-->
 						</div><!--Fin de col-sm-4-->
 
 						<div class="col-xs-12 col-sm-8  col-md-8">
-						<div class="panel panel-negro" id="panelDatosMid">
+						<div class="panel panel-cielo" id="panelDatosMid">
 							<!--<div class="panel-heading"><h4>Datos del cliente</h4></div>-->
 							<div class="panel-body">
-								<p><i class="icofont icofont-user"></i><strong>Datos del cliente: </strong> <span class="text-primary mayuscula" id="lblNombre" style="font-size: 18px;"></span></p>
+								<p><i class="icofont icofont-user-alt-3"></i><strong> Datos del paciente: </strong> <span class="yellow-text text-darken-3 mayuscula" id="lblNombre" style="font-size: 18px;"></span></p>
 								<div style="padding-left: 30px">
 								<div class="col-sm-6"><p><i class="icofont icofont-heartbeat"></i> <strong>N° de Historia Clínica: </strong><span id="lblHistoria"></span> <span class="sr-only" id="lblIdCliente"></span></p>								
+								<p><i class="icofont icofont-finger-print"></i> <strong>D.N.I.: </strong><span class="mayuscula" id="lblDni"></span>.</p>
 								<p><i class="icofont icofont-hat-alt"></i> <strong>Grado de Instrucción: </strong><span class="mayuscula" id="lblGrado"></span>.</p>
 								<p><i class="icofont icofont-ui-timer"></i> <strong>Edad: </strong><span id="lblEdad"></span>.</p>
 								<p><i class="icofont icofont-ui-love"></i> <strong>Estado civil: </strong> <span class="mayuscula" id="lblEstado"></span></p>
@@ -175,7 +178,7 @@ if(isset($_SESSION['usuario'])){?>
 					<div class="mover">
 						<di class="row">
 							<div class="col-md-3 hidden-xs hidden-sm">
-							<div class="panel panel-negro">
+							<div class="panel panel-cielo">
 								<div class="panel-heading">Foto</div>
 								<div class="panel-body text-center ">
 									<div id="mi_camara" style="width:100%; height:180px;" class="hidden-print col-sm-9 col-sm-offset-3 col-md-12 col-md-offset-0"><img src="" class="img-responsive" style="width: auto;"><br>
@@ -209,592 +212,954 @@ if(isset($_SESSION['usuario'])){?>
 					</div>
 				</div>
 				<div role="tabpanel" class="tab-pane fade" id="calendar" >
-					<br>
-					
-						<div class="container well col-md-9 col-md-offset-1">
-						<label >Planificar para: </label>
 
+					<div class="container">
 						<div class="row">
-							<div class="col-xs-12 col-sm-3">
-								<div class="input-group">
-									<input type="number" class="form-control mitooltip" id='txtAdelantarFecha' placeholder="...días" data-toggle="tooltip" data-placement="bottom" title="Agrega una cantidad n de días hábiles a la fecha de hoy">
-									<span class="input-group-btn">
-										<button class="btn btn-default" type="button" id="btnAdelantarFecha"><span class="glyphicon glyphicon-chevron-right"></span></button>
-									</span>
-								</div><!-- /input-group -->
-							</div><!-- /.col-lg-3 -->
+							<div class="col-sm-4">	
+							<div class="panel panel-morita">
+								<div class="panel-heading"><h4>Saltar días habiles</h4></div>
+								<div class="panel-body">
+								<div class="row">
+									<div class="col-sm-6 col-sm-offset-3 ">
+										<input type="date" class='form-control' id="dtpControladorFechasv2">
+										<h3 class="input-group-lg"><input type="number" id="txtAdelantarFechav2" class="form-control text-center" min="0" value=0 style="color: #716e70;"></h3>
+									</div>
+									
+								</div>
+								<div class="row"><p>
+									<div class="text-center">
+										<button class="btn btn-primary btn-outline" id="btnSaltarDiasv2"><span class="glyphicon glyphicon-share-alt"></span> Saltar días</button>
+									</div></p>
+									<p>
+									<div class="text-center">
+										<button class="btn btn-info btn-outline" id="btnMostrarDiaHoyv2"><span class="glyphicon glyphicon-share-alt"></span> Mostrar el día de hoy</button>
+									</div></p>
+									
+								</div>
+								
+								</div>
 
-							<div class="col-xs-12 col-sm-4">
-								<div class="input-group">
-									<span class="input-group-btn">
-										<button class="btn btn-default" type="button" id="btnRestarFecha"><span class="glyphicon glyphicon-chevron-down"></span></button>
+							</div> <!-- Fin de panel -->
+							<div class="panel panel-default">
+								<div class="panel-body" style="color: #716e70;">
+									<div class="container row">
+									<p><strong style="color: #a9a9a9;">Resumen para: <span id="spanFechaMiniRepov2" style="color:#6d6c6c;">Lunes, 20 de Julio de 2017</span></strong></p>
+									<div class="container">
+										<p class="pReevaluacionxPaciente"><span class="glyphicon glyphicon-signal"></span> <span id="spanConteoRevaluacion">0</span> Revaluaciones</p>
+										<p class="pNuevoxPaciente"><span class="glyphicon glyphicon-signal"></span> <span id="spanConteoNuevo">0</span> Pacientes nuevos</p>
+										<p class="pOperacionxPaciente"><span class="glyphicon glyphicon-signal"></span> <span id="spanConteoOperacion">0</span> Operaciones</p>
+									</div>
+								</div>
+								</div>
+							</div>
+							</div> <!-- fin de sm-4 -->
+
+							<div class="col-sm-8">
+							<div class="panel panel-menta">
+								<div class="panel-heading"><h4>Asignar una fecha específica</h4></div>
+							</div> <!-- Fin de panel -->
+
+
+							<table class="table table-bordered">
+							<thead>
+							  <tr>
+								<th><h3><button type="button" class="btn btn-default" id="btnRestarAñov2"><i class="icofont icofont-caret-left"></i></button></h3></th>
+								<th id="trParaAño">
+									<span class="dropdown dropdown-large">
+									<button class="btn btn-lg btn-info dropdown-toggle btn-outline" data-toggle="dropdown" id="btnAñosInfo"><span id="divAñov2"></span> <b class="caret"></b></button>
+									<ul class="dropdown-menu dropdown-menu-large row" >
+										<li class="col-sm-12">
+										<ul>
+											<li class="dropdown-header">Elija un año</li>
+											<li class="divider"></li>
+											<li><a class="aAñov2" href="#" valor="2017">2017</a></li>
+											<li><a class="aAñov2" href="#" valor="2018">2018</a></li>
+											<li><a class="aAñov2" href="#" valor="2019">2019</a></li>
+										</ul>
+										</li>
+										
+
+									  </ul>
 									</span>
-									<input type="date" class="form-control text-center" id='dtpFechaCalendario'>
-									<span class="input-group-btn">
-										<button class="btn btn-default" type="button" id="btnSumarFecha"><span class="glyphicon glyphicon-chevron-up"></span></button>
+								</th>
+								<th><h3><button type="button" class="btn btn-default" id="btnSumarAñov2"><i class="icofont icofont-caret-right"></i></button></h3></th>
+							  </tr>
+							  <tr>
+								<th><h3><button type="button" class="btn btn-default" id="btnRestarMesv2"><i class="icofont icofont-caret-left"></i></button></h3></th>
+								<th id="trParaMeses">
+									<span class="dropdown dropdown-large">
+									<button class="btn btn-lg btn-info dropdown-toggle btn-outline" data-toggle="dropdown" id="btnMesesInfo"><span id="divMesv2"></span> <b class="caret"></b></button>
+									<ul class="dropdown-menu dropdown-menu-large row">
+										<ul>
+											<li class="dropdown-header">Seleccione un mes</li>
+											<li class="divider"></li>
+										</ul>
+										<li class="col-sm-6">
+										<ul>
+											<li><a class="aMesv2" href="#" valor="01">Enero</a></li>
+											<li><a class="aMesv2" href="#" valor="02">Febrero</a></li>
+											<li><a class="aMesv2" href="#" valor="03">Marzo</a></li>
+											<li><a class="aMesv2" href="#" valor="04">Abril</a></li>
+											<li><a class="aMesv2" href="#" valor="05">Mayo</a></li>
+											<li><a class="aMesv2" href="#" valor="06">Junio</a></li>
+											
+										</ul>
+										</li>
+										<li class="col-sm-6">
+										<ul>
+											<li><a class="aMesv2" href="#" valor="07">Julio</a></li>
+											<li><a class="aMesv2" href="#" valor="08">Agosto</a></li>
+											<li><a class="aMesv2" href="#" valor="09">Septiembre</a></li>
+											<li><a class="aMesv2" href="#" valor="10">Octubre</a></li>
+											<li><a class="aMesv2" href="#" valor="11">Noviembre</a></li>
+											<li><a class="aMesv2" href="#" valor="12">Diciembre</a></li>
+										</ul>
+										</li>
+
+									  </ul>
 									</span>
-								</div><!-- /input-group -->
-							</div><!-- /.col-lg-3 -->
-							<label id="lblDiaCalendar">Hoy,</label>
-						</div><br>
-						<div class="alert alert-danger alert-white rounded alert-dismissible fade in hidden" id="mnjClienteCitadoHoy" role="alert"> <div class="icon"><i class="icofont icofont-close-circled"></i></div> <strong>Ups!</strong>  <span id="lblMnjCita"></span></div>
+								</th>
+								<th><h3><button type="button" class="btn btn-default"  id="btnSumarMesv2"><i class="icofont icofont-caret-right"></i></button></h3></th>
+							  </tr>
+							  <tr>
+								<th><h3><button type="button" class="btn btn-default" id="btnRestarDiav2"><i class="icofont icofont-caret-left"></i></button></h3></th>
+								<th id="trParaDias">
+									<span class="dropdown dropdown-large">
+									<button class="btn btn-lg btn-info dropdown-toggle btn-outline" data-toggle="dropdown" id="btnDiasInfo"><span id="divDiav2"></span> <b class="caret"></b></button>
+									<ul class="dropdown-menu dropdown-menu-large row">
+										<ul>
+											<li class="dropdown-header">Seleccione un día</li>
+											<li class="divider"></li>
+										</ul>
+										<li class="col-sm-4 liDeDia">
+										<ul id="ulDiaDeMes1al1">
+										</ul>
+										</li>
+										<li class="col-sm-4 liDeDia">
+										<ul id="ulDiaDeMes12al23">
+										</ul>
+										</li>
+										<li class="col-sm-4 liDeDia">
+										<ul id="ulDiaDeMes23al30">
+										</ul>
+										</li>
+
+									  </ul>
+									</span>
+								</th>
+								<th><h3><button type="button" class="btn btn-default" id="btnSumarDiav2"><i class="icofont icofont-caret-right"></i></button></h3></th>
+							  </tr>
+							  <tr>
+								<th><h3><button type="button" class="btn btn-default" id="btnRestarHorav2"><i class="icofont icofont-caret-left"></i></button></h3></th>
+								<th id="trParaHoras">
+									<span class="dropdown dropdown-large">
+									<button class="btn btn-lg btn-info dropdown-toggle btn-outline" data-toggle="dropdown" id="btnHorasInfo"><span id="horaDisplayCalendv2"></span> <b class="caret"></b></button><span class="sr-only" id="horaAsignarCalend12v2"></span><span class="sr-only" id="horaAsignarCalend24v2"></span>
+									<ul class="dropdown-menu dropdown-menu-large row">
+										<ul>
+											<li class="dropdown-header">Seleccione un horario</li>
+											<li class="divider"></li>
+										</ul>
+										<li class="col-sm-6">
+										<ul>
+											<li class="dropdown-header">Mañanas</li>
+											<li><a href="#" class="aHorav2" valor='6'>6:00 a.m.</a></li>
+											<li><a href="#" class="aHorav2" valor='7'>7:00 a.m.</a></li>
+											<li><a href="#" class="aHorav2" valor='8'>8:00 a.m.</a></li>
+											<li><a href="#" class="aHorav2" valor='9'>9:00 a.m.</a></li>
+											<li><a href="#" class="aHorav2" valor='10'>10:00 a.m.</a></li>
+											<li><a href="#" class="aHorav2" valor='11'>11:00 a.m.</a></li>
+											<li><a href="#" class="aHorav2" valor='12'>12:00 a.m.</a></li>
+										</ul>
+										</li>
+										<li class="col-sm-6">
+										<ul>
+											<li class="dropdown-header">Tardes</li>
+											<li><a href="#" class="aHorav2" valor='13'>1 p.m.</a></li>
+											<li><a href="#" class="aHorav2" valor='14'>2 p.m.</a></li>
+											<li><a href="#" class="aHorav2" valor='15'>3 p.m.</a></li>
+											<li><a href="#" class="aHorav2" valor='16'>4 p.m.</a></li>
+											<li><a href="#" class="aHorav2" valor='17'>5 p.m.</a></li>
+											<li><a href="#" class="aHorav2" valor='18'>6 p.m.</a></li>
+											<li><a href="#" class="aHorav2" valor='19'>7 p.m.</a></li>
+											<li><a href="#" class="aHorav2" valor='20'>8 p.m.</a></li>
+											<li><a href="#" class="aHorav2" valor='21'>9 p.m.</a></li>
+										</ul>
+										</li>
+
+									  </ul>
+									</span>
+								</th>
+								<th><h3><button type="button" class="btn btn-default" id="btnSumarHorav2"><i class="icofont icofont-caret-right"></i></button></h3></th>
+							  </tr>
+							</thead>
+							
+
+						  </table >
+							</div>
+							<!-- <div class="col-sm-6">
+							
+							</div> -->
+						  </div>
+						  <div class="row col-sm-12 hidden" id="divDomingos" style="margin-top:20px">
+						<div class="alert alert-warning alert-white rounded alert-dismissible fade in " role="alert"> <div class="icon"><i class="icofont icofont-animal-cat-alt-4"></i></div> <strong>Ups! </strong>  <span id="lblMnjCita">No hay atención por ser: <strong id="spanFeriado"></strong></span></div>
 					</div>
-
-					<div class="row col-xs-12 col-sm-12 text-center calendLunesaViernes" id="tblControl5min"><h2 style="margin-top: 7px;">Día (Lunes a Viernes)</h2>
-						<table class="table table-bordered tablaCalendario text-center" id="mañana5min">
-						<thead>
+						  <div class="row" id="divColexionHorasv2">
+							<div class="col-sm-6"><table class="table table-bordered tblHorasVsMin">
+						  <thead>
+								<tr>
+									<th><span class="glyphicon glyphicon-time"></span></th>
+									<th>Detalles</th>
+								</tr>
+							</thead>
+							<tbody>
 							<tr>
-							<th class="cabecera encabezado text-center"><span class="glyphicon glyphicon-time"></span> Horas</th>
-							<th class="col-xs-1 text-center encabezado" data-column="0">"0</th>
-							<th class="col-xs-1 text-center encabezado" data-column="5">"5</th>
-							<th class="col-xs-1 text-center encabezado" data-column="10">"10</th>
-							<th class="col-xs-1 text-center encabezado" data-column="15">"15</th>
-							<th class="col-xs-1 text-center encabezado" data-column="20">"20</th>
-							<th class="col-xs-1 text-center encabezado" data-column="25">"25</th>
-							<th class="col-xs-1 text-center encabezado" data-column="30">"30</th>
-							<th class="col-xs-1 text-center encabezado" data-column="35">"35</th>
-							<th class="col-xs-1 text-center encabezado" data-column="40">"40</th>
-							<th class="col-xs-1 text-center encabezado" data-column="45">"45</th>
-							<th class="col-xs-1 text-center encabezado" data-column="50">"50</th>
-							<th class="col-xs-1 text-center encabezado" data-column="55">"55</th>
+								<td class="tdHoras" valor="0"><span class="horaChangeable">8</span>:00 <span class="horaAMPM"></span></td>
+								<td class="tdDatoCliente" valor="00"></td>
 							</tr>
-						</thead>
-						<tbody>
-							<tr><th class="text-right encabezado">6 a.m.</th>
-							<td data-row="6" data-column="0"></td>
-							<td data-row="6" data-column="5"></td><td data-row="6" data-column="10"></td>
-							<td data-row="6" data-column="15"></td><td data-row="6" data-column="20"></td>
-							<td data-row="6" data-column="25"></td><td data-row="6" data-column="30"></td>
-							<td data-row="6" data-column="35"></td><td data-row="6" data-column="40"></td>
-							<td data-row="6" data-column="45"></td><td data-row="6" data-column="50"></td>
-							<td data-row="6" data-column="55"></td></tr>
-							<tr><th class="text-right encabezado">7 a.m.</th>
-							<td data-row="7" data-column="0"></td><td data-row="7" data-column="5"></td>
-							<td data-row="7" data-column="10"></td><td data-row="7" data-column="15"></td>
-							<td data-row="7" data-column="20"></td><td data-row="7" data-column="25"></td>
-							<td data-row="7" data-column="30"></td><td data-row="7" data-column="35"></td>
-							<td data-row="7" data-column="40"></td><td data-row="7" data-column="45"></td>
-							<td data-row="7" data-column="50"></td><td data-row="7" data-column="55"></td></tr>
-							<tr><th class="text-right encabezado">8 a.m.</th>
-							<td data-row="8" data-column="0"></td><td data-row="8" data-column="5"></td>
-							<td data-row="8" data-column="10"></td><td data-row="8" data-column="15"></td>
-							<td data-row="8" data-column="20"></td><td data-row="8" data-column="25"></td>
-							<td data-row="8" data-column="30"></td><td data-row="8" data-column="35"></td>
-							<td data-row="8" data-column="40"></td><td data-row="8" data-column="45"></td>
-							<td data-row="8" data-column="50"></td><td data-row="8" data-column="55"></td>
-							</tr><tr><th class="text-right encabezado">9 a.m.</th>
-							<td data-row="9" data-column="0"></td><td data-row="9" data-column="5"></td>
-							<td data-row="9" data-column="10"></td><td data-row="9" data-column="15"></td>
-							<td data-row="9" data-column="20"></td><td data-row="9" data-column="25"></td>
-							<td data-row="9" data-column="30"></td><td data-row="9" data-column="35"></td>
-							<td data-row="9" data-column="40"></td><td data-row="9" data-column="45"></td>
-							<td data-row="9" data-column="50"></td><td data-row="9" data-column="55"></td>
+							<tr>
+								<td class="tdHoras" valor="1"><span class="horaChangeable">8</span>:01 <span class="horaAMPM"></span></td>
+								<td class="tdDatoCliente" valor="01"></td>
+							</tr>
+							<tr>
+								<td class="tdHoras" valor="2"><span class="horaChangeable">8</span>:02 <span class="horaAMPM"></span></td>
+								<td class="tdDatoCliente" valor="02"></td>
+							</tr>
+							<tr>
+								<td class="tdHoras" valor="3"><span class="horaChangeable">8</span>:03 <span class="horaAMPM"></span></td>
+								<td class="tdDatoCliente" valor="03"></td>
+							</tr>
+							<tr>
+								<td class="tdHoras" valor="4"><span class="horaChangeable">8</span>:04 <span class="horaAMPM"></span></td>
+								<td class="tdDatoCliente" valor="04"></td>
+							</tr>
+							<tr>
+								<td class="tdHoras" valor="5"><span class="horaChangeable">8</span>:05 <span class="horaAMPM"></span></td>
+								<td class="tdDatoCliente" valor="05"></td>
+							</tr>
+							<tr>
+								<td class="tdHoras" valor="6"><span class="horaChangeable">8</span>:06 <span class="horaAMPM"></span></td>
+								<td class="tdDatoCliente" valor="06"></td>
+							</tr>
+							<tr>
+								<td class="tdHoras" valor="7"><span class="horaChangeable">8</span>:07 <span class="horaAMPM"></span></td>
+								<td class="tdDatoCliente" valor="07"></td>
+							</tr>
+							<tr>
+								<td class="tdHoras" valor="8"><span class="horaChangeable">8</span>:08 <span class="horaAMPM"></span></td>
+								<td class="tdDatoCliente" valor="08"></td>
+							</tr>
+							<tr>
+								<td class="tdHoras" valor="9"><span class="horaChangeable">8</span>:09 <span class="horaAMPM"></span></td>
+								<td class="tdDatoCliente" valor="09"></td>
+							</tr>
+							<tr>
+								<td class="tdHoras" valor="10"><span class="horaChangeable">8</span>:10 <span class="horaAMPM"></span></td>
+								<td class="tdDatoCliente" valor="10"></td>
+							</tr>
+							<tr>
+								<td class="tdHoras" valor="11"><span class="horaChangeable">8</span>:11 <span class="horaAMPM"></span></td>
+								<td class="tdDatoCliente" valor="11"></td>
+							</tr>
+							<tr>
+								<td class="tdHoras" valor="12"><span class="horaChangeable">8</span>:12 <span class="horaAMPM"></span></td>
+								<td class="tdDatoCliente" valor="12"></td>
+							</tr>
+							<tr>
+								<td class="tdHoras" valor="13"><span class="horaChangeable">8</span>:13 <span class="horaAMPM"></span></td>
+								<td class="tdDatoCliente" valor="13"></td>
+							</tr>
+							<tr>
+								<td class="tdHoras" valor="14"><span class="horaChangeable">8</span>:14 <span class="horaAMPM"></span></td>
+								<td class="tdDatoCliente" valor="14"></td>
+							</tr>
+							<tr>
+								<td class="tdHoras" valor="15"><span class="horaChangeable">8</span>:15 <span class="horaAMPM"></span></td>
+								<td class="tdDatoCliente" valor="15"></td>
+							</tr>
+							<tr>
+								<td class="tdHoras" valor="16"><span class="horaChangeable">8</span>:16 <span class="horaAMPM"></span></td>
+								<td class="tdDatoCliente" valor="16"></td>
+							</tr>
+							<tr>
+								<td class="tdHoras" valor="17"><span class="horaChangeable">8</span>:17 <span class="horaAMPM"></span></td>
+								<td class="tdDatoCliente" valor="17"></td>
+							</tr>
+							<tr>
+								<td class="tdHoras" valor="18"><span class="horaChangeable">8</span>:18 <span class="horaAMPM"></span></td>
+								<td class="tdDatoCliente" valor="18"></td>
+							</tr>
+							<tr>
+								<td class="tdHoras" valor="19"><span class="horaChangeable">8</span>:19 <span class="horaAMPM"></span></td>
+								<td class="tdDatoCliente" valor="19"></td>
+							</tr>
+							<tr>
+								<td class="tdHoras" valor="20"><span class="horaChangeable">8</span>:20 <span class="horaAMPM"></span></td>
+								<td class="tdDatoCliente" valor="20"></td>
+							</tr>
+							<tr>
+								<td class="tdHoras" valor="21"><span class="horaChangeable">8</span>:21 <span class="horaAMPM"></span></td>
+								<td class="tdDatoCliente" valor="21"></td>
+							</tr>
+							<tr>
+								<td class="tdHoras" valor="22"><span class="horaChangeable">8</span>:22 <span class="horaAMPM"></span></td>
+								<td class="tdDatoCliente" valor="22"></td>
+							</tr>
+							<tr>
+								<td class="tdHoras" valor="23"><span class="horaChangeable">8</span>:23 <span class="horaAMPM"></span></td>
+								<td class="tdDatoCliente" valor="23"></td>
+							</tr>
+							<tr>
+								<td class="tdHoras" valor="24"><span class="horaChangeable">8</span>:24 <span class="horaAMPM"></span></td>
+								<td class="tdDatoCliente" valor="24"></td>
+							</tr>
+							<tr>
+								<td class="tdHoras" valor="25"><span class="horaChangeable">8</span>:25 <span class="horaAMPM"></span></td>
+								<td class="tdDatoCliente" valor="25"></td>
+							</tr>
+							<tr>
+								<td class="tdHoras" valor="26"><span class="horaChangeable">8</span>:26 <span class="horaAMPM"></span></td>
+								<td class="tdDatoCliente" valor="26"></td>
+							</tr>
+							<tr>
+								<td class="tdHoras" valor="27"><span class="horaChangeable">8</span>:27 <span class="horaAMPM"></span></td>
+								<td class="tdDatoCliente" valor="27"></td>
+							</tr>
+							<tr>
+								<td class="tdHoras" valor="28"><span class="horaChangeable">8</span>:28 <span class="horaAMPM"></span></td>
+								<td class="tdDatoCliente" valor="28"></td>
+							</tr>
+							<tr>
+								<td class="tdHoras" valor="29"><span class="horaChangeable">8</span>:29 <span class="horaAMPM"></span></td>
+								<td class="tdDatoCliente" valor="29"></td>
 							</tr>
 						</tbody>
-						<thead>
-							<tr>
-							<th class="cabecera encabezado text-center"><span class="glyphicon glyphicon-time"></span> Horas</th>
-							<th class="col-xs-1 encabezado" data-column="0">"0</th>
-							<th class="col-xs-1 encabezado" data-column="5">"5</th>
-							<th class="col-xs-1 encabezado" data-column="10">"10</th>
-							<th class="col-xs-1 encabezado" data-column="15">"15</th>
-							<th class="col-xs-1 encabezado" data-column="20">"20</th>
-							<th class="col-xs-1 encabezado" data-column="25">"25</th>
-							<th class="col-xs-1 encabezado" data-column="30">"30</th>
-							<th class="col-xs-1 encabezado" data-column="35">"35</th>
-							<th class="col-xs-1 encabezado" data-column="40">"40</th>
-							<th class="col-xs-1 encabezado" data-column="45">"45</th>
-							<th class="col-xs-1 encabezado" data-column="50">"50</th>
-							<th class="col-xs-1 encabezado" data-column="55">"55</th>
-							</tr>
-						</thead>
-						</table>
+						</table></div>
+
+						<div class="col-sm-6">
+						<table class="table table-bordered tblHorasVsMin">
+							<thead>
+								<tr>
+									<th><span class="glyphicon glyphicon-time"></span></th>
+									<th>Detalles</th>
+								</tr>
+							</thead>
+							<tbody>
+							  <tr>
+								<td class="tdHoras" valor="30"><span class="horaChangeable">8</span>:30 <span class="horaAMPM"></span></td>
+								<td class="tdDatoCliente" valor="30"></td>
+								</tr>
+								<tr>
+									<td class="tdHoras" valor="31"><span class="horaChangeable">8</span>:31 <span class="horaAMPM"></span></td>
+									<td class="tdDatoCliente" valor="31"></td>
+								</tr>
+								<tr>
+									<td class="tdHoras" valor="32"><span class="horaChangeable">8</span>:32 <span class="horaAMPM"></span></td>
+									<td class="tdDatoCliente" valor="32"></td>
+								</tr>
+								<tr>
+									<td class="tdHoras" valor="33"><span class="horaChangeable">8</span>:33 <span class="horaAMPM"></span></td>
+									<td class="tdDatoCliente" valor="33"></td>
+								</tr>
+								<tr>
+									<td class="tdHoras" valor="34"><span class="horaChangeable">8</span>:34 <span class="horaAMPM"></span></td>
+									<td class="tdDatoCliente" valor="34"></td>
+								</tr>
+								<tr>
+									<td class="tdHoras" valor="35"><span class="horaChangeable">8</span>:35 <span class="horaAMPM"></span></td>
+									<td class="tdDatoCliente" valor="35"></td>
+								</tr>
+								<tr>
+									<td class="tdHoras" valor="36"><span class="horaChangeable">8</span>:36 <span class="horaAMPM"></span></td>
+									<td class="tdDatoCliente" valor="36"></td>
+								</tr>
+								<tr>
+									<td class="tdHoras" valor="37"><span class="horaChangeable">8</span>:37 <span class="horaAMPM"></span></td>
+									<td class="tdDatoCliente" valor="37"></td>
+								</tr>
+								<tr>
+									<td class="tdHoras" valor="38"><span class="horaChangeable">8</span>:38 <span class="horaAMPM"></span></td>
+									<td class="tdDatoCliente" valor="38"></td>
+								</tr>
+								<tr>
+									<td class="tdHoras" valor="39"><span class="horaChangeable">8</span>:39 <span class="horaAMPM"></span></td>
+									<td class="tdDatoCliente" valor="39"></td>
+								</tr>
+								<tr>
+									<td class="tdHoras" valor="40"><span class="horaChangeable">8</span>:40 <span class="horaAMPM"></span></td>
+									<td class="tdDatoCliente" valor="40"></td>
+								</tr>
+								<tr>
+									<td class="tdHoras" valor="41"><span class="horaChangeable">8</span>:41 <span class="horaAMPM"></span></td>
+									<td class="tdDatoCliente" valor="41"></td>
+								</tr>
+								<tr>
+									<td class="tdHoras" valor="42"><span class="horaChangeable">8</span>:42 <span class="horaAMPM"></span></td>
+									<td class="tdDatoCliente" valor="42"></td>
+								</tr>
+								<tr>
+									<td class="tdHoras" valor="43"><span class="horaChangeable">8</span>:43 <span class="horaAMPM"></span></td>
+									<td class="tdDatoCliente" valor="43"></td>
+								</tr>
+								<tr>
+									<td class="tdHoras" valor="44"><span class="horaChangeable">8</span>:44 <span class="horaAMPM"></span></td>
+									<td class="tdDatoCliente" valor="44"></td>
+								</tr>
+								<tr>
+									<td class="tdHoras" valor="45"><span class="horaChangeable">8</span>:45 <span class="horaAMPM"></span></td>
+									<td class="tdDatoCliente" valor="45"></td>
+								</tr>
+								<tr>
+									<td class="tdHoras" valor="46"><span class="horaChangeable">8</span>:46 <span class="horaAMPM"></span></td>
+									<td class="tdDatoCliente" valor="46"></td>
+								</tr>
+								<tr>
+									<td class="tdHoras" valor="47"><span class="horaChangeable">8</span>:47 <span class="horaAMPM"></span></td>
+									<td class="tdDatoCliente" valor="47"></td>
+								</tr>
+								<tr>
+									<td class="tdHoras" valor="48"><span class="horaChangeable">8</span>:48 <span class="horaAMPM"></span></td>
+									<td class="tdDatoCliente" valor="48"></td>
+								</tr>
+								<tr>
+									<td class="tdHoras" valor="49"><span class="horaChangeable">8</span>:49 <span class="horaAMPM"></span></td>
+									<td class="tdDatoCliente" valor="49"></td>
+								</tr>
+								<tr>
+									<td class="tdHoras" valor="50"><span class="horaChangeable">8</span>:50 <span class="horaAMPM"></span></td>
+									<td class="tdDatoCliente" valor="50"></td>
+								</tr>
+								<tr>
+									<td class="tdHoras" valor="51"><span class="horaChangeable">8</span>:51 <span class="horaAMPM"></span></td>
+									<td class="tdDatoCliente" valor="51"></td>
+								</tr>
+								<tr>
+									<td class="tdHoras" valor="52"><span class="horaChangeable">8</span>:52 <span class="horaAMPM"></span></td>
+									<td class="tdDatoCliente" valor="52"></td>
+								</tr>
+								<tr>
+									<td class="tdHoras" valor="53"><span class="horaChangeable">8</span>:53 <span class="horaAMPM"></span></td>
+									<td class="tdDatoCliente" valor="53"></td>
+								</tr>
+								<tr>
+									<td class="tdHoras" valor="54"><span class="horaChangeable">8</span>:54 <span class="horaAMPM"></span></td>
+									<td class="tdDatoCliente" valor="54"></td>
+								</tr>
+								<tr>
+									<td class="tdHoras" valor="55"><span class="horaChangeable">8</span>:55 <span class="horaAMPM"></span></td>
+									<td class="tdDatoCliente" valor="55"></td>
+								</tr>
+								<tr>
+									<td class="tdHoras" valor="56"><span class="horaChangeable">8</span>:56 <span class="horaAMPM"></span></td>
+									<td class="tdDatoCliente" valor="56"></td>
+								</tr>
+								<tr>
+									<td class="tdHoras" valor="57"><span class="horaChangeable">8</span>:57 <span class="horaAMPM"></span></td>
+									<td class="tdDatoCliente" valor="57"></td>
+								</tr>
+								<tr>
+									<td class="tdHoras" valor="58"><span class="horaChangeable">8</span>:58 <span class="horaAMPM"></span></td>
+									<td class="tdDatoCliente" valor="58"></td>
+								</tr>
+								<tr>
+									<td class="tdHoras" valor="59"><span class="horaChangeable">8</span>:59 <span class="horaAMPM"></span></td>
+									<td class="tdDatoCliente" valor="59"></td>
+								</tr>
+							  </tbody>
+						  </table>
+							
+						  </div>
+						  </div>
+
 					</div>
-					<div class="row col-sm-12 text-center calendLunesaViernes hidden" id="tblControl10min"><h2>Mañanas (Lunes a Viernes)</h2>
-						 <table class="table table-bordered tablaCalendario text-center" id="mañana10min">
-							<thead>
-								<tr>
-								<th class="cabecera encabezado"><span class="glyphicon glyphicon-time"></span> Horas</th>
-								<th class="col-xs-2 text-center encabezado" data-column='0'>"00</th>
-								<th class="col-xs-2 text-center encabezado" data-column='10'>"10</th>
-								<th class="col-xs-2 text-center encabezado" data-column='20'>"20</th>
-								<th class="col-xs-2 text-center encabezado" data-column='30'>"30</th>
-								<th class="col-xs-2 text-center encabezado" data-column='40'>"40</th>
-								<th class="col-xs-2 text-center encabezado" data-column='50'>"50</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-								<th class="text-right encabezado">6 a.m.</th>
-								<td data-row='6' data-column='0'></td>
-								<td data-row='6' data-column='10'></td>
-								<td data-row='6' data-column='20'></td>
-								<td data-row='6' data-column='30'></td>
-								<td data-row='6' data-column='40'></td>
-								<td data-row='6' data-column='50'></td>
-								</tr>
-								<tr>
-								<th class="text-right encabezado">7 a.m.</th>
-								<td data-row='7' data-column='0'></td>
-								<td data-row='7' data-column='10'></td>
-								<td data-row='7' data-column='20'></td>
-								<td data-row='7' data-column='30'></td>
-								<td data-row='7' data-column='40'></td>
-								<td data-row='7' data-column='50'></td>
-								</tr>
-								<tr>
-								<th class="text-right encabezado">8 a.m.</th>
-								<td data-row='8' data-column='0'></td>
-								<td data-row='8' data-column='10'></td>
-								<td data-row='8' data-column='20'></td>
-								<td data-row='8' data-column='30'></td>
-								<td data-row='8' data-column='40'></td>
-								<td data-row='8' data-column='50'></td>
-								</tr>
-								<tr>
-								<th class="text-right encabezado">9 a.m.</th>
-								<td data-row='9' data-column='0'></td>
-								<td data-row='9' data-column='10'></td>
-								<td data-row='9' data-column='20'></td>
-								<td data-row='9' data-column='30'></td>
-								<td data-row='9' data-column='40'></td>
-								<td data-row='9' data-column='50'></td>
-								</tr>
-								<thead>
-								<tr>
-									<th class="cabecera encabezado"><span class="glyphicon glyphicon-time"></span> Horas</th>
-									<th class="col-xs-2 text-center encabezado" data-column='0'>"00</th>
-									<th class="col-xs-2 text-center encabezado" data-column='10'>"10</th>
-									<th class="col-xs-2 text-center encabezado" data-column='20'>"20</th>
-									<th class="col-xs-2 text-center encabezado" data-column='30'>"30</th>
-									<th class="col-xs-2 text-center encabezado" data-column='40'>"40</th>
-									<th class="col-xs-2 text-center encabezado" data-column='50'>"50</th>
-								</tr>
-								</thead>
-							</tbody>
-						</table></div>
-						<!--<table class="table table-bordered tablaCalendario text-center" id="tarde">
-							<thead>
-								<tr>
-								<th class="col-xs-1 cabecera encabezado"><span class="glyphicon glyphicon-time"></span> Horas</th>
-								<th class="col-xs-2 text-center encabezado" data-column='0'>"00</th>
-								<th class="col-xs-2 text-center encabezado" data-column='15'>"15</th>
-								<th class="col-xs-2 text-center encabezado" data-column='30'>"30</th>
-								<th class="col-xs-2 text-center encabezado" data-column='45'>"45</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-								<th class="text-right encabezado">10 a.m.</th>
-								<td data-row='10' data-column='0'></td>
-								<td data-row='10' data-column='15'></td>
-								<td data-row='10' data-column='30'></td>
-								<td data-row='10' data-column='45'></td>
-								</tr><tr>
-								<th class="text-right encabezado">11 a.m.</th>
-								<td data-row='11' data-column='0'></td>
-								<td data-row='11' data-column='15'></td>
-								<td data-row='11' data-column='30'></td>
-								<td data-row='11' data-column='45'></td>
 
-								</tr><tr>
-								<th class="text-right encabezado">12 a.m.</th>
-								<td data-row='12' data-column='0'></td>
-								<td data-row='12' data-column='15'></td>
-								<td data-row='12' data-column='30'></td>
-								<td data-row='12' data-column='45'></td>
 
-								</tr><tr>
-								<th class="text-right encabezado">1 p.m.</th>
-								<td data-row='13' data-column='0'></td>
-								<td data-row='13' data-column='15'></td>
-								<td data-row='13' data-column='30'></td>
-								<td data-row='13' data-column='45'></td>
-								</tr><tr>
-								<th class="text-right encabezado">2 p.m.</th>
-								<td data-row='14' data-column='0'></td>
-								<td data-row='14' data-column='15'></td>
-								<td data-row='14' data-column='30'></td>
-								<td data-row='14' data-column='45'></td>
-								</tr><tr>
-								<th class="text-right encabezado">3 p.m.</th>
-								<td data-row='15' data-column='0'></td>
-								<td data-row='15' data-column='15'></td>
-								<td data-row='15' data-column='30'></td>
-								<td data-row='15' data-column='45'></td>
-								</tr><tr>
-								<th class="text-right encabezado">4 p.m.</th>
-								<td data-row='16' data-column='0'></td>
-								<td data-row='16' data-column='15'></td>
-								<td data-row='16' data-column='30'></td>
-								<td data-row='16' data-column='45'></td>
-								</tr><tr>
-								<th class="text-right encabezado">5 p.m.</th>
-								<td data-row='17' data-column='0'></td>
-								<td data-row='17' data-column='15'></td>
-								<td data-row='17' data-column='30'></td>
-								<td data-row='17' data-column='45'></td>
-								</tr><tr>
-								<th class="text-right encabezado">6 p.m.</th>
-								<td data-row='18' data-column='0'></td>
-								<td data-row='18' data-column='15'></td>
-								<td data-row='18' data-column='30'></td>
-								<td data-row='18' data-column='45'></td>
-								</tr><tr>
-								<th class="text-right encabezado">7 p.m.</th>
-								<td data-row='19' data-column='0'></td>
-								<td data-row='19' data-column='15'></td>
-								<td data-row='19' data-column='30'></td>
-								<td data-row='19' data-column='45'></td>
-								</tr><tr>
-								<th class="text-right encabezado">8 p.m.</th>
-								<td data-row='20' data-column='0'></td>
-								<td data-row='20' data-column='15'></td>
-								<td data-row='20' data-column='30'></td>
-								<td data-row='20' data-column='45'></td>
-								</tr><tr>
-								<th class="text-right encabezado">9 p.m.</th>
-								<td data-row='21' data-column='0'></td>
-								<td data-row='21' data-column='15'><div class="btn-group contenido"></td>
-								<td data-row='21' data-column='30'></td>
-								<td data-row='21' data-column='45'></td>
-								</tr>
-								<thead>
-								<tr>
-								<th class="col-xs-1 cabecera encabezado"><span class="glyphicon glyphicon-time"></span> Horas</th>
-								<th class="col-xs-2 text-center encabezado" data-column='0'>"00</th>
-								<th class="col-xs-2 text-center encabezado" data-column='15'>"15</th>
-								<th class="col-xs-2 text-center encabezado" data-column='30'>"30</th>
-								<th class="col-xs-2 text-center encabezado" data-column='45'>"45</th>
-								</tr>
-							</thead>
-							</tbody>
-						</table> -->
-						<div class="row col-sm-12 text-center calendLunesaViernes"><h2>Tardes y Noches (Lunes a Viernes)</h2>
-						
-						<table class="table table-bordered tablaCalendario text-center" id="tarde">
-							<thead>
-								<tr>
-								<th class="cabecera encabezado text-center"><span class="glyphicon glyphicon-time"></span> Horas</th>
-								<th class="col-xs-1 encabezado" data-column="0">"0</th>
-								<th class="col-xs-1 encabezado" data-column="5">"5</th>
-								<th class="col-xs-1 encabezado" data-column="10">"10</th>
-								<th class="col-xs-1 encabezado" data-column="15">"15</th>
-								<th class="col-xs-1 encabezado" data-column="20">"20</th>
-								<th class="col-xs-1 encabezado" data-column="25">"25</th>
-								<th class="col-xs-1 encabezado" data-column="30">"30</th>
-								<th class="col-xs-1 encabezado" data-column="35">"35</th>
-								<th class="col-xs-1 encabezado" data-column="40">"40</th>
-								<th class="col-xs-1 encabezado" data-column="45">"45</th>
-								<th class="col-xs-1 encabezado" data-column="50">"50</th>
-								<th class="col-xs-1 encabezado" data-column="55">"55</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-								<th class="text-right encabezado">10 a.m.</th>
-								<td data-row="10" data-column="0"></td>
-								<td data-row="10" data-column="5"></td><td data-row="10" data-column="10"></td>
-								<td data-row="10" data-column="15"></td><td data-row="10" data-column="20"></td>
-								<td data-row="10" data-column="25"></td><td data-row="10" data-column="30"></td>
-								<td data-row="10" data-column="35"></td><td data-row="10" data-column="40"></td>
-								<td data-row="10" data-column="45"></td><td data-row="10" data-column="50"></td>
-								<td data-row="10" data-column="55"></td></tr>
-								<tr>
-								<th class="text-right encabezado">11 a.m.</th>
-								<td data-row="11" data-column="0"></td>
-								<td data-row="11" data-column="5"></td><td data-row="11" data-column="10"></td>
-								<td data-row="11" data-column="15"></td><td data-row="11" data-column="20"></td>
-								<td data-row="11" data-column="25"></td><td data-row="11" data-column="30"></td>
-								<td data-row="11" data-column="35"></td><td data-row="11" data-column="40"></td>
-								<td data-row="11" data-column="45"></td><td data-row="11" data-column="50"></td>
-								<td data-row="11" data-column="55"></td></tr>
-								<tr>
-								<th class="text-right encabezado">12 a.m.</th>
-								<td data-row="12" data-column="0"></td>
-								<td data-row="12" data-column="5"></td><td data-row="12" data-column="10"></td>
-								<td data-row="12" data-column="15"></td><td data-row="12" data-column="20"></td>
-								<td data-row="12" data-column="25"></td><td data-row="12" data-column="30"></td>
-								<td data-row="12" data-column="35"></td><td data-row="12" data-column="40"></td>
-								<td data-row="12" data-column="45"></td><td data-row="12" data-column="50"></td>
-								<td data-row="12" data-column="55"></td></tr>
-								<tr>
-								<th class="text-right encabezado">1 p.m.</th>
-								<td data-row="13" data-column="0"></td>
-								<td data-row="13" data-column="5"></td><td data-row="13" data-column="10"></td>
-								<td data-row="13" data-column="15"></td><td data-row="13" data-column="20"></td>
-								<td data-row="13" data-column="25"></td><td data-row="13" data-column="30"></td>
-								<td data-row="13" data-column="35"></td><td data-row="13" data-column="40"></td>
-								<td data-row="13" data-column="45"></td><td data-row="13" data-column="50"></td>
-								<td data-row="13" data-column="55"></td></tr>
-								<tr>
-								<th class="text-right encabezado">2 p.m.</th>
-								<td data-row="14" data-column="0"></td>
-								<td data-row="14" data-column="5"></td><td data-row="14" data-column="10"></td>
-								<td data-row="14" data-column="15"></td><td data-row="14" data-column="20"></td>
-								<td data-row="14" data-column="25"></td><td data-row="14" data-column="30"></td>
-								<td data-row="14" data-column="35"></td><td data-row="14" data-column="40"></td>
-								<td data-row="14" data-column="45"></td><td data-row="14" data-column="50"></td>
-								<td data-row="14" data-column="55"></td></tr>
-								<tr>
-								<th class="text-right encabezado">3 p.m.</th>
-								<td data-row="15" data-column="0"></td>
-								<td data-row="15" data-column="5"></td><td data-row="15" data-column="10"></td>
-								<td data-row="15" data-column="15"></td><td data-row="15" data-column="20"></td>
-								<td data-row="15" data-column="25"></td><td data-row="15" data-column="30"></td>
-								<td data-row="15" data-column="35"></td><td data-row="15" data-column="40"></td>
-								<td data-row="15" data-column="45"></td><td data-row="15" data-column="50"></td>
-								<td data-row="15" data-column="55"></td></tr>
-								<tr>
-								<th class="text-right encabezado">4 p.m.</th>
-								<td data-row="16" data-column="0"></td>
-								<td data-row="16" data-column="5"></td><td data-row="16" data-column="10"></td>
-								<td data-row="16" data-column="15"></td><td data-row="16" data-column="20"></td>
-								<td data-row="16" data-column="25"></td><td data-row="16" data-column="30"></td>
-								<td data-row="16" data-column="35"></td><td data-row="16" data-column="40"></td>
-								<td data-row="16" data-column="45"></td><td data-row="16" data-column="50"></td>
-								<td data-row="16" data-column="55"></td></tr>
-								<tr>
-								<th class="text-right encabezado">5 p.m.</th>
-								<td data-row="17" data-column="0"></td>
-								<td data-row="17" data-column="5"></td><td data-row="17" data-column="10"></td>
-								<td data-row="17" data-column="15"></td><td data-row="17" data-column="20"></td>
-								<td data-row="17" data-column="25"></td><td data-row="17" data-column="30"></td>
-								<td data-row="17" data-column="35"></td><td data-row="17" data-column="40"></td>
-								<td data-row="17" data-column="45"></td><td data-row="17" data-column="50"></td>
-								<td data-row="17" data-column="55"></td></tr>
-								<tr>
-								<th class="text-right encabezado">6 p.m.</th>
-								<td data-row="18" data-column="0"></td>
-								<td data-row="18" data-column="5"></td><td data-row="18" data-column="10"></td>
-								<td data-row="18" data-column="15"></td><td data-row="18" data-column="20"></td>
-								<td data-row="18" data-column="25"></td><td data-row="18" data-column="30"></td>
-								<td data-row="18" data-column="35"></td><td data-row="18" data-column="40"></td>
-								<td data-row="18" data-column="45"></td><td data-row="18" data-column="50"></td>
-								<td data-row="18" data-column="55"></td></tr>
-								<tr>
-								<th class="text-right encabezado">7 p.m.</th>
-								<td data-row="19" data-column="0"></td>
-								<td data-row="19" data-column="5"></td><td data-row="19" data-column="10"></td>
-								<td data-row="19" data-column="15"></td><td data-row="19" data-column="20"></td>
-								<td data-row="19" data-column="25"></td><td data-row="19" data-column="30"></td>
-								<td data-row="19" data-column="35"></td><td data-row="19" data-column="40"></td>
-								<td data-row="19" data-column="45"></td><td data-row="19" data-column="50"></td>
-								<td data-row="19" data-column="55"></td></tr>
-								<tr>
-								<th class="text-right encabezado">8 p.m.</th>
-								<td data-row="20" data-column="0"></td>
-								<td data-row="20" data-column="5"></td><td data-row="20" data-column="10"></td>
-								<td data-row="20" data-column="15"></td><td data-row="20" data-column="20"></td>
-								<td data-row="20" data-column="25"></td><td data-row="20" data-column="30"></td>
-								<td data-row="20" data-column="35"></td><td data-row="20" data-column="40"></td>
-								<td data-row="20" data-column="45"></td><td data-row="20" data-column="50"></td>
-								<td data-row="20" data-column="55"></td></tr>
-								<tr>
-								<th class="text-right encabezado">9 p.m.</th>
-								<td data-row="21" data-column="0"></td>
-								<td data-row="21" data-column="5"></td><td data-row="21" data-column="10"></td>
-								<td data-row="21" data-column="15"></td><td data-row="21" data-column="20"></td>
-								<td data-row="21" data-column="25"></td><td data-row="21" data-column="30"></td>
-								<td data-row="21" data-column="35"></td><td data-row="21" data-column="40"></td>
-								<td data-row="21" data-column="45"></td><td data-row="21" data-column="50"></td>
-								<td data-row="21" data-column="55"></td></tr>
-								<thead>
-								<tr>
-								<th class="cabecera encabezado text-center"><span class="glyphicon glyphicon-time"></span> Horas</th>
-								<th class="col-xs-1 encabezado" data-column="0">"0</th>
-								<th class="col-xs-1 encabezado" data-column="5">"5</th>
-								<th class="col-xs-1 encabezado" data-column="10">"10</th>
-								<th class="col-xs-1 encabezado" data-column="15">"15</th>
-								<th class="col-xs-1 encabezado" data-column="20">"20</th>
-								<th class="col-xs-1 encabezado" data-column="25">"25</th>
-								<th class="col-xs-1 encabezado" data-column="30">"30</th>
-								<th class="col-xs-1 encabezado" data-column="35">"35</th>
-								<th class="col-xs-1 encabezado" data-column="40">"40</th>
-								<th class="col-xs-1 encabezado" data-column="45">"45</th>
-								<th class="col-xs-1 encabezado" data-column="50">"50</th>
-								<th class="col-xs-1 encabezado" data-column="55">"55</th>
-								</tr>
-							</thead>
-							</tbody>
-						</table>
-						</div>
+					
+				<div class="container well col-md-9 col-md-offset-1">
+				<label >Planificar para: </label>
 
-						<div class="row col-sm-12 text-center calendSabados"><h2>Mañana y Tarde (Sábados)</h2>
-						<table class="table table-bordered tablaCalendario text-center" id="sabados">
-							<thead>
-								<tr>
-								<th class="cabecera encabezado"><span class="glyphicon glyphicon-time"></span> Horas</th>
-								<th class="col-xs-1 encabezado" data-column="0">"0</th>
-								<th class="col-xs-1 encabezado" data-column="5">"5</th>
-								<th class="col-xs-1 encabezado" data-column="10">"10</th>
-								<th class="col-xs-1 encabezado" data-column="15">"15</th>
-								<th class="col-xs-1 encabezado" data-column="20">"20</th>
-								<th class="col-xs-1 encabezado" data-column="25">"25</th>
-								<th class="col-xs-1 encabezado" data-column="30">"30</th>
-								<th class="col-xs-1 encabezado" data-column="35">"35</th>
-								<th class="col-xs-1 encabezado" data-column="40">"40</th>
-								<th class="col-xs-1 encabezado" data-column="45">"45</th>
-								<th class="col-xs-1 encabezado" data-column="50">"50</th>
-								<th class="col-xs-1 encabezado" data-column="55">"55</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-								<th class="text-right encabezado">6 a.m.</th>
-								<td data-row='6' data-column='0'></td><td data-row='6' data-column='5'></td>
-								<td data-row='6' data-column='10'></td><td data-row='6' data-column='15'></td>
-								<td data-row='6' data-column='20'></td><td data-row='6' data-column='25'></td>
-								<td data-row='6' data-column='30'></td><td data-row='6' data-column='35'></td>
-								<td data-row='6' data-column='40'></td><td data-row='6' data-column='45'></td>
-								<td data-row='6' data-column='50'></td><td data-row='6' data-column='55'></td>
-								</tr>
-								<tr>
-								<th class="text-right encabezado">7 a.m.</th>
-								<td data-row='7' data-column='0'></td><td data-row='7' data-column='5'></td>
-								<td data-row='7' data-column='10'></td><td data-row='7' data-column='15'></td>
-								<td data-row='7' data-column='20'></td><td data-row='7' data-column='25'></td>
-								<td data-row='7' data-column='30'></td><td data-row='7' data-column='35'></td>
-								<td data-row='7' data-column='40'></td><td data-row='7' data-column='45'></td>
-								<td data-row='7' data-column='50'></td><td data-row='7' data-column='55'></td>
-								</tr>
-								<tr>
-								<th class="text-right encabezado">8 a.m.</th>
-								<td data-row='8' data-column='0'></td><td data-row='8' data-column='5'></td>
-								<td data-row='8' data-column='10'></td><td data-row='8' data-column='15'></td>
-								<td data-row='8' data-column='20'></td><td data-row='8' data-column='25'></td>
-								<td data-row='8' data-column='30'></td><td data-row='8' data-column='35'></td>
-								<td data-row='8' data-column='40'></td><td data-row='8' data-column='45'></td>
-								<td data-row='8' data-column='50'></td><td data-row='8' data-column='55'></td>
-								</tr>
-								<tr>
-								<th class="text-right encabezado">9 a.m.</th>
-								<td data-row='9' data-column='0'></td><td data-row='9' data-column='5'></td>
-								<td data-row='9' data-column='10'></td><td data-row='9' data-column='15'></td>
-								<td data-row='9' data-column='20'></td><td data-row='9' data-column='25'></td>
-								<td data-row='9' data-column='30'></td><td data-row='9' data-column='35'></td>
-								<td data-row='9' data-column='40'></td><td data-row='9' data-column='45'></td>
-								<td data-row='9' data-column='50'></td><td data-row='9' data-column='55'></td>
-								</tr>
-								<tr>
-								<th class="text-right encabezado">10 a.m.</th>
-								<td data-row='10' data-column='0'></td><td data-row='10' data-column='5'></td>
-								<td data-row='10' data-column='10'></td><td data-row='10' data-column='15'></td>
-								<td data-row='10' data-column='20'></td><td data-row='10' data-column='25'></td>
-								<td data-row='10' data-column='30'></td><td data-row='10' data-column='35'></td>
-								<td data-row='10' data-column='40'></td><td data-row='10' data-column='45'></td>
-								<td data-row='10' data-column='50'></td><td data-row='10' data-column='55'></td>
-								</tr><tr>
-								<th class="text-right encabezado">11 a.m.</th>
-								<td data-row='11' data-column='0'></td><td data-row='11' data-column='5'></td>
-								<td data-row='11' data-column='10'></td><td data-row='11' data-column='15'></td>
-								<td data-row='11' data-column='20'></td><td data-row='11' data-column='25'></td>
-								<td data-row='11' data-column='30'></td><td data-row='11' data-column='35'></td>
-								<td data-row='11' data-column='40'></td><td data-row='11' data-column='45'></td>
-								<td data-row='11' data-column='50'></td><td data-row='11' data-column='55'></td>
-								</tr><tr>
-								<th class="text-right encabezado">12 a.m.</th>
-								<td data-row='12' data-column='0'></td><td data-row='12' data-column='5'></td>
-								<td data-row='12' data-column='10'></td><td data-row='12' data-column='15'></td>
-								<td data-row='12' data-column='20'></td><td data-row='12' data-column='25'></td>
-								<td data-row='12' data-column='30'></td><td data-row='12' data-column='35'></td>
-								<td data-row='12' data-column='40'></td><td data-row='12' data-column='45'></td>
-								<td data-row='12' data-column='50'></td><td data-row='12' data-column='55'></td>
-								</tr><tr>
-								<th class="text-right encabezado">1 p.m.</th>
-								<td data-row='13' data-column='0'></td><td data-row='13' data-column='5'></td>
-								<td data-row='13' data-column='10'></td><td data-row='13' data-column='15'></td>
-								<td data-row='13' data-column='20'></td><td data-row='13' data-column='25'></td>
-								<td data-row='13' data-column='30'></td><td data-row='13' data-column='35'></td>
-								<td data-row='13' data-column='40'></td><td data-row='13' data-column='45'></td>
-								<td data-row='13' data-column='50'></td><td data-row='13' data-column='55'></td>
-								</tr><tr>
-								<th class="text-right encabezado">2 p.m.</th>
-								<td data-row='14' data-column='0'></td><td data-row='14' data-column='5'></td>
-								<td data-row='14' data-column='10'></td><td data-row='14' data-column='15'></td>
-								<td data-row='14' data-column='20'></td><td data-row='14' data-column='25'></td>
-								<td data-row='14' data-column='30'></td><td data-row='14' data-column='35'></td>
-								<td data-row='14' data-column='40'></td><td data-row='14' data-column='45'></td>
-								<td data-row='14' data-column='50'></td><td data-row='14' data-column='55'></td>
-								</tr><tr>
-								<th class="text-right encabezado">3 p.m.</th>
-								<td data-row='15' data-column='0'></td><td data-row='15' data-column='5'></td>
-								<td data-row='15' data-column='10'></td><td data-row='15' data-column='15'></td>
-								<td data-row='15' data-column='20'></td><td data-row='15' data-column='25'></td>
-								<td data-row='15' data-column='30'></td><td data-row='15' data-column='35'></td>
-								<td data-row='15' data-column='40'></td><td data-row='15' data-column='45'></td>
-								<td data-row='15' data-column='50'></td><td data-row='15' data-column='55'></td>
-								</tr><tr>
-								<th class="text-right encabezado">4 p.m.</th>
-								<td data-row='16' data-column='0'></td><td data-row='16' data-column='5'></td>
-								<td data-row='16' data-column='10'></td><td data-row='16' data-column='15'></td>
-								<td data-row='16' data-column='20'></td><td data-row='16' data-column='25'></td>
-								<td data-row='16' data-column='30'></td><td data-row='16' data-column='35'></td>
-								<td data-row='16' data-column='40'></td><td data-row='16' data-column='45'></td>
-								<td data-row='16' data-column='50'></td><td data-row='16' data-column='55'></td>
-								</tr><tr>
-								<th class="text-right encabezado">5 p.m.</th>
-								<td data-row='17' data-column='0'></td><td data-row='17' data-column='5'></td>
-								<td data-row='17' data-column='10'></td><td data-row='17' data-column='15'></td>
-								<td data-row='17' data-column='20'></td><td data-row='17' data-column='25'></td>
-								<td data-row='17' data-column='30'></td><td data-row='17' data-column='35'></td>
-								<td data-row='17' data-column='40'></td><td data-row='17' data-column='45'></td>
-								<td data-row='17' data-column='50'></td><td data-row='17' data-column='55'></td>
-								</tr><tr>
-								<th class="text-right encabezado">6 p.m.</th>
-								<td data-row='18' data-column='0'></td><td data-row='18' data-column='5'></td>
-								<td data-row='18' data-column='10'></td><td data-row='18' data-column='15'></td>
-								<td data-row='18' data-column='20'></td><td data-row='18' data-column='25'></td>
-								<td data-row='18' data-column='30'></td><td data-row='18' data-column='35'></td>
-								<td data-row='18' data-column='40'></td><td data-row='18' data-column='45'></td>
-								<td data-row='18' data-column='50'></td><td data-row='18' data-column='55'></td>
-								</tr><tr>
-								<th class="text-right encabezado">7 p.m.</th>
-								<td data-row='19' data-column='0'></td><td data-row='19' data-column='5'></td>
-								<td data-row='19' data-column='10'></td><td data-row='19' data-column='15'></td>
-								<td data-row='19' data-column='20'></td><td data-row='19' data-column='25'></td>
-								<td data-row='19' data-column='30'></td><td data-row='19' data-column='35'></td>
-								<td data-row='19' data-column='40'></td><td data-row='19' data-column='45'></td>
-								<td data-row='19' data-column='50'></td><td data-row='19' data-column='55'></td>
-								</tr><tr>
-								<th class="text-right encabezado">8 p.m.</th>
-								<td data-row='20' data-column='0'></td><td data-row='20' data-column='5'></td>
-								<td data-row='20' data-column='10'></td><td data-row='20' data-column='15'></td>
-								<td data-row='20' data-column='20'></td><td data-row='20' data-column='25'></td>
-								<td data-row='20' data-column='30'></td><td data-row='20' data-column='35'></td>
-								<td data-row='20' data-column='40'></td><td data-row='20' data-column='45'></td>
-								<td data-row='20' data-column='50'></td><td data-row='20' data-column='55'></td>
-								</tr><tr>
-								<th class="text-right encabezado">9 p.m.</th>
-								<td data-row='21' data-column='0'></td><td data-row='21' data-column='5'></td>
-								<td data-row='21' data-column='10'></td><td data-row='21' data-column='15'></td>
-								<td data-row='21' data-column='20'></td><td data-row='21' data-column='25'></td>
-								<td data-row='21' data-column='30'></td><td data-row='21' data-column='35'></td>
-								<td data-row='21' data-column='40'></td><td data-row='21' data-column='45'></td>
-								<td data-row='21' data-column='50'></td><td data-row='21' data-column='55'></td>
-								</tr>
-								<thead>
-								<tr>
-								<th class="cabecera encabezado"><span class="glyphicon glyphicon-time"></span> Horas</th>
-								<th class="col-xs-1 encabezado" data-column="0">"0</th>
-								<th class="col-xs-1 encabezado" data-column="5">"5</th>
-								<th class="col-xs-1 encabezado" data-column="10">"10</th>
-								<th class="col-xs-1 encabezado" data-column="15">"15</th>
-								<th class="col-xs-1 encabezado" data-column="20">"20</th>
-								<th class="col-xs-1 encabezado" data-column="25">"25</th>
-								<th class="col-xs-1 encabezado" data-column="30">"30</th>
-								<th class="col-xs-1 encabezado" data-column="35">"35</th>
-								<th class="col-xs-1 encabezado" data-column="40">"40</th>
-								<th class="col-xs-1 encabezado" data-column="45">"45</th>
-								<th class="col-xs-1 encabezado" data-column="50">"50</th>
-								<th class="col-xs-1 encabezado" data-column="55">"55</th>
-								</tr>
-							</thead>
-							</tbody>
-						</table></div>
-						<div class="row col-sm-12 hidden" id="divDomingos" style="margin-top:20px">
-							<div class="alert alert-warning alert-white rounded alert-dismissible fade in " role="alert"> <div class="icon"><i class="icofont icofont-close-circled"></i></div> <strong>Ups!</strong>  <span id="lblMnjCita">No hay atención por ser: <strong id="spanFeriado">domingos</strong></span></div>
-						</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-3">
+						<div class="input-group">
+							<input type="number" class="form-control mitooltip" id='txtAdelantarFecha' placeholder="...días" data-toggle="tooltip" data-placement="bottom" title="Agrega una cantidad n de días hábiles a la fecha de hoy">
+							<span class="input-group-btn">
+								<button class="btn btn-default" type="button" id="btnAdelantarFecha"><i class="icofont icofont-caret-right"></i></button>
+							</span>
+						</div><!-- /input-group -->
+					</div><!-- /.col-lg-3 -->
+
+					<div class="col-xs-12 col-sm-4">
+						<div class="input-group">
+							<span class="input-group-btn">
+								<button class="btn btn-default" type="button" id="btnRestarFecha"><span class="glyphicon glyphicon-chevron-down"></span></button>
+							</span>
+							<input type="date" class="form-control text-center" id='dtpFechaCalendario'>
+							<span class="input-group-btn">
+								<button class="btn btn-default" type="button" id="btnSumarFecha"><span class="glyphicon glyphicon-chevron-up"></span></button>
+							</span>
+						</div><!-- /input-group -->
+					</div><!-- /.col-lg-3 -->
+					<label id="lblDiaCalendar">Hoy,</label>
+				</div><br>
+				<div class="alert alert-danger alert-white rounded alert-dismissible fade in hidden" id="mnjClienteCitadoHoy" role="alert"> <div class="icon"><i class="icofont icofont-close-circled"></i></div> <strong>Ups!</strong>  <span id="lblMnjCita"></span></div>
+			</div>
+
+			<div class="row col-xs-12 col-sm-12 text-center calendLunesaViernes" id="tblControl5min"><h2 style="margin-top: 7px;">Día (Lunes a Viernes)</h2>
+				<table class="table table-bordered tablaCalendario text-center" id="mañana5min">
+				<thead>
+					<tr>
+					<th class="cabecera encabezado text-center"><span class="glyphicon glyphicon-time"></span> Horas</th>
+					<th class="col-xs-1 text-center encabezado" data-column="0">"0</th>
+					<th class="col-xs-1 text-center encabezado" data-column="5">"5</th>
+					<th class="col-xs-1 text-center encabezado" data-column="10">"10</th>
+					<th class="col-xs-1 text-center encabezado" data-column="15">"15</th>
+					<th class="col-xs-1 text-center encabezado" data-column="20">"20</th>
+					<th class="col-xs-1 text-center encabezado" data-column="25">"25</th>
+					<th class="col-xs-1 text-center encabezado" data-column="30">"30</th>
+					<th class="col-xs-1 text-center encabezado" data-column="35">"35</th>
+					<th class="col-xs-1 text-center encabezado" data-column="40">"40</th>
+					<th class="col-xs-1 text-center encabezado" data-column="45">"45</th>
+					<th class="col-xs-1 text-center encabezado" data-column="50">"50</th>
+					<th class="col-xs-1 text-center encabezado" data-column="55">"55</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr><th class="text-right encabezado">6 a.m.</th>
+					<td data-row="6" data-column="0"></td>
+					<td data-row="6" data-column="5"></td><td data-row="6" data-column="10"></td>
+					<td data-row="6" data-column="15"></td><td data-row="6" data-column="20"></td>
+					<td data-row="6" data-column="25"></td><td data-row="6" data-column="30"></td>
+					<td data-row="6" data-column="35"></td><td data-row="6" data-column="40"></td>
+					<td data-row="6" data-column="45"></td><td data-row="6" data-column="50"></td>
+					<td data-row="6" data-column="55"></td></tr>
+					<tr><th class="text-right encabezado">7 a.m.</th>
+					<td data-row="7" data-column="0"></td><td data-row="7" data-column="5"></td>
+					<td data-row="7" data-column="10"></td><td data-row="7" data-column="15"></td>
+					<td data-row="7" data-column="20"></td><td data-row="7" data-column="25"></td>
+					<td data-row="7" data-column="30"></td><td data-row="7" data-column="35"></td>
+					<td data-row="7" data-column="40"></td><td data-row="7" data-column="45"></td>
+					<td data-row="7" data-column="50"></td><td data-row="7" data-column="55"></td></tr>
+					<tr><th class="text-right encabezado">8 a.m.</th>
+					<td data-row="8" data-column="0"></td><td data-row="8" data-column="5"></td>
+					<td data-row="8" data-column="10"></td><td data-row="8" data-column="15"></td>
+					<td data-row="8" data-column="20"></td><td data-row="8" data-column="25"></td>
+					<td data-row="8" data-column="30"></td><td data-row="8" data-column="35"></td>
+					<td data-row="8" data-column="40"></td><td data-row="8" data-column="45"></td>
+					<td data-row="8" data-column="50"></td><td data-row="8" data-column="55"></td>
+					</tr><tr><th class="text-right encabezado">9 a.m.</th>
+					<td data-row="9" data-column="0"></td><td data-row="9" data-column="5"></td>
+					<td data-row="9" data-column="10"></td><td data-row="9" data-column="15"></td>
+					<td data-row="9" data-column="20"></td><td data-row="9" data-column="25"></td>
+					<td data-row="9" data-column="30"></td><td data-row="9" data-column="35"></td>
+					<td data-row="9" data-column="40"></td><td data-row="9" data-column="45"></td>
+					<td data-row="9" data-column="50"></td><td data-row="9" data-column="55"></td>
+					</tr>
+				</tbody>
+				<thead>
+					<tr>
+					<th class="cabecera encabezado text-center"><span class="glyphicon glyphicon-time"></span> Horas</th>
+					<th class="col-xs-1 encabezado" data-column="0">"0</th>
+					<th class="col-xs-1 encabezado" data-column="5">"5</th>
+					<th class="col-xs-1 encabezado" data-column="10">"10</th>
+					<th class="col-xs-1 encabezado" data-column="15">"15</th>
+					<th class="col-xs-1 encabezado" data-column="20">"20</th>
+					<th class="col-xs-1 encabezado" data-column="25">"25</th>
+					<th class="col-xs-1 encabezado" data-column="30">"30</th>
+					<th class="col-xs-1 encabezado" data-column="35">"35</th>
+					<th class="col-xs-1 encabezado" data-column="40">"40</th>
+					<th class="col-xs-1 encabezado" data-column="45">"45</th>
+					<th class="col-xs-1 encabezado" data-column="50">"50</th>
+					<th class="col-xs-1 encabezado" data-column="55">"55</th>
+					</tr>
+				</thead>
+				</table>
+			</div>
+			<div class="row col-sm-12 text-center calendLunesaViernes hidden" id="tblControl10min"><h2>Mañanas (Lunes a Viernes)</h2>
+				 <table class="table table-bordered tablaCalendario text-center" id="mañana10min">
+					<thead>
+						<tr>
+						<th class="cabecera encabezado"><span class="glyphicon glyphicon-time"></span> Horas</th>
+						<th class="col-xs-2 text-center encabezado" data-column='0'>"00</th>
+						<th class="col-xs-2 text-center encabezado" data-column='10'>"10</th>
+						<th class="col-xs-2 text-center encabezado" data-column='20'>"20</th>
+						<th class="col-xs-2 text-center encabezado" data-column='30'>"30</th>
+						<th class="col-xs-2 text-center encabezado" data-column='40'>"40</th>
+						<th class="col-xs-2 text-center encabezado" data-column='50'>"50</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+						<th class="text-right encabezado">6 a.m.</th>
+						<td data-row='6' data-column='0'></td>
+						<td data-row='6' data-column='10'></td>
+						<td data-row='6' data-column='20'></td>
+						<td data-row='6' data-column='30'></td>
+						<td data-row='6' data-column='40'></td>
+						<td data-row='6' data-column='50'></td>
+						</tr>
+						<tr>
+						<th class="text-right encabezado">7 a.m.</th>
+						<td data-row='7' data-column='0'></td>
+						<td data-row='7' data-column='10'></td>
+						<td data-row='7' data-column='20'></td>
+						<td data-row='7' data-column='30'></td>
+						<td data-row='7' data-column='40'></td>
+						<td data-row='7' data-column='50'></td>
+						</tr>
+						<tr>
+						<th class="text-right encabezado">8 a.m.</th>
+						<td data-row='8' data-column='0'></td>
+						<td data-row='8' data-column='10'></td>
+						<td data-row='8' data-column='20'></td>
+						<td data-row='8' data-column='30'></td>
+						<td data-row='8' data-column='40'></td>
+						<td data-row='8' data-column='50'></td>
+						</tr>
+						<tr>
+						<th class="text-right encabezado">9 a.m.</th>
+						<td data-row='9' data-column='0'></td>
+						<td data-row='9' data-column='10'></td>
+						<td data-row='9' data-column='20'></td>
+						<td data-row='9' data-column='30'></td>
+						<td data-row='9' data-column='40'></td>
+						<td data-row='9' data-column='50'></td>
+						</tr>
+						<thead>
+						<tr>
+							<th class="cabecera encabezado"><span class="glyphicon glyphicon-time"></span> Horas</th>
+							<th class="col-xs-2 text-center encabezado" data-column='0'>"00</th>
+							<th class="col-xs-2 text-center encabezado" data-column='10'>"10</th>
+							<th class="col-xs-2 text-center encabezado" data-column='20'>"20</th>
+							<th class="col-xs-2 text-center encabezado" data-column='30'>"30</th>
+							<th class="col-xs-2 text-center encabezado" data-column='40'>"40</th>
+							<th class="col-xs-2 text-center encabezado" data-column='50'>"50</th>
+						</tr>
+						</thead>
+					</tbody>
+				</table></div>
+				
+				<div class="row col-sm-12 text-center calendLunesaViernes"><h2>Tardes y Noches (Lunes a Viernes)</h2>
+				
+				<table class="table table-bordered tablaCalendario text-center" id="tarde">
+					<thead>
+						<tr>
+						<th class="cabecera encabezado text-center"><span class="glyphicon glyphicon-time"></span> Horas</th>
+						<th class="col-xs-1 encabezado" data-column="0">"0</th>
+						<th class="col-xs-1 encabezado" data-column="5">"5</th>
+						<th class="col-xs-1 encabezado" data-column="10">"10</th>
+						<th class="col-xs-1 encabezado" data-column="15">"15</th>
+						<th class="col-xs-1 encabezado" data-column="20">"20</th>
+						<th class="col-xs-1 encabezado" data-column="25">"25</th>
+						<th class="col-xs-1 encabezado" data-column="30">"30</th>
+						<th class="col-xs-1 encabezado" data-column="35">"35</th>
+						<th class="col-xs-1 encabezado" data-column="40">"40</th>
+						<th class="col-xs-1 encabezado" data-column="45">"45</th>
+						<th class="col-xs-1 encabezado" data-column="50">"50</th>
+						<th class="col-xs-1 encabezado" data-column="55">"55</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+						<th class="text-right encabezado">10 a.m.</th>
+						<td data-row="10" data-column="0"></td>
+						<td data-row="10" data-column="5"></td><td data-row="10" data-column="10"></td>
+						<td data-row="10" data-column="15"></td><td data-row="10" data-column="20"></td>
+						<td data-row="10" data-column="25"></td><td data-row="10" data-column="30"></td>
+						<td data-row="10" data-column="35"></td><td data-row="10" data-column="40"></td>
+						<td data-row="10" data-column="45"></td><td data-row="10" data-column="50"></td>
+						<td data-row="10" data-column="55"></td></tr>
+						<tr>
+						<th class="text-right encabezado">11 a.m.</th>
+						<td data-row="11" data-column="0"></td>
+						<td data-row="11" data-column="5"></td><td data-row="11" data-column="10"></td>
+						<td data-row="11" data-column="15"></td><td data-row="11" data-column="20"></td>
+						<td data-row="11" data-column="25"></td><td data-row="11" data-column="30"></td>
+						<td data-row="11" data-column="35"></td><td data-row="11" data-column="40"></td>
+						<td data-row="11" data-column="45"></td><td data-row="11" data-column="50"></td>
+						<td data-row="11" data-column="55"></td></tr>
+						<tr>
+						<th class="text-right encabezado">12 a.m.</th>
+						<td data-row="12" data-column="0"></td>
+						<td data-row="12" data-column="5"></td><td data-row="12" data-column="10"></td>
+						<td data-row="12" data-column="15"></td><td data-row="12" data-column="20"></td>
+						<td data-row="12" data-column="25"></td><td data-row="12" data-column="30"></td>
+						<td data-row="12" data-column="35"></td><td data-row="12" data-column="40"></td>
+						<td data-row="12" data-column="45"></td><td data-row="12" data-column="50"></td>
+						<td data-row="12" data-column="55"></td></tr>
+						<tr>
+						<th class="text-right encabezado">1 p.m.</th>
+						<td data-row="13" data-column="0"></td>
+						<td data-row="13" data-column="5"></td><td data-row="13" data-column="10"></td>
+						<td data-row="13" data-column="15"></td><td data-row="13" data-column="20"></td>
+						<td data-row="13" data-column="25"></td><td data-row="13" data-column="30"></td>
+						<td data-row="13" data-column="35"></td><td data-row="13" data-column="40"></td>
+						<td data-row="13" data-column="45"></td><td data-row="13" data-column="50"></td>
+						<td data-row="13" data-column="55"></td></tr>
+						<tr>
+						<th class="text-right encabezado">2 p.m.</th>
+						<td data-row="14" data-column="0"></td>
+						<td data-row="14" data-column="5"></td><td data-row="14" data-column="10"></td>
+						<td data-row="14" data-column="15"></td><td data-row="14" data-column="20"></td>
+						<td data-row="14" data-column="25"></td><td data-row="14" data-column="30"></td>
+						<td data-row="14" data-column="35"></td><td data-row="14" data-column="40"></td>
+						<td data-row="14" data-column="45"></td><td data-row="14" data-column="50"></td>
+						<td data-row="14" data-column="55"></td></tr>
+						<tr>
+						<th class="text-right encabezado">3 p.m.</th>
+						<td data-row="15" data-column="0"></td>
+						<td data-row="15" data-column="5"></td><td data-row="15" data-column="10"></td>
+						<td data-row="15" data-column="15"></td><td data-row="15" data-column="20"></td>
+						<td data-row="15" data-column="25"></td><td data-row="15" data-column="30"></td>
+						<td data-row="15" data-column="35"></td><td data-row="15" data-column="40"></td>
+						<td data-row="15" data-column="45"></td><td data-row="15" data-column="50"></td>
+						<td data-row="15" data-column="55"></td></tr>
+						<tr>
+						<th class="text-right encabezado">4 p.m.</th>
+						<td data-row="16" data-column="0"></td>
+						<td data-row="16" data-column="5"></td><td data-row="16" data-column="10"></td>
+						<td data-row="16" data-column="15"></td><td data-row="16" data-column="20"></td>
+						<td data-row="16" data-column="25"></td><td data-row="16" data-column="30"></td>
+						<td data-row="16" data-column="35"></td><td data-row="16" data-column="40"></td>
+						<td data-row="16" data-column="45"></td><td data-row="16" data-column="50"></td>
+						<td data-row="16" data-column="55"></td></tr>
+						<tr>
+						<th class="text-right encabezado">5 p.m.</th>
+						<td data-row="17" data-column="0"></td>
+						<td data-row="17" data-column="5"></td><td data-row="17" data-column="10"></td>
+						<td data-row="17" data-column="15"></td><td data-row="17" data-column="20"></td>
+						<td data-row="17" data-column="25"></td><td data-row="17" data-column="30"></td>
+						<td data-row="17" data-column="35"></td><td data-row="17" data-column="40"></td>
+						<td data-row="17" data-column="45"></td><td data-row="17" data-column="50"></td>
+						<td data-row="17" data-column="55"></td></tr>
+						<tr>
+						<th class="text-right encabezado">6 p.m.</th>
+						<td data-row="18" data-column="0"></td>
+						<td data-row="18" data-column="5"></td><td data-row="18" data-column="10"></td>
+						<td data-row="18" data-column="15"></td><td data-row="18" data-column="20"></td>
+						<td data-row="18" data-column="25"></td><td data-row="18" data-column="30"></td>
+						<td data-row="18" data-column="35"></td><td data-row="18" data-column="40"></td>
+						<td data-row="18" data-column="45"></td><td data-row="18" data-column="50"></td>
+						<td data-row="18" data-column="55"></td></tr>
+						<tr>
+						<th class="text-right encabezado">7 p.m.</th>
+						<td data-row="19" data-column="0"></td>
+						<td data-row="19" data-column="5"></td><td data-row="19" data-column="10"></td>
+						<td data-row="19" data-column="15"></td><td data-row="19" data-column="20"></td>
+						<td data-row="19" data-column="25"></td><td data-row="19" data-column="30"></td>
+						<td data-row="19" data-column="35"></td><td data-row="19" data-column="40"></td>
+						<td data-row="19" data-column="45"></td><td data-row="19" data-column="50"></td>
+						<td data-row="19" data-column="55"></td></tr>
+						<tr>
+						<th class="text-right encabezado">8 p.m.</th>
+						<td data-row="20" data-column="0"></td>
+						<td data-row="20" data-column="5"></td><td data-row="20" data-column="10"></td>
+						<td data-row="20" data-column="15"></td><td data-row="20" data-column="20"></td>
+						<td data-row="20" data-column="25"></td><td data-row="20" data-column="30"></td>
+						<td data-row="20" data-column="35"></td><td data-row="20" data-column="40"></td>
+						<td data-row="20" data-column="45"></td><td data-row="20" data-column="50"></td>
+						<td data-row="20" data-column="55"></td></tr>
+						<tr>
+						<th class="text-right encabezado">9 p.m.</th>
+						<td data-row="21" data-column="0"></td>
+						<td data-row="21" data-column="5"></td><td data-row="21" data-column="10"></td>
+						<td data-row="21" data-column="15"></td><td data-row="21" data-column="20"></td>
+						<td data-row="21" data-column="25"></td><td data-row="21" data-column="30"></td>
+						<td data-row="21" data-column="35"></td><td data-row="21" data-column="40"></td>
+						<td data-row="21" data-column="45"></td><td data-row="21" data-column="50"></td>
+						<td data-row="21" data-column="55"></td></tr>
+						<thead>
+						<tr>
+						<th class="cabecera encabezado text-center"><span class="glyphicon glyphicon-time"></span> Horas</th>
+						<th class="col-xs-1 encabezado" data-column="0">"0</th>
+						<th class="col-xs-1 encabezado" data-column="5">"5</th>
+						<th class="col-xs-1 encabezado" data-column="10">"10</th>
+						<th class="col-xs-1 encabezado" data-column="15">"15</th>
+						<th class="col-xs-1 encabezado" data-column="20">"20</th>
+						<th class="col-xs-1 encabezado" data-column="25">"25</th>
+						<th class="col-xs-1 encabezado" data-column="30">"30</th>
+						<th class="col-xs-1 encabezado" data-column="35">"35</th>
+						<th class="col-xs-1 encabezado" data-column="40">"40</th>
+						<th class="col-xs-1 encabezado" data-column="45">"45</th>
+						<th class="col-xs-1 encabezado" data-column="50">"50</th>
+						<th class="col-xs-1 encabezado" data-column="55">"55</th>
+						</tr>
+					</thead>
+					</tbody>
+				</table>
+				</div>
+
+				<div class="row col-sm-12 text-center calendSabados"><h2>Mañana y Tarde (Sábados)</h2>
+				<table class="table table-bordered tablaCalendario text-center" id="sabados">
+					<thead>
+						<tr>
+						<th class="cabecera encabezado"><span class="glyphicon glyphicon-time"></span> Horas</th>
+						<th class="col-xs-1 encabezado" data-column="0">"0</th>
+						<th class="col-xs-1 encabezado" data-column="5">"5</th>
+						<th class="col-xs-1 encabezado" data-column="10">"10</th>
+						<th class="col-xs-1 encabezado" data-column="15">"15</th>
+						<th class="col-xs-1 encabezado" data-column="20">"20</th>
+						<th class="col-xs-1 encabezado" data-column="25">"25</th>
+						<th class="col-xs-1 encabezado" data-column="30">"30</th>
+						<th class="col-xs-1 encabezado" data-column="35">"35</th>
+						<th class="col-xs-1 encabezado" data-column="40">"40</th>
+						<th class="col-xs-1 encabezado" data-column="45">"45</th>
+						<th class="col-xs-1 encabezado" data-column="50">"50</th>
+						<th class="col-xs-1 encabezado" data-column="55">"55</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+						<th class="text-right encabezado">6 a.m.</th>
+						<td data-row='6' data-column='0'></td><td data-row='6' data-column='5'></td>
+						<td data-row='6' data-column='10'></td><td data-row='6' data-column='15'></td>
+						<td data-row='6' data-column='20'></td><td data-row='6' data-column='25'></td>
+						<td data-row='6' data-column='30'></td><td data-row='6' data-column='35'></td>
+						<td data-row='6' data-column='40'></td><td data-row='6' data-column='45'></td>
+						<td data-row='6' data-column='50'></td><td data-row='6' data-column='55'></td>
+						</tr>
+						<tr>
+						<th class="text-right encabezado">7 a.m.</th>
+						<td data-row='7' data-column='0'></td><td data-row='7' data-column='5'></td>
+						<td data-row='7' data-column='10'></td><td data-row='7' data-column='15'></td>
+						<td data-row='7' data-column='20'></td><td data-row='7' data-column='25'></td>
+						<td data-row='7' data-column='30'></td><td data-row='7' data-column='35'></td>
+						<td data-row='7' data-column='40'></td><td data-row='7' data-column='45'></td>
+						<td data-row='7' data-column='50'></td><td data-row='7' data-column='55'></td>
+						</tr>
+						<tr>
+						<th class="text-right encabezado">8 a.m.</th>
+						<td data-row='8' data-column='0'></td><td data-row='8' data-column='5'></td>
+						<td data-row='8' data-column='10'></td><td data-row='8' data-column='15'></td>
+						<td data-row='8' data-column='20'></td><td data-row='8' data-column='25'></td>
+						<td data-row='8' data-column='30'></td><td data-row='8' data-column='35'></td>
+						<td data-row='8' data-column='40'></td><td data-row='8' data-column='45'></td>
+						<td data-row='8' data-column='50'></td><td data-row='8' data-column='55'></td>
+						</tr>
+						<tr>
+						<th class="text-right encabezado">9 a.m.</th>
+						<td data-row='9' data-column='0'></td><td data-row='9' data-column='5'></td>
+						<td data-row='9' data-column='10'></td><td data-row='9' data-column='15'></td>
+						<td data-row='9' data-column='20'></td><td data-row='9' data-column='25'></td>
+						<td data-row='9' data-column='30'></td><td data-row='9' data-column='35'></td>
+						<td data-row='9' data-column='40'></td><td data-row='9' data-column='45'></td>
+						<td data-row='9' data-column='50'></td><td data-row='9' data-column='55'></td>
+						</tr>
+						<tr>
+						<th class="text-right encabezado">10 a.m.</th>
+						<td data-row='10' data-column='0'></td><td data-row='10' data-column='5'></td>
+						<td data-row='10' data-column='10'></td><td data-row='10' data-column='15'></td>
+						<td data-row='10' data-column='20'></td><td data-row='10' data-column='25'></td>
+						<td data-row='10' data-column='30'></td><td data-row='10' data-column='35'></td>
+						<td data-row='10' data-column='40'></td><td data-row='10' data-column='45'></td>
+						<td data-row='10' data-column='50'></td><td data-row='10' data-column='55'></td>
+						</tr><tr>
+						<th class="text-right encabezado">11 a.m.</th>
+						<td data-row='11' data-column='0'></td><td data-row='11' data-column='5'></td>
+						<td data-row='11' data-column='10'></td><td data-row='11' data-column='15'></td>
+						<td data-row='11' data-column='20'></td><td data-row='11' data-column='25'></td>
+						<td data-row='11' data-column='30'></td><td data-row='11' data-column='35'></td>
+						<td data-row='11' data-column='40'></td><td data-row='11' data-column='45'></td>
+						<td data-row='11' data-column='50'></td><td data-row='11' data-column='55'></td>
+						</tr><tr>
+						<th class="text-right encabezado">12 a.m.</th>
+						<td data-row='12' data-column='0'></td><td data-row='12' data-column='5'></td>
+						<td data-row='12' data-column='10'></td><td data-row='12' data-column='15'></td>
+						<td data-row='12' data-column='20'></td><td data-row='12' data-column='25'></td>
+						<td data-row='12' data-column='30'></td><td data-row='12' data-column='35'></td>
+						<td data-row='12' data-column='40'></td><td data-row='12' data-column='45'></td>
+						<td data-row='12' data-column='50'></td><td data-row='12' data-column='55'></td>
+						</tr><tr>
+						<th class="text-right encabezado">1 p.m.</th>
+						<td data-row='13' data-column='0'></td><td data-row='13' data-column='5'></td>
+						<td data-row='13' data-column='10'></td><td data-row='13' data-column='15'></td>
+						<td data-row='13' data-column='20'></td><td data-row='13' data-column='25'></td>
+						<td data-row='13' data-column='30'></td><td data-row='13' data-column='35'></td>
+						<td data-row='13' data-column='40'></td><td data-row='13' data-column='45'></td>
+						<td data-row='13' data-column='50'></td><td data-row='13' data-column='55'></td>
+						</tr><tr>
+						<th class="text-right encabezado">2 p.m.</th>
+						<td data-row='14' data-column='0'></td><td data-row='14' data-column='5'></td>
+						<td data-row='14' data-column='10'></td><td data-row='14' data-column='15'></td>
+						<td data-row='14' data-column='20'></td><td data-row='14' data-column='25'></td>
+						<td data-row='14' data-column='30'></td><td data-row='14' data-column='35'></td>
+						<td data-row='14' data-column='40'></td><td data-row='14' data-column='45'></td>
+						<td data-row='14' data-column='50'></td><td data-row='14' data-column='55'></td>
+						</tr><tr>
+						<th class="text-right encabezado">3 p.m.</th>
+						<td data-row='15' data-column='0'></td><td data-row='15' data-column='5'></td>
+						<td data-row='15' data-column='10'></td><td data-row='15' data-column='15'></td>
+						<td data-row='15' data-column='20'></td><td data-row='15' data-column='25'></td>
+						<td data-row='15' data-column='30'></td><td data-row='15' data-column='35'></td>
+						<td data-row='15' data-column='40'></td><td data-row='15' data-column='45'></td>
+						<td data-row='15' data-column='50'></td><td data-row='15' data-column='55'></td>
+						</tr><tr>
+						<th class="text-right encabezado">4 p.m.</th>
+						<td data-row='16' data-column='0'></td><td data-row='16' data-column='5'></td>
+						<td data-row='16' data-column='10'></td><td data-row='16' data-column='15'></td>
+						<td data-row='16' data-column='20'></td><td data-row='16' data-column='25'></td>
+						<td data-row='16' data-column='30'></td><td data-row='16' data-column='35'></td>
+						<td data-row='16' data-column='40'></td><td data-row='16' data-column='45'></td>
+						<td data-row='16' data-column='50'></td><td data-row='16' data-column='55'></td>
+						</tr><tr>
+						<th class="text-right encabezado">5 p.m.</th>
+						<td data-row='17' data-column='0'></td><td data-row='17' data-column='5'></td>
+						<td data-row='17' data-column='10'></td><td data-row='17' data-column='15'></td>
+						<td data-row='17' data-column='20'></td><td data-row='17' data-column='25'></td>
+						<td data-row='17' data-column='30'></td><td data-row='17' data-column='35'></td>
+						<td data-row='17' data-column='40'></td><td data-row='17' data-column='45'></td>
+						<td data-row='17' data-column='50'></td><td data-row='17' data-column='55'></td>
+						</tr><tr>
+						<th class="text-right encabezado">6 p.m.</th>
+						<td data-row='18' data-column='0'></td><td data-row='18' data-column='5'></td>
+						<td data-row='18' data-column='10'></td><td data-row='18' data-column='15'></td>
+						<td data-row='18' data-column='20'></td><td data-row='18' data-column='25'></td>
+						<td data-row='18' data-column='30'></td><td data-row='18' data-column='35'></td>
+						<td data-row='18' data-column='40'></td><td data-row='18' data-column='45'></td>
+						<td data-row='18' data-column='50'></td><td data-row='18' data-column='55'></td>
+						</tr><tr>
+						<th class="text-right encabezado">7 p.m.</th>
+						<td data-row='19' data-column='0'></td><td data-row='19' data-column='5'></td>
+						<td data-row='19' data-column='10'></td><td data-row='19' data-column='15'></td>
+						<td data-row='19' data-column='20'></td><td data-row='19' data-column='25'></td>
+						<td data-row='19' data-column='30'></td><td data-row='19' data-column='35'></td>
+						<td data-row='19' data-column='40'></td><td data-row='19' data-column='45'></td>
+						<td data-row='19' data-column='50'></td><td data-row='19' data-column='55'></td>
+						</tr><tr>
+						<th class="text-right encabezado">8 p.m.</th>
+						<td data-row='20' data-column='0'></td><td data-row='20' data-column='5'></td>
+						<td data-row='20' data-column='10'></td><td data-row='20' data-column='15'></td>
+						<td data-row='20' data-column='20'></td><td data-row='20' data-column='25'></td>
+						<td data-row='20' data-column='30'></td><td data-row='20' data-column='35'></td>
+						<td data-row='20' data-column='40'></td><td data-row='20' data-column='45'></td>
+						<td data-row='20' data-column='50'></td><td data-row='20' data-column='55'></td>
+						</tr><tr>
+						<th class="text-right encabezado">9 p.m.</th>
+						<td data-row='21' data-column='0'></td><td data-row='21' data-column='5'></td>
+						<td data-row='21' data-column='10'></td><td data-row='21' data-column='15'></td>
+						<td data-row='21' data-column='20'></td><td data-row='21' data-column='25'></td>
+						<td data-row='21' data-column='30'></td><td data-row='21' data-column='35'></td>
+						<td data-row='21' data-column='40'></td><td data-row='21' data-column='45'></td>
+						<td data-row='21' data-column='50'></td><td data-row='21' data-column='55'></td>
+						</tr>
+						<thead>
+						<tr>
+						<th class="cabecera encabezado"><span class="glyphicon glyphicon-time"></span> Horas</th>
+						<th class="col-xs-1 encabezado" data-column="0">"0</th>
+						<th class="col-xs-1 encabezado" data-column="5">"5</th>
+						<th class="col-xs-1 encabezado" data-column="10">"10</th>
+						<th class="col-xs-1 encabezado" data-column="15">"15</th>
+						<th class="col-xs-1 encabezado" data-column="20">"20</th>
+						<th class="col-xs-1 encabezado" data-column="25">"25</th>
+						<th class="col-xs-1 encabezado" data-column="30">"30</th>
+						<th class="col-xs-1 encabezado" data-column="35">"35</th>
+						<th class="col-xs-1 encabezado" data-column="40">"40</th>
+						<th class="col-xs-1 encabezado" data-column="45">"45</th>
+						<th class="col-xs-1 encabezado" data-column="50">"50</th>
+						<th class="col-xs-1 encabezado" data-column="55">"55</th>
+						</tr>
+					</thead>
+					</tbody>
+				</table></div>
+				
 				
 				
 			</div>
@@ -1370,99 +1735,448 @@ if(isset($_SESSION['usuario'])){?>
 
 	</div>
 
-		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-		<script src="js/jquery-2.2.3.min.js"></script>
-		<!-- Include all compiled plugins (below), or include individual files as needed -->
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/moment.js"></script>
-		<script src="js/mijs.js"></script>
-		<script src="js/jquery.PrintArea.js"></script>
-		<script src="js/jquery.printPage.js"></script>
-		<script src="js/bootstrap-switch.js"></script>
-		<!-- <script src="./node_modules/socket.io-client/dist/socket.io.js"></script>  -->
-		<script src="js/moment-precise-range.js"></script>
-		<script src="js/socketCliente.js"></script>
-		<script src="js/webcam.js"></script>
-		<script>
-		$('.mitooltip').tooltip();
-		$('.BSswitch').bootstrapSwitch('state', true);
-		listadoDatosUsuario();
-		var overlay=$('#overlay');
-		window.addEventListener('load',function(){
-			overlay.css('display','none');
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery-2.2.3.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/moment.js"></script>
+<script src="js/mijs.js?v1.0.11"></script>
+<script src="js/jquery.PrintArea.js"></script>
+<script src="js/jquery.printPage.js?version=1.1"></script>
+<script src="js/bootstrap-switch.js"></script>
+<!-- <script src="./node_modules/socket.io-client/dist/socket.io.js"></script>  -->
+<script src="js/moment-precise-range.js"></script>
+<script src="js/socketCliente.js"></script>
+<script src="js/webcam.js"></script>
+<script>
+$('.mitooltip').tooltip();
+$('.BSswitch').bootstrapSwitch('state', true);
+listadoDatosUsuario();
+var overlay=$('#overlay');
+window.addEventListener('load',function(){
+	overlay.css('display','none');
+});
+$(document).ready(function() {
+	var idCliente = <?php  
+		if(isset($_GET["id"]))  echo $_GET['id'];
+		else echo 0;?>;
+	//console.log(idCliente);
+	if(idCliente!=0){//console.log('llamar datos totales');
+		$('#lblIdCliente').text(idCliente);
+		
+		solicitarDatosClientePanel(idCliente);
+		/*socket.emit('listarProcedimientos');
+		socket.emit('listarTiempoControles');*/
+	}
+	else{//console.log('redireccionar a panel porque no hay nada');
+	$(window).attr('location','Cliente.html');
+	}
+	var nuevo= <?php  if(isset($_GET["n"])) echo $_GET["n"];  else echo 0;?>;
+	switch(nuevo){
+		case 1: $('#mnjClienteRegistrado')
+			.addClass('alert-warning')
+			.removeClass('alert-info')
+			.removeClass('hidden')
+			.find('#texto').html('El cliente fue creado con éxito.'); break;
+		case 2: $('#mnjClienteRegistrado')
+			.removeClass('alert-warning')
+			.addClass('alert-info')
+			.removeClass('hidden')
+			.find('#texto').html('El cliente fue actualizado con éxito.'); break;
+		default: $('#mnjClienteRegistrado').addClass('sr-only');
+	}
+	listarFeriados();
+	
+	
+	$.get('images/fotosClientes/'+idCliente+'.jpg')
+		.done(function() { 
+				$('#mi_camara').html(`<img src="images/fotosClientes/${idCliente}.jpg" class="img-responsive" style="width: auto;">`);
+		}).fail(function() { 
+				$('#mi_camara').html(`<img src="images/kids.jpg" class="img-responsive" style="width: auto;">`);
 		});
-		$(document).ready(function() {
-			var idCliente = <?php  
-				if(isset($_GET["id"]))  echo $_GET['id'];
-				else echo 0;?>;
-			//console.log(idCliente);
-			if(idCliente!=0){//console.log('llamar datos totales');
-				$('#lblIdCliente').text(idCliente);
-				
-				solicitarDatosClientePanel(idCliente);
-				/*socket.emit('listarProcedimientos');
-				socket.emit('listarTiempoControles');*/
+	//console.log(UrlExists('localhost/consultorio/images/fotosClientes/30407.jpg'));
+});
+function listarFeriados() {
+	$.ajax({url:'php/listarFeriados.php', type: 'POST'}).done(function (resp) {
+		$.feriados=JSON.parse(resp);
+	});
+}
+
+$("#imprime").click(function () {
+	//$(".myPrintArea").removeClass('sr-only');
+	$(".myPrintArea").printArea();
+	//$(".myPrintArea").addClass('sr-only');
+});
+$('#txtAdelantarFecha').keypress(function(){
+	if ( event.which == 13 ) {
+ event.preventDefault();
+ $('#btnAdelantarFecha').click();
+	}
+});
+
+
+/*$("#btnImprimirCita").printPage({
+	url: "imprimirCita.html",
+	attr: "href",
+	message:"Tu documento está siendo creado"
+});*/
+/*$('#btnCrearReevaluacion').click(function(){
+	loadPrintDocument(this,{
+		url: "imprimirCita.html",
+		attr: "href",
+		message:"Tu documento está siendo creado"
+	});
+});*/
+
+$('#dtpControladorFechasv2').change(function () {
+	var dia = moment($('#dtpControladorFechasv2').val());
+	var hoy= moment().format('YYYY-MM-DD');
+
+	moment.locale('es');
+	$.ajax({url: 'php/listarContadorResumen.php', type: 'POST', data: {dia: $('#dtpControladorFechasv2').val()}}).done(function (resp) {
+		var valores=JSON.parse(resp); 
+		if(valores.sumaConsultas == null ){$('#spanConteoNuevo').text(0);} else { $('#spanConteoNuevo').text(valores.sumaConsultas); }
+		if(valores.sumaRevaluados == null ){$('#spanConteoOperacion').text(0);} else { $('#spanConteoOperacion').text(valores.sumaRevaluados); }
+		if(valores.sumaRevaluados == null ){$('#spanConteoRevaluacion').text(0);} else { $('#spanConteoRevaluacion').text(valores.sumaRevaluados); }
+		//console.log(valores)
+	});
+	$.ajax({url:'php/listarCitasPorFecha.php', type:'POST', data:{dia: $("#dtpControladorFechasv2").val() }
+		}).success(function (resp) {
+		var dato=JSON.parse(resp);
+		$.datosCitasDelDiav2=dato;
+		//console.log($.datosCitasDelDiav2)
+		asignarHorav2(moment().format('HH'));
+		bloquearMeses();  rellenarDiasxMesv2();
+	});
+	var fechav2=moment($(this).val(), 'YYYY-MM-DD');
+	$('#divAñov2').text(fechav2.year());
+	$('#divMesv2').text(fechav2.format('MMMM'));
+	$('#divDiav2').text(fechav2.format('dddd D'));
+	$('#spanFechaMiniRepov2').text(fechav2.format('dddd, D [de] MMMM [de] YYYY'));
+	
+	if(fechav2.day()==0){
+		//console.log('domingo')
+		$('#divDomingos').removeClass('hidden').find('#spanFeriado').text('Domingo');
+		$('#divColexionHorasv2').hide();
+	}else{
+		$.each($.feriados,function (i, dato) {
+			if(dato.ferFecha==$('#dtpControladorFechasv2').val()){
+				$('#divDomingos').removeClass('hidden').find('#spanFeriado').text(dato.ferDescripcion);
+				$('#divColexionHorasv2').hide(); return false;
+				//console.log(dato.ferDescripcion); 
 			}
-			else{//console.log('redireccionar a panel porque no hay nada');
-			$(window).attr('location','Cliente.html');
-			}
-			var nuevo= <?php  if(isset($_GET["n"])) echo $_GET["n"];  else echo 0;?>;
-			switch(nuevo){
-				case 1: $('#mnjClienteRegistrado')
-					.addClass('alert-warning')
-					.removeClass('alert-info')
-					.removeClass('hidden')
-					.find('#texto').html('El cliente fue creado con éxito.'); break;
-				case 2: $('#mnjClienteRegistrado')
-					.removeClass('alert-warning')
-					.addClass('alert-info')
-					.removeClass('hidden')
-					.find('#texto').html('El cliente fue actualizado con éxito.'); break;
-				default: $('#mnjClienteRegistrado').addClass('sr-only');
-			}
-			listarFeriados();
-			
-			$.get('images/fotosClientes/'+idCliente+'.jpg')
-				.done(function() { 
-						$('#mi_camara').html(`<img src="images/fotosClientes/${idCliente}.jpg" class="img-responsive" style="width: auto;">`);
-				}).fail(function() { 
-						$('#mi_camara').html(`<img src="images/kids.jpg" class="img-responsive" style="width: auto;">`);
-				});
-			//console.log(UrlExists('localhost/consultorio/images/fotosClientes/30407.jpg'));
+			else{
+				$('#divDomingos').addClass('hidden');
+				$('#divColexionHorasv2').show();}
 		});
-		function listarFeriados() {
-			$.ajax({url:'php/listarFeriados.php', type: 'POST'}).done(function (resp) {
-				$.feriados=JSON.parse(resp);
-			});
+	}
+});
+function asignarHorav2(fijarHora) {
+	var nuevaHora= moment(fijarHora, 'HH');
+	$('#horaDisplayCalendv2').text(nuevaHora.format('h a').replace('am', 'a.m.').replace('pm', 'p.m.'));
+	$('#horaAsignarCalend12v2').text(nuevaHora.format('h'));
+	$('#horaAsignarCalend24v2').text(nuevaHora.format('HH'));
+	$('.horaChangeable').text(nuevaHora.format('h'));
+	$('.horaAMPM').text(nuevaHora.format('a').replace('am', 'a.m.').replace('pm', 'p.m.'));
+	bloquearHorasv2();
+}
+function bloquearHorasv2(){
+	//console.log($.queMichiEs);
+
+	$('.tdDatoCliente').children().remove();
+	var horaAct=moment().format('H');
+	var minutoAct=parseInt(moment().format('m'))-5; //console.log(minutoAct);
+	if( $('#dtpControladorFechasv2').val()==moment().format('YYYY-MM-DD') ){
+		$.each( $('.aHorav2'), function (i, elem) {
+			if(parseInt($(elem).attr('valor'))<horaAct){
+				$(elem).parent().addClass('disabled');
+			}
+		});
+	}else{
+		$('.aHorav2').parent().removeClass('disabled');
+
+	}
+	horaPorCaso();
+}
+function horaPorCaso(){
+	//$('.tdDatoCliente').children().remove();
+	var horaAct=moment().format('H');
+	var minutoAct=parseInt(moment().format('m'))-5; //console.log(minutoAct);
+	//console.log($('#horaAsignarCalend24v2').text())
+	$.each($('.tdDatoCliente'), function (i, elem) {
+			var minRecorrido=parseInt($(elem).attr('valor'));
+			if( $('#dtpControladorFechasv2').val()==moment().format('YYYY-MM-DD') && horaAct==$('#horaAsignarCalend24v2').text() && minRecorrido<minutoAct){
+				$(this).append('<p class="pNoDisponible"><i class="icofont icofont-puzzle"></i> Lo siento, ya no se puede asignar.</p>');
+			}/*else{$(this).append('<p class="pDisponible"><button class="btn btn-default btn-outline btnHoraDisponiblev2 " ><i class="icofont icofont-animal-cat-alt-3"></i> Horario libre para asignar</button></p>');}*/
+			//console.log($.queMichiEs);
+			switch($.queMichiEs){
+				case 'nuevaCita':
+					if( parseInt($('#horaAsignarCalend24v2').text())>8){
+						if($.trim($(this).text()).length==0){
+						$(this).append('<button class="btn btn-primary btn-outline btnHoraDisponiblev2"><span class="glyphicon glyphicon-triangle-right"></span>Horario disponible</button>');
+						}
+					}
+					else if( parseInt($('#horaAsignarCalend24v2').text()) ==8 && minRecorrido>=30 ){
+						//Asigna un limite de tiempo para poner el boton de Disponible
+						$(this).append('<button class="btn btn-primary btn-outline btnHoraDisponiblev2"><span class="glyphicon glyphicon-triangle-right"></span>Horario disponible</button>');
+					}
+					else{
+						if($.trim($(this).text()).length==0){
+							$(this).append('<p class="pAdvertenciaHorario"><i class="icofont icofont-puzzle"></i> Sólo se permite nuevos a partir de 8:30 am.</p>');
+						}
+					}
+				break;
+				case 'nuevaRevaluacion': 
+					if( parseInt($('#horaAsignarCalend24v2').text())==7){
+					//Asigna un limite de tiempo para poner el boton de Disponible
+					$(this).append('<button class="btn btn-success btn-outline btnHoraDisponiblev2"><span class="glyphicon glyphicon-triangle-right"></span>Horario disponible</button>');
+					}
+					else if( parseInt($('#horaAsignarCalend24v2').text()) ==8 && minRecorrido<=30 ){
+						$(this).append('<button class="btn btn-success btn-outline btnHoraDisponiblev2"><span class="glyphicon glyphicon-triangle-right"></span>Horario disponible</button>');
+					}
+					else{
+						if($.trim($(this).text()).length==0){
+							$(this).append('<p class="pAdvertenciaHorario"><i class="icofont icofont-puzzle"></i> Sólo se permite controles entre 7:00 am y 8:30 am.</p>');
+						}
+					}
+					break;
+				case 'nuevoProcedimiento':
+					if($.trim($(this).text()).length==0){
+						$(this).append('<button class="btn btn-success btn-outline btnHoraDisponiblev2"><span class="glyphicon glyphicon-triangle-right"></span>Horario disponible</button>');
+							}
+					break; 
+				case 'actualizacion':
+					if($.trim($(this).text()).length==0){
+						$(this).append('<button class="btn btn-success btn-outline btnHoraDisponiblev2"><span class="glyphicon glyphicon-triangle-right"></span>Actualizar horario</button>');
+							}
+					break; 
+			}
+		});
+	
+	$.each($.datosCitasDelDiav2, function (i, elem) {
+		var horaBD=moment(elem.hora, 'H:mm a');	
+		if(horaBD.hours()== parseInt($('#horaAsignarCalend24v2').text())){
+			if(elem.descripcion=="Consulta"){
+			$(`.tdDatoCliente[valor=${horaBD.format('mm')}]`).html(`
+				<p class="pNuevoxPaciente"><strong>Nuevo:</strong> <span class="mayuscula">${elem.nombres.toLowerCase()}</span>. <strong>#H.C.:</strong> ${elem.idHistoriaClinica}</p>`);
+			}
+		}
+		if(horaBD.hours()== parseInt($('#horaAsignarCalend24v2').text())){
+			if(elem.descripcion=="Revaluación"){
+			$(`.tdDatoCliente[valor=${horaBD.format('mm')}]`).html(`
+				<p class="pReevaluacionxPaciente"><strong>Control:</strong> <span class="mayuscula">${elem.nombres.toLowerCase()}</span>. <strong>#H.C.:</strong> ${elem.idHistoriaClinica}</p>`);
+			}
+		}
+		if(horaBD.hours()== parseInt($('#horaAsignarCalend24v2').text())){
+			if(elem.descripcion=="Procedimiento"){
+			$(`.tdDatoCliente[valor=${horaBD.format('mm')}]`).html(`
+				<p class="pOperacionxPaciente"><strong>Procedimiento:</strong> <span class="mayuscula">${elem.nombres.toLowerCase()}</span>. <strong>#H.C.:</strong> ${elem.idHistoriaClinica}. <span class="mayuscula">${elem.regDescripcion.toLowerCase()}. </span></p>`);
+			}
 		}
 
-		$("#imprime").click(function () {
-			//$(".myPrintArea").removeClass('sr-only');
-			$(".myPrintArea").printArea();
-			//$(".myPrintArea").addClass('sr-only');
-		});
-		$('#txtAdelantarFecha').keypress(function(){
-			if ( event.which == 13 ) {
-	     event.preventDefault();
-	     $('#btnAdelantarFecha').click();
-	  	}
-		});
+	});
+}
+
+$('#btnSumarHorav2').click(function () {
+	var nuevaHorav2=parseInt($('#horaAsignarCalend24v2').text())+1;
+	if(nuevaHorav2<=22 ){
+		asignarHorav2(nuevaHorav2);
+	}
+});
+$('#btnRestarHorav2').click(function () {
+	var nuevaHorav2=parseInt($('#horaAsignarCalend24v2').text())-1;
+	if($('#dtpControladorFechasv2').val()==moment().format('YYYY-MM-DD') ){
+		if(nuevaHorav2>=moment().format('HH') ){
+			asignarHorav2(nuevaHorav2);
+		}
+	}else{
+		if(nuevaHorav2>=6 && nuevaHorav2<=22  ){
+			asignarHorav2(nuevaHorav2);
+		}
+	}
+	
+});
+function rellenarDiasxMesv2(){
+	$('#ulDiaDeMes1al1').children().remove();
+	$('#ulDiaDeMes12al23').children().remove();
+	$('#ulDiaDeMes23al30').children().remove();
+	var fechaFormateada= moment($('#dtpControladorFechasv2').val(), 'YYYY-MM-DD').format('YYYY-MM');
+	var maximDiasMes= moment(fechaFormateada).daysInMonth();
+	var diaCambiante, contenidoDia;
+	var diaNumero='', diaLetra='';
+	//console.log(fechaFormateada);
+	for (var i = 1; i <= maximDiasMes; i++) {
+		if(i<=9){
+			diaCambiante=moment(fechaFormateada+ '-0'+i); diaNumero=diaCambiante.format('DD')
+			diaLetra= diaCambiante.format('dddd D');}
+		else{
+			diaCambiante=moment(fechaFormateada+'-'+i); diaNumero=diaCambiante.format('DD')
+			diaLetra= diaCambiante.format('dddd D');}
+		if(	fechaFormateada==moment().format('YYYY-MM')){
+			if(i< moment().format('D')){
+				contenidoDia=`<li class="disabled"><a class="aDiav2" href="#" valor="${diaNumero}">${diaLetra}</a></li>`;
+			}else{
+				contenidoDia=`<li><a class="aDiav2" href="#" valor="${diaNumero}">${diaLetra}</a></li>`;
+			}
+
+		}else{
+			contenidoDia=`<li><a class="aDiav2" href="#" valor="${diaNumero}">${diaLetra}</a></li>`;
+		}
 		
+		if(i>=1 && i<=10){ $('#ulDiaDeMes1al1').append(contenidoDia);}
+		if(i>=11 && i<=20){ $('#ulDiaDeMes12al23').append(contenidoDia);}
+		if(i>=21 && i<=31){ $('#ulDiaDeMes23al30').append(contenidoDia);}
+	}
+//, , 
+}
+function bloquearMeses(){
+	var cambio= moment( $('#dtpControladorFechasv2').val(), 'YYYY-MM-DD');
+	var mesactual= cambio.month();
+	if(cambio.year()==moment().year()){
+		$.each($('.aMesv2'), function (i, elem) {// console.log(elem)
+			if(parseInt($(elem).attr('valor')) <mesactual){
+				$(elem).parent().addClass('disabled');
+			}
+		});
+	}else{
+		$('.aMesv2').parent().removeClass('disabled');
+	}
+}
+$('.dropdown-menu').on('click', '.aAñov2', function (argument) {
+	if(! $(this).parent().hasClass('disabled')){
+		var dtpDefault= moment( $('#dtpControladorFechasv2').val(), 'YYYY-MM-DD');
+		var añoElegido=$(this).attr('valor');
+		if(añoElegido==moment().year()){
+			$('#dtpControladorFechasv2').val( moment().format('YYYY-MM-DD')).change();
+		}else{
+			$('#dtpControladorFechasv2').val( añoElegido+'-01-01').change();
+		}
+		$('html body').animate({scrollTop: 110}, 800);
+	}
+});
+$('.dropdown-menu').on('click', '.aMesv2', function (argument) {
+	if(! $(this).parent().hasClass('disabled')){
+		var dtpDefault= moment( $('#dtpControladorFechasv2').val(), 'YYYY-MM-DD');
+		var mesElegido=$(this).attr('valor');
+		$('#dtpControladorFechasv2').val( dtpDefault.format('YYYY')+'-'+mesElegido+'-01').change();
+		$('html body').animate({scrollTop: 110}, 800);
+	}
+});
+$('.dropdown-menu').on('click', '.aDiav2', function (argument) {
+	if(! $(this).parent().hasClass('disabled')){
+		var dtpDefault= moment( $('#dtpControladorFechasv2').val(), 'YYYY-MM-DD');
+		var diaElegido=$(this).attr('valor');
+		$('#dtpControladorFechasv2').val( dtpDefault.format('YYYY')+'-'+dtpDefault.format('MM')+'-'+diaElegido).change();
+		$('html body').animate({scrollTop: 110}, 800);
+	}
+});
+$('.dropdown-menu').on('click', '.aHorav2', function (argument) {
+	if(! $(this).parent().hasClass('disabled')){
+		var nuevaHorav2=$(this).attr('valor');
+		asignarHorav2(nuevaHorav2);
+		$('html body').animate({scrollTop: 110}, 800);
+	}
+});
+$('#txtAdelantarFechav2').keypress(function (event) {
+		if(event.keyCode===13){event.preventDefault(); diasHabilesv2();}
+	});
+$('#btnSaltarDiasv2').click(function () {
+	diasHabilesv2();
+});
+function diasHabilesv2(){
+	if($('#txtAdelantarFechav2').val()!=''){
+	var numDias=$('#txtAdelantarFechav2').val();
+	var semanasHabiles=parseInt(numDias/5);
+	var diasFindesemana=semanasHabiles*2;
+	var diasHabiles= parseInt(numDias)+ parseInt(numDias/5)*2;
+	//console.log('días '+numDias + '\nSemanas ' + semanasHabiles+ '\nSábados y domingos ' + diasFindesemana+ '\nDías hábiles ' + diasHabiles);
+	var fechaDestino=moment().add(diasHabiles,'days'); console.log(fechaDestino)
+	if(fechaDestino.format('d')=='0'){
+		$('#dtpControladorFechasv2').val(fechaDestino.add(1,'day').format('YYYY-MM-DD')).change();
+	}else{
+		$('#dtpControladorFechasv2').val(fechaDestino.format('YYYY-MM-DD')).change();
+	}
+	
+}
+}
+$('#btnMostrarDiaHoyv2').click(function () {
+	$('#dtpControladorFechasv2').val( moment().format('YYYY-MM-DD')).change();
+});
+$('#btnSumarAñov2').click(function () {
+	var cambio= moment( $('#dtpControladorFechasv2').val(), 'YYYY-MM-DD').add(1, 'years');
+	if(cambio.year()<=2018){
+		$('#dtpControladorFechasv2').val( cambio.format('YYYY')+'-01-01').change();
+	}
+	
+});
+$('#btnRestarAñov2').click(function () {
+	var cambio= moment( $('#dtpControladorFechasv2').val(), 'YYYY-MM-DD').subtract(1, 'years');
+	if(cambio.isBefore( moment().format('YYYY-MM-DD'))){ 
+		$('#dtpControladorFechasv2').val(moment().format('YYYY-MM-DD') ).change();
+	}else{
+		if(cambio.year()>=moment().year()){ $('#dtpControladorFechasv2').val( cambio.format('YYYY')+'-01-01').change(); }
+	}
+});
+$('#btnSumarMesv2').click(function () {
+	var cambio= moment( $('#dtpControladorFechasv2').val(), 'YYYY-MM-DD').add(1, 'month');
+	$('#dtpControladorFechasv2').val( cambio.format('YYYY')+'-'+cambio.format('MM')+'-01').change();
+});
+$('#btnRestarMesv2').click(function () {
+	var cambio= moment( $('#dtpControladorFechasv2').val(), 'YYYY-MM-DD').subtract(1, 'month');
+	if(cambio.isBefore( moment().format('YYYY-MM-DD'))){ 
+		$('#dtpControladorFechasv2').val(moment().format('YYYY-MM-DD') ).change();}
+	else{
+		if(cambio.year()>=moment().year()){
+			$('#dtpControladorFechasv2').val( cambio.format('YYYY')+'-'+cambio.format('MM')+'-01').change(); }
+	}
+});
+$('#btnSumarDiav2').click(function () {
+	var cambio= moment( $('#dtpControladorFechasv2').val(), 'YYYY-MM-DD').add(1, 'day');
+	$('#dtpControladorFechasv2').val( cambio.format('YYYY')+'-'+cambio.format('MM')+'-'+cambio.format('DD')).change();
+});
+$('#btnRestarDiav2').click(function () {
+	var cambio= moment( $('#dtpControladorFechasv2').val(), 'YYYY-MM-DD').subtract(1, 'day');
+	if(cambio.isBefore( moment().format('YYYY-MM-DD'))){ 
+		$('#dtpControladorFechasv2').val(moment().format('YYYY-MM-DD') ).change();}
+	else{
+		if(cambio.year()>=moment().year()){
+			$('#dtpControladorFechasv2').val( cambio.format('YYYY')+'-'+cambio.format('MM')+'-'+cambio.format('DD')).change(); }
+	}
+});
+$(document).on('click', '#trParaAño',function (event) {
+	event.stopPropagation(); event.preventDefault();
+	$('#btnAñosInfo').click();
+});
+$(document).on('click', '#trParaMeses',function (event) {
+	event.stopPropagation(); event.preventDefault();
+	$('#btnMesesInfo').click();
+});
+$(document).on('click', '#trParaDias',function (event) {
+	event.stopPropagation(); event.preventDefault();
+	$('#btnDiasInfo').click();
+});
+$(document).on('click', '#trParaHoras',function (event) {
+	event.stopPropagation(); event.preventDefault();
+	$('#btnHorasInfo').click();
+});
+$('.tdDatoCliente').on('click','.btnHoraDisponiblev2',function () {
+	
+	var minSelecv2=$(this).parent().attr('valor');
 
-		/*$("#btnImprimirCita").printPage({
-			url: "imprimirCita.html",
-			attr: "href",
-			message:"Tu documento está siendo creado"
-		});*/
-		/*$('#btnCrearReevaluacion').click(function(){
-			loadPrintDocument(this,{
-				url: "imprimirCita.html",
-				attr: "href",
-				message:"Tu documento está siendo creado"
-			});
-		});*/
+	var horaSelcv2=  $('#horaAsignarCalend24v2').text();
+	var fechaSelcv2=$('#dtpControladorFechasv2').val();
+	//console.log('Seleccionado:');
+	var hora=moment(horaSelcv2+':'+minSelecv2,'H:mm');
+	//console.log('fecha: '+horaSelcv2+':'+ minSelecv2)
+	/* fechaSelcv2 +' '+*/
+	//console.log(hora.format('LT'))
 
-		</script>
+	$('#lblAsignarHoraAMPM').text(hora.format('LT'));
+	$('#lblAsignarHoraCompleta').text(horaSelcv2+':'+ minSelecv2);
+	$('#modalAsignar').modal('show');
+	
+});
+</script>
 	</body>
 </html>
 <?php 
