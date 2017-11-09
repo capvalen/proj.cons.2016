@@ -174,7 +174,7 @@ if(isset($_SESSION['usuario'])){?>
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-6 col-md-4">
+					<div class="col-sm-6 col-md-4 hidden">
 						<div class="thumbnail text-center" id="thumResumenHoy"><br>							
 							<a href="#" id="alistarUltimos" class="btn red darken-1  white-text btn-circle-grande right"><i class="material-icons icono-grande">transfer_within_a_station</i></a>
 							<div class="caption"><hr>
@@ -267,7 +267,7 @@ if(isset($_SESSION['usuario'])){?>
 							</div>
 						</div>
 						<div class="col-sm-4 col-lg-3">
-						<label for="cmbGrado">Estudios:</label>
+						<label for="cmbGrado">Grado de estudios:</label>
 							<div class="btn-group">
 								<div class="btn-group">
 								<select class="form-control mayuscula" id="cmbGrado">
@@ -405,6 +405,25 @@ if(isset($_SESSION['usuario'])){?>
 		</div>
 	</div>
 
+		<!--Modal Para ingresar monto externo-->
+	<div class="modal fade modal-SinPrivilegios" tabindex=-1 role="dialog">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header-danger">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
+					<h4>No hay privilegios</h4>				
+				</div>
+				<div class="modal-body">
+					<p>Lo sentimos, no posees los privilegios para acceder a éste módulo</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal"><i class="icofont icofont-close"></i> Ok</button>	
+				</div>
+			</div>
+		</div>
+	</div>
+
+
 	<!--Modal Para resumir los pacientes de hoy-->
 	<div class="modal fade modal-ResumirPacientes" tabindex="-1" role="dialog">
 		<div class="modal-dialog">
@@ -489,11 +508,11 @@ if(isset($_SESSION['usuario'])){?>
 		<script>
 			listadoDatosUsuario();
 			$.ajax({url: 'php/listarContadorResumen.php', type: 'POST', data: {dia: moment().format('YYYY-MM-DD')}}).done(function (resp) {
+				//console.log(resp)
 				var valores=JSON.parse(resp);
-				$('#h3txtNuevos').text(valores.sumaConsultas)
-				$('#h3txtRevaluados').text(valores.sumaRevaluados)
-				$('#h3txtProcedimientos').text(valores.sumaRevaluados)
-				//console.log(valores)
+				if(valores.sumaConsultas==null ){$('#h3txtNuevos').text(0)}else{$('#h3txtNuevos').text(valores.sumaConsultas)}
+				if(valores.sumaRevaluados==null ){$('#h3txtRevaluados').text(0)}else{$('#h3txtRevaluados').text(valores.sumaRevaluados)}
+				if(valores.sumaRevaluados==null ){$('#h3txtProcedimientos').text(0)}else{$('#h3txtProcedimientos').text(valores.sumaRevaluados)}
 			});
 			
 			
@@ -517,6 +536,9 @@ if(isset($_SESSION['usuario'])){?>
 			$('#divx4Nuevos').click(function () { listadoPendientesParaHoy(3); });
 			$('#divx4Revaluados').click(function () { listadoPendientesParaHoy(4); });
 			$('#divx4Procedimientos').click(function () { listadoPendientesParaHoy(5); });
+			$('#thumCrearUsuario').click(function () {
+				$('.modal-SinPrivilegios').modal('show');
+			})
 		</script>
 	</body>
 </html>

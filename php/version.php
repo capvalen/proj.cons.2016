@@ -1,5 +1,5 @@
 <?php 
-echo "Ver. 1.3 Built 17.10.26";
+echo "Ver. 1.4 Built 17.11.09";
 
 /*
 Cambios 1.2

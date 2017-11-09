@@ -674,7 +674,7 @@ if(isset($_SESSION['usuario'])){?>
 
 
 					
-				<div class="container well col-md-9 col-md-offset-1">
+				<div class="container well col-md-9 col-md-offset-1 hidden">
 				<label >Planificar para: </label>
 
 				<div class="row">
@@ -703,7 +703,7 @@ if(isset($_SESSION['usuario'])){?>
 				<div class="alert alert-danger alert-white rounded alert-dismissible fade in hidden" id="mnjClienteCitadoHoy" role="alert"> <div class="icon"><i class="icofont icofont-close-circled"></i></div> <strong>Ups!</strong>  <span id="lblMnjCita"></span></div>
 			</div>
 
-			<div class="row col-xs-12 col-sm-12 text-center calendLunesaViernes" id="tblControl5min"><h2 style="margin-top: 7px;">Día (Lunes a Viernes)</h2>
+			<div class="row col-xs-12 col-sm-12 text-center hidden calendLunesaViernes" id="tblControl5min"><h2 style="margin-top: 7px;">Día (Lunes a Viernes)</h2>
 				<table class="table table-bordered tablaCalendario text-center" id="mañana5min">
 				<thead>
 					<tr>
@@ -837,7 +837,7 @@ if(isset($_SESSION['usuario'])){?>
 					</tbody>
 				</table></div>
 				
-				<div class="row col-sm-12 text-center calendLunesaViernes"><h2>Tardes y Noches (Lunes a Viernes)</h2>
+				<div class="row col-sm-12 text-center hidden calendLunesaViernes"><h2>Tardes y Noches (Lunes a Viernes)</h2>
 				
 				<table class="table table-bordered tablaCalendario text-center" id="tarde">
 					<thead>

@@ -430,9 +430,9 @@ function esNumero(cadena)
 				return false;
 			}
 }
-$('#alistarUltimos').click(function() {
-	socket.emit('listarUltimosRegistrados');
-});
+// $('#alistarUltimos').click(function() {
+// 	socket.emit('listarUltimosRegistrados');
+// });
 $('#btnActualizarDatos').click(function(){
 	
 	//console.log(`${}`);

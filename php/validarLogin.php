@@ -5,7 +5,8 @@
 	$usuario = $_POST['user'];
 	$pw = $_POST['pw'];
 	mysql_query("set charset utf8;");
-	$log = mysql_query("SELECT * FROM usuario WHERE usuNick='$usuario' AND usuPass='$pw'");
+	
+	$log = mysql_query("SELECT * FROM usuario WHERE usuNick='$usuario' AND usuPass=md5('$pw')");
 	echo mysql_num_rows($log);
 	if (mysql_num_rows($log)>0) {
 		$row = mysql_fetch_array($log);
