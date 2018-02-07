@@ -1,27 +1,21 @@
-var fs = require('fs');
-var options = {
-    key: fs.readFileSync('clavePrivada.key'),
-    cert: fs.readFileSync('certificado.crt'),
-    requestCert: true
-};
 
 var express = require('express');
 var app = express();
-var server = require('https').createServer(options, app);
+var server = require('http').createServer( app);
 var io = require('socket.io')(server);
 
 
 
 
-var mysql = require('mysql');
+/*var mysql = require('mysql');
 var clienteSql = mysql.createConnection({
 	'user': 'root',
 	'password': '*123456*',
 	'host': 'localhost',
 	'port' : 3306
-});
+}); 
 
-clienteSql.query('use consultorio');
+clienteSql.query('use consultorio');*/
 
 io.sockets.on('connection',function (socket) {
 	console.log('Un cliente se ha conectado');

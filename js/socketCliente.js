@@ -1,4 +1,4 @@
-// var socket = io.connect('https://localhost:8080', { secure: true });
+ var socket = io.connect('https://localhost:8080', { secure: true });
 
 
 $('#btnNuevoCliente').click(function () {

@@ -16,22 +16,23 @@ if(isset($_SESSION['usuario'])){?>
 		<!-- Bootstrap -->
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/sticky-footer.css" rel="stylesheet">
-		<link href="css/estilos.css?version=1.1" rel="stylesheet">
+		<link href="css/estilos.css?version=1.2.4" rel="stylesheet">
 		<link href="css/animate.css" rel="stylesheet">
 		<link href="css/bootstrap-switch.css" rel="stylesheet">
 		<link href="css/icofont.css" rel="stylesheet">
 
 	</head>
 	<body>
-	<style>
+	<style> 
 		body{
-			background-color: #383a42;
+			background-color: #f3f3f3;
 		}
 		.conPrincipal{background-color: #fdfdfd;
 			border-radius: 9px;
 			margin-top: 20px;
-		-webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);
-		box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);}
+			border: 1px solid #dadada;}
+		/* -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);
+		box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23); */
 		footer{margin-top: 133px;}
 		.xs4Datos{background-color: #fff;
 			color: #ffbf01;
@@ -40,7 +41,7 @@ if(isset($_SESSION['usuario'])){?>
 			o-transition: border .2s ease-in-out; cursor: default;
 			padding-bottom:5px; margin-bottom: 15px;
 			transition: all 0.6s;}
-		.xs4Datos:hover{
+		.xs4Datos:hover{cursor:pointer;
 			background-color: #f3f3f3;
 			color: #FF5722;font-weight: 700;
 			transition: all 0.6s;
@@ -108,7 +109,7 @@ if(isset($_SESSION['usuario'])){?>
 		</div>
 	</nav>
 
-	<div class="container conPrincipal">
+	<div class="container conPrincipal noSelect">
 		<main>
 			<div class="container hidden-md hidden-lg">
 				<div class="input-group" style="margin-top: 10px;">
@@ -118,10 +119,17 @@ if(isset($_SESSION['usuario'])){?>
 					</span>
 				</div>
 			</div>
-			<div class="row col-sm-7"><h2 style="margin-top: 21px;"><span class="glyphicon glyphicon-th-list"></span> Panel de control <small>Clientes</small></h2></div>
+			<div class="row col-sm-7"><h3 style="margin-top: 21px;"><span class="glyphicon glyphicon-th-list "></span> Panel de control <small>Clientes</small></h3></div>
 			<div class="row col-sm-5 text-center"><br><small class="text-muted" id="horaServer"></small>, <small class="text-muted" id="fechaServer"></small> <p><small class="text-muted" >Usuario:</small> <small class="text-primary"><?php echo $_SESSION['usuario'] ;?></small></p></div><br>
 			<div class="row page-header ">
 			</div>
+				<div class="container-fluid">
+					<div class="row panel panel-default hidden-print noselect" id="botonesDoctor">
+						<span class="pull-left"><span class="glyphicon glyphicon-facetime-video grey-text text-lighten-1" style="font-size: 24px; margin-top: 10px"></span></span>
+					<div class="row col-sm-6 text-center" id="spansDatosAnt"><h4> <small class="grey-text " id="spanTipoConsultaAnterior">Paciente atendido: </small> <span class="blue-text mayuscula" id="spanNombrePacienteAnterior"></span> <a id="botonVerAnteriorPaciente" href="#" class="btn btn-success btn-sm btn-outline" target="_blank" role="button"><span class="glyphicon glyphicon-user"></span></a></h4></div>
+					<div class="row col-sm-6 text-center" id="spansDatos"><h4> <small class="grey-text " id="spanTipoConsultaLlamado">Paciente actual: </small> <span class="blue-text mayuscula" id="spanNombrePacienteLlamado"></span> <a id="botonVerActualPaciente" href="#" class="btn btn-success btn-sm btn-outline" target="_blank" role="button"><span class="glyphicon glyphicon-user"></span></a></h4></div>
+					</div>
+				</div>
 				<div class="row">
 					<div class="col-xs-4 text-center" id="divx4Nuevos"><div class="xs4Datos"><h3 id="h3txtNuevos"></h3><p>Nuevos</p></div></div>
 					<div class="col-xs-4 text-center" id="divx4Revaluados"><div class="xs4Datos"><h3 id="h3txtRevaluados"></h3><p>Revaluados</p></div></div>
@@ -134,7 +142,7 @@ if(isset($_SESSION['usuario'])){?>
 							<a  class="btn deep-purple white-text btn-circle-grande right"  id="btnNuevoCliente" border="0" ><i class="material-icons icono-grande">contact_mail</i></a>
 							<div class="caption"><hr>
 								<h3 class="indigo-text">Nuevo cliente</h3>
-								<p class="indigo-text">Inserte un nuevo cliente que viene por primera vez.</p>
+								<p class="grey-text">Inserte un nuevo cliente que viene por primera vez.</p>
 							</div>
 						</div>
 					</div>
@@ -143,7 +151,7 @@ if(isset($_SESSION['usuario'])){?>
 							<a href="ClienteLista.php" class="btn light-green  white-text btn-circle-grande right"><i class="material-icons icono-grande">group</i></a>
 							<div class="caption"><hr>
 								<h3 class="indigo-text">Listar pacientes</h3>
-								<p class="indigo-text">Liste los pacientes programados para el día hoy.</p>
+								<p class="grey-text">Liste los pacientes programados para el día hoy.</p>
 							</div>
 						</div>
 					</div>
@@ -152,7 +160,7 @@ if(isset($_SESSION['usuario'])){?>
 							<a href="#" id="alistarUltimos" class="btn blue darken-1  white-text btn-circle-grande right"><i class="material-icons icono-grande">dns</i></a>
 							<div class="caption"><hr>
 								<h3 class="indigo-text">Últimos pacientes registrados</h3>
-								<p class="indigo-text">Puede ver los 15 últimos pacientes registrados.</p>
+								<p class="grey-text">Puede ver los 15 últimos pacientes registrados.</p>
 							</div>
 						</div>
 					</div>
@@ -161,7 +169,7 @@ if(isset($_SESSION['usuario'])){?>
 							<a href="#" id="alistarUltimos" class="btn amber darken-1  white-text btn-circle-grande right"><i class="material-icons icono-grande">location_city</i></a>
 							<div class="caption"><hr>
 								<h3 class="indigo-text">Crear una nueva procedencia</h3>
-								<p class="indigo-text">Puede crear un nuevo módulo de tienda.</p>
+								<p class="grey-text">Puede crear un nuevo módulo de tienda.</p>
 							</div>
 						</div>
 					</div>
@@ -170,7 +178,7 @@ if(isset($_SESSION['usuario'])){?>
 							<a href="#" id="alistarUltimos" class="btn pink darken-1  white-text btn-circle-grande right"><i class="material-icons icono-grande">person_add</i></a>
 							<div class="caption"><hr>
 								<h3 class="indigo-text">Crear un nuevo usuario</h3>
-								<p class="indigo-text">Ud. puede crear un nuevo usuario para nuevos personales.</p>
+								<p class="grey-text">Ud. puede crear un nuevo usuario para nuevos personales.</p>
 							</div>
 						</div>
 					</div>
@@ -179,7 +187,7 @@ if(isset($_SESSION['usuario'])){?>
 							<a href="#" id="alistarUltimos" class="btn red darken-1  white-text btn-circle-grande right"><i class="material-icons icono-grande">transfer_within_a_station</i></a>
 							<div class="caption"><hr>
 								<h3 class="indigo-text">Resumen pacientes para hoy</h3>
-								<p class="indigo-text">Ud. puede ver todos los pacientes nuevos el día de hoy.</p>
+								<p class="grey-text">Ud. puede ver todos los pacientes nuevos el día de hoy.</p>
 							</div>
 						</div>
 					</div>
@@ -192,7 +200,7 @@ if(isset($_SESSION['usuario'])){?>
 	
 
 	<!--Modal Para Ingresar nuevo cliente-->
-	<div class="modal fade modal-nuevoCliente" tabindex="-1" role="dialog">
+	<div class="modal fade modal-nuevoCliente noselect" tabindex="-1" role="dialog">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header-success">
@@ -310,7 +318,7 @@ if(isset($_SESSION['usuario'])){?>
 
 
 	<!--Modal Para listar los últimos registrados-->
-	<div class="modal fade modal-ultimosRegistrados" tabindex="-1" role="dialog">
+	<div class="modal fade modal-ultimosRegistrados noselect" tabindex="-1" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header-morado">
@@ -339,7 +347,7 @@ if(isset($_SESSION['usuario'])){?>
 
 
 	<!--Modal Para mostrar los resultados de la búsqueda-->
-	<div class="modal fade modal-resultadosBusqueda" tabindex="-1" role="dialog">
+	<div class="modal fade modal-resultadosBusqueda noselect" tabindex="-1" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header-warning">
@@ -375,7 +383,7 @@ if(isset($_SESSION['usuario'])){?>
 
 
 	<!--Modal Para ingresar monto externo-->
-	<div class="modal fade modal-ingreso" tabindex=-1 role="dialog">
+	<div class="modal fade modal-ingreso noselect" tabindex=-1 role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -493,53 +501,64 @@ if(isset($_SESSION['usuario'])){?>
 		</div>
 	</div>
 
-		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-		<script src="js/jquery-2.2.3.min.js"></script>
-		<!-- Include all compiled plugins (below), or include individual files as needed -->
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/mijs.js"></script>
-		<script src="js/moment.js"></script>
-		<!-- <script src="./node_modules/socket.io-client/dist/socket.io.js"></script>  -->
-		<script src="js/moment-precise-range.js"></script> 
-		<script src="js/socketCliente.js?version=1.0.5"></script>
-		<script src="js/bootstrap-switch.js"></script>
-	
-		
-		<script>
-			listadoDatosUsuario();
-			$.ajax({url: 'php/listarContadorResumen.php', type: 'POST', data: {dia: moment().format('YYYY-MM-DD')}}).done(function (resp) {
-				//console.log(resp)
-				var valores=JSON.parse(resp);
-				if(valores.sumaConsultas==null ){$('#h3txtNuevos').text(0)}else{$('#h3txtNuevos').text(valores.sumaConsultas)}
-				if(valores.sumaRevaluados==null ){$('#h3txtRevaluados').text(0)}else{$('#h3txtRevaluados').text(valores.sumaRevaluados)}
-				if(valores.sumaRevaluados==null ){$('#h3txtProcedimientos').text(0)}else{$('#h3txtProcedimientos').text(valores.sumaRevaluados)}
-			});
-			
-			
-			$('.mitooltip').tooltip();
-			$('.BSswitch').bootstrapSwitch('state', true);
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery-2.2.3.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/mijs.js?version=1.0.2"></script>
+<script src="js/moment.js"></script>
+<!-- <script src="./node_modules/socket.io-client/dist/socket.io.js"></script>  -->
+<script src="js/moment-precise-range.js"></script> 
+<script src="js/socketCliente.js?version=1.0.5"></script>
+<script src="js/bootstrap-switch.js"></script>
 
-			$('#thumNuevoCliente').click(function () {
-				llamadoNuevoRegistroClientePorModal();
-			});
-			$('#thumListarPacientes').click(function(){
-				location.href='ClienteLista.php';
-			});
-			$('#thumListarUltimos').click(function(){
-				//socket.emit('listarUltimosRegistrados');
-				listadoUltimosRegistrados();
-			});
-			$('#thumResumenHoy').click(function(){
-				//socket.emit('listarUltimosRegistrados'); 
-				listadoPendientesParaHoy(0);
-			});
-			$('#divx4Nuevos').click(function () { listadoPendientesParaHoy(3); });
-			$('#divx4Revaluados').click(function () { listadoPendientesParaHoy(4); });
-			$('#divx4Procedimientos').click(function () { listadoPendientesParaHoy(5); });
-			$('#thumCrearUsuario').click(function () {
-				$('.modal-SinPrivilegios').modal('show');
-			})
-		</script>
+
+<script>
+	listadoDatosUsuario();
+	$.ajax({url: 'php/listarContadorResumen.php', type: 'POST', data: {dia: moment().format('YYYY-MM-DD')}}).done(function (resp) {
+		console.log(resp)
+		var valores=JSON.parse(resp);
+		if(valores.sumaConsultas==null ){$('#h3txtNuevos').text(0)}else{$('#h3txtNuevos').text(valores.sumaConsultas)}
+		if(valores.sumaRevaluados==null ){$('#h3txtRevaluados').text(0)}else{$('#h3txtRevaluados').text(valores.sumaRevaluados)}
+		if(valores.sumaProcedimientos==null ){$('#h3txtProcedimientos').text(0)}else{$('#h3txtProcedimientos').text(valores.sumaProcedimientos)}
+	});
+
+	$.ajax({url: 'php/quienSeAtiende.php', type: 'POST'}).done(function (resp) {
+		var dato=JSON.parse(resp);
+		$('#botonVerAnteriorPaciente').attr('href', 'ClientePanel.php?id='+dato.idAnterior)
+		$('#spanNombrePacienteAnterior').text(dato.antNombres);
+		$('#botonVerActualPaciente').attr('href', 'ClientePanel.php?id='+dato.idEntrante)
+		$('#spanNombrePacienteLlamado').text(dato.entrNombres);
+	});
+	
+	
+	$('.mitooltip').tooltip();
+	$('.BSswitch').bootstrapSwitch('state', true);
+
+	$('#thumNuevoCliente').click(function () {
+		llamadoNuevoRegistroClientePorModal();
+	});
+	$('#thumListarPacientes').click(function(){
+		location.href='ClienteLista.php';
+	});
+	$('#thumListarUltimos').click(function(){
+		//socket.emit('listarUltimosRegistrados');
+		listadoUltimosRegistrados();
+	});
+	$('#thumResumenHoy').click(function(){
+		//socket.emit('listarUltimosRegistrados'); 
+		listadoPendientesParaHoy(0);
+	});
+	$('#divx4Nuevos').click(function () { listadoPendientesParaHoy(3); });
+	$('#divx4Revaluados').click(function () { listadoPendientesParaHoy(4); });
+	$('#divx4Procedimientos').click(function () { listadoPendientesParaHoy(5); });
+	$('#thumCrearUsuario').click(function () {
+		$('.modal-SinPrivilegios').modal('show');
+	});
+	$('#thumCrearHospiral').click(function () {
+		$('.modal-SinPrivilegios').modal('show');
+	});
+</script>
 	</body>
 </html>
 <?php	

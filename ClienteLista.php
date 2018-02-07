@@ -16,15 +16,36 @@ if(isset($_SESSION['usuario'])){?>
 		<link href="css/bootstrap.min.css" rel="stylesheet">    
 		<link href="css/animate.css" rel="stylesheet">
 		<link href="css/bootstrap-switch.css" rel="stylesheet">
-		<link href="css/estilos.css" rel="stylesheet">
-		<link href="css/tblListaPacientes.css" rel="stylesheet">
-		<link rel="shortcut icon" href="images/favicon.png">
+		<link href="css/estilos.css?version=1.2.5" rel="stylesheet">
 		
+		<link rel="shortcut icon" href="images/favicon.png">
+		<link href="css/jquery.mCustomScrollbar.css" rel="stylesheet" /> <!-- Extraido de: http://manos.malihu.gr/code-example/horizontal-custom-scrollbar-tutorial/ -->
+
 	</head>
 	<body>
 <style>
 .btn-outline.active{color: #fff !important;}
 .btn-morado .badge{background-color: #704ea7;}
+thead th{color: #ffffff!important;}
+.contenedorTablaFinal{overflow-x:hidden;overflow-y:hidden;}
+.contenedorTablaFinal::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color:#4c5266;
+}
+.contenedorTablaFinal::-webkit-scrollbar
+{
+	width: 8px;
+	background-color: #393f56;
+	position: absolute;
+}
+.contenedorTablaFinal::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #1c1a1a;
+} */
 </style>
 		<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
@@ -105,8 +126,8 @@ if(isset($_SESSION['usuario'])){?>
 						<a class="btn btn-negro" id="btnlistarFechaDtp"><span class="glyphicon glyphicon-triangle-right"></span></a>
 					</div>
 					
-					<div class="row well hidden-print">
 					<div class="row hidden-print">
+					<div class="row hidden">
 						<label class="col-lg-2">Fecha a mostrar: </label>
 						<div class="col-lg-6">
 							<div class="input-group">
@@ -147,7 +168,7 @@ if(isset($_SESSION['usuario'])){?>
 					</div>
 					</div><br>
 					
-					<div class="row well hidden-print" id="botonesDoctor">
+					<div class="row panel panel-cielo hidden-print noselect" id="botonesDoctor">
 						<!--<div class="col-sm-4">
 							<button type="button" class="btn btn-group-justified btn-danger btnAtencion mitooltip" id="btnAtencionAusente" data-toggle="tooltip" data-placement="top" title="El cliente no se presentó al atención. Tecla «a»"><i class="material-icons">weekend</i> Ausente</button>
 							
@@ -159,13 +180,9 @@ if(isset($_SESSION['usuario'])){?>
 						<div class="col-sm-4">
 							<button type="button" class="btn btn-group-justified btn-warning btnAtencion mitooltip" id="btnAtencionDetener" data-toggle="tooltip" data-placement="top" title="Pausee, si existe un descanso. Tecla «d»"><i class="material-icons">watch_later</i> Detener atención</button>
 						</div>-->
-						<div class="row col-sm-6 text-center" id="spansDatosAnt"><h4> <span id="spanTipoConsultaAnterior">Anterior atendido: </span> <span class="text-primary mayuscula" id="spanNombrePacienteAnterior"></span> </span> <a id="botonVerAnteriorPaciente" href="#" class="btn btn-success btn-xs" target="_blank" role="button"><span class="glyphicon glyphicon-eye-open"></span></a></h4></div>
-						<div class="row col-sm-6 text-center" id="spansDatos"><h4> <span id="spanTipoConsultaLlamado">En atención: </span> <span class="text-primary mayuscula" id="spanNombrePacienteLlamado"></span> <span class="sr-only" id="idPacListaLlamado"> </h4></div>
+						<div class="row col-sm-6 text-center" id="spansDatosAnt"><h4> <small class="grey-text " id="spanTipoConsultaAnterior">Paciente atendido: </small> <span class="blue-text mayuscula" id="spanNombrePacienteAnterior"></span> <a id="botonVerAnteriorPaciente" href="#" class="btn btn-success btn-sm btn-outline" target="_blank" role="button"><span class="glyphicon glyphicon-user"></span></a></h4></div>
+						<div class="row col-sm-6 text-center" id="spansDatos"><h4> <small class="grey-text " id="spanTipoConsultaLlamado">Paciente actual: </small> <span class="blue-text mayuscula" id="spanNombrePacienteLlamado"></span> <a id="botonVerActualPaciente" href="#" class="btn btn-success btn-sm btn-outline" target="_blank" role="button"><span class="glyphicon glyphicon-user"></span></a></h4></div>
 					</div>
-					<br>
-
-					
-
 			</div>
 		</main> 
 	</div>
@@ -175,9 +192,9 @@ if(isset($_SESSION['usuario'])){?>
 		<div class="container-fluid  col-sm-8">
 			
 		<div class="  hidden-print">
-			<div class="panel panel-negro" style="margin-left: 10px;">
-				<div class="panel-heading">Listado de pacientes</div>
-				<div class="panel-body contenedorTablaFinal">
+			<div class="panel panel-grisOscuro" style="margin-left: 10px;">
+				<div class="panel-heading hidden">Listado de pacientes</div>
+				<div class="contenedorTablaFinal">
 					<table class="table tablita noselect " id="listadoFinal" >
 					<thead>
 						<tr>
@@ -185,7 +202,7 @@ if(isset($_SESSION['usuario'])){?>
 							<th class="text-center">Datos del paciente</th>
 							<th class="text-center">Tipo</th>
 							<th class="text-center">Origen</th>
-							<th class="text-center">Estado</th>
+							<th class="text-center hidden">Estado</th>
 							<th class="text-center">@</th>
 						</tr>
 					</thead>
@@ -197,7 +214,7 @@ if(isset($_SESSION['usuario'])){?>
 			</div>
 			
 		</div>
-		<div class="container "><br>
+		<div class="container hidden"><br>
 		<div class="alert alert-info hidden-print">
 			<p><strong>Conteo de consultas:</strong> Ud. Tiene <strong id="lblCantAtendidosConsulta"></strong> atendidos y <strong id="lblCantAusentesConsulta"></strong> sin atender.</p>
 			<p><strong>Conteo de revaluados:</strong> Ud. Tiene <strong id="lblCantAtendidosRevalua"></strong> atendidos y <strong id="lblCantAusentesRevalua"></strong> sin atender.</p>
@@ -208,10 +225,10 @@ if(isset($_SESSION['usuario'])){?>
 	</div>
 		
 	<div class="container-fluid  col-sm-4  hidden-print " >
-		<div class="panel panel-default panel-negro divCompendio  sr-only" style="margin-left: -20px; margin-right: 5px;">
-			<div class="panel-heading">Compendio de paciente</div>
+		<div class="panel panel-grisOscuro divCompendio  sr-only" style="margin-left: -20px; margin-right: 5px;">
+			<div class="panel-heading hidden">Compendio de paciente</div>
 			<div class="panel-body">
-				<div class="col-xs-6">
+				<div class="col-xs-12">
 					<p><strong class="text-primary">Nombre: </strong> <em  class="text-capitalize" id="emNombre"></em></p>
 					<p><strong class="text-primary">Edad: </strong> <em class="text-capitalize" id="emEdad"></em></p>
 					<p><strong class="text-primary">Estado civil: </strong> <em class="text-capitalize" id="emCivil"></em></p>
@@ -221,9 +238,9 @@ if(isset($_SESSION['usuario'])){?>
 					<hr style="margin-top: 0px; margin-bottom: 10px;border-top: 1px solid #ccc;">
 					<p><strong class="text-primary">Última visita: </strong> <em id="emVisita"></em></p>
 					
-					<button class="btn btn-warning" data-toggle="modal" data-target=".modal-Receta" ><i class="material-icons">print</i> Crear receta</button>
+					<button class="btn btn-warning btn-outline hidden" data-toggle="modal" data-target=".modal-Receta" ><i class="material-icons">print</i> Crear receta</button>
 				</div>
-				<div class="col-xs-6"><img class="img-responsive" id="fotoCompendio" src="images/cabecera.png" alt=""></div>
+				<div class=" hidden"><img class="img-responsive" id="fotoCompendio" src="images/cabecera.png" alt=""></div>
 				
 				
 			</div>
@@ -455,16 +472,27 @@ if(isset($_SESSION['usuario'])){?>
 		<script src="js/jquery-2.2.3.min.js"></script>
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
 		<script src="js/bootstrap.min.js"></script>
-		<script src="js/bootstrap-switch.js"></script>
-		<script src="js/mijs.js"></script>
-		<script src="js/jquery.tablesorter.js"></script> <!--Documentación en: http://tablesorter.com/docs/-->
+		<!-- <script src="js/bootstrap-switch.js"></script> -->
+		<script src="js/mijs.js?version=1.0.1"></script>
+		<!-- <script src="js/jquery.tablesorter.js"></script> --> <!--Documentación en: http://tablesorter.com/docs/-->
 		<script src="js/moment.js"></script>
 		
-		<script src="js/jquery.stickytableheaders.min.js"></script>
-		<script src="js/socketCliente.js"></script>
+		<!-- <script src="js/jquery.stickytableheaders.min.js"></script> -->
+		<script src="./node_modules/socket.io-client/dist/socket.io.js"></script>
+		<script src="js/tv.js?version=1.0.6"></script>
 		<script src="js/jquery.printPage.js"></script>
 		<script src="js/moment-precise-range.js"></script>
+		<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+
 		<script>
+
+		$.ajax({url: 'php/quienSeAtiende.php', type: 'POST'}).done(function (resp) {
+			var dato=JSON.parse(resp);
+			$('#botonVerAnteriorPaciente').attr('href', 'ClientePanel.php?id='+dato.idAnterior)
+			$('#spanNombrePacienteAnterior').text(dato.antNombres);
+			$('#idPacListaLlamado').attr('href', 'ClientePanel.php?id='+dato.idEntrante)
+			$('#spanNombrePacienteLlamado').text(dato.entrNombres);
+		});
 
 		$(document).ready(function(){
 			listadoDatosUsuario();
@@ -476,11 +504,15 @@ if(isset($_SESSION['usuario'])){?>
 			$('.impresionFehaMovible').text(moment().format('[Hoy,] dddd[,] DD [de] MMMM [de] YYYY'));
 			
 			//$("table").stickyTableHeaders();      
-			$("table").stickyTableHeaders({ scrollableArea: $(".contenedorTablaFinal")[0], "fixedOffset": 0 });
+			// $("table").stickyTableHeaders({ scrollableArea: $(".contenedorTablaFinal")[0], "fixedOffset": 0 });
 			
 			//socket.emit('listarCitasXFecha',$('#dtpFecha').val());
-			listadoCitasXFecha(moment().format('YYYY-MM-DD'))
-			$('html body').animate({scrollTop: 70}, 1000);
+			listadoCitasXFecha(moment().format('YYYY-MM-DD'));
+			$(".contenedorTablaFinal").mCustomScrollbar({
+			    theme:"dark"
+			});
+
+			// $('html body').animate({scrollTop: 70}, 1000);
 			iniciarBotones();
 
 		});
@@ -500,7 +532,8 @@ if(isset($_SESSION['usuario'])){?>
 						/*<button class="btn btn-danger btnIcono btnAusente mitooltip" id="${elemento.idregistroMovimientos}" data-toggle="tooltip" data-placement="right" title="Ausente"><i class="material-icons">weekend</i></button>
 								<button class="btn btn-success btnIcono btnSiguiente mitooltip" id="${elemento.idregistroMovimientos}" data-toggle="tooltip" data-placement="right" title="Finalizar, siguiente"><i class="material-icons">record_voice_over</i></button>*/
 					botones=`
-								<button class="btn btn-morado btnIcono btnDetalles mitooltip" id="${elemento.idCliente}" data-toggle="tooltip" data-placement="right" title="Más detalles"><i class="material-icons">person_pin</i></button>`;
+							<button class="btn btn-cielo btnIcono btn-outline btnLlamada mitooltip" id="${elemento.idCliente}" data-toggle="tooltip" data-placement="top" title="Llamar al TV"><i class="material-icons">live_tv</i></button>
+							<button class="btn btn-morado btnIcono btn-outline btnDetalles mitooltip" id="${elemento.idCliente}" data-toggle="tooltip" data-placement="top" title="Ver H.C."><i class="material-icons">person_pin</i></button>`;
 					tfecha=moment(elemento.regFecha);
 					if(tfecha.hour()<=14){turno='dia'}
 					else{turno='noche'}
@@ -516,7 +549,7 @@ if(isset($_SESSION['usuario'])){?>
 								<td class="tipo">${elemento.descripcion}</td>
 								<td class="turno hidden">${turno}</td>
 								<td class="mayuscula">${elemento.prodDetalle.toLowerCase()}</td>
-								<td class="estado hidden-print">${elemento.estadoDescripcion}</td>
+								<td class="estado hidden">${elemento.estadoDescripcion}</td>
 								<td class="text-center hidden-print">
 								${botones}
 								</td>
@@ -534,8 +567,6 @@ if(isset($_SESSION['usuario'])){?>
 			});
 			
 		}
-
-			
 	
 
 		$('#dtpFecha').change(function(){
@@ -579,29 +610,29 @@ if(isset($_SESSION['usuario'])){?>
 			$('.impresionFehaMovible').text(nuevaFecha.format('dddd[,] DD [de] MMMM [de] YYYY'));
 			$('#dtpFecha').change();
 		});
-		$('#listadoFinal').on('dblclick','tr',function(){
+		$('#listadoFinal').on('click','.btnLlamada',function(){
 			//Para llamar por id a la celda que se hizo click:
 			//console.log($(this).attr('id'));
 			//Para extraer los nombres de quien se esta llamando actualmente
 			//console.log($(this).find('.pendienteNombres ').text());
+			/*if($(this).find('.estado').text()!='Finalizado' && $('#dtpFecha').val()==moment().format('YYYY-MM-DD')){				*/
 
-			if($(this).find('.estado').text()!='Finalizado' && $('#dtpFecha').val()==moment().format('YYYY-MM-DD')){				
-
-				//A continuacion se hace el llamado de los pacientes para el televisor y la actualizacion en las tablas conectadas por socket.
-				socket.emit('actualizarEstadoAtencion', $(this).attr('id'), 3);
-				socket.emit('iniciaAtencionPacientes',$(this).find('.pendienteNombres ').text(),'',$(this).find('.idPacienteEsperaLista ').text());
-				$(this).find('.estado').text('Finalizado');
+			//A continuacion se hace el llamado de los pacientes para el televisor y la actualizacion en las tablas conectadas por socket.
+			if(! $(this).hasClass('llamadoYa')){
+				$(this).addClass('llamadoYa')
+				socket.emit('actualizarEstadoAtencion', $(this).parent().parent().attr('id'), 3);
+				socket.emit('iniciaAtencionPacientes',$(this).parent().parent().find('.pendienteNombres ').text(),'',$(this).parent().parent().find('.idPacienteEsperaLista ').text(), $(this).attr('id') );
+				$(this).parent().parent().find('.estado').text('Finalizado');
 				conteoEnLaTabla();
+				/*}*/
+				$('.divCompendio').removeClass('sr-only');
+				socket.emit('listarConsolidadxCliente', $(this).attr('id'));
+				$('.divCompendio').addClass('animated fadeIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+					$('.divCompendio').removeClass('animated fadeIn')
+				});;
 			}
-			$('.divCompendio').removeClass('sr-only');
-			socket.emit('listarConsolidadxCliente', $(this).find('.idPacienteEsperaLista ').text());
-			$('.divCompendio').addClass('animated jello').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-				$('.divCompendio').removeClass('animated jello')
-			});;
-
-			
-			
 		});
+		
 		$('#listadoFinal').on('click','.btnAusente',function() {
 			var thisAcual=$(this).parent().parent();
 
@@ -696,6 +727,7 @@ if(isset($_SESSION['usuario'])){?>
 			$('#badgeTNoche').text($('#listadoFinal tbody .noche').length);			
 
 		}
+
 		// $.registroActualTabla =0;
 		// function encontrarPrimerPendiente() {
 		// 	var estadoActual='';

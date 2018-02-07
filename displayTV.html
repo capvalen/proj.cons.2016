@@ -41,14 +41,14 @@ span{font-size: 30px}
 		</div>
 	</div>
 	<audio class="audioDemo sr-only" > 
-				<source src="audio/helium.ogg" type="audio/ogg">
-			</audio>
+			<source src="audio/what-friends-are-for.mp3" type="audio/mp3">
+		</audio>
 	
 
 	</div>
 	<script src="js/jquery-2.2.3.min.js"></script>
-	<script src="./node_modules/socket.io/node_modules/socket.io-client/socket.io.js"></script>
-	<script src="js/socketCliente.js"></script>
+	<script src="./node_modules/socket.io-client/dist/socket.io.js"></script>
+	<script src="js/tv.js"></script>
 	<script>
 	$.numVideo=1;
 	$.videosLista='';
@@ -92,9 +92,11 @@ span{font-size: 30px}
 	var idCambio =2, idProximo=false;
 	var cambios=['principal','pase','proximo', 'actual'];
 	var NombresHtml=['<span>Centro médico especializado en Otorrinolaringología</span><p> <i class="fa fa-user-md" aria-hidden="true"></i> Dr. David Balbin Villaverde</p>',
-		'<span>En consulta:</span><p>Aún no hay pacientes en la lista</p>',
-		'<span><div class="col-xs-5 col-xs-offset-1">Estamos en Facebook:</div> <div class="col-xs-5">También en la Web</div></span><p 	class="mayuscula"><div class="col-xs-5 col-xs-offset-1"><i class="fa fa-facebook-official" aria-hidden="true"></i> ORL Huancayo</div> <div class="col-xs-5"><i class="fa fa-globe" aria-hidden="true"></i> ConsultorioORL.com</div></p>',
+		'<span>Estamos en Facebook:</span><p><i class="fa fa-facebook-official" aria-hidden="true"></i> ORL Huancayo </p>',
+		'<span>Call Center:</span><p><i class="fa fa-phone-square" aria-hidden="true"></i> 064-789440</p>',
 		'<span>Por favor, pase al módulo:</span><p class="mayuscula">Aún no hay pacientes en la lista</p>'];
+		/*<div class="col-xs-5">También en la Web</div></span>
+		<div class="col-xs-5"><i class="fa fa-globe" aria-hidden="true"></i> ConsultorioORL.com</div>*/
 
 
 	socket.on('solicitadoNumeroVideo',function(dato) {
@@ -169,9 +171,9 @@ span{font-size: 30px}
 		$.timer.reset(30000);
 		if(pacienteActual!='' && pacienteSiguiente!=''){
 			NombresHtml[1]=`<span>En consulta:</span><p class="mayuscula">${pacienteActual}</p>`;
-			NombresHtml[2]=`<span><span><div class="col-xs-5 col-xs-offset-1">Estamos en Facebook:</div> <div class="col-xs-5">También en la Web</div></span><p 	class="mayuscula"><div class="col-xs-5 col-xs-offset-1"><i class="fa fa-facebook-official" aria-hidden="true"></i> ORL Huancayo</div> <div class="col-xs-5"><i class="fa fa-globe" aria-hidden="true"></i> ConsultorioORL.com</div></p>`;
+			NombresHtml[2]=`<span><span><div class="col-xs-5 col-xs-offset-1">Estamos en Facebook:</div> <div class="col-xs-5">O nuestra Web</div></span><p 	class="mayuscula"><div class="col-xs-5 col-xs-offset-1"><i class="fa fa-facebook-official" aria-hidden="true"></i> ORL Huancayo</div> <div class="col-xs-5"><i class="fa fa-globe" aria-hidden="true"></i> ConsultorioORL.com</div></p>`;
 			NombresHtml[3]=`<span>Por favor, pase al módulo:</span><p class="mayuscula"><i class="fa fa-user-circle"></i> ${pacienteActual}</p>`;
-			$("audio").prop("volume", 0.3);
+			$("audio").prop("volume", 0.4);
 			$("audio").trigger('play');
 
 			//console.log(pacienteActual);
@@ -179,15 +181,15 @@ span{font-size: 30px}
 		}
 		if(pacienteActual!='' && pacienteSiguiente=='' ){
 			NombresHtml[1]=`<span>En consulta:</span><p class="mayuscula"> ${pacienteActual}</p>`;
-			NombresHtml[2]=`<span><div class="col-xs-5 col-xs-offset-1">Estamos en Facebook:</div> <div class="col-xs-5">También en la Web</div></span><p 	class="mayuscula"><div class="col-xs-5 col-xs-offset-1"><i class="fa fa-facebook-official" aria-hidden="true"></i> ORL Huancayo</div> <div class="col-xs-5"><i class="fa fa-globe" aria-hidden="true"></i> ConsultorioORL.com</div></p>`;
+			NombresHtml[2]=`<span><div class="col-xs-5 col-xs-offset-1">Estamos en Facebook:</div> <div class="col-xs-5">O nuestra Web</div></span><p 	class="mayuscula"><div class="col-xs-5 col-xs-offset-1"><i class="fa fa-facebook-official" aria-hidden="true"></i> ORL Huancayo</div> <div class="col-xs-5"><i class="fa fa-globe" aria-hidden="true"></i> ConsultorioORL.com</div></p>`;
 			NombresHtml[3]=`<span>Por favor, pase al módulo:</span><p class="mayuscula"><i class="fa fa-user-circle"></i> ${pacienteActual}</p>`;
-			$("audio").prop("volume", 0.3);
+			$("audio").prop("volume", 0.4);
 			$("audio").trigger('play');
 			//console.log(pacienteActual);console.log('No hay siguientes pacientes en espera');
 		}
 		if(pacienteActual=='' && pacienteSiguiente=='' ){
 			NombresHtml[1]=`<span>En consulta:</span><p class="mayuscula">No hay pacientes en la lista</p>`;
-			NombresHtml[2]=`<span><div class="col-xs-5 col-xs-offset-1">Estamos en Facebook:</div> <div class="col-xs-5">También en la Web</div></span><p 	class="mayuscula"><div class="col-xs-5 col-xs-offset-1"><i class="fa fa-facebook-official" aria-hidden="true"></i> ORL Huancayo</div> <div class="col-xs-5"><i class="fa fa-globe" aria-hidden="true"></i> ConsultorioORL.com</div></p>`;
+			NombresHtml[2]=`<span><div class="col-xs-5 col-xs-offset-1">Estamos en Facebook:</div> <div class="col-xs-5">O nuestra Web</div></span><p 	class="mayuscula"><div class="col-xs-5 col-xs-offset-1"><i class="fa fa-facebook-official" aria-hidden="true"></i> ORL Huancayo</div> <div class="col-xs-5"><i class="fa fa-globe" aria-hidden="true"></i> ConsultorioORL.com</div></p>`;
 			//console.log('No hay ningun paciente en cola');
 		}
 

@@ -11,10 +11,10 @@ var listaRegistrosCliente;
 $.fn.modal.prototype.constructor.Constructor.DEFAULTS.backdrop = 'static'; //Para que no cierre el modal, cuando hacen clic en cualquier parte
 $('input').focus(function(){   this.select(); }); // Selecciona todo el contenido en un input
 $('.thumbnail').mouseenter(function(){
-	$(this).children('.btn').addClass('animated bounce').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', 
+	/*$(this).children('.btn').addClass('animated bounce').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', 
 		function(){
 		$(this).removeClass('animated bounce');
-	});
+	});*/
 });
 
 $(document).ready(function(){
@@ -260,7 +260,7 @@ $('#btnIngresarPago').click(function(){
 });
 
 $('#btnGuardarMotivo').click(function(){ 
-	datosGenerales.motivo=$('#txtMotivo').val().toUpperCase();
+	datosGenerales.motivo=$('#txtMotivoHC').val().toUpperCase();
 	//socket.emit('crearHistoria',datosGenerales.idCliente,datosGenerales.motivo.toUpperCase(),usuario.idUsuario);
 	$.ajax({
 		url: 'php/insertarHistoriaClinica.php',
@@ -287,11 +287,11 @@ $('#btnGuardarMotivo').click(function(){
 	$('.modal-motivo').modal('hide');
 	
 });
-$('#txtMotivo').keypress(function(event){
+$('#txtMotivoHC').keypress(function(event){
 	if (event.keyCode === 10 || event.keyCode === 13) 
 		{event.preventDefault();
 		$('#btnGuardarMotivo').click();
-		$('#txtMotivo').val('');
+		$('#txtMotivoHC').val('');
 	 }
 });
 
