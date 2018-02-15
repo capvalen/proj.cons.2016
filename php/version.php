@@ -2,6 +2,10 @@
 echo "Ver. 1.5 Compilado 18.02.07";
 
 /*
+
+Ver 1.6
+Correcciónes en los módulos de caja y nuevo diseño de cuadre de caja
+
 Ver. 1.5
 agregar tabla seAtiende
 

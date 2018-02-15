@@ -23,6 +23,10 @@ $(document).ready(function(){
 	setInterval(function(){$('#horaServer').load("php/gethora.php");},'60000');
 	$('#listBarras').hide();	
 });
+$('.esMoneda').focusout(function(){
+	var valor= $(this).val();
+	$(this).val( parseFloat(valor).toFixed(2));
+});
 
 $('#cmbTipoPersona').change(function(){
 	//console.log($(this).val());
@@ -92,9 +96,9 @@ $(".modal").on("hidden.bs.modal", function(){
 
 $("#cmbAdelanto").change(function(){
 	switch($("#cmbAdelanto").val()){
-		case "1": $("#txtMontoPagado").val("60.00");break;
+		case "1": $("#txtClientePagaMonto").val("60.00");break;
 		case "2":
-		case "3": $("#txtMontoPagado").val("0.00");break;   
+		case "3": $("#txtClientePagaMonto").val("0.00");break;   
 	}
 });
 $('.modal-cita #asignarDias').click(function(){
@@ -225,7 +229,7 @@ $('#btnGuardarPago').click(function(){
 	if($('.modal-adelanto').find('#cmbTipoDeposito').val()==0){
 		$('.modal-adelanto').find(".mensajeError").html("Debe escoger un turno.");
 		$('.modal-adelanto').find('#divErrorPago').removeClass('sr-only');}
-	else if($('.modal-adelanto').find('#txtMontoPagado').val()<=0){
+	else if($('.modal-adelanto').find('#txtClientePagaMonto').val()<=0){
 		$('.modal-adelanto').find(".mensajeError").html("El monto no puede ser negativo o estar vacío.");
 		$('.modal-adelanto').find('#divErrorPago').removeClass('sr-only');
 	}
@@ -233,11 +237,11 @@ $('#btnGuardarPago').click(function(){
 		$('.modal-adelanto').find('#divErrorPago').addClass('sr-only');
 	//datosCitasDelDia
 	var idreg=parseInt($('.modal-adelanto').find('#lblidRegistro').text());
-	var cant=parseFloat($('.modal-adelanto').find('#txtMontoPagado').val());
+	var cant=parseFloat($('.modal-adelanto').find('#txtClientePagaMonto').val());
 	var obsv=$('.modal-adelanto').find('#txtObservacion').val();
 	$.ajax({url: 'php/insertarPago.php', type: 'POST', data: {
 		idreg: parseInt($('.modal-adelanto').find('#lblidRegistro').text()),
-		cant: parseFloat($('.modal-adelanto').find('#txtMontoPagado').val()),
+		cant: parseFloat($('.modal-adelanto').find('#txtClientePagaMonto').val()),
 		obs: obsv,
 		idcli: datosGenerales.idCliente,
 		tipoPago: 2,
@@ -464,11 +468,18 @@ $('#btnActualizarCliente').click(function(){
 $('#btnIngresarPagoExtraCliente').click(function() {
 	$('#lblidRegistro').html('0');
 	$('.modal-adelanto').modal('show');
-})
+});
+$('#txtClientePagaMonto').keyup(function (e) {
+	var code = e.which;
+	if(code==13 && $('#txtClientePagaMonto').val()!='' && $('#txtClientePagaMonto').val()>='0'   ){	e.preventDefault();
+		$('#btnGuardarPago').click();
+	}
+});
 $('#listRegistro').on('click','.btnPagar',function() {
 	var idReg=$(this).attr("id").replace('btnPagar','');
 	idRegistroMovible=idReg;
 	reconocerTurno();
+	$('#txtClientePagaMonto').val('60.00');
 	$('#lblidRegistro').html(idReg);
 	$('.modal-adelanto').modal('show');
 });
@@ -1075,7 +1086,7 @@ $('#ingresoExterno').click(function() {
 	limpiarCamposIngresos();
 	$('.modal-ingreso').find('h4').text('Ingreso de soles a caja');
 	$('.modal-ingreso').find('.modal-body p').text('¿Cuánto ingresa a caja y por qué motivo?');
-	$('.modal-ingreso').find('.modal-body label').text('Monto ingresando (S/.):');
+	$('.modal-ingreso').find('.modal-body label').text('Cantidad que ingresa (S/.):');
 	$('.modal-ingreso').modal('show');
 	
 });
@@ -1083,7 +1094,7 @@ $('#egresoExterno').click(function() {
 	limpiarCamposIngresos();
 	$('.modal-ingreso').find('h4').text('Egreso de soles de caja');
 	$('.modal-ingreso').find('.modal-body p').text('¿Cuánto egresa de caja y por qué motivo?');
-	$('.modal-ingreso').find('.modal-body label').text('Monto egresando (S/.):');
+	$('.modal-ingreso').find('.modal-body label').text('Cantidad que egresa (S/.):');
 	$('.modal-ingreso').modal('show');
 	
 

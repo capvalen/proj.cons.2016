@@ -16,7 +16,7 @@ if(isset($_SESSION['usuario'])){?>
 		<!-- Bootstrap -->
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/sticky-footer.css" rel="stylesheet">
-		<link href="css/estilos.css?version=1.2.4" rel="stylesheet">
+		<link href="css/estilos.css?version=1.2.8" rel="stylesheet">
 		<link href="css/animate.css" rel="stylesheet">
 		<link href="css/bootstrap-switch.css" rel="stylesheet">
 		<link href="css/icofont.css" rel="stylesheet">
@@ -61,22 +61,22 @@ if(isset($_SESSION['usuario'])){?>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.php"><img src="images/logoMini.png" alt=""></a>
+			<a class="navbar-brand" href="index.php"><img src="images/logoTransparente.png"  id="logoEmpresa"  alt=""></a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		<div class="collapse navbar-collapse" id="navbar-colapsador">
 			<ul class="nav navbar-nav">
 				<li><a href="index.php"><i class="material-icons">home</i></a></li>
 				<li class="active"><a href="Cliente.php"><i class="material-icons">group</i> Clientes</a></li>
 				<li dropdown><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons">monetization_on</i> Economía <span class="caret"></span></a>
-					<ul class="dropdown-menu">
+					<ul class="dropdown-menu animated fadeIn">
 						<li><a href="#" id="ingresoExterno"><span class="glyphicon glyphicon-plus"></span> Ingreso externo</a></li>
 						<li><a href="#" id="egresoExterno"><span class="glyphicon glyphicon-minus"></span> Gasto externo</a></li>
 					</ul>
 				</li>
 				<li dropdown><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons">attach_file</i> Reportes <span class="caret"></span></a>
-					<ul class="dropdown-menu">
+					<ul class="dropdown-menu animated fadeIn">
 						<li><a href="cuadrecaja.php" id="ingresoExterno"><span class="glyphicon glyphicon-piggy-bank"></span> Cuadre de caja</a></li>
 					</ul>
 				</li>
@@ -98,7 +98,7 @@ if(isset($_SESSION['usuario'])){?>
 				
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons">fingerprint</i> <span class="caret"></span></a>
-					<ul class="dropdown-menu">
+					<ul class="dropdown-menu animated fadeIn">
 						<li><a href="#" data-toggle="modal" data-target=".modal-password"><span class="glyphicon glyphicon-cog"></span> Cambiar contraseña</a></li>
 						<li role="separator" class="divider"></li>
 						<li><a href="php/cerrarSesion.php"><span class="glyphicon glyphicon-send"></span> Cerrar sesión</a></li>
@@ -406,14 +406,14 @@ if(isset($_SESSION['usuario'])){?>
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>	
-					<button type="button" class="btn btn-primary" id="btnGuardarIngreso">Guardar</button>
+					<button type="button" class="btn btn-default btn-outline" data-dismiss="modal"><i class="icofont icofont-error"></i> Cerrar</button>	
+					<button type="button" class="btn btn-azul btn-outline" id="btnGuardarIngreso"><i class="icofont icofont-diskette"></i> Guardar</button>
 				</div>
 			</div>
 		</div>
 	</div>
 
-		<!--Modal Para ingresar monto externo-->
+		<!--Modal Para restringir acceso-->
 	<div class="modal fade modal-SinPrivilegios" tabindex=-1 role="dialog">
 		<div class="modal-dialog modal-sm">
 			<div class="modal-content">
@@ -509,7 +509,7 @@ if(isset($_SESSION['usuario'])){?>
 <script src="js/moment.js"></script>
 <!-- <script src="./node_modules/socket.io-client/dist/socket.io.js"></script>  -->
 <script src="js/moment-precise-range.js"></script> 
-<script src="js/socketCliente.js?version=1.0.5"></script>
+<script src="js/socketCliente.js?version=1.0.6"></script>
 <script src="js/bootstrap-switch.js"></script>
 
 

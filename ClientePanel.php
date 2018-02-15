@@ -1469,8 +1469,8 @@ if(isset($_SESSION['usuario'])){?>
 						</div>
 						
 						<div class="form-group col-sm-6" lang="en-US"> 
-							<label for="txtMontoPagado">Monto depositado (S/.):</label>
-							<input type="number" class="form-control" id="txtMontoPagado" placeholder="S/. 0.00" min="0" step=".10">
+							<label for="txtClientePagaMonto">Monto depositado (S/.):</label>
+							<input type="number" class="form-control esMoneda" id="txtClientePagaMonto"  min="0" step="1">
 						</div>
 						<div class="form-group col-sm-12"> 
 							<label for="txtObservacion">Observaciones:</label>
@@ -1736,7 +1736,7 @@ if(isset($_SESSION['usuario'])){?>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.min.js"></script>
 <script src="js/moment.js"></script>
-<script src="js/mijs.js?v1.0.11"></script>
+<script src="js/mijs.js?v1.0.12"></script>
 <script src="js/jquery.PrintArea.js"></script>
 <script src="js/jquery.printPage.js?version=1.1"></script>
 <script src="js/bootstrap-switch.js"></script>
