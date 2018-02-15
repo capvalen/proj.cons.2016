@@ -6,6 +6,10 @@ echo "Ver. 1.5 Compilado 18.02.07";
 Ver 1.6
 Correcciónes en los módulos de caja y nuevo diseño de cuadre de caja
 
+ALTER TABLE `pagos` ADD `pagoImpreso` INT NOT NULL DEFAULT '0' COMMENT '0 para no impreso, 1 para ya reportado, 2 para eliminado' AFTER `pagoTurno`;
+
+
+
 Ver. 1.5
 agregar tabla seAtiende
 

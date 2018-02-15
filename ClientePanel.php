@@ -33,6 +33,8 @@ if(isset($_SESSION['usuario'])){?>
 	main{ background-color: #fff;	padding-bottom: 40px;margin-top: 2px; border-radius: 10px; border: 1px solid #dadada;}
 	.dropdown-menu-large .disabled > a{color: #999999!important;}
 	.dropdown-menu-large > li > ul > li > a {color: #2196F3!important;}
+	#panel-acciones .btn{ text-align: left!important; }
+	#panel-acciones .btn>i{ padding: 0 10px; }
 </style>
 	<nav class="navbar navbar-inverse">
 	<div class="container-fluid">
@@ -71,7 +73,7 @@ if(isset($_SESSION['usuario'])){?>
 			<div class="input-group">
 				<input type="text" class="form-control" id="txtBuscar" placeholder="Buscar">
 				<span class="input-group-btn">
-					<button type="button" class="btn btn-negro" id="btnBuscar"><span class="glyphicon glyphicon-search"></span></button>
+					<button type="button" class="btn btn-warning btn-outline" id="btnBuscar"><span class="glyphicon glyphicon-search"></span></button>
 				</span>
 			</div>
 			
@@ -104,9 +106,9 @@ if(isset($_SESSION['usuario'])){?>
 			</div>
 			
 		</div>
-		<div class="row">
-			<div class="col-sm-8"><h3><span class="glyphicon glyphicon-user"></span> Panel del cliente <small><span class="mayuscula" id="datoClienteTitulo"></span></small></h3></div>
-			<div class="col-sm-4 text-center"><br><small class="text-muted" id="horaServer"></small>, <small class="text-muted" id="fechaServer"></small> <p><!-- <small class="text-muted" >Usuario:</small>  --><small class="text-primary"><?php echo $_SESSION['usuario'] ;?></small></p></div><br>
+		<div class="row blue-text text-darken-1">
+			<div class="col-sm-8"><h3><span class="glyphicon glyphicon-user"></span> Panel del cliente <small class="blue-text text-darken-2"><span class="mayuscula" id="datoClienteTitulo"></span></small></h3></div>
+			<div class="col-sm-4 text-center"><br><small class="" id="horaServer"></small>, <small class="text-muted" id="fechaServer"></small> <p><!-- <small class="text-muted" >Usuario:</small>  --><small class="text-muted "><i class="icofont icofont-nurse-alt"></i> <?php echo $_SESSION['usuario'] ;?></small></p></div><br>
 		</div >
 		<div class="row" style="margin-right: 45px; margin-left: 45px;">
 		<div class="alert alert-warning alert-white rounded alert-dismissible fade in hidden" id="mnjClienteRegistrado" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
@@ -120,9 +122,9 @@ if(isset($_SESSION['usuario'])){?>
 		<ul class="nav nav-tabs" id="ulTabs" role="tablist">
 			<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-eye-open"></span> Información</a></li>
 			<li role="presentation"><a href="#calendar" aria-controls="calendar" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-calendar"></span> Calendario</a></li>
-			<li role="presentation"><a href="#receta" aria-controls="receta" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-plus-sign"></span> Recetar</a></li>
-			<li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-list-alt"></span> Comentarios <span class="label label-success" id="lblContarComentarios"></span></a></li>
-			<li role="presentation"><a href="#galeria" aria-controls="galeria" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-picture"></span> Galería <span class="label label-success" id="lblContarComentarios"></span></a></li>
+			<li class="hidden" role="presentation"><a href="#receta" aria-controls="receta" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-plus-sign"></span> Recetar</a></li>
+			<li class="hidden" role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-list-alt"></span> Comentarios <span class="label label-success" id="lblContarComentarios"></span></a></li>
+			<li class="hidden" role="presentation"><a href="#galeria" aria-controls="galeria" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-picture"></span> Galería <span class="label label-success" id="lblContarComentarios"></span></a></li>
 			
 		</ul>
 		<div class="tab-content">
@@ -133,20 +135,20 @@ if(isset($_SESSION['usuario'])){?>
 					<div class="panel-heading " >Acciones permitidas</div>-->
 						<div class="panel-body" id="panel-acciones">
 								<div class="btn-group-vertical col-xs-12" role="group" aria-label="...">
-								<button type="button" class="btn btn-cielo btn-outline" id="btnActualizarDatos"><i class="icofont icofont-marker"></i> Editar datos</button>
-								<button type="button" class="btn btn-cielo btn-outline" id="crearHistoria"><i class="material-icons">description</i> Crear historia clínica</button>
-								<button type="button" class="btn btn-cielo btn-outline" id="imprHistoria"><i class="material-icons">description</i> Ver historia clínica</button>
-								<button type="button" class="btn btn-cielo btn-outline" id="btnIngresarPagoExtraCliente"><i class="material-icons">attach_money</i> Agregar pagos extras</button>
-								<button type="button" class="btn btn-cielo btn-outline disabled" id="btnCrearCita"><i class="material-icons">event_note</i> Crear cita</button>
-								<button type="button" class="btn btn-cielo btn-outline disabled" id="btnCrearRevaluacion"><i class="material-icons">enhanced_encryption</i> Crear revaluación</button>
-								<button type="button" class="btn btn-cielo btn-outline disabled" id="btnCrearProcedimiento"><i class="material-icons">airline_seat_flat</i> Crear procedimiento</button>
+								<button type="button" class="btn btn-defaultAzul btn-outline" id="btnActualizarDatos"><i class="icofont icofont-marker"></i> Editar datos</button>
+								<button type="button" class="btn btn-defaultAzul btn-outline" id="crearHistoria"><i class="icofont icofont-id-card"></i> Crear historia clínica</button>
+								<button type="button" class="btn btn-defaultAzul btn-outline" id="imprHistoria"><i class="icofont icofont-id-card"></i> Ver historia clínica</button>
+								<button type="button" class="btn btn-defaultAzul btn-outline" id="btnIngresarPagoExtraCliente"><i class="icofont icofont-coins"></i> Agregar pagos extras</button>
+								<button type="button" class="btn btn-defaultAzul btn-outline disabled" id="btnCrearCita"><i class="icofont icofont-bed-patient"></i> Crear cita</button>
+								<button type="button" class="btn btn-defaultAzul btn-outline disabled" id="btnCrearRevaluacion"><i class="icofont icofont-stethoscope-alt"></i> Crear revaluación</button>
+								<button type="button" class="btn btn-defaultAzul btn-outline disabled" id="btnCrearProcedimiento"><i class="material-icons">airline_seat_flat</i> Crear procedimiento</button>
 								<!--<button type="button" class="btn btn-danger hidden"  id="btnEliminarCliente">Eliminar cliente</button>-->
 							</div>
 						</div><!--</div>-->
 					</div><!--Fin de col-sm-4-->
 
 					<div class="col-xs-12 col-sm-8  col-md-8">
-					<div class="panel panel-cielo" id="panelDatosMid">
+					<div class="panel panel-default" id="panelDatosMid">
 						<!--<div class="panel-heading"><h4>Datos del cliente</h4></div>-->
 						<div class="panel-body">
 							<p><i class="icofont icofont-user-alt-3"></i><strong> Datos del paciente: </strong> <span class="yellow-text text-darken-3 mayuscula" id="lblNombre" style="font-size: 18px;"></span></p>
@@ -1457,8 +1459,8 @@ if(isset($_SESSION['usuario'])){?>
 				<div class="modal-body">
 					<div class="alert alert-danger alert-dismissible fade in sr-only" id="divErrorPago" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> <strong>Hay un problema!</strong> <span class="mensajeError"></span> </div>
 					<p>Ingrese los campos requeridos a continuación:</p>
-					<div class="container-fluid">
-						<div class="form-group col-sm-4" lang="en-US"> 
+					<div class="container-fluid ">
+						<div class="form-group col-sm-4 hidden" lang="en-US"> 
 							<label for="cmbTipoDeposito">Turno:</label>
 							<div class="btn-group">
 							<select class="form-control btn-primary" id="cmbTipoDeposito">
@@ -1468,13 +1470,13 @@ if(isset($_SESSION['usuario'])){?>
 						</div>
 						</div>
 						
-						<div class="form-group col-sm-6" lang="en-US"> 
-							<label for="txtClientePagaMonto">Monto depositado (S/.):</label>
+						<div class="form-group col-sm-4" lang="en-US"> 
+							<label for="txtClientePagaMonto">¿Cuánto paga?</label>
 							<input type="number" class="form-control esMoneda" id="txtClientePagaMonto"  min="0" step="1">
 						</div>
-						<div class="form-group col-sm-12"> 
-							<label for="txtObservacion">Observaciones:</label>
-							<input type="text" class="form-control mayuscula" id="txtObservacion" placeholder="¿Alguna observación?">
+						<div class="form-group col-sm-8"> 
+							<label for="txtObservacion">Observaciones</label>
+							<input type="text" class="form-control mayuscula" id="txtObservacion" placeholder="¿Alguna observación?" autocomplete="off">
 						</div>
 						<label id="lblidRegistro" class="sr-only"></label>
 					</div>
@@ -1736,7 +1738,7 @@ if(isset($_SESSION['usuario'])){?>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.min.js"></script>
 <script src="js/moment.js"></script>
-<script src="js/mijs.js?v1.0.12"></script>
+<script src="js/mijs.js?v1.0.13"></script>
 <script src="js/jquery.PrintArea.js"></script>
 <script src="js/jquery.printPage.js?version=1.1"></script>
 <script src="js/bootstrap-switch.js"></script>

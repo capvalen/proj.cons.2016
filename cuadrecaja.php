@@ -18,6 +18,7 @@ if(isset($_SESSION['usuario'])){?>
 		<link href="css/sticky-footer.css" rel="stylesheet">
 		<link href="css/estilos.css?version=1.2.8" rel="stylesheet">
 		<link href="css/animate.css" rel="stylesheet">
+		<link href="css/bootstrap-datepicker3.css" rel="stylesheet">
 		
 		<link href="css/icofont.css" rel="stylesheet">
 
@@ -40,6 +41,7 @@ if(isset($_SESSION['usuario'])){?>
 		.pheader{background-color: #a35bb4;padding: 10px 10px; color: white; font-size: 17px; display: block; 
     clear: left; }
     	th{ color: #a35bb4;}
+    	table{color:#5f5f5f;}
 	</style>
 		<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
@@ -79,7 +81,7 @@ if(isset($_SESSION['usuario'])){?>
 				<div class="input-group">
 					<input type="text" class="form-control" id="txtBuscar" placeholder="Buscar">
 					<span class="input-group-btn">
-						<button type="button" class="btn btn-negro" id="btnBuscar"><span class="glyphicon glyphicon-search"></span></button>
+						<button type="button" class="btn btn-amarillo btn-outline" id="btnBuscar"><span class="glyphicon glyphicon-search"></span></button>
 					</span>
 				</div>
 				
@@ -113,13 +115,21 @@ if(isset($_SESSION['usuario'])){?>
 				<div class="row col-sm-7"><h3 class="purple-text" style="margin-top: 21px;"><span class="glyphicon glyphicon-piggy-bank"></span> Cierre de caja </h3></div>	
 			</div>
 			<div class="container-fluid">
-				<div class="panel panel-default">
+				<div class="col-xs-12 col-sm-8">
 					<p class="pheader">Datos de Cuadre</p>
+				
+				
+				<div class="panel panel-default ">
 					<div style="padding: 10px;">
-						<p style="color: #636363;">Por: <strong>Pariona Valencia Carlos Alex</strong></p>
-						<p style="color: #636363;">Fecha: <strong>Miércoles 14 de Febrero de 2018. 07:57 p.m.</strong></p>
+						<p style="color: #a35bb4;">Código de Caja: #<strong>850</strong></p>
+						<p style="color: #a35bb4;">Por: <strong>Pariona Valencia Carlos Alex</strong></p>
+						<p style="color: #a35bb4;">Fecha: <strong>Miércoles 14 de Febrero de 2018. 07:57 p.m.</strong></p>
 					</div>
-					
+				</div>	
+				</div>
+				<div class="col-xs-12 col-sm-4">
+					<p style="color: #a35bb4;">Seleccione fecha de reporte:</p>
+					<div class="sandbox-container"><input id="dtpFechaInicio" type="text" class="form-control text-center" placeholder="" style="color: #a35bb4;"> <span style="float: left" "><i class="icofont icofont-caret-down"></i></span></div>
 				</div>
 			</div>
 
@@ -128,15 +138,15 @@ if(isset($_SESSION['usuario'])){?>
 				<div class=" panel panel-default  ">
 					<table class="table table-hover">
 					<thead> 
-						<tr> <th># HC</th> <th>Procedencia</th> <th>Datos de Cliente</th> <th>Razón</th> <th>Cantidad</th> </tr> </thead>
+						<tr> <th># HC</th> <th>Procedencia</th> <th>Datos de Cliente</th> <th>Razón <i class="icofont icofont-long-arrow-right"></i> Usuario</th> <th>Cantidad</th> </tr> </thead>
 					<tbody>
-						<tr> <th scope="row">023003</th> <td>Particular</td> <td>Pariona Valencia, Carlos Alex</td> <td>Consulta</td> <td>S/. 60.00</td>
-						<tr> <th scope="row">039485</th> <td>Puno</td> <td>Chumbe Villanueva, Patricia</td> <td>Consulta</td> <td>S/. 60.00</td>
-						<tr> <th scope="row">039484</th> <td>Particular</td> <td>De La Cruz Cardenas, Erick</td> <td>Rinoplastía</td> <td>S/. 2600.00</td>
-						<tr> <th scope="row">039483</th> <td>Particular</td> <td>Arauco Casas, Emma Elsa</td> <td>Consulta</td> <td>S/. 50.00</td>
-						<tr> <th scope="row">039482</th> <td>Particular</td> <td>Alvarado Yupanqui, Fernando</td> <td>Consulta</td> <td>S/. 60.00</td>
-						<tr> <th scope="row"></th> <td></td> <td>Certificado médico</td> <td></td> <td>S/. 25.00</td>
-						<tr> <th scope="row"></th> <td></td> <td>Vacuna</td> <td></td> <td>S/. 30.00</td>
+						<tr> <th scope="row">023003</th> <td>Particular</td> <td>Pariona Valencia, Carlos Alex</td> <td>Consulta <i class="icofont icofont-long-arrow-right"></i> <em>cacuña</em></td> <td>S/. 60.00</td>
+						<tr> <th scope="row">039485</th> <td>Puno</td> <td>Chumbe Villanueva, Patricia</td> <td>Consulta <i class="icofont icofont-long-arrow-right"></i> <em>cacuña</em></td> <td>S/. 60.00</td>
+						<tr> <th scope="row">039484</th> <td>Particular</td> <td>De La Cruz Cardenas, Erick</td> <td>Rinoplastía <i class="icofont icofont-long-arrow-right"></i> <em>cacuña</em></td> <td>S/. 2600.00</td>
+						<tr> <th scope="row">039483</th> <td>Particular</td> <td>Arauco Casas, Emma Elsa</td> <td>Consulta <i class="icofont icofont-long-arrow-right"></i> <em>cacuña</em></td> <td>S/. 50.00</td>
+						<tr> <th scope="row">039482</th> <td>Particular</td> <td>Alvarado Yupanqui, Fernando</td> <td>Consulta <i class="icofont icofont-long-arrow-right"></i> <em>cacuña</em></td> <td>S/. 60.00</td>
+						<tr> <th scope="row"></th> <td></td> <td>Certificado médico</td> <td><i class="icofont icofont-long-arrow-right"></i> <em>cacuña</em></td> <td>S/. 25.00</td>
+						<tr> <th scope="row"></th> <td></td> <td>Vacuna</td> <td><i class="icofont icofont-long-arrow-right"></i> <em>cacuña</em></td> <td>S/. 30.00</td>
 						<tr> <th scope="row"  style="border-top: transparent;"></th> <td style="border-top: transparent;"></td> <td style="border-top: transparent;"></td> <td class="text-center" style="border-top: 1px solid #989898; color: #636363"><strong >Total</strong></td> <td style="border-top: 1px solid #989898; color: #636363"><strong>S/. 2885.00</strong></td>
 					</tbody> </table>
 				</div>
@@ -144,7 +154,11 @@ if(isset($_SESSION['usuario'])){?>
 			<div class="container-fluid col-xs-6">
 				<h4 class="pheader">Entradas de dinero</h4>
 				<div class=" panel panel-default  ">
-					<table class="table">  <thead> <tr> <th>#</th> <th>First Name</th> <th>Last Name</th> <th>Username</th> </tr> </thead> <tbody> <tr> <th scope="row">1</th> <td>Mark</td> <td>Otto</td> <td>@mdo</td> </tr> <tr> <th scope="row">2</th> <td>Jacob</td> <td>Thornton</td> <td>@fat</td> </tr> <tr> <th scope="row">3</th> <td>Larry</td> <td>the Bird</td> <td>@twitter</td> </tr> </tbody> </table>
+					<table class="table table-hover">  <thead> <tr> <th>#</th> <th>Motivo de ingreso</th> <th>Usuario</th> <th>Cantidad</th> </tr> </thead>
+					<tbody>
+						<tr> <th scope="row"></th> <td>No hay ingresos</td> <td></td><td></td><tr>
+						<tr> <th scope="row"  style="border-top: transparent;"></th>  <td style="border-top: transparent;"></td> <td class="text-center" style="border-top: 1px solid #989898; color: #636363"><strong >Total</strong></td> <td style="border-top: 1px solid #989898; color: #636363"><strong>S/. 0.00</strong></td>
+					</tbody> </table>
 				</div>
 			</div>
 			<div class="container-fluid col-xs-6">
@@ -280,12 +294,16 @@ if(isset($_SESSION['usuario'])){?>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/moment.js"></script>
 <!-- <script src="./node_modules/socket.io-client/dist/socket.io.js"></script>  -->
-<script src="js/moment-precise-range.js"></script> 
+<script src="js/mijs.js?version=1.0.2"></script>
+<script src="js/socketCliente.js?version=1.0.6"></script>
+<script src="js/moment-precise-range.js"></script>
+<script src="js/bootstrap-datepicker.js"></script>
+<script src="js/bootstrap-datepicker.es.min.js"></script>
 
 
 <script>
 	listadoDatosUsuario();
-	
+$('.sandbox-container input').datepicker({language: "es", autoclose: true, todayBtn: "linked"});	
 </script>
 	</body>
 </html>

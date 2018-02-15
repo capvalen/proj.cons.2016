@@ -89,7 +89,7 @@ if(isset($_SESSION['usuario'])){?>
 				<div class="input-group">
 					<input type="text" class="form-control" id="txtBuscar" placeholder="Buscar">
 					<span class="input-group-btn">
-						<button type="button" class="btn btn-negro" id="btnBuscar"><span class="glyphicon glyphicon-search"></span></button>
+						<button type="button" class="btn btn-amarillo btn-outline" id="btnBuscar"><span class="glyphicon glyphicon-search"></span></button>
 					</span>
 				</div>
 				

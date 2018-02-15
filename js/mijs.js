@@ -251,7 +251,7 @@ $('#btnGuardarPago').click(function(){
 		if(resp!=null){
 			if(obsv!="") {obsv= '<strong>Obs: </strong>'+obsv;}
 			$('.modal-adelanto').modal('hide');
-			$(`#Reg${idreg}`).find('.pagos').append(`<p>Pagó <strong>S/. ${parseFloat(cant).toFixed(2)}</strong> el ${moment().format('dddd[,] DD [de] MMMM [de] YYYY')}. <span class="capital">${obsv}</span>. <em>${usuario.nombre}</em></p>`);
+			$(`#Reg${idreg}`).find('.pagos').append(`<p class="deep-purple-text text-lighten-2">Pagó <strong>S/. ${parseFloat(cant).toFixed(2)}</strong> el ${moment().format('dddd[,] DD [de] MMMM [de] YYYY')}. <span class="capital">${obsv}</span>. <em>${usuario.nombre}</em></p>`);
 			$(`#Reg${idreg}`).parent().find('.moneda').html(`<span class="label label-primary pull-right">S/.</span>`);
 			if(idreg==0){$('#panelPago').removeClass('sr-only');}
 		}
@@ -1212,11 +1212,13 @@ $('#txtPassAnterior').focusout(function() {
 });
 $('.modal-password').on('show.bs.modal', function (e) {
 	$('.modal-password').find('.alert-danger').addClass('sr-only');
-  $('.modal-password').find('#txtPassAnterior').val('');
+    $('.modal-password').find('#txtPassAnterior').val('');
 	$('.modal-password').find('#txtPassNuevo').val('');
 	$('.modal-password').find('#txtPassReNuevo').val('');
 });
-
+$('.modal-adelanto').on('shown.bs.modal', function (e) {
+	$('#txtClientePagaMonto').focus();
+});
 $('#agregarNota').click(function() {
 	$('.modal-notas').find('input').val('');
 	$('.modal-notas').modal();
@@ -1285,9 +1287,9 @@ function reconocerTurno(){
 $('#btnAgregarReceta').click(function () {
 	$('.modal-Receta').modal('show');
 });
-$('.modal').on('shown.bs.modal', function () {
+/*$('.modal').on('shown.bs.modal', function () {
     $(this).find('#foc').focus();
-});
+});*/
 
 function solicitarDatosClientePanel(idCliente){
 	$.ajax({url: 'php/listarClientePanel.php',
