@@ -29,8 +29,8 @@ if(isset($_SESSION['usuario'])){?>
 		<div class="espera"></div>
 	</div>
 <style>
-	body{background-color: #383a42;}
-	main{ background-color: #fff;	padding-bottom: 40px;margin-top: 2px; border-radius: 10px;}
+	body{background-color: #f3f3f3;}
+	main{ background-color: #fff;	padding-bottom: 40px;margin-top: 2px; border-radius: 10px; border: 1px solid #dadada;}
 	.dropdown-menu-large .disabled > a{color: #999999!important;}
 	.dropdown-menu-large > li > ul > li > a {color: #2196F3!important;}
 </style>
@@ -175,7 +175,7 @@ if(isset($_SESSION['usuario'])){?>
 				<div class="mover">
 					<di class="row">
 						<div class="col-md-3 hidden-xs hidden-sm">
-						<div class="panel panel-cielo">
+						<div class="panel panel-default">
 							<!-- <div class="panel-heading">Foto</div> -->
 							<div class="panel-body text-center ">
 								<div id="mi_camara" style="width:100%; height:180px;" class="hidden-print col-sm-9 col-sm-offset-3 col-md-12 col-md-offset-0"><img src="" class="img-responsive" style="width: auto;"><br>
