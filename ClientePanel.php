@@ -16,11 +16,13 @@ if(isset($_SESSION['usuario'])){?>
 	<!-- Bootstrap -->
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/sticky-footer.css" rel="stylesheet">
-	<link href="css/estilos.css?version=1.2.4" rel="stylesheet">
+	<link href="css/estilos.css?version=1.2.6" rel="stylesheet">
 	<link href="css/animate.css" rel="stylesheet">
 	<link href="css/bootstrap-switch.css" rel="stylesheet">
 	<link rel="stylesheet" href="css/espera.css">
 	<link rel="stylesheet" href="css/icofont.css">
+	
+	<link rel="stylesheet" href="css/bootstrap-material-datetimepicker.css?version=2.0.2" />
 	
 	
 </head>
@@ -35,6 +37,9 @@ if(isset($_SESSION['usuario'])){?>
 	.dropdown-menu-large > li > ul > li > a {color: #2196F3!important;}
 	#panel-acciones .btn{ text-align: left!important; }
 	#panel-acciones .btn>i{ padding: 0 10px; }
+	th{ color: #a35bb4;}
+	#dtpFechaCitav3{font-size: 18px;height: 46px;color: #a35bb4;}
+	#dtpFechaCitav3:hover{cursor: pointer;}
 </style>
 	<nav class="navbar navbar-inverse">
 	<div class="container-fluid">
@@ -46,7 +51,7 @@ if(isset($_SESSION['usuario'])){?>
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="index.php"><img src="images/logoMini.png" alt=""></a>
+		<a class="navbar-brand" href="index.php"><img src="images/logoTransparente.png"  height="50"  alt=""></a>
 	</div>
 
 	<!-- Collect the nav links, forms, and other content for toggling -->
@@ -130,7 +135,7 @@ if(isset($_SESSION['usuario'])){?>
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane fade in active" id="home">
 				<div class="row">
-					<div class="col-xs-12 col-sm-4 col-md-3 hidden-print">
+					<div class="col-xs-12  col-md-4 col-lg-3 hidden-print">
 					<!--<div class="panel panel-default">
 					<div class="panel-heading " >Acciones permitidas</div>-->
 						<div class="panel-body" id="panel-acciones">
@@ -147,7 +152,7 @@ if(isset($_SESSION['usuario'])){?>
 						</div><!--</div>-->
 					</div><!--Fin de col-sm-4-->
 
-					<div class="col-xs-12 col-sm-8  col-md-8">
+					<div class="col-xs-12 col-md-8 col-lg-8">
 					<div class="panel panel-default" id="panelDatosMid">
 						<!--<div class="panel-heading"><h4>Datos del cliente</h4></div>-->
 						<div class="panel-body">
@@ -214,144 +219,132 @@ if(isset($_SESSION['usuario'])){?>
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-sm-4">	
-						<div class="panel panel-morita">
+						<div class="panel panel-azul">
 							<div class="panel-heading"><h4>Saltar días habiles</h4></div>
 							<div class="panel-body">
 							<div class="row">
-								<div class="col-sm-6 col-sm-offset-3 ">
-									<input type="date" class='form-control' id="dtpControladorFechasv2">
-									<h3 class="input-group-lg"><input type="number" id="txtAdelantarFechav2" class="form-control text-center" min="0" value=0 style="color: #716e70;"></h3>
+								<div class="col-sm-8 col-sm-offset-2">
+									<div class="sandbox-container hidden"><input id="dtpControladorFechasv2" type="text" class="form-control text-center inputConIco" placeholder="" style="color: #a35bb4;" autocomplete="off"> <span class="icoTransparent"><i class="icofont icofont-caret-down"></i></span></div>
+									<h3 class="input-group-lg"  style="margin-top: 0px;"><input type="number" id="txtAdelantarFechav2" class="form-control text-center" min="0" value=0 style="color: #a35bb4;"></h3>
 								</div>
 								
 							</div>
-							<div class="row"><p>
+							<div class="row">
 								<div class="text-center">
-									<button class="btn btn-primary btn-outline" id="btnSaltarDiasv2"><span class="glyphicon glyphicon-share-alt"></span> Saltar días</button>
-								</div></p>
+									<button class="btn btn-defaultAzul btn-outline" id="btnSaltarDiasv2"><span class="glyphicon glyphicon-share-alt"></span> Saltar días</button>
+								</div>
 								<p>
 								<div class="text-center">
-									<button class="btn btn-info btn-outline" id="btnMostrarDiaHoyv2"><span class="glyphicon glyphicon-share-alt"></span> Mostrar el día de hoy</button>
-								</div></p>
+									<button class="btn btn-defaultAzul btn-outline" id="btnMostrarDiaHoyv2"><span class="glyphicon glyphicon-share-alt"></span> Mostrar el día de hoy</button>
+								</div>
 								
 							</div>
 							
 							</div>
 
 						</div> <!-- Fin de panel -->
-						<div class="panel panel-default">
-							<div class="panel-body" style="color: #716e70;">
-								<div class="container row">
-								<p><strong style="color: #a9a9a9;">Resumen para: <span id="spanFechaMiniRepov2" style="color:#6d6c6c;">Lunes, 20 de Julio de 2017</span></strong></p>
-								<div class="container">
-									<p class="pReevaluacionxPaciente"><span class="glyphicon glyphicon-signal"></span> <span id="spanConteoRevaluacion">0</span> Revaluaciones</p>
-									<p class="pNuevoxPaciente"><span class="glyphicon glyphicon-signal"></span> <span id="spanConteoNuevo">0</span> Pacientes nuevos</p>
-									<p class="pOperacionxPaciente"><span class="glyphicon glyphicon-signal"></span> <span id="spanConteoOperacion">0</span> Operaciones</p>
-								</div>
-							</div>
-							</div>
-						</div>
+						
 						</div> <!-- fin de sm-4 -->
 
-						<div class="col-sm-8">
-						<div class="panel panel-menta">
-							<div class="panel-heading"><h4>Asignar una fecha específica</h4></div>
+						<div class="col-sm-4">
+						<div class="panel panel-menta" style="margin-bottom: 0px;">
+							<div class="panel-heading"><h4>Fecha para separar cita: </div>
 						</div> <!-- Fin de panel -->
-
-
 						<table class="table table-bordered">
 						<thead>
-						  <tr>
-							<th><h3><button type="button" class="btn btn-default" id="btnRestarAñov2"><i class="icofont icofont-caret-left"></i></button></h3></th>
-							<th id="trParaAño">
-								<span class="dropdown dropdown-large">
-								<button class="btn btn-lg btn-info dropdown-toggle btn-outline" data-toggle="dropdown" id="btnAñosInfo"><span id="divAñov2"></span> <b class="caret"></b></button>
-								<ul class="dropdown-menu dropdown-menu-large row" >
-									<li class="col-sm-12">
-									<ul>
-										<li class="dropdown-header">Elija un año</li>
-										<li class="divider"></li>
-										<li><a class="aAñov2" href="#" valor="2017">2017</a></li>
-										<li><a class="aAñov2" href="#" valor="2018">2018</a></li>
-										<li><a class="aAñov2" href="#" valor="2019">2019</a></li>
-									</ul>
-									</li>
-									
-
-								  </ul>
-								</span>
-							</th>
-							<th><h3><button type="button" class="btn btn-default" id="btnSumarAñov2"><i class="icofont icofont-caret-right"></i></button></h3></th>
+							<tr><td colspan="3"><input type="text" id="dtpFechaCitav3" class="form-control text-center" placeholder="Fecha para controlar citas"></td></tr>
+						  <!-- <tr>
+						  							<th><h3><button type="button" class="btn btn-default" id="btnRestarAñov2"><i class="icofont icofont-caret-left"></i></button></h3></th>
+						  							<th id="trParaAño">
+						  								<span class="dropdown dropdown-large">
+						  								<button class="btn btn-lg btn-info dropdown-toggle btn-outline" data-toggle="dropdown" id="btnAñosInfo"><span id="divAñov2"></span> <b class="caret"></b></button>
+						  								<ul class="dropdown-menu dropdown-menu-large row" >
+						  									<li class="col-sm-12">
+						  									<ul>
+						  										<li class="dropdown-header">Elija un año</li>
+						  										<li class="divider"></li>
+						  										<li><a class="aAñov2" href="#" valor="2017">2017</a></li>
+						  										<li><a class="aAñov2" href="#" valor="2018">2018</a></li>
+						  										<li><a class="aAñov2" href="#" valor="2019">2019</a></li>
+						  									</ul>
+						  									</li>
+						  									
+						  
+						  								  </ul>
+						  								</span>
+						  							</th>
+						  							<th><h3><button type="button" class="btn btn-default" id="btnSumarAñov2"><i class="icofont icofont-caret-right"></i></button></h3></th>
 						  </tr>
 						  <tr>
-							<th><h3><button type="button" class="btn btn-default" id="btnRestarMesv2"><i class="icofont icofont-caret-left"></i></button></h3></th>
-							<th id="trParaMeses">
-								<span class="dropdown dropdown-large">
-								<button class="btn btn-lg btn-info dropdown-toggle btn-outline" data-toggle="dropdown" id="btnMesesInfo"><span id="divMesv2"></span> <b class="caret"></b></button>
-								<ul class="dropdown-menu dropdown-menu-large row">
-									<ul>
-										<li class="dropdown-header">Seleccione un mes</li>
-										<li class="divider"></li>
-									</ul>
-									<li class="col-sm-6">
-									<ul>
-										<li><a class="aMesv2" href="#" valor="01">Enero</a></li>
-										<li><a class="aMesv2" href="#" valor="02">Febrero</a></li>
-										<li><a class="aMesv2" href="#" valor="03">Marzo</a></li>
-										<li><a class="aMesv2" href="#" valor="04">Abril</a></li>
-										<li><a class="aMesv2" href="#" valor="05">Mayo</a></li>
-										<li><a class="aMesv2" href="#" valor="06">Junio</a></li>
-										
-									</ul>
-									</li>
-									<li class="col-sm-6">
-									<ul>
-										<li><a class="aMesv2" href="#" valor="07">Julio</a></li>
-										<li><a class="aMesv2" href="#" valor="08">Agosto</a></li>
-										<li><a class="aMesv2" href="#" valor="09">Septiembre</a></li>
-										<li><a class="aMesv2" href="#" valor="10">Octubre</a></li>
-										<li><a class="aMesv2" href="#" valor="11">Noviembre</a></li>
-										<li><a class="aMesv2" href="#" valor="12">Diciembre</a></li>
-									</ul>
-									</li>
-
-								  </ul>
-								</span>
-							</th>
-							<th><h3><button type="button" class="btn btn-default"  id="btnSumarMesv2"><i class="icofont icofont-caret-right"></i></button></h3></th>
+						  							<th><h3><button type="button" class="btn btn-default" id="btnRestarMesv2"><i class="icofont icofont-caret-left"></i></button></h3></th>
+						  							<th id="trParaMeses">
+						  								<span class="dropdown dropdown-large">
+						  								<button class="btn btn-lg btn-info dropdown-toggle btn-outline" data-toggle="dropdown" id="btnMesesInfo"><span id="divMesv2"></span> <b class="caret"></b></button>
+						  								<ul class="dropdown-menu dropdown-menu-large row">
+						  									<ul>
+						  										<li class="dropdown-header">Seleccione un mes</li>
+						  										<li class="divider"></li>
+						  									</ul>
+						  									<li class="col-sm-6">
+						  									<ul>
+						  										<li><a class="aMesv2" href="#" valor="01">Enero</a></li>
+						  										<li><a class="aMesv2" href="#" valor="02">Febrero</a></li>
+						  										<li><a class="aMesv2" href="#" valor="03">Marzo</a></li>
+						  										<li><a class="aMesv2" href="#" valor="04">Abril</a></li>
+						  										<li><a class="aMesv2" href="#" valor="05">Mayo</a></li>
+						  										<li><a class="aMesv2" href="#" valor="06">Junio</a></li>
+						  										
+						  									</ul>
+						  									</li>
+						  									<li class="col-sm-6">
+						  									<ul>
+						  										<li><a class="aMesv2" href="#" valor="07">Julio</a></li>
+						  										<li><a class="aMesv2" href="#" valor="08">Agosto</a></li>
+						  										<li><a class="aMesv2" href="#" valor="09">Septiembre</a></li>
+						  										<li><a class="aMesv2" href="#" valor="10">Octubre</a></li>
+						  										<li><a class="aMesv2" href="#" valor="11">Noviembre</a></li>
+						  										<li><a class="aMesv2" href="#" valor="12">Diciembre</a></li>
+						  									</ul>
+						  									</li>
+						  
+						  								  </ul>
+						  								</span>
+						  							</th>
+						  							<th><h3><button type="button" class="btn btn-default"  id="btnSumarMesv2"><i class="icofont icofont-caret-right"></i></button></h3></th>
 						  </tr>
 						  <tr>
-							<th><h3><button type="button" class="btn btn-default" id="btnRestarDiav2"><i class="icofont icofont-caret-left"></i></button></h3></th>
-							<th id="trParaDias">
-								<span class="dropdown dropdown-large">
-								<button class="btn btn-lg btn-info dropdown-toggle btn-outline" data-toggle="dropdown" id="btnDiasInfo"><span id="divDiav2"></span> <b class="caret"></b></button>
-								<ul class="dropdown-menu dropdown-menu-large row">
-									<ul>
-										<li class="dropdown-header">Seleccione un día</li>
-										<li class="divider"></li>
-									</ul>
-									<li class="col-sm-4 liDeDia">
-									<ul id="ulDiaDeMes1al1">
-									</ul>
-									</li>
-									<li class="col-sm-4 liDeDia">
-									<ul id="ulDiaDeMes12al23">
-									</ul>
-									</li>
-									<li class="col-sm-4 liDeDia">
-									<ul id="ulDiaDeMes23al30">
-									</ul>
-									</li>
-
-								  </ul>
-								</span>
-							</th>
-							<th><h3><button type="button" class="btn btn-default" id="btnSumarDiav2"><i class="icofont icofont-caret-right"></i></button></h3></th>
-						  </tr>
+						  							<th><h3><button type="button" class="btn btn-default" id="btnRestarDiav2"><i class="icofont icofont-caret-left"></i></button></h3></th>
+						  							<th id="trParaDias">
+						  								<span class="dropdown dropdown-large">
+						  								<button class="btn btn-lg btn-info dropdown-toggle btn-outline" data-toggle="dropdown" id="btnDiasInfo"><span id="divDiav2"></span> <b class="caret"></b></button>
+						  								<ul class="dropdown-menu dropdown-menu-large row">
+						  									<ul>
+						  										<li class="dropdown-header">Seleccione un día</li>
+						  										<li class="divider"></li>
+						  									</ul>
+						  									<li class="col-sm-4 liDeDia">
+						  									<ul id="ulDiaDeMes1al1">
+						  									</ul>
+						  									</li>
+						  									<li class="col-sm-4 liDeDia">
+						  									<ul id="ulDiaDeMes12al23">
+						  									</ul>
+						  									</li>
+						  									<li class="col-sm-4 liDeDia">
+						  									<ul id="ulDiaDeMes23al30">
+						  									</ul>
+						  									</li>
+						  
+						  								  </ul>
+						  								</span>
+						  							</th>
+						  							<th><h3><button type="button" class="btn btn-default" id="btnSumarDiav2"><i class="icofont icofont-caret-right"></i></button></h3></th>
+						  </tr> -->
 						  <tr>
-							<th><h3><button type="button" class="btn btn-default" id="btnRestarHorav2"><i class="icofont icofont-caret-left"></i></button></h3></th>
+							<th><h3><button type="button" class="btn btn-defaultAzul" id="btnRestarHorav2"><i class="icofont icofont-caret-left"></i></button></h3></th>
 							<th id="trParaHoras">
 								<span class="dropdown dropdown-large">
-								<button class="btn btn-lg btn-info dropdown-toggle btn-outline" data-toggle="dropdown" id="btnHorasInfo"><span id="horaDisplayCalendv2"></span> <b class="caret"></b></button><span class="sr-only" id="horaAsignarCalend12v2"></span><span class="sr-only" id="horaAsignarCalend24v2"></span>
+								<button class="btn btn-lg btn-defaultAzul dropdown-toggle " data-toggle="dropdown" id="btnHorasInfo"><span id="horaDisplayCalendv2"></span> <b class="caret"></b></button><span class="sr-only" id="horaAsignarCalend12v2"></span><span class="sr-only" id="horaAsignarCalend24v2"></span>
 								<ul class="dropdown-menu dropdown-menu-large row">
 									<ul>
 										<li class="dropdown-header">Seleccione un horario</li>
@@ -387,16 +380,28 @@ if(isset($_SESSION['usuario'])){?>
 								  </ul>
 								</span>
 							</th>
-							<th><h3><button type="button" class="btn btn-default" id="btnSumarHorav2"><i class="icofont icofont-caret-right"></i></button></h3></th>
+							<th><h3><button type="button" class="btn btn-defaultAzul" id="btnSumarHorav2"><i class="icofont icofont-caret-right"></i></button></h3></th>
 						  </tr>
 						</thead>
 						
 
 					  </table >
 						</div>
-						<!-- <div class="col-sm-6">
+						<div class="col-sm-4">
+							<div class="panel panel-default">
+							<div class="panel-body" style="color: #716e70;">
+								<div class="container row">
+								<p><span style="color: #a9a9a9;">Resumen para: <strong id="spanFechaMiniRepov2" style="color:#6d6c6c;">Lunes, 20 de Julio de 2017</strong></span></p>
+								<div class="container">
+									<p class="pReevaluacionxPaciente"><span class="glyphicon glyphicon-signal"></span> <span id="spanConteoRevaluacion">0</span> Revaluaciones</p>
+									<p class="pNuevoxPaciente"><span class="glyphicon glyphicon-signal"></span> <span id="spanConteoNuevo">0</span> Pacientes nuevos</p>
+									<p class="pOperacionxPaciente"><span class="glyphicon glyphicon-signal"></span> <span id="spanConteoOperacion">0</span> Operaciones</p>
+								</div>
+							</div>
+							</div>
+						</div>
 						
-						</div> -->
+						</div>
 					  </div>
 					  <div class="row col-sm-12 hidden" id="divDomingos" style="margin-top:20px">
 					<div class="alert alert-warning alert-white rounded alert-dismissible fade in " role="alert"> <div class="icon"><i class="icofont icofont-animal-cat-alt-4"></i></div> <strong>Ups! </strong>  <span id="lblMnjCita">No hay atención por ser: <strong id="spanFeriado"></strong></span></div>
@@ -1229,516 +1234,518 @@ if(isset($_SESSION['usuario'])){?>
 }</style>
 
 
-	<!--Modal Para ingresar una receta -->
-	<div class="modal fade modal-Receta" role="dialog">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title text-primary"><span class="glyphicon glyphicon-plus-sign"></span> Ingresar receta al paciente <em>Carlos Pariona</em></h4>
-				</div>
-				<style>
-					.rowDeModal{padding-bottom: 4px;}
-				</style>
-				<div class="modal-body">
-					<div class="col-xs-1 text-center">#</div>
-					<div class="col-xs-4 text-center">Medicamento</div>
-					<div class="col-xs-1 text-center">Cant.</div>
-					<div class="col-xs-2 text-center">Dosis</div>
-					<div class="col-xs-4 text-center">Indicaciones</div>
-					
-					<div class="row rowDeModal">
-						<div class="col-xs-1 text-center"><strong>1</strong></div>
-					<div class="col-xs-4"><input type="text" class="form-control" id="foc" ></div>
-					<div class="col-xs-1"><input type="text" class="form-control" /></div>
-					<div class="col-xs-2"><input type="text" class="form-control" /></div>
-					<div class="col-xs-4"><input type="text" class="form-control" /></div>
-					</div>
-
-					<div class="row rowDeModal">
-						<div class="col-xs-1 text-center"><strong>1</strong></div>
-					<div class="col-xs-4"><input type="text" class="form-control" ></div>
-					<div class="col-xs-1"><input type="text" class="form-control" /></div>
-					<div class="col-xs-2"><input type="text" class="form-control" /></div>
-					<div class="col-xs-4"><input type="text" class="form-control" /></div>
-					</div>
-
-
-
-			<br>
-			<label for="btnAgregarNuevaFilaReceta">Agregar nueva fila </label> <button class="btn btn-warning" >+</button>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-					<button type="button" class="btn btn-primary" id="" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-save"></span> Agregar</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-	<!--Modal Para ingresar Asignar una consulta-->
-	<div class="modal fade" id="modalAsignar" role="dialog">
-		<div class="modal-dialog modal-sm">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Asignar horario</h4>
-				</div>
-				<div class="modal-body">
-					<p>¿Desea agregar la cita para la <span id="lblAsignarHoraAMPM"></span><span class="sr-only" id="lblAsignarHoraCompleta"></span>?</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-					<button type="button" class="btn btn-primary" id="btnAgregarConsultaHorario" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-save"></span> Agregar</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-	<!--Modal Para ingresar motivo de consulta-->
-	<div class="modal fade modal-motivo" tabindex=-1 role="dialog">
-		<div class="modal-dialog">
+<!--Modal Para ingresar una receta -->
+<div class="modal fade modal-Receta" role="dialog">
+	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
-				<div class="modal-tittle grey-text text-darken-3"><h4>Motivo de la visita</h4></div>          
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title text-primary"><span class="glyphicon glyphicon-plus-sign"></span> Ingresar receta al paciente <em>Carlos Pariona</em></h4>
 			</div>
+			<style>
+				.rowDeModal{padding-bottom: 4px;}
+			</style>
 			<div class="modal-body">
-				<div class="form-inline">
-					<label>Ingrese el motivo de la consulta del paciente: </label>
-					<input class="form-control mayuscula" id="txtMotivoHC" type="text" placeholder="...ingrese un motivo">
+				<div class="col-xs-1 text-center">#</div>
+				<div class="col-xs-4 text-center">Medicamento</div>
+				<div class="col-xs-1 text-center">Cant.</div>
+				<div class="col-xs-2 text-center">Dosis</div>
+				<div class="col-xs-4 text-center">Indicaciones</div>
+				
+				<div class="row rowDeModal">
+					<div class="col-xs-1 text-center"><strong>1</strong></div>
+				<div class="col-xs-4"><input type="text" class="form-control" id="foc" ></div>
+				<div class="col-xs-1"><input type="text" class="form-control" /></div>
+				<div class="col-xs-2"><input type="text" class="form-control" /></div>
+				<div class="col-xs-4"><input type="text" class="form-control" /></div>
 				</div>
+
+				<div class="row rowDeModal">
+					<div class="col-xs-1 text-center"><strong>1</strong></div>
+				<div class="col-xs-4"><input type="text" class="form-control" ></div>
+				<div class="col-xs-1"><input type="text" class="form-control" /></div>
+				<div class="col-xs-2"><input type="text" class="form-control" /></div>
+				<div class="col-xs-4"><input type="text" class="form-control" /></div>
+				</div>
+
+
+
+		<br>
+		<label for="btnAgregarNuevaFilaReceta">Agregar nueva fila </label> <button class="btn btn-warning" >+</button>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-				<button type="button" class="btn btn-primary" id="btnGuardarMotivo"><span class="glyphicon glyphicon-king"></span> Guardar</button>
-				
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+				<button type="button" class="btn btn-primary" id="" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-save"></span> Agregar</button>
 			</div>
 		</div>
-		</div>
 	</div>
+</div>
 
-	<!--Modal Para ingresar motivo de Nuevas entradas-->
-	<div class="modal fade modal-notas" tabindex=-1 role="dialog">
-		<div class="modal-dialog">
+
+<!--Modal Para ingresar Asignar una consulta-->
+<div class="modal fade" id="modalAsignar" role="dialog">
+	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
-				<div class="modal-tittle grey-text text-darken-3"><h4><span class="glyphicon glyphicon-tags"></span> Agregar nueva nota</h4></div>          
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Asignar horario</h4>
 			</div>
 			<div class="modal-body">
-				<div class="alert alert-danger alert-dismissible fade in sr-only" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> <strong>Ups!</strong> <span class="mensajeError"></span> </div>
-				<form class="form-horizontal">
-					<div class="form-group">
-						<label for="inputEmail3" class="col-sm-3 control-label">Título de la nota</label>
-						<div class="col-sm-8">
-							<input type="text" class="form-control mayuscula" id="txtTituloNota" placeholder="...Ingrese un título">
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="inputPassword3" class="col-sm-2 control-label">Mensaje</label>
-						<div class="col-sm-10">
-							<input type="text" class="form-control" id="txtMensajeNota" placeholder="...Su mensaje">
-						</div>
-					</div>
-				</form>
-				
+				<p>¿Desea agregar la cita para la <span id="lblAsignarHoraAMPM"></span><span class="sr-only" id="lblAsignarHoraCompleta"></span>?</p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-				<button type="button" class="btn btn-primary" id="btnGuardarNota"><span class="glyphicon glyphicon-bell"></span> Guardar</button>
-				
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+				<button type="button" class="btn btn-primary" id="btnAgregarConsultaHorario" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-save"></span> Agregar</button>
 			</div>
 		</div>
-		</div>
 	</div>
+</div>
 
 
-
-	<!--Modal Para ingresar cita-->
-	<div class="modal fade modal-cita" tabindex=-1 role="dialog">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
-					<div class="modal-tittle grey-text text-darken-3"><h4>Crear una nueva cita</h4></div>         
-				</div>
-				<div class="modal-body">
-					<div class="alert alert-danger alert-dismissible fade in sr-only" id="divErrorCita" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> <strong>Hay un problema!</strong> <span class="mensajeError"></span> </div>
-					<div class="container-fluid form-inline">
-						<div class="form-group">
-							<label>Programar para</label>
-							<div class="input-group">
-							<input class="form-control" id="txtAsignarDias" type="text" maxlength="2" size="2"  placeholder="...días">
-							<span class="input-group-btn">
-								<button class="btn btn-default" id="asignarDias" type="button"><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></button>
-							</span>
-							</div>
-						</div>
-						<div class="form-group ">
-							<label>Fecha:</label>
-							<input class="form-control" id="dtpFechaCita" type="date">
-						</div>
-						<div class="form-group ">
-							<label>Hora:</label>
-							<input class="form-control" id="dtpHoraCita" type="time"  step="600">
-							<label class="sr-only" id="lblidRegistroUpdate"></label>
-						</div>
-						<button type="button" class="btn btn-primary" id="btnProgramarCita">Programar</button>
-						<button type="button" class="btn btn-success sr-only" id="btnActualizarProgramacionCita">Cambiar</button>
-						<table class="container-fluid table table-hover table-condensed" id="tblCitas">
-								<thead>
-									<tr>
-										<th>Hora</th>
-										<th class="sr-only">IdPaciente</th>
-										<th>Datos del paciente</th>
-										<th>Acciones</th>
-									</tr>
-								</thead>
-								<tbody>
-									
-								</tbody>
-							</table>
-					</div>
-					
-				</div>
+<!--Modal Para ingresar motivo de consulta-->
+<div class="modal fade modal-motivo" tabindex=-1 role="dialog">
+	<div class="modal-dialog">
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
+			<div class="modal-tittle grey-text text-darken-3"><h4>Motivo de la visita</h4></div>          
+		</div>
+		<div class="modal-body">
+			<div class="form-inline">
+				<label>Ingrese el motivo de la consulta del paciente: </label>
+				<input class="form-control mayuscula" id="txtMotivoHC" type="text" placeholder="...ingrese un motivo">
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+			<button type="button" class="btn btn-primary" id="btnGuardarMotivo"><span class="glyphicon glyphicon-king"></span> Guardar</button>
 			
+		</div>
+	</div>
+	</div>
+</div>
+
+<!--Modal Para ingresar motivo de Nuevas entradas-->
+<div class="modal fade modal-notas" tabindex=-1 role="dialog">
+	<div class="modal-dialog">
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
+			<div class="modal-tittle grey-text text-darken-3"><h4><span class="glyphicon glyphicon-tags"></span> Agregar nueva nota</h4></div>          
+		</div>
+		<div class="modal-body">
+			<div class="alert alert-danger alert-dismissible fade in sr-only" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> <strong>Ups!</strong> <span class="mensajeError"></span> </div>
+			<form class="form-horizontal">
+				<div class="form-group">
+					<label for="inputEmail3" class="col-sm-3 control-label">Título de la nota</label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control mayuscula" id="txtTituloNota" placeholder="...Ingrese un título">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputPassword3" class="col-sm-2 control-label">Mensaje</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="txtMensajeNota" placeholder="...Su mensaje">
+					</div>
+				</div>
+			</form>
+			
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+			<button type="button" class="btn btn-primary" id="btnGuardarNota"><span class="glyphicon glyphicon-bell"></span> Guardar</button>
+			
+		</div>
+	</div>
+	</div>
+</div>
+
+
+
+<!--Modal Para ingresar cita-->
+<div class="modal fade modal-cita" tabindex=-1 role="dialog">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
+				<div class="modal-tittle grey-text text-darken-3"><h4>Crear una nueva cita</h4></div>         
+			</div>
+			<div class="modal-body">
+				<div class="alert alert-danger alert-dismissible fade in sr-only" id="divErrorCita" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> <strong>Hay un problema!</strong> <span class="mensajeError"></span> </div>
+				<div class="container-fluid form-inline">
+					<div class="form-group">
+						<label>Programar para</label>
+						<div class="input-group">
+						<input class="form-control" id="txtAsignarDias" type="text" maxlength="2" size="2"  placeholder="...días">
+						<span class="input-group-btn">
+							<button class="btn btn-default" id="asignarDias" type="button"><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></button>
+						</span>
+						</div>
+					</div>
+					<div class="form-group ">
+						<label>Fecha:</label>
+						<input class="form-control" id="dtpFechaCita" type="date">
+					</div>
+					<div class="form-group ">
+						<label>Hora:</label>
+						<input class="form-control" id="dtpHoraCita" type="time"  step="600">
+						<label class="sr-only" id="lblidRegistroUpdate"></label>
+					</div>
+					<button type="button" class="btn btn-primary" id="btnProgramarCita">Programar</button>
+					<button type="button" class="btn btn-success sr-only" id="btnActualizarProgramacionCita">Cambiar</button>
+					<table class="container-fluid table table-hover table-condensed" id="tblCitas">
+							<thead>
+								<tr>
+									<th>Hora</th>
+									<th class="sr-only">IdPaciente</th>
+									<th>Datos del paciente</th>
+									<th>Acciones</th>
+								</tr>
+							</thead>
+							<tbody>
+								
+							</tbody>
+						</table>
+				</div>
+				
+			</div>
+		
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>  
+			
+		</div>
+	</div>
+	</div>
+</div>
+
+
+
+<!--Modal Para ingresar monto externo-->
+<div class="modal fade modal-ingreso" tabindex=-1 role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
+				<div class="modal-tittle text-primary"><h4>Ingreso de soles a caja</h4></div>         
+			</div>
+			<div class="modal-body">
+				<div class="alert alert-danger alert-dismissible fade in sr-only" id="divErrorPago" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> <strong>Hay un problema!</strong> <span class="mensajeError"></span> </div>
+				<p>¿Cuánto ingresa a caja y por qué motivo?</p>
+				<div class="container-fluid">
+					
+					<div class="form-group col-sm-6" lang="en-US"> 
+						<label for="txtMontoPagado">Monto ingresando (S/.):</label>
+						<input type="number" class="form-control" id="txtMontoPagado" placeholder="S/. 0.00" min="0" step=".10">
+					</div>
+					<div class="form-group col-sm-6"> 
+						<strong><span for="txtObservacion">Motivo:</span></strong>
+						<input type="text" class="form-control mayuscula" id="txtMotivo" placeholder="¿Por qué motivo?">
+					</div>
+				</div>
+			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>  
-				
-			</div>
-		</div>
-		</div>
-	</div>
-
-
-
-	<!--Modal Para ingresar monto externo-->
-	<div class="modal fade modal-ingreso" tabindex=-1 role="dialog">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
-					<div class="modal-tittle text-primary"><h4>Ingreso de soles a caja</h4></div>         
-				</div>
-				<div class="modal-body">
-					<div class="alert alert-danger alert-dismissible fade in sr-only" id="divErrorPago" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> <strong>Hay un problema!</strong> <span class="mensajeError"></span> </div>
-					<p>¿Cuánto ingresa a caja y por qué motivo?</p>
-					<div class="container-fluid">
-						
-						<div class="form-group col-sm-6" lang="en-US"> 
-							<label for="txtMontoPagado">Monto ingresando (S/.):</label>
-							<input type="number" class="form-control" id="txtMontoPagado" placeholder="S/. 0.00" min="0" step=".10">
-						</div>
-						<div class="form-group col-sm-6"> 
-							<strong><span for="txtObservacion">Motivo:</span></strong>
-							<input type="text" class="form-control mayuscula" id="txtMotivo" placeholder="¿Por qué motivo?">
-						</div>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>  
-					<button type="button" class="btn btn-primary" id="btnGuardarIngreso">Guardar</button>
-				</div>
+				<button type="button" class="btn btn-primary" id="btnGuardarIngreso">Guardar</button>
 			</div>
 		</div>
 	</div>
+</div>
 
 
 
-	<!--Modal Para ingresar adelanto-->
-	<div class="modal fade modal-adelanto" tabindex=-1 role="dialog">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
-					<div class="modal-tittle grey-text text-darken-3"><h4><span class="glyphicon glyphicon-shopping-cart"></span> Depósitos de dinero de parte del cliente</h4></div>         
-				</div>
-				<div class="modal-body">
-					<div class="alert alert-danger alert-dismissible fade in sr-only" id="divErrorPago" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> <strong>Hay un problema!</strong> <span class="mensajeError"></span> </div>
-					<p>Ingrese los campos requeridos a continuación:</p>
-					<div class="container-fluid ">
-						<div class="form-group col-sm-4 hidden" lang="en-US"> 
-							<label for="cmbTipoDeposito">Turno:</label>
-							<div class="btn-group">
-							<select class="form-control btn-primary" id="cmbTipoDeposito">
-								<option class="bg-info indigo-text text-darken-4" value='1'>Día</option>
-								<option class="bg-info indigo-text text-darken-4" value='2'>Tardes y noches</option>
-							</select>
-						</div>
-						</div>
-						
-						<div class="form-group col-sm-4" lang="en-US"> 
-							<label for="txtClientePagaMonto">¿Cuánto paga?</label>
-							<input type="number" class="form-control esMoneda" id="txtClientePagaMonto"  min="0" step="1">
-						</div>
-						<div class="form-group col-sm-8"> 
-							<label for="txtObservacion">Observaciones</label>
-							<input type="text" class="form-control mayuscula" id="txtObservacion" placeholder="¿Alguna observación?" autocomplete="off">
-						</div>
-						<label id="lblidRegistro" class="sr-only"></label>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>  
-					<button type="button" class="btn btn-primary" id="btnGuardarPago"><span class="glyphicon glyphicon-floppy-saved"></span> Guardar</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	
-	<!--Modal Para Modificar Cliente existente-->
-	<div class="modal fade modal-actualizarCliente" tabindex="-1" role="dialog">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-tittle text-primary"><i class="material-icons">contact_mail</i> Actualización de datos cliente</h4>
-				</div>
-				<div class="modal-body">
-					<div class="alert alert-warning sr-only" id="mensajeErrorCliente" role="alert"><strong>Alerta! </strong><span id="contenidoErrorCliente"></span></div>
-					<div class="row container-fluid form-group">
-					
-					<div class="col-sm-3">
-						<label for="cmbProcedencia">Procedencia:</label>
-						<div class="btn-group">
-							<select class="form-control btn-primary mayuscula" id="cmbProcedencia">
-								<option value='0'>Lugar de procedencia</option>
-								<?php 
-									// Llenado por php
-									mysql_query("set charset utf8;");
-									$log = mysql_query("call listarProcedencia();");
-									while($row = mysql_fetch_array($log))
-										{
-										echo'<option class="mayuscula" value="'.$row['idProcedencia'].'">'.$row['prodDetalle'].'</option>';
-										}
-								?>
-							</select>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<label for="cmbTipoPersona">Tipo:</label>
-						<select id="cmbTipoPersona" class="form-control">
-									<option value="1" select>Mayor de edad</option>
-									<option value="2">Menor de edad</option>
-									<option value="3">No posee Dni</option>
-								</select>
-					</div>
-					<div class="col-sm-3">
-						<label for="txtDni">Documento de Identidad:</label>
-							<input type="text" class="form-control" id="txtDni" placeholder="D.N.I." maxlength="8" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')">
-					</div>
-					<div class="form-group col-sm-3">
-							<label for="chkSexo">Género:</label>
-							<input id="chkSexo" type="checkbox" data-off-color="warning" data-off-text="Dama" data-on-text="Varón" checked="false" class="BSswitch">
-						</div>
-					</div>
-					<div class="container-fluid form-inline">           
-						<div class="row">
-						<div class="form-group col-sm-4">
-							<label for="txtApellidoPaterno">Apellido paterno:</label>
-							<input type="text" class="form-control mayuscula" id="txtApellidoPaterno" placeholder="Apellido paterno" required size="30" >
-						</div>
-						<div class="form-group col-sm-4">
-							<label for="txtApellidoMaterno">Apellido materno:</label>
-							<input type="text" class="form-control mayuscula" id="txtApellidoMaterno" placeholder="Apellido materno" size="30">
-						</div>
-						<div class="form-group col-sm-4">
-							<label for="txtNombres">Nombres:</label>
-							<input type="text" class="form-control mayuscula" id="txtNombres" placeholder="Nombres" size="30">
-						</div></div><br>
-						<div class="row">
-						<div class="form-group col-sm-3">
-							<label for="dtpFechaNacimiento">Fecha de nacimiento:</label>
-							<input type="date" class="form-control " id="dtpFechaNacimiento">
-						</div>
-						<div class="col-sm-3">
-						<label for="cmbEstadoCivil">Estado civil:</label>
-							<div class="btn-group">
-								<select class="form-control mayuscula" id="cmbEstadoCivil">
-									<option value="0">Estado Civil</option>
-									<?php require('php/listarEstadoCivil.php'); ?>
-								</select>
-							</div>
-						</div>
-						<div class="col-sm-3">
-						<label for="cmbGrado">Estudios:</label>
-							<div class="btn-group">
-								<div class="btn-group">
-								<select class="form-control mayuscula" id="cmbGrado">
-									<option value="0">Grado de estudios</option>
-									<?php require('php/listarGrado.php'); ?>
-								</select>
-							</div>
-							</div>
-						</div>
-						<div class="col-sm-3">
-							<label for="cmbOcupacion">Ocupación:</label>
-							<select id="cmbOcupacion" class="form-control mayuscula">
-								<option value="0">Su ocupación</option>
-								<?php require('php/listarOcupacion.php'); ?>
-							</select>
-						</div>
-						</div><br>
-						<div class="row">
-							<div class="col-sm-6">
-								<label for="txtDireccion">Dirección de domicilio:</label>
-								<input type="text" class="form-control mayuscula" id="txtDireccion" placeholder="Dirección de domicilio" size="45">
-							</div>
-							<div class="col-sm-3">
-								<label for="txtTelefono">Teléfono:</label>
-								<input type="text" class="form-control " id="txtTelefono" placeholder="Teléfono">
-							</div>
-							<div class="col-sm-3">
-								<label for="txtCelular">Celular:</label>
-								<input type="text" class="form-control " id="txtCelular" placeholder="Celular">
-							</div>
-						</div><br>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-error" data-dismiss="modal"><span class="glyphicon glyphicon-remove-circle"></span> Cancelar</button>
-						<button type="button" class="btn btn-success" id="btnActualizarCliente"><span class="glyphicon glyphicon-refresh"></span> Actualizar</button>
-					</div>
-			</div>
-		</div></div>
-	</div>
-
-	<!--Modal Para eliminar una cita control-->
-	<div class="modal fade modal-cancelarCita">
-		<div class="modal-dialog modal-sm">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-tittle text-primary"><span class="glyphicon glyphicon-minus-sign"></span> Eliminar registro</h4>
-				</div>
-				<div class="modal-body">
-					<p>¿Realmente desea eliminar éste registro?</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-					<button type="button" class="btn btn-danger" id="btnCancelarCita"><span class="glyphicon glyphicon-floppy-remove"></span> Eliminar</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	
-
-	<!--Modal Para insertar un motivo de procedimiento-->
-	<div class="modal fade modal-motivoProcedimiento">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-tittle text-primary">Motivo del procedimiento</h4>
-				</div>
-				<div class="modal-body">
-				<div class="alert alert-danger alert-dismissible fade in sr-only" id="divErrorMotivoProcedimiento" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> <strong>Hay un problema!</strong> <span class="mensajeError"></span> </div>
-				<div class="form-inline ">
-					<label>Motivo de la del procedimiento a realizar: </label>
-					<div class="row">
-						<div class="col-sm-5">              
-							<select id="cmbTipoProcedimiento" class="form-control mayuscula">
-								<option value="0" select>Elija uno de los motivos</option>
-								<?php include "php/listarProcedimientos.php"; ?>
-
-							</select>
-						</div>
-						<div class="col-sm-5"><input class="form-control mayuscula" id="txtMotivoProcedimiento" size="35" type="text" placeholder="...ingrese su motivo"></div>
-					</div>
-				</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-					<button type="button" class="btn btn-primary" id="btnCrearMotivoProcedimiento"><span class="glyphicon glyphicon-king"></span> Crear</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	
-	<!--Modal Para mostrar los resultados de la búsqueda-->
-	<div class="modal fade modal-resultadosBusqueda" tabindex="-1" role="dialog">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header-warning">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-tittle">Resultados de la búsqueda</h4>
-				</div>
-				<div class="modal-body">
-					<p>Se encontró <strong></strong> coincidencias</p>
-					<table class="table table-condensed tablita">
-						<thead>
-							<tr>
-								<th>#</th>
-								<th>N° Historia</th>
-								<th>Nombres</th>
-								<th>Edad</th>
-								<th>@</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th scope="row">1</th>
-								<td>Mark</td>
-								<td>Otto</td>
-								<td class="hidden">0003</td>
-								<td><a class="btn btn-sm btn-success" href="#" role="button">Ver <span class="glyphicon glyphicon-user"></span></a></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-	<!--Modal Para cambiar contraseña-->
-	<div class="modal fade modal-password myPrintArea" tabindex="-1" role="dialog">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
+<!--Modal Para ingresar adelanto-->
+<div class="modal fade modal-adelanto" tabindex=-1 role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-tittle text-primary"><i class="material-icons">https</i> Cambio de contraseña</h4>
-				</div>
-				<div class="modal-body">
-					<div class="alert alert-danger alert-dismissible fade in sr-only" id="mnjClienteRegistrado" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> <strong>Error!</strong> <span id="texto"></span> </div>
-					<p>Ingrese las contraseñas a cambiar</p>
-					<div class="row container-fluid">
-						<div class="form-group col-sm-6">
-							<label for="txtPassAnterior ">Contraseña anterior:</label>
-							<input type="password" class="form-control " id="txtPassAnterior" placeholder="Contraseña anterior">
-						</div>
-						<div class="form-group col-sm-6">
-							<label for="txtPassAnterior">Nueva contraseña:</label>
-							<input type="password" class="form-control " id="txtPassNuevo" placeholder="Contraseña nueva">
-						</div>
-						<div class="form-group col-sm-6">
-							<label for="txtPassAnterior">Repita la nueva contraseña:</label>
-							<input type="password" class="form-control " id="txtPassReNuevo" placeholder="Repita su contraseña">
-						</div>
-						
+				<div class="modal-tittle grey-text text-darken-3"><h4><span class="glyphicon glyphicon-shopping-cart"></span> Depósitos de dinero de parte del cliente</h4></div>         
+			</div>
+			<div class="modal-body">
+				<div class="alert alert-danger alert-dismissible fade in sr-only" id="divErrorPago" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> <strong>Hay un problema!</strong> <span class="mensajeError"></span> </div>
+				<p>Ingrese los campos requeridos a continuación:</p>
+				<div class="container-fluid ">
+					<div class="form-group col-sm-4 hidden" lang="en-US"> 
+						<label for="cmbTipoDeposito">Turno:</label>
+						<div class="btn-group">
+						<select class="form-control btn-primary" id="cmbTipoDeposito">
+							<option class="bg-info indigo-text text-darken-4" value='1'>Día</option>
+							<option class="bg-info indigo-text text-darken-4" value='2'>Tardes y noches</option>
+						</select>
 					</div>
-
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-					<button type="button" id="guardarContraseña" class="btn btn-primary">Guardar</button>
+					</div>
+					
+					<div class="form-group col-sm-4" lang="en-US"> 
+						<label for="txtClientePagaMonto">¿Cuánto paga?</label>
+						<input type="number" class="form-control esMoneda" id="txtClientePagaMonto"  min="0" step="1">
+					</div>
+					<div class="form-group col-sm-8"> 
+						<label for="txtObservacion">Observaciones</label>
+						<input type="text" class="form-control mayuscula" id="txtObservacion" placeholder="¿Alguna observación?" autocomplete="off">
+					</div>
+					<label id="lblidRegistro" class="sr-only"></label>
 				</div>
 			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>  
+				<button type="button" class="btn btn-primary" id="btnGuardarPago"><span class="glyphicon glyphicon-floppy-saved"></span> Guardar</button>
+			</div>
 		</div>
-
 	</div>
+</div>
+
+
+<!--Modal Para Modificar Cliente existente-->
+<div class="modal fade modal-actualizarCliente" tabindex="-1" role="dialog">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-tittle text-primary"><i class="material-icons">contact_mail</i> Actualización de datos cliente</h4>
+			</div>
+			<div class="modal-body">
+				<div class="alert alert-warning sr-only" id="mensajeErrorCliente" role="alert"><strong>Alerta! </strong><span id="contenidoErrorCliente"></span></div>
+				<div class="row container-fluid form-group">
+				
+				<div class="col-sm-3">
+					<label for="cmbProcedencia">Procedencia:</label>
+					<div class="btn-group">
+						<select class="form-control btn-primary mayuscula" id="cmbProcedencia">
+							<option value='0'>Lugar de procedencia</option>
+							<?php 
+								// Llenado por php
+								mysql_query("set charset utf8;");
+								$log = mysql_query("call listarProcedencia();");
+								while($row = mysql_fetch_array($log))
+									{
+									echo'<option class="mayuscula" value="'.$row['idProcedencia'].'">'.$row['prodDetalle'].'</option>';
+									}
+							?>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<label for="cmbTipoPersona">Tipo:</label>
+					<select id="cmbTipoPersona" class="form-control">
+								<option value="1" select>Mayor de edad</option>
+								<option value="2">Menor de edad</option>
+								<option value="3">No posee Dni</option>
+							</select>
+				</div>
+				<div class="col-sm-3">
+					<label for="txtDni">Documento de Identidad:</label>
+						<input type="text" class="form-control" id="txtDni" placeholder="D.N.I." maxlength="8" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')">
+				</div>
+				<div class="form-group col-sm-3">
+						<label for="chkSexo">Género:</label>
+						<input id="chkSexo" type="checkbox" data-off-color="warning" data-off-text="Dama" data-on-text="Varón" checked="false" class="BSswitch">
+					</div>
+				</div>
+				<div class="container-fluid form-inline">           
+					<div class="row">
+					<div class="form-group col-sm-4">
+						<label for="txtApellidoPaterno">Apellido paterno:</label>
+						<input type="text" class="form-control mayuscula" id="txtApellidoPaterno" placeholder="Apellido paterno" required size="30" >
+					</div>
+					<div class="form-group col-sm-4">
+						<label for="txtApellidoMaterno">Apellido materno:</label>
+						<input type="text" class="form-control mayuscula" id="txtApellidoMaterno" placeholder="Apellido materno" size="30">
+					</div>
+					<div class="form-group col-sm-4">
+						<label for="txtNombres">Nombres:</label>
+						<input type="text" class="form-control mayuscula" id="txtNombres" placeholder="Nombres" size="30">
+					</div></div><br>
+					<div class="row">
+					<div class="form-group col-sm-3">
+						<label for="dtpFechaNacimiento">Fecha de nacimiento:</label>
+						<input type="date" class="form-control " id="dtpFechaNacimiento">
+					</div>
+					<div class="col-sm-3">
+					<label for="cmbEstadoCivil">Estado civil:</label>
+						<div class="btn-group">
+							<select class="form-control mayuscula" id="cmbEstadoCivil">
+								<option value="0">Estado Civil</option>
+								<?php require('php/listarEstadoCivil.php'); ?>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+					<label for="cmbGrado">Estudios:</label>
+						<div class="btn-group">
+							<div class="btn-group">
+							<select class="form-control mayuscula" id="cmbGrado">
+								<option value="0">Grado de estudios</option>
+								<?php require('php/listarGrado.php'); ?>
+							</select>
+						</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<label for="cmbOcupacion">Ocupación:</label>
+						<select id="cmbOcupacion" class="form-control mayuscula">
+							<option value="0">Su ocupación</option>
+							<?php require('php/listarOcupacion.php'); ?>
+						</select>
+					</div>
+					</div><br>
+					<div class="row">
+						<div class="col-sm-6">
+							<label for="txtDireccion">Dirección de domicilio:</label>
+							<input type="text" class="form-control mayuscula" id="txtDireccion" placeholder="Dirección de domicilio" size="45">
+						</div>
+						<div class="col-sm-3">
+							<label for="txtTelefono">Teléfono:</label>
+							<input type="text" class="form-control " id="txtTelefono" placeholder="Teléfono">
+						</div>
+						<div class="col-sm-3">
+							<label for="txtCelular">Celular:</label>
+							<input type="text" class="form-control " id="txtCelular" placeholder="Celular">
+						</div>
+					</div><br>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-error" data-dismiss="modal"><span class="glyphicon glyphicon-remove-circle"></span> Cancelar</button>
+					<button type="button" class="btn btn-success" id="btnActualizarCliente"><span class="glyphicon glyphicon-refresh"></span> Actualizar</button>
+				</div>
+		</div>
+	</div></div>
+</div>
+
+<!--Modal Para eliminar una cita control-->
+<div class="modal fade modal-cancelarCita">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-tittle text-primary"><span class="glyphicon glyphicon-minus-sign"></span> Eliminar registro</h4>
+			</div>
+			<div class="modal-body">
+				<p>¿Realmente desea eliminar éste registro?</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+				<button type="button" class="btn btn-danger" id="btnCancelarCita"><span class="glyphicon glyphicon-floppy-remove"></span> Eliminar</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<!--Modal Para insertar un motivo de procedimiento-->
+<div class="modal fade modal-motivoProcedimiento">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-tittle text-primary">Motivo del procedimiento</h4>
+			</div>
+			<div class="modal-body">
+			<div class="alert alert-danger alert-dismissible fade in sr-only" id="divErrorMotivoProcedimiento" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> <strong>Hay un problema!</strong> <span class="mensajeError"></span> </div>
+			<div class="form-inline ">
+				<label>Motivo de la del procedimiento a realizar: </label>
+				<div class="row">
+					<div class="col-sm-5">              
+						<select id="cmbTipoProcedimiento" class="form-control mayuscula">
+							<option value="0" select>Elija uno de los motivos</option>
+							<?php include "php/listarProcedimientos.php"; ?>
+
+						</select>
+					</div>
+					<div class="col-sm-5"><input class="form-control mayuscula" id="txtMotivoProcedimiento" size="35" type="text" placeholder="...ingrese su motivo"></div>
+				</div>
+			</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+				<button type="button" class="btn btn-primary" id="btnCrearMotivoProcedimiento"><span class="glyphicon glyphicon-king"></span> Crear</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!--Modal Para mostrar los resultados de la búsqueda-->
+<div class="modal fade modal-resultadosBusqueda" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header-warning">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-tittle">Resultados de la búsqueda</h4>
+			</div>
+			<div class="modal-body">
+				<p>Se encontró <strong></strong> coincidencias</p>
+				<table class="table table-condensed tablita">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>N° Historia</th>
+							<th>Nombres</th>
+							<th>Edad</th>
+							<th>@</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">1</th>
+							<td>Mark</td>
+							<td>Otto</td>
+							<td class="hidden">0003</td>
+							<td><a class="btn btn-sm btn-success" href="#" role="button">Ver <span class="glyphicon glyphicon-user"></span></a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!--Modal Para cambiar contraseña-->
+<div class="modal fade modal-password myPrintArea" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-tittle text-primary"><i class="material-icons">https</i> Cambio de contraseña</h4>
+			</div>
+			<div class="modal-body">
+				<div class="alert alert-danger alert-dismissible fade in sr-only" id="mnjClienteRegistrado" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> <strong>Error!</strong> <span id="texto"></span> </div>
+				<p>Ingrese las contraseñas a cambiar</p>
+				<div class="row container-fluid">
+					<div class="form-group col-sm-6">
+						<label for="txtPassAnterior ">Contraseña anterior:</label>
+						<input type="password" class="form-control " id="txtPassAnterior" placeholder="Contraseña anterior">
+					</div>
+					<div class="form-group col-sm-6">
+						<label for="txtPassAnterior">Nueva contraseña:</label>
+						<input type="password" class="form-control " id="txtPassNuevo" placeholder="Contraseña nueva">
+					</div>
+					<div class="form-group col-sm-6">
+						<label for="txtPassAnterior">Repita la nueva contraseña:</label>
+						<input type="password" class="form-control " id="txtPassReNuevo" placeholder="Repita su contraseña">
+					</div>
+					
+				</div>
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+				<button type="button" id="guardarContraseña" class="btn btn-primary">Guardar</button>
+			</div>
+		</div>
+	</div>
+
+</div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery-2.2.3.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.min.js"></script>
 <script src="js/moment.js"></script>
-<script src="js/mijs.js?v1.0.13"></script>
+<script src="js/bootstrap-datepicker.js"></script>
+<script src="js/bootstrap-datepicker.es.min.js"></script>
+<script src="js/mijs.js?version=1.0.14"></script>
 <script src="js/jquery.PrintArea.js"></script>
 <script src="js/jquery.printPage.js?version=1.1"></script>
 <script src="js/bootstrap-switch.js"></script>
@@ -1746,6 +1753,7 @@ if(isset($_SESSION['usuario'])){?>
 <script src="js/moment-precise-range.js"></script>
 <script src="js/socketCliente.js"></script>
 <script src="js/webcam.js"></script>
+<script src="./js/bootstrap-material-datetimepicker.js?version=2.0.5"></script>
 <script>
 $('.mitooltip').tooltip();
 $('.BSswitch').bootstrapSwitch('state', true);
@@ -1974,7 +1982,16 @@ function horaPorCaso(){
 
 	});
 }
-
+$('#dtpFechaCitav3').bootstrapMaterialDatePicker({
+				format: 'DD/MM/YYYY',
+				lang: 'es',
+				time: false,
+				weekStart: 1, 
+				cancelText : 'Cerrar',
+				nowButton : true,
+				switchOnClick : true,
+				okText: 'Aceptar', nowText: 'Hoy'
+			});
 $('#btnSumarHorav2').click(function () {
 	var nuevaHorav2=parseInt($('#horaAsignarCalend24v2').text())+1;
 	if(nuevaHorav2<=22 ){
@@ -2099,13 +2116,18 @@ function diasHabilesv2(){
 }
 $('#btnMostrarDiaHoyv2').click(function () {
 	$('#dtpControladorFechasv2').val( moment().format('YYYY-MM-DD')).change();
+	$('#dtpFechaCitav3').val(moment().format('DD/MM/YYYY'));
+});
+$('#dtpFechaCitav3').change(function () {
+	if(moment($('#dtpFechaCitav3').val(), 'DD/MM/YYYY').isValid()){
+		$('#dtpControladorFechasv2').val( moment($('#dtpFechaCitav3').val(), 'DD/MM/YYYY').format('YYYY-MM-DD')).change();
+	}
 });
 $('#btnSumarAñov2').click(function () {
 	var cambio= moment( $('#dtpControladorFechasv2').val(), 'YYYY-MM-DD').add(1, 'years');
 	if(cambio.year()<=2018){
 		$('#dtpControladorFechasv2').val( cambio.format('YYYY')+'-01-01').change();
 	}
-	
 });
 $('#btnRestarAñov2').click(function () {
 	var cambio= moment( $('#dtpControladorFechasv2').val(), 'YYYY-MM-DD').subtract(1, 'years');

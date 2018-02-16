@@ -16,7 +16,7 @@ if(isset($_SESSION['usuario'])){?>
 		<!-- Bootstrap -->
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/sticky-footer.css" rel="stylesheet">
-		<link href="css/estilos.css?version=1.2.8" rel="stylesheet">
+		<link href="css/estilos.css?version=1.2.9" rel="stylesheet">
 		<link href="css/animate.css" rel="stylesheet">
 		<link href="css/bootstrap-switch.css" rel="stylesheet">
 		<link href="css/icofont.css" rel="stylesheet">
@@ -50,6 +50,12 @@ if(isset($_SESSION['usuario'])){?>
 		.tablita{color: #888;}
 		hr{ margin-bottom: 5px;}
 		h3{ margin-top: 5px;}
+		option{background-color: #fff; color: #694D9F; margin-top: 5px;}
+		.form-control{ color: #694D9F;}
+		.bootstrap-switch:focus{-webkit-box-shadow: none;
+    	outline: -webkit-focus-ring-color auto 0px;}
+    	label{font-size: 13px; color: #7b7b7b}
+    	.modal-nuevoCliente i{font-size: 22px;}
 	</style>
 		<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
@@ -201,23 +207,20 @@ if(isset($_SESSION['usuario'])){?>
 
 	<!--Modal Para Ingresar nuevo cliente-->
 	<div class="modal fade modal-nuevoCliente noselect" tabindex="-1" role="dialog">
-		<div class="modal-dialog modal-lg">
+		<div class="modal-dialog  modal-lg"> <!-- -->
 			<div class="modal-content">
-				<div class="modal-header-success">
+				<div class="modal-header-moradoCalido">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
 					<h4 class="modal-tittle"><i class="icofont icofont-ui-love-add"></i> Registro de nuevo cliente</h4>
 				</div>
 				<div class="modal-body">
-					<div class="alert alert-warning sr-only" id="mensajeErrorCliente" role="alert"><strong><i class="icofont icofont-ui-text-chat"></i> Alerta! </strong><span id="contenidoErrorCliente"></span></div>
+					<div class="alert alert-warning sr-only" id="mensajeErrorCliente" role="alert"><strong><i class="icofont icofont-animal-cat-alt-3"></i> Alerta! </strong><span id="contenidoErrorCliente"></span></div>
 					<div class="row container-fluid form-group">
-					
-					<div class="col-sm-4 col-lg-3">
-						<label for="cmbProcedencia">Procedencia:</label>
-						 <div class="btn-group">
-							<select class="form-control btn-success mayuscula" id="cmbProcedencia">
+					<div class="col-sm-6 col-md-3">
+						<label for="cmbProcedencia"><i class="icofont icofont-car-alt-4"></i> Procedencia :</label>
+							<select class="form-control mayuscula" id="cmbProcedencia">
 								<option value='0'>Lugar de procedencia</option>
 								<?php 
-
 									// Llenado por php
 									mysql_query("set charset utf8;");
 									$log = mysql_query("call listarProcedencia();");
@@ -226,91 +229,89 @@ if(isset($_SESSION['usuario'])){?>
 										echo'<option class="mayuscula" value="'.$row['idProcedencia'].'">'.$row['prodDetalle'].'</option>';
 										}
 								?>
-							</select>
-						</div> 
+							</select> 
 					</div>
-					<div class="col-sm-4 col-lg-3">
-						<label for="cmbTipoPersona">Tipo:</label>
+					<div class="col-sm-6 col-md-4">
+						<label for="cmbTipoPersona"><i class="icofont icofont-id-card"></i> Tipo de persona:</label>
 						<select id="cmbTipoPersona" class="form-control">
-									<option value="1" select>Mayor de edad</option>
-									<option value="2">Menor de edad</option>
+									<option value="1" select>Mayor de edad con Dni</option>
+									<option value="2">Menor de edad con Dni</option>
 									<option value="3">No posee Dni</option>
 								</select>
 					</div>
-					<div class="col-sm-4 col-lg-3">
-						<label for="txtDni">Documento de Identidad:</label>
+					
+					</div>
+					<div class="container-fluid row">
+						<div class="col-sm-6 col-md-4">
+						<label for="txtDni"><i class="icofont icofont-id-card"></i> Documento de Identidad:</label>
 							<input type="text" class="form-control" id="txtDni" placeholder="D.N.I." maxlength="8" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')">
 					</div>
-					<div class="form-group col-sm-4 col-lg-3">
-							<label for="chkSexo">Género:</label>
-							<input id="chkSexo" type="checkbox" data-off-color="warning"  data-off-text="Dama" data-on-text="Varón" checked="false" class="BSswitch">
+					<div class="form-group col-sm-6 col-md-3">
+							<label for="dtpFechaNacimiento"><i class="icofont icofont-gift"></i> Fecha de nacimiento:</label>
+							<input type="date" class="form-control text-center" id="dtpFechaNacimiento">
 						</div>
+					<div class="form-group col-sm-4 col-lg-3">
+						<label class="" for="chkSexo"><i class="icofont icofont-dna-alt-1"></i></label><br>
+						<input id="chkSexo" type="checkbox" data-off-color="rosaKit"  data-off-text="Dama" data-on-text="Varón" checked="false" class="BSswitch">
 					</div>
-					<div class="container-fluid form-inline">						
+					</div>
+					<div class="container-fluid ">						
 						<div class="row">
 						<div class="form-group col-sm-6 col-lg-4">
-							<label for="txtApellidoPaterno">Apellido paterno:</label>
+							<label for="txtApellidoPaterno"><i class="icofont icofont-id-card"></i> Apellido paterno:</label>
 							<input type="text" class="form-control mayuscula" id="txtApellidoPaterno" placeholder="Apellido paterno" required size="30" >
 						</div>
 						<div class="form-group col-sm-6 col-lg-4">
-							<label for="txtApellidoMaterno">Apellido materno:</label>
+							<label for="txtApellidoMaterno"><i class="icofont icofont-id-card"></i> Apellido materno:</label>
 							<input type="text" class="form-control mayuscula" id="txtApellidoMaterno" placeholder="Apellido materno" size="30">
 						</div>
 						<div class="form-group col-sm-6 col-lg-4">
-							<label for="txtNombres">Nombres:</label>
+							<label for="txtNombres"><i class="icofont icofont-id-card"></i> Nombres:</label>
 							<input type="text" class="form-control mayuscula" id="txtNombres" placeholder="Nombres" size="30">
-						</div></div><br>
+						</div></div>
 						<div class="row">
-						<div class="form-group col-sm-4 col-lg-3">
-							<label for="dtpFechaNacimiento">Fecha de nacimiento:</label>
-							<input type="date" class="form-control " id="dtpFechaNacimiento">
-						</div>
-						<div class="col-sm-4 col-lg-2">
-						<label for="cmbEstadoCivil">Estado civil:</label>
-							<div class="btn-group">
+							<div class="col-sm-6">
+								<label for="txtDireccion"><i class="icofont icofont-home"></i> Dirección de domicilio:</label>
+								<input type="text" class="form-control mayuscula" id="txtDireccion" placeholder="Dirección de domicilio" size="45">
+							</div>
+							<div class="col-sm-4 col-lg-3">
+								<label for="txtTelefono"><i class="icofont icofont-phone"></i> Tlf. Fijo:</label>
+								<input type="text" class="form-control " id="txtTelefono" placeholder="Teléfono">
+							</div>
+							<div class="col-sm-4 col-lg-3">
+								<label for="txtCelular"><i class="icofont icofont-phone"></i> Celular:</label>
+								<input type="text" class="form-control " id="txtCelular" placeholder="Celular">
+							</div>
+						</div><br>
+						<div class="row">
+						
+						<div class="col-sm-6 col-md-3">
+						<label for="cmbEstadoCivil"><i class="icofont icofont-heart"></i> Estado civil:</label>
 								<select class="form-control mayuscula" id="cmbEstadoCivil">
 									<option value="0">Estado Civil</option>
 									<?php require('php/listarEstadoCivil.php'); ?>
 								</select>
-							</div>
 						</div>
-						<div class="col-sm-4 col-lg-3">
-						<label for="cmbGrado">Grado de estudios:</label>
-							<div class="btn-group">
-								<div class="btn-group">
+						<div class="col-sm-6 col-md-3">
+						<label for="cmbGrado"><i class="icofont icofont-microscope-alt"></i> Grado de estudios:</label>
 								<select class="form-control mayuscula" id="cmbGrado">
 									<option value="0">Grado de estudios</option>
 									<?php require('php/listarGrado.php'); ?>
 								</select>
-							</div>
-							</div>
 						</div>
-						<div class="col-sm-4 col-lg-3">
-							<label for="cmbOcupacion">Ocupación:</label>
+						<div class="col-sm-6 col-md-3">
+							<label for="cmbOcupacion"><i class="icofont icofont-safety-hat-light"></i> Ocupación:</label>
 							<select class="form-control mayuscula" id="cmbOcupacion" >
 								<option value="0">Su ocupación</option>
 								<?php require('php/listarOcupacion.php'); ?>
 							</select>
 						</div>
 						</div><br>
-						<div class="row">
-							<div class="col-sm-6">
-								<label for="txtDireccion">Dirección de domicilio:</label>
-								<input type="text" class="form-control mayuscula" id="txtDireccion" placeholder="Dirección de domicilio" size="45">
-							</div>
-							<div class="col-sm-4 col-lg-3">
-								<label for="txtTelefono">Teléfono:</label>
-								<input type="text" class="form-control " id="txtTelefono" placeholder="Teléfono">
-							</div>
-							<div class="col-sm-4 col-lg-3">
-								<label for="txtCelular">Celular:</label>
-								<input type="text" class="form-control " id="txtCelular" placeholder="Celular">
-							</div>
-						</div><br>
+						
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-danger btn-outline btn-error pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove-circle"></span> Cerrar ventana</button>
-						<button type="button" class="btn btn-success btn-outline" id="btnGuardarCliente"><i class="icofont icofont-folder-open"></i> Guardar cliente</button>
+						<button type="button" class="btn btn-default btn-outline btn-error pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove-circle"></span> Cerrar</button>
+						<button type="button" class="btn btn-morado btn-outline" id="btnGuardarCliente"><i class="icofont icofont-folder-open"></i> Guardar cliente</button>
 					</div>
 			</div>
 		</div>
@@ -534,6 +535,7 @@ if(isset($_SESSION['usuario'])){?>
 	
 	$('.mitooltip').tooltip();
 	$('.BSswitch').bootstrapSwitch('state', true);
+	$('.bootstrap-switch-label').text('Sexo');
 
 	$('#thumNuevoCliente').click(function () {
 		llamadoNuevoRegistroClientePorModal();

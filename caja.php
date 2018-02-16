@@ -18,8 +18,10 @@ if(isset($_SESSION['usuario'])){?>
 		<link href="css/sticky-footer.css" rel="stylesheet">
 		<link href="css/estilos.css?version=1.2.8" rel="stylesheet">
 		<link href="css/animate.css" rel="stylesheet">
+		<link href="css/bootstrap-datepicker3.css" rel="stylesheet">
+		
 		<link href="css/icofont.css" rel="stylesheet">
-		<link rel="stylesheet" href="css/bootstrap-material-datetimepicker.css?version=2.0.2" />
+
 	</head>
 	<body>
 	<style> 
@@ -40,8 +42,7 @@ if(isset($_SESSION['usuario'])){?>
 	clear: left; }
 			
 		table{color:#5f5f5f;}
-		th{color:#a35bb4}
-		#dtpFechaInicio{color: #a35bb4;}
+		
 	</style>
 		<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
@@ -121,16 +122,26 @@ if(isset($_SESSION['usuario'])){?>
 				
 				<div class="panel panel-default ">
 					<div style="padding: 10px;">
-						<p style="color: #a35bb4;">Por: <strong><?php echo $_SESSION['usuario']; ?></strong></p>
-						<p style="color: #a35bb4;">Fecha: <strong id="strFechaAhora"></strong></p>
+						<p style="color: #a35bb4;">Código de Caja: #<strong>850</strong></p>
+						<p style="color: #a35bb4;">Por: <strong>Pariona Valencia Carlos Alex</strong></p>
+						<p style="color: #a35bb4;">Fecha: <strong>Miércoles 14 de Febrero de 2018. 07:57 p.m.</strong></p>
 					</div>
 				</div>  
 				</div>
 				<div class="col-xs-12 col-sm-4">
-					<p style="color: #a35bb4;"><strong>Seleccione fecha de reporte:</strong></p>
-					<input type="text" id="dtpFechaInicio" class="form-control text-center" placeholder="Fecha para controlar citas">
-					<!--<div class="sandbox-container"><input id="dtpFechaInicio" type="text" class="form-control text-center inputConIco" placeholder="" style="color: #a35bb4;" autocomplete="off"> <span class="icoTransparent"><i class="icofont icofont-caret-down"></i></span></div> -->
-					
+					<p style="color: #a35bb4;">Seleccione fecha de reporte:</p>
+					<div class="sandbox-container"><input id="dtpFechaInicio" type="text" class="form-control text-center inputConIco" placeholder="" style="color: #a35bb4;" autocomplete="off"> <span class="icoTransparent"><i class="icofont icofont-caret-down"></i></span></div>
+					<div style="margin-top: 10px;">
+						<div class="btn-group">
+						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Seleccione turno <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu animated fadeIn" style="margin-top: 36px;">
+							<li><a href="#">Cierre 11:50 a.m. </a></li>
+							<li><a href="#">Cierre 8:50 p.m.</a></li>
+						</ul>
+						</div>
+					</div>
 				</div>
 			</div>
 
@@ -141,51 +152,35 @@ if(isset($_SESSION['usuario'])){?>
 					<thead> 
 						<tr> <th># HC</th> <th>Procedencia</th> <th>Datos de Cliente</th> <th>Razón <i class="icofont icofont-long-arrow-right"></i> Usuario</th> <th>Cantidad</th> </tr> </thead>
 					<tbody>
-						<?php 
-						if (isset($_GET['fecha'])) { //si existe lista fecha requerida
-							require_once 'php/reporteCajaDiaTR.php';
-						}else{ //sino existe lista la fecha de hoy
-							$_GET['fecha']=date('d/m/Y');
-							require_once 'php/reporteCajaDiaTR.php';
-						}
-						?>
+						<tr> <th scope="row">023003</th> <td>Particular</td> <td>Pariona Valencia, Carlos Alex</td> <td>Consulta <i class="icofont icofont-long-arrow-right"></i> <em>cacuña</em></td> <td>S/. 60.00</td>
+						<tr> <th scope="row">039485</th> <td>Puno</td> <td>Chumbe Villanueva, Patricia</td> <td>Consulta <i class="icofont icofont-long-arrow-right"></i> <em>cacuña</em></td> <td>S/. 60.00</td>
+						<tr> <th scope="row">039484</th> <td>Particular</td> <td>De La Cruz Cardenas, Erick</td> <td>Rinoplastía <i class="icofont icofont-long-arrow-right"></i> <em>cacuña</em></td> <td>S/. 2600.00</td>
+						<tr> <th scope="row">039483</th> <td>Particular</td> <td>Arauco Casas, Emma Elsa</td> <td>Consulta <i class="icofont icofont-long-arrow-right"></i> <em>cacuña</em></td> <td>S/. 50.00</td>
+						<tr> <th scope="row">039482</th> <td>Particular</td> <td>Alvarado Yupanqui, Fernando</td> <td>Consulta <i class="icofont icofont-long-arrow-right"></i> <em>cacuña</em></td> <td>S/. 60.00</td>
+						<tr> <th scope="row"></th> <td></td> <td>Certificado médico</td> <td><i class="icofont icofont-long-arrow-right"></i> <em>cacuña</em></td> <td>S/. 25.00</td>
+						<tr> <th scope="row"></th> <td></td> <td>Vacuna</td> <td><i class="icofont icofont-long-arrow-right"></i> <em>cacuña</em></td> <td>S/. 30.00</td>
+						<tr> <th scope="row"  style="border-top: transparent;"></th> <td style="border-top: transparent;"></td> <td style="border-top: transparent;"></td> <td class="text-center" style="border-top: 1px solid #989898; color: #636363"><strong >Total</strong></td> <td style="border-top: 1px solid #989898; color: #636363"><strong>S/. 2885.00</strong></td>
 					</tbody> </table>
 				</div>
 			</div>
-			<div class="container-fluid col-xs-12 col-sm-6">
+			<div class="container-fluid col-xs-6">
 				<h4 class="pheader">Entradas de dinero</h4>
 				<div class=" panel panel-default  ">
 					<table class="table table-hover">  <thead> <tr> <th>#</th> <th>Motivo de ingreso</th> <th>Usuario</th> <th>Cantidad</th> </tr> </thead>
 					<tbody>
-						<?php 
-						if (isset($_GET['fecha'])) { //si existe lista fecha requerida
-							require_once 'php/reporteIngresoDia.php';
-						}else{ //sino existe lista la fecha de hoy
-							$_GET['fecha']=date('d/m/Y');
-							require_once 'php/reporteIngresoDia.php';
-						}
-						?>
+						<tr> <th scope="row"></th> <td>No hay ingresos</td> <td></td><td></td><tr>
+						<tr> <th scope="row"  style="border-top: transparent;"></th>  <td style="border-top: transparent;"></td> <td class="text-center" style="border-top: 1px solid #989898; color: #636363"><strong >Total</strong></td> <td style="border-top: 1px solid #989898; color: #636363"><strong>S/. 0.00</strong></td>
 					</tbody> </table>
 				</div>
 			</div>
-			<div class="container-fluid col-xs-12 col-sm-6">
+			<div class="container-fluid col-xs-6">
 				<h4 class="pheader">Salidas de dinero</h4>
 				<div class=" panel panel-default  ">
-					<table class="table table-hover">  <thead> <tr> <th>#</th> <th>Motivo de egreso</th> <th>Usuario</th> <th>Cantidad</th> </tr> </thead>
-					<tbody>
-						<?php 
-						if (isset($_GET['fecha'])) { //si existe lista fecha requerida
-							require_once 'php/reporteEgresoDia.php';
-						}else{ //sino existe lista la fecha de hoy
-							$_GET['fecha']=date('d/m/Y');
-							require_once 'php/reporteEgresoDia.php';
-						}
-						?>
-					</tbody> </table>
+					<table class="table">  <thead> <tr> <th>#</th> <th>First Name</th> <th>Last Name</th> <th>Username</th> </tr> </thead> <tbody> <tr> <th scope="row">1</th> <td>Mark</td> <td>Otto</td> <td>@mdo</td> </tr> <tr> <th scope="row">2</th> <td>Jacob</td> <td>Thornton</td> <td>@fat</td> </tr> <tr> <th scope="row">3</th> <td>Larry</td> <td>the Bird</td> <td>@twitter</td> </tr> </tbody> </table>
 				</div>
 			</div>
 			<div class="container-fluid col-xs-12 text-center">
-				<h4 class="pheader">Efectivo total del día: <strong>S/. <span id="spanResultadoFinal"></span></strong></h4>
+				<h4 class="pheader">Efectivo total del día:</h4>
 			</div>
 		</main>
 		
@@ -313,41 +308,14 @@ if(isset($_SESSION['usuario'])){?>
 <!-- <script src="./node_modules/socket.io-client/dist/socket.io.js"></script>  -->
 <script src="js/bootstrap-datepicker.js"></script>
 <script src="js/bootstrap-datepicker.es.min.js"></script>
-<script src="js/mijs.js?version=1.0.16"></script>
+<script src="js/mijs.js?version=1.0.14"></script>
 <script src="js/socketCliente.js?version=1.0.6"></script>
 <script src="js/moment-precise-range.js"></script>
-<script src="./js/bootstrap-material-datetimepicker.js?version=2.0.5"></script>
 
 
 <script>
-listadoDatosUsuario();
-$('.sandbox-container input').datepicker({language: "es", autoclose: true, toggleActive: true, todayBtn: "linked", todayHighlight: true});	
-$('#dtpFechaInicio').val('<?php 
-						if (isset($_GET['fecha'])) { //si existe lista fecha requerida
-							echo $_GET['fecha'];
-						}else{ //sino existe lista la fecha de hoy
-							echo date('d/m/Y');
-						}
-						?>');
-moment.locale('es');
-$('#strFechaAhora').text(moment().format('LLLL'));
-$('#spanResultadoFinal').text(parseFloat(parseFloat($('#strSumaClientes').text())-parseFloat($('#strSumaSalida').text())+parseFloat($('#strSumaEntrada').text())).toFixed(2));
-$('#dtpFechaInicio').change(function () {
-	//console.log(moment($('#dtpFechaInicio').val(), 'DD/MM/YYYY').isValid())
-	if(moment($('#dtpFechaInicio').val(), 'DD/MM/YYYY').isValid()){
-		window.location='cuadrecaja.php?fecha='+encodeURIComponent($('#dtpFechaInicio').val());
-	}
-});
-$('#dtpFechaInicio').bootstrapMaterialDatePicker({
-		format: 'DD/MM/YYYY',
-		lang: 'es',
-		time: false,
-		weekStart: 1, 
-		cancelText : 'Cerrar',
-		nowButton : true,
-		switchOnClick : true,
-		okText: 'Aceptar', nowText: 'Hoy'
-	});
+	listadoDatosUsuario();
+
 </script>
 	</body>
 </html>

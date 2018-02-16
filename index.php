@@ -25,101 +25,107 @@ if(isset($_SESSION['usuario'])){
 
 <body >
 <style type="text/css">
-	body{background: linear-gradient(90deg, #100b19 10%, #291c40 90%);}
-	.container{ margin-top:80px; padding:0 50px}
-	.wello{padding:40px 50px; border-radius: 6px;padding-bottom: 58px;}
-	.noselect {
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none;   /* Chrome/Safari/Opera */
-  -khtml-user-select: none;    /* Konqueror */
-  -moz-user-select: none;      /* Firefox */
-  -ms-user-select: none;       /* Internet Explorer/Edge */
-  user-select: none;           /* Non-prefixed version, currently
-                                  not supported by any browser */
+.form-control:focus{    border-color: #FFEB3B;box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 6px rgba(255, 193, 7, 0.55);}
+body{background: linear-gradient(90deg, #100b19 10%, #291c40 90%);}
+main{ margin-top:80px; padding:0 50px}
+.wello{padding:40px 50px; border-radius: 6px;padding-bottom: 58px;}
+.noselect {
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none;   /* Chrome/Safari/Opera */
+	-khtml-user-select: none;    /* Konqueror */
+	-moz-user-select: none;      /* Firefox */
+	-ms-user-select: none;       /* Internet Explorer/Edge */
+	user-select: none;           /* Non-prefixed version, currently not supported by any browser */
 }
 input{height: 40px!important;}
 label{font-size: 14px!important}
+input::placeholder{font-size: 14px!important;}
+input{height: 45px!important; color: #673ab7!important;
+display: inline-block!important; font-size: 18px!important;
+    /* width: 95%!important; */}
+.icoTransparent{display: inline-block; color: #555; font-size: 16px;
+margin-left: -25px; opacity: 0.5}
+a{    color: #6d3cca;
+    font-weight: 700;}
+a:hover{color:#462782;}
 </style>
-<div class="container noselect">
-	<div class="row">
+<main class="noselect">
+	<div class="container-fluid">
 		<div class="col-md-12">
-			<div class="wello login-box" style="color:#493267" >
+			<div class="wello login-box " style="color: #673ab7"  >
 				<div class="row">
 					<div class="col-xs-4"><img src="images/VirtualCorto.png" class="img-responsive" alt=""></div>
-					<div class="col-xs-7"><h3 class="text-center" style="margin-bottom: 0px;">Virtual Pet </h3>
-						<div class="text-center"><span >Sistema para Consultorio ORL</span></div>
-						<legend  style="color:#493267"><small style=" font-size: 70%;"></small></legend></div>
+					<div class="col-xs-8"><h3 class="text-center" style="margin-bottom: 0px;">Info-Cat </h3>
+						<div class="text-center"><span >App para «Consultorio ORL»</span></div>
+						<legend  style="color:#7956C1"><small style=" font-size: 70%;"></small></legend></div>
 				</div>
 				
 			<div class="form-group">
-				<label for=""><i class="icofont icofont-doctor-alt"></i> Usuario</label>
-				<input class="form-control" value='' id="txtUser_VirtualPet" placeholder="Ingrese su nombre de usuario" type="text" autocomplete="off" />
+				<label class="hidden" for="username"><i class="icofont icofont-user"></i> Usuario</label>
+				<input class="form-control text-center" value='' id="txtUser_app" placeholder="Usuario" type="text"  /><div class="icoTransparent"><i class="icofont icofont-user"></i> </div>
 			</div>
 			<div class="form-group">
-				<label for=""><i class="icofont icofont-key"></i> Contraseña</label>
-				<input class="form-control" id="txtPassw" value='' placeholder="Contraseña" type="password" autocomplete="off" />
+				<label class="hidden" for="password"><i class="icofont icofont-key"></i> Contraseña</label>
+				<input class="form-control text-center" id="txtPassw" value='' placeholder="Contraseña" type="password" /><div class="icoTransparent"><i class="icofont icofont-ui-text-loading"></i>
 			</div>
 			
-			<div class="form-group text-center">
-				<button class="btn btn-danger btn-outline" id="btnCancelar"><i class="icofont icofont-logout"></i> Cancelar</button>
-				<button class="btn btn-morado btn-outline" id="btnAcceder"><div class="fa-spin sr-only"><i class="icofont icofont-spinner"></i> </div><i class="icofont icofont-key"></i> Iniciar</button>
+			<div class="form-group text-center"><br>
+				<button class="btn btn-danger btn-outline hidden" id="btnCancelar"><i class="icofont icofont-logout"></i> Cancelar</button>
+				<button class="btn btn-morado btn-outline btn-block btn-lg" id="btnAcceder"><div class="fa-spin sr-only"><i class="icofont icofont-spinner "></i> </div><i class="icofont icofont-key"></i> Iniciar sesión</button>
 			</div>
-			<div class="form-group text-center text-danger animated fadeIn hidden" id="divError">Error en alguno de los datos, complételos todos cuidadosamente.</div>
+			<div class="form-group text-center text-danger hidden" id="divError">Error en alguno de los datos, complételos todos cuidadosamente.</div>
 			
-			<div class="pull-right" style="margin-bottom: 10px" ><small><?php include 'php/version.php' ?> | <?php echo date("Y"); ?> <a href="https://info-cat.com/consultorioorl">® Un producto de Infocat Sol S.A.C</a></small></div>
+			<div class="pull-left" ><small><?php include 'php/version.php' ?> | 2016 - <?php echo date("Y"); ?> <a href="https://facebook.com/pg/infocat.soluciones/photos/?tab=album&album_id=2015441245336874"><br>®  Info-cat</a></small></div>
 			</div>
 		</div>
 	</div>
-</div>
+</main>
 </body>
 
-	<script src="js/jquery-2.2.4.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	
-	<!-- <script src="./node_modules/socket.io/node_modules/socket.io-client/socket.io.js"></script> 
-	<script src="js/socketCliente.js"></script>-->
-	<script>
-		$(document).ready(function () {
-			$('#txtUser_VirtualPet').val('');
-			$('#txtPassw').val('');
-			$('#txtUser_VirtualPet').focus();
-			$('.wello').addClass('animated bounceIn');
-			$('.fa-spin').addClass('sr-only');
-			//$('body').css("background-image", "url(images/fondo.jpg)");		
-		});
-		$('#txtPassw').keypress(function(event){
-			if (event.keyCode === 10 || event.keyCode === 13) 
-				{event.preventDefault();
-				$('#btnAcceder').click();
-			 }
-		});
-		$('#btnAcceder').click(function() {
-			$('.fa-spin').removeClass('sr-only');$('.icofont-key').addClass('sr-only');
-			$('#divError').addClass('hidden');
-			$.ajax({
-				type:'POST',
-				url: 'php/validarLogin.php',
-				data: {user: $('#txtUser_VirtualPet').val(), pw: $('#txtPassw').val()},
-				success: function(iduser) {
-					if (iduser!=0){//console.log('el id es '+data)
-						//console.log(iduser)
-						window.location="Cliente.php";
-					}
-					else {
-						$('#divError').removeClass('hidden');
-						//var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-						// $('#btnAcceder').addClass('animated wobble' ).one(animationEnd, function() {
-						// 		$(this).removeClass('animated wobble');
-						// });
-						$('#txtUser_VirtualPet').select();
-						$('.fa-spin').addClass('sr-only');$('.icofont-key').removeClass('sr-only');
-						//console.log(iduser);
-						console.log('error en los datos')}
+<script src="js/jquery-2.2.4.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<!-- <script src="./node_modules/socket.io/node_modules/socket.io-client/socket.io.js"></script> 
+<script src="js/socketCliente.js"></script>-->
+<script>
+	$(document).ready(function () {
+		$('#txtUser_app').val('');
+		$('#txtPassw').val('');
+		$('#txtUser_app').focus();
+		$('.wello').addClass('animated bounceIn');
+		$('.fa-spin').addClass('sr-only');
+		//$('body').css("background-image", "url(images/fondo.jpg)");		
+	});
+	$('#txtPassw').keypress(function(event){
+		if (event.keyCode === 10 || event.keyCode === 13) 
+			{event.preventDefault();
+			$('#btnAcceder').click();
+		 }
+	});
+	$('#btnAcceder').click(function() {
+		$('.fa-spin').removeClass('sr-only');$('.icofont-key').addClass('sr-only');
+		$('#divError').addClass('hidden');
+		$.ajax({
+			type:'POST',
+			url: 'php/validarLogin.php',
+			data: {user: $('#txtUser_app').val(), pw: $('#txtPassw').val()},
+			success: function(iduser) {
+				if (iduser!=0){//console.log('el id es '+data)
+					//console.log(iduser)
+					window.location="Cliente.php";
 				}
-			});
+				else {
+					$('#divError').removeClass('hidden');
+					//var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+					// $('#btnAcceder').addClass('animated wobble' ).one(animationEnd, function() {
+					// 		$(this).removeClass('animated wobble');
+					// });
+					$('#txtUser_app').select();
+					$('.fa-spin').addClass('sr-only');$('.icofont-key').removeClass('sr-only');
+					//console.log(iduser);
+					console.log('error en los datos')}
+			}
 		});
-		$('#btnCancelar').click(function () {
-			window.location='https://www.gooogle.com.pe';
-		})	
-	</script>
+	});
+</script>
 </html>

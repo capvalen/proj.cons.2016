@@ -868,6 +868,7 @@ var target = $(e.target).attr("href");
 //console.log(target);
 if(target=='#calendar'){
 	//$.queMichiEs='nada'; console.log('tabnada')
+	$('#dtpFechaCitav3').val(moment().format('DD/MM/YYYY'));
 	$('#dtpControladorFechasv2').val(moment().format('YYYY-MM-DD')); $('#dtpControladorFechasv2').change();
 }
 $('html body').animate({scrollTop: 130}, 800);
@@ -1104,10 +1105,24 @@ $('#btnGuardarIngreso').click(function() {
 		var monto=parseFloat($('.modal-ingreso #txtMontoPagado').val());
 		var moti=$('.modal-ingreso #txtMotivo').val();
 		if($('.modal-ingreso').find('h4').text()=='Ingreso de soles a caja'){
-			socket.emit('insertarIngresoExtra',monto, usuario.idUsuario, moti, reconocerTurno());
+			/*socket.emit('insertarIngresoExtra',monto, usuario.idUsuario, moti, reconocerTurno());*/
+			$.ajax({url:'php/insertarIngresoExtra.php', type:'POST', data: {
+				cant: $('#txtMontoPagado').val() , motivo: $('#txtMotivo').val()
+			}}).done(function (resp) {
+				if(resp==1){
+					$('.modal-ingreso').modal('hide');
+				}
+			});
 		}
 		if($('.modal-ingreso').find('h4').text()=='Egreso de soles de caja'){
-			socket.emit('insertarEgresoExtra',monto, usuario.idUsuario, moti , reconocerTurno());
+			/*socket.emit('insertarEgresoExtra',monto, usuario.idUsuario, moti , reconocerTurno());*/
+			$.ajax({url:'php/insertarEgresoExtra.php', type:'POST', data: {
+				cant: $('#txtMontoPagado').val() , motivo: $('#txtMotivo').val()
+			}}).done(function (resp) {
+				if(resp==1){
+					$('.modal-ingreso').modal('hide');
+				}
+			});
 		}
 	}
 });

@@ -1,7 +1,10 @@
 <?php 
-echo "Ver. 1.5 Compilado 18.02.07";
+echo "Version 1.7 Compilado 18.02.16";
 
 /*
+Ver 1.7
+Estilos
+
 
 Ver 1.6
 Correcciónes en los módulos de caja y nuevo diseño de cuadre de caja
