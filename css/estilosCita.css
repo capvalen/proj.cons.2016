@@ -20,10 +20,8 @@ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 *{font-family: "Calibri";	
 	font-size:15px}
 	
-hr{
-	margin-top: 20px;
-    margin-bottom: 5px; 
-}
+hr{margin-top: 10px;
+    margin-bottom: 5px;}
 .piePagina{font-size:11px}
 @page :first {
  margin-left: 0.5cm;

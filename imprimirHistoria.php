@@ -18,20 +18,22 @@
 		<main>
 
 			<div class="row divFecha flex-parent">
-				<div class="col-xs-8"><img src="images/logoLargo.png" alt=""></div>
-				<div class="col-xs-4 ">
-					<label class="text-right ">N° DE HISTORIA:</label>
-					<label class="text-center divHistoria"><h4><?php echo $_GET['idHistoria'];?></h4></label><br>
-					<label>INSCRIPCIÓN: <strong><span id="labelFechaInscripcion"></span></strong></label><br>
-					<label>ATENDIÓ: <strong><span><?php echo $_GET['usunom'];?></span></strong></label><br>
-					<label class="labelPaciente">PACIENTE: <strong><span class="labelPaciente"><?php echo $_GET['tipopaciente'];?></span></strong></label>
-					
+				<div class="col-xs-7"><img src="images/logoLargo.png" alt=""></div>
+				<div class="col-xs-5 ">
+					<label ><?php echo $_GET['hoy'] . ' a las '; ?><?php echo $_GET['hora']; ?></label><br>
+					<label class= text-right flex-child">N° DE HISTORIA:</label>
+					<label class=" text-center divHistoria"><h4><?php echo $_GET['idHistoria'];?></h4></label><br>
+					<label>FECHA INSCRIPCIÓN: <span><strong><?php echo $_GET['registro'];?></strong></span></label>
 				</div>
 			</div>
 			
 			<div class="row">
-				<div class="col-xs-8">APELLIDOS Y NOMBRES: <span><strong><?php echo $_GET['nombres'];?></strong></span></div> 
-				<div class="col-xs-4">OCUPACIÓN: <strong><?php 
+				<div class="col-xs-8">APELLIDOS Y NOMBRES: <span><strong><?php echo $_GET['nombres'];?></strong></span></div> <div class="col-xs-4">PACIENTE: <strong><span>PARTICULAR</span>	</strong></div>
+			</div>
+			<div class="row">
+				<div class="col-xs-4">FECHA NACIMIENTO: <strong><span><?php echo $_GET['nacimiento'];?></span></strong></div>
+				<div class="col-xs-4">ESTADO CIVIL: <strong><span><?php echo $_GET['estado'];?></span></strong></div>
+				<div class="col-xs-4">OCUPACION: <strong><?php 
 				switch ($_GET['ocupacion']) {
 					case 'EMPLEADO INDEPENDIENTE':
 						echo 'INDEPENDIENTE';
@@ -44,12 +46,6 @@
 						break;}
 				;
 				?></strong></div>
-			</div>
-
-			<div class="row">
-				<div class="col-xs-4">FECHA NACIMIENTO: <strong><span><?php echo $_GET['nacimiento'];?></span></strong></div>
-				<div class="col-xs-4">ESTADO CIVIL: <strong><span><?php echo $_GET['estado'];?></span></strong></div>
-				<div class="col-xs-4">CELULAR: <strong><span><?php echo $_GET['celular'];?></span></strong></div>
 			</div>
 			<div class="row">
 				<div class="col-xs-2">SEXO: <strong><?php echo $_GET['sexo'];?></strong></div>
@@ -143,13 +139,8 @@
 			</div>
 		</main>
 	</div>
-	<script src="js/jquery-2.2.3.min.js"></script>
-	<script src="js/moment.js"></script>
+	
 	<script>
-	moment.locale('es');
-	//var fechinscrip=moment('<?php echo $_GET['registro'];?>');
-	//$('#labelFechaInscripcion').text(fechinscrip.format('DD MMMM YYYY h:mm a'));
-	$('#labelFechaInscripcion').text(moment().format('DD MMMM YYYY h:mm a'));
 
 	</script>
 	</body>

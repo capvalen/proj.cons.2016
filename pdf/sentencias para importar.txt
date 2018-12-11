@@ -1,0 +1,132 @@
+﻿para el importado de datos.
+
+Correr las siguientes sentencias para importar la data a la BD nuestra
+
+
+
+------------- Para el ingreso del cliente
+INSERT INTO `consultorio`.`cliente`
+(`idCliente`,`cliApellidoPaterno`,`cliApellidoMaterno`,`cliNombres`,
+`cliFechaNacimiento`,`idEstadoCivil`,`cliSexo`,
+`idOcupacion`,`cliDireccion`,`cliTelefono`,`cliCelular`,
+`idProcedencia`,`idGradoEstudios`)
+SELECT cli.idcliente, apaterno, amaterno, nombre,
+fnacimiento, idEstadocivil, sexo,
+idocupacion, direccion, telefono,celular,
+idTipoCobertura, idgradoinstruccion
+ FROM prueba.clientetemporal2 cli inner join 
+prueba.historiaclinica hist on cli.idCliente = hist.idPaciente;
+
+
+
+------------- Para el ingreso del DNI
+INSERT INTO `consultorio`.`documentoidentidad`
+(`idCliente`,
+`idTipoDocumento`,
+`NumeroDocumento`)
+SELECT idcliente,  case when numdocumento ='' then '3' else '1' end as tipodoc, numdocumento  FROM prueba.clientetemporal2;
+
+
+------------- Para el ingreso de la historia clinica primero insertamos los ids cliente en la bdConsultorio como idsHistoria para luego actualizarlos
+SET FOREIGN_KEY_CHECKS=0;
+INSERT INTO `consultorio`.`historiaclinica`
+(`historiaclinica`.`idHistoriaClinica`,
+    `historiaclinica`.`hiscliFechaCreacion`,
+    `historiaclinica`.`histcliMotivo`,
+    `historiaclinica`.`idCliente`)
+select cli.idcliente, fechaRegistro,consulta ,cli.idcliente from prueba.clientetemporal2 cli;
+
+
+------------- Luego actualizamos los motivos por el que ingresó cada cliente
+UPDATE `consultorio`.`historiaclinica` histo
+inner join prueba.historiaclinica hc on hc.idhistoriaclinica= histo.idhistoriaclinica
+inner join prueba.citadetalle cit on cit.idhistoriaclinica=hc.idhistoriaclinica
+SET
+histo.`hiscliFechaCreacion` = hc.histfechaCreacion,
+histo.`histcliMotivo` = cit.consulta 
+WHERE histo.`idHistoriaClinica` =cit.idhistoriaclinica
+
+
+
+
+
+
+
+
+------------ temporal cita
+SELECT Consulta, idcliente,fechacita, IdUsuarioRegistro,FechaRegistro
+into temporalCita
+FROM citadetalle 
+inner join cita on cita.IdCita = CitaDetalle.IdCita
+
+
+
+---------------- temopral cliente
+select cliente.*,Consulta,  fechacita, horacita, IdUsuarioRegistro, FechaRegistro
+into clienteTemporal
+from Cliente left join temporalcita on Cliente.IdCliente = temporalcita.idcliente
+
+
+---------------- para dar formato a cliente temporal
+UPDATE [prueba].[dbo].[clienteTemporal]
+   SET [FechaRegistro] = '2001-01-01'
+ WHERE [FechaRegistro] is null 
+GO
+
+UPDATE [prueba].[dbo].[clienteTemporal]
+   SET consulta = ''
+ WHERE consulta is null 
+GO
+UPDATE [prueba].[dbo].[clienteTemporal]
+   SET idusuarioregistro = 1
+ WHERE idusuarioregistro  is null 
+GO
+
+
+--------------- Creando cliente temporal 2
+USE [prueba]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[clienteTemporal2](
+	[IdCliente] [int] NOT NULL,
+	[Nombre] [varchar](100) NOT NULL,
+	[APaterno] [varchar](50) NULL,
+	[AMaterno] [varchar](50) NULL,
+	[FNacimiento] [varchar](50) NULL,
+	[NumDocumento] [varchar](11) NULL,
+	[Direccion] [varchar](100) NULL,
+	[Telefono] [varchar](7) NULL,
+	[Celular] [varchar](10) NULL,
+	[Estado] [char](1) NOT NULL,
+	[IdUsuarioCreacion] [int] NOT NULL,
+	[FechaCreacion] [varchar](50) NOT NULL,
+	[Sexo] [char](1) NULL,
+	[IdEstadoCivil] int NULL,
+	[IdGradoInstruccion] int NULL,
+	[IdOcupacion] int NULL,
+	[Consulta] [varchar](100) NULL,
+	[fechacita] [varchar](50) NULL,
+	[IdUsuarioRegistro] int NULL,
+	[FechaRegistro] [varchar](50) NULL
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+
+
+
+
+------------------- Importar todo con el nuevo formato
+INSERT INTO [prueba].[dbo].[clienteTemporal2]
+select IdCliente, Nombre, APaterno, AMaterno, convert(varchar(50),FNacimiento,120), NumDocumento, Direccion, Telefono, Celular, Estado, IdUsuarioCreacion, convert(varchar(50),FechaCreacion,120), Sexo, IdEstadoCivil, IdGradoInstruccion, IdOcupacion, Consulta, convert(varchar(50),fechacita,120), IdUsuarioRegistro, convert(varchar(50),FechaRegistro,120)
+from dbo.clienteTemporal
+GO
+
+
+
+

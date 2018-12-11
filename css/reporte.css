@@ -1,4 +1,4 @@
-.micuerpo {font-family: "Calibri";	color: #0c4196;
+.micuerpo{font-family: "Calibri";	color: rgb(0,0,255);
 	font-size:15px}
 .flex-parent{
   display: -ms-flex;
@@ -17,15 +17,13 @@ h4{font-weight:700;
     margin-top: 4px;
     margin-bottom: 4px;
 }
-.divHistoria{border-style: groove; border-color: #0c4196;
-  padding:0px 5px; box-shadow: 3px 3px 5px #0c4196;}
+.divHistoria{border-style: groove; border-color: #0251D1;
+  padding:0px 5px;
+box-shadow: 3px 3px 5px #888;}
+hr{margin-top: 10px;
+    margin-bottom: 5px;}
 
-hr{border: 1px solid #0c4196; height: 0px; background-color: #0c4196;
-  margin-top: 10px; margin-bottom: 5px;}
 
-.labelPaciente{font-size:15px;
-}
-  
 
 @media print {
     * .success {

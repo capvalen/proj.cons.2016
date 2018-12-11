@@ -1,2 +1,2 @@
 <?php 
-echo date('d').'/'. date('m').'/'.date('y');?>
+echo  getdate();?>

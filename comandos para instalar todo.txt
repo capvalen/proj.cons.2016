@@ -1,5 +1,2 @@
 npm i nodemon -g
 npm i moment-precise-range-plugin
-
-npm install express
-npm install socket.io --save
