@@ -92,7 +92,7 @@ a:hover{color:#462782;}
 		$('#txtUser_app').val('');
 		$('#txtPassw').val('');
 		$('#txtUser_app').focus();
-		$('.wello').addClass('animated bounceIn');
+		/*$('.wello').addClass('animated bounceIn');*/
 		$('.fa-spin').addClass('sr-only');
 		//$('body').css("background-image", "url(images/fondo.jpg)");		
 	});

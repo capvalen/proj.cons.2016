@@ -7,7 +7,7 @@
 	mysql_query("set charset utf8;");
 	
 	$log = mysql_query("SELECT * FROM usuario WHERE usuNick='$usuario' AND usuPass=md5('$pw')");
-	echo mysql_num_rows($log);
+	
 	if (mysql_num_rows($log)>0) {
 		$row = mysql_fetch_array($log);
 		$_SESSION["usuario"] = $row['usuNombre'].' '.$row['usuApellidos']; //Me entrega el id del usuario
@@ -20,4 +20,5 @@
 		echo '0';
 		//echo "SELECT * FROM usuario WHERE usuNick='$usuario' AND usuPass='$pw'";
 	}
+echo mysql_num_rows($log);
 ?>

@@ -1,5 +1,5 @@
 <?php 
-echo "Version 1.7 Compilado 18.02.16";
+echo "Version 1.8.1 Compilado 18.12.10";
 
 /*
 Ver 1.7

@@ -9,7 +9,7 @@ var clienteSql = mysql.createConnection({
 	'port' : 3306
 });
 
-clienteSql.query('use consultorioweb');
+clienteSql.query('use consultorio');
 
 var server = require('http').Server(app);
 

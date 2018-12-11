@@ -59,7 +59,7 @@
 					<ul class="dropdown-menu">
 						<li><a href="#" data-toggle="modal" data-target=".modal-password">Cambiar contraseña</a></li>
 						<li role="separator" class="divider"></li>
-						<li><a href="#">Cerrar sesión</a></li>
+						<li><a href="php/cerrarSesion.php">Cerrar sesión</a></li>
 					</ul>
 				</li>
 			</ul>
@@ -277,6 +277,38 @@
 							</tr>
 						</tbody>
 					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!--Modal Para ingresar monto externo-->
+	<div class="modal fade modal-ingreso" tabindex=-1 role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
+					<div class="modal-tittle text-primary"><h4>Ingreso de soles a caja</h4></div>					
+				</div>
+				<div class="modal-body">
+					<div class="alert alert-danger alert-dismissible fade in sr-only" id="divErrorPago" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> <strong>Hay un problema!</strong> <span class="mensajeError"></span> </div>
+					<p>¿Cuánto ingresa a caja y por qué motivo?</p>
+					<div class="container-fluid">
+						
+						<div class="form-group col-sm-6" lang="en-US"> 
+							<label for="txtMontoPagado">Monto ingresando (S/.):</label>
+							<input type="number" class="form-control" id="txtMontoPagado" placeholder="S/. 0.00" min="0" step=".10">
+						</div>
+						<div class="form-group col-sm-6"> 
+							<label for="txtObservacion">Motivo:</label>
+							<input type="text" class="form-control mayuscula" id="txtMotivo" placeholder="¿Por qué ingresa a caja?">
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>	
+					<button type="button" class="btn btn-primary" id="btnGuardarIngreso">Guardar</button>
 				</div>
 			</div>
 		</div>

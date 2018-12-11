@@ -1,4 +1,4 @@
-var socket = io.connect('http://192.168.1.60:8080', { 'forceNew': true });
+var socket = io.connect('http://192.168.1.187:8080', { 'forceNew': true });
 
 
 function listadoDatosUsuario(){

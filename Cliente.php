@@ -71,47 +71,46 @@ if(isset($_SESSION['usuario'])){?>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse" id="navbar-colapsador">
-			<ul class="nav navbar-nav">
-				<li><a href="index.php"><i class="material-icons">home</i></a></li>
-				<li class="active"><a href="Cliente.php"><i class="material-icons">group</i> Clientes</a></li>
-				<li dropdown><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons">monetization_on</i> Economía <span class="caret"></span></a>
-					<ul class="dropdown-menu animated fadeIn">
-						<li><a href="#" id="ingresoExterno"><span class="glyphicon glyphicon-plus"></span> Ingreso externo</a></li>
-						<li><a href="#" id="egresoExterno"><span class="glyphicon glyphicon-minus"></span> Gasto externo</a></li>
-					</ul>
-				</li>
-				<li dropdown><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons">attach_file</i> Reportes <span class="caret"></span></a>
-					<ul class="dropdown-menu animated fadeIn">
-						<li><a href="cuadrecaja.php" id="ingresoExterno"><span class="glyphicon glyphicon-piggy-bank"></span> Cuadre de caja</a></li>
-					</ul>
-				</li>
-			</ul>
-		 
-			<ul class="nav navbar-nav navbar-right">
-				
-			 <form class="navbar-form navbar-left hidden-xs hidden-sm" role="search">
+	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		<ul class="nav navbar-nav">
+			<li><a href="index.php"><i class="material-icons">home</i></a></li>
+			<li><a href="Cliente.php"><i class="material-icons">group</i> Clientes</a></li>
+			<li dropdown><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons">monetization_on</i> Economía <span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="#" id="ingresoExterno"><span class="glyphicon glyphicon-plus"></span> Ingreso externo</a></li>
+					<li><a href="#" id="egresoExterno"><span class="glyphicon glyphicon-minus"></span> Gasto externo</a></li>
+				</ul>
+			</li>
+			<li dropdown><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons">attach_file</i> Reportes <span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="cuadrecaja.php" id="ingresoExterno"><span class="glyphicon glyphicon-piggy-bank"></span> Cuadre de caja</a></li>
+				</ul>
+			</li>
+		</ul>
 	 
-				<div class="input-group">
-					<input type="text" class="form-control" id="txtBuscar" placeholder="Buscar">
-					<span class="input-group-btn">
-						<button type="button" class="btn btn-amarillo btn-outline" id="btnBuscar"><span class="glyphicon glyphicon-search"></span></button>
-					</span>
-				</div>
-				
-			</form>        
-				<li><a href="configuraciones.html"><i class="material-icons">settings</i></a></li>
-				
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons">fingerprint</i> <span class="caret"></span></a>
-					<ul class="dropdown-menu animated fadeIn">
-						<li><a href="#" data-toggle="modal" data-target=".modal-password"><span class="glyphicon glyphicon-cog"></span> Cambiar contraseña</a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="php/cerrarSesion.php"><span class="glyphicon glyphicon-send"></span> Cerrar sesión</a></li>
-					</ul>
-				</li>
-			</ul>
-		</div><!-- /.navbar-collapse -->
+		<ul class="nav navbar-nav navbar-right">				
+		 <form class="navbar-form navbar-left hidden-xs hidden-sm" role="search">
+ 
+			<div class="input-group">
+				<input type="text" class="form-control" id="txtBuscar" placeholder="Buscar">
+				<span class="input-group-btn">
+					<button type="button" class="btn btn-warning btn-outline" id="btnBuscar"><span class="glyphicon glyphicon-search"></span></button>
+				</span>
+			</div>
+			
+		</form>        
+			<li><a href="configuraciones.html"><i class="material-icons">settings</i></a></li>
+			
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons">fingerprint</i> <span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="#" data-toggle="modal" data-target=".modal-password"><span class="glyphicon glyphicon-cog"></span> Cambiar contraseña</a></li>
+					<li role="separator" class="divider"></li>
+					<li><a href="php/cerrarSesion.php"><span class="glyphicon glyphicon-send"></span> Cerrar sesión</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div><!-- /.navbar-collapse -->
 		</div>
 	</nav>
 
@@ -185,6 +184,15 @@ if(isset($_SESSION['usuario'])){?>
 							<div class="caption"><hr>
 								<h3 class="indigo-text">Crear un nuevo usuario</h3>
 								<p class="grey-text">Ud. puede crear un nuevo usuario para nuevos personales.</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4">
+						<div class="thumbnail text-center" id="thumListarReport"><br>							
+							<a href="#" id="alistarFechas" class="btn indigo darken-1  white-text btn-circle-grande right"><i class="material-icons icono-grande">toc</i></a>
+							<div class="caption"><hr>
+								<h3 class="indigo-text">Reporte clientes por fechas</h3>
+								<p class="grey-text">Ud. puede imprimir un reporte por fechas.</p>
 							</div>
 						</div>
 					</div>
@@ -508,16 +516,16 @@ if(isset($_SESSION['usuario'])){?>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/mijs.js?version=1.0.2"></script>
 <script src="js/moment.js"></script>
-<!-- <script src="./node_modules/socket.io-client/dist/socket.io.js"></script>  -->
+<script src="./node_modules/socket.io-client/dist/socket.io.js"></script> 
 <script src="js/moment-precise-range.js"></script> 
-<script src="js/socketCliente.js?version=1.0.6"></script>
+<script src="js/socketCliente.js?version=1.0.8"></script>
 <script src="js/bootstrap-switch.js"></script>
 
 
 <script>
 	listadoDatosUsuario();
 	$.ajax({url: 'php/listarContadorResumen.php', type: 'POST', data: {dia: moment().format('YYYY-MM-DD')}}).done(function (resp) {
-		console.log(resp)
+		//console.log(resp)
 		var valores=JSON.parse(resp);
 		if(valores.sumaConsultas==null ){$('#h3txtNuevos').text(0)}else{$('#h3txtNuevos').text(valores.sumaConsultas)}
 		if(valores.sumaRevaluados==null ){$('#h3txtRevaluados').text(0)}else{$('#h3txtRevaluados').text(valores.sumaRevaluados)}
@@ -556,6 +564,9 @@ if(isset($_SESSION['usuario'])){?>
 	$('#divx4Procedimientos').click(function () { listadoPendientesParaHoy(5); });
 	$('#thumCrearUsuario').click(function () {
 		$('.modal-SinPrivilegios').modal('show');
+	});
+	$('#thumListarReport').click(function() {
+		window.location.href = 'listado.php';
 	});
 	$('#thumCrearHospiral').click(function () {
 		$('.modal-SinPrivilegios').modal('show');
