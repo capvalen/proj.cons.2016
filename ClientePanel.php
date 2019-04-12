@@ -16,7 +16,7 @@ if(isset($_SESSION['usuario'])){?>
 	<!-- Bootstrap -->
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/sticky-footer.css" rel="stylesheet">
-	<link href="css/estilos.css?version=1.2.6" rel="stylesheet">
+	<link href="css/estilos.css?version=1.2.7" rel="stylesheet">
 	<link href="css/animate.css" rel="stylesheet">
 	<link href="css/bootstrap-switch.css" rel="stylesheet">
 	<link rel="stylesheet" href="css/espera.css">
@@ -40,6 +40,8 @@ if(isset($_SESSION['usuario'])){?>
 	th{ color: #a35bb4;}
 	#dtpFechaCitav3{font-size: 18px;height: 46px;color: #a35bb4;}
 	#dtpFechaCitav3:hover{cursor: pointer;}
+	#btnSaltarDiasv2:focus, #btnMostrarDiaHoyv2:focus, #btnRestarHorav2:focus, #btnSumarHorav2:focus, #btnHorasInfo:focus{
+    background-color: #3165b1;}
 </style>
 	<nav class="navbar navbar-inverse">
 	<div class="container-fluid">
@@ -247,8 +249,8 @@ if(isset($_SESSION['usuario'])){?>
 						</div> <!-- fin de sm-4 -->
 
 						<div class="col-sm-4">
-						<div class="panel panel-menta" style="margin-bottom: 0px;">
-							<div class="panel-heading"><h4>Fecha para separar cita: </div>
+						<div class="panel panel-rojizo" style="margin-bottom: 0px;">
+							<div class="panel-heading"><h4>Fecha para separar cita: <span id="spanFechaMiniRepov3"></span></h4></div>
 						</div> <!-- Fin de panel -->
 						<table class="table table-bordered">
 						<thead>
@@ -390,12 +392,13 @@ if(isset($_SESSION['usuario'])){?>
 						<div class="col-sm-4">
 							<div class="panel panel-default">
 							<div class="panel-body" style="color: #716e70;">
-								<div class="container row">
+								<div class="container-fluid row">
 								<p><span style="color: #a9a9a9;">Resumen para: <strong id="spanFechaMiniRepov2" style="color:#6d6c6c;">Lunes, 20 de Julio de 2017</strong></span></p>
-								<div class="container">
-									<p class="pReevaluacionxPaciente"><span class="glyphicon glyphicon-signal"></span> <span id="spanConteoRevaluacion">0</span> Revaluaciones</p>
-									<p class="pNuevoxPaciente"><span class="glyphicon glyphicon-signal"></span> <span id="spanConteoNuevo">0</span> Pacientes nuevos</p>
-									<p class="pOperacionxPaciente"><span class="glyphicon glyphicon-signal"></span> <span id="spanConteoOperacion">0</span> Operaciones</p>
+								<div class="container-fluid">
+									<p>Conteo de pacientes:</p>
+									<p class="pReevaluacionxPaciente"><span class="glyphicon glyphicon-pushpin"></span> <span id="spanConteoRevaluacion">0</span> Revaluaciones</p>
+									<p class="pNuevoxPaciente"><span class="glyphicon glyphicon-pushpin"></span> <span id="spanConteoNuevo">0</span> Pacientes nuevos</p>
+									<p class="pOperacionxPaciente"><span class="glyphicon glyphicon-pushpin"></span> <span id="spanConteoOperacion">0</span> Operaciones</p>
 								</div>
 							</div>
 							</div>
@@ -1760,7 +1763,7 @@ if(isset($_SESSION['usuario'])){?>
 <script src="js/moment.js"></script>
 <script src="js/bootstrap-datepicker.js"></script>
 <script src="js/bootstrap-datepicker.es.min.js"></script>
-<script src="js/mijs.js?version=1.0.14"></script>
+<script src="js/mijs.js?version=1.0.15"></script>
 <script src="js/jquery.PrintArea.js"></script>
 <script src="js/jquery.printPage.js?version=1.1"></script>
 <script src="js/bootstrap-switch.js"></script>
@@ -1811,9 +1814,9 @@ $(document).ready(function() {
 	
 	$.get('images/fotosClientes/'+idCliente+'.jpg')
 		.done(function() { 
-				$('#mi_camara').html(`<img src="images/fotosClientes/${idCliente}.jpg" class="img-responsive" style="width: auto;">`);
+				$('#mi_camara').html(`<img src="images/fotosClientes/${idCliente}.jpg" class="img-responsive" style="width: auto;margin: 0 auto;">`);
 		}).fail(function() { 
-				$('#mi_camara').html(`<img src="images/kids.jpg" class="img-responsive" style="width: auto;">`);
+				$('#mi_camara').html(`<img src="images/kids.jpg" class="img-responsive" style="width: auto;margin: 0 auto;">`);
 		});
 	//console.log(UrlExists('localhost/consultorio/images/fotosClientes/30407.jpg'));
 });
@@ -1874,6 +1877,7 @@ $('#dtpControladorFechasv2').change(function () {
 	$('#divMesv2').text(fechav2.format('MMMM'));
 	$('#divDiav2').text(fechav2.format('dddd D'));
 	$('#spanFechaMiniRepov2').text(fechav2.format('dddd, D [de] MMMM [de] YYYY'));
+	$('#spanFechaMiniRepov3').text(fechav2.format('dddd'));
 	
 	if(fechav2.day()==0){
 		//console.log('domingo')
@@ -1951,35 +1955,55 @@ function horaPorCaso(){
 					var diaToca=  moment($('#dtpControladorFechasv2').val()).format('d');
 					//var horarioToca = 
 
-					//Lunes Y martes de 7 a 8 am
-					if( $('#spanConteoRevaluacion').text()<20 ){if(diaToca==1 || diaToca==2 ){
-						if( parseInt($('#horaAsignarCalend24v2').text())==7){
+					if( $('#spanConteoRevaluacion').text()<20 ){
+						//Lunes y martes 7:00 - 8:30 && 15:30 - 16:00
+						if(diaToca==1 || diaToca==2 ){
+							if( parseInt($('#horaAsignarCalend24v2').text())==7){
+								$(this).append('<button class="btn btn-success btn-outline btnHoraDisponiblev2"><span class="glyphicon glyphicon-triangle-right"></span>Horario disponible</button>');
+							} else if( (parseInt($('#horaAsignarCalend24v2').text()) ==8 && minRecorrido<=30) ){
+								$(this).append('<button class="btn btn-success btn-outline btnHoraDisponiblev2"><span class="glyphicon glyphicon-triangle-right"></span>Horario disponible</button>');
+							} else if( (parseInt($('#horaAsignarCalend24v2').text()) ==15 && minRecorrido>=30) || (parseInt($('#horaAsignarCalend24v2').text()) ==16 && minRecorrido<=0) ){
+								$(this).append('<button class="btn btn-success btn-outline btnHoraDisponiblev2"><span class="glyphicon glyphicon-triangle-right"></span>Horario disponible</button>');
+							} else{
+								if($.trim($(this).text()).length==0){
+									$(this).append('<p class="pAdvertenciaHorario"><i class="icofont icofont-social-envato"></i> Lunes y Martes 7:00-8:30 am y 3:30-4:00 pm</p>');
+								}
+							} //fin de else if ==7
+						} //fin de conteo==20
+					
+					//Miercoles 8:00 - 9:00 && 16:00 - 16:30
+					if( diaToca == 3 ){
+						if( parseInt($('#horaAsignarCalend24v2').text())==8){
 							$(this).append('<button class="btn btn-success btn-outline btnHoraDisponiblev2"><span class="glyphicon glyphicon-triangle-right"></span>Horario disponible</button>');
-						} else if( (parseInt($('#horaAsignarCalend24v2').text()) ==8 && minRecorrido<=00) ){
+						}else if( parseInt($('#horaAsignarCalend24v2').text())==9 && minRecorrido<=0 ){
+							$(this).append('<button class="btn btn-success btn-outline btnHoraDisponiblev2"><span class="glyphicon glyphicon-triangle-right"></span>Horario disponible</button>');
+						}else if( (parseInt($('#horaAsignarCalend24v2').text())==16 && minRecorrido>=0) || (parseInt($('#horaAsignarCalend24v2').text()) ==16 && minRecorrido<=30) ){
 							$(this).append('<button class="btn btn-success btn-outline btnHoraDisponiblev2"><span class="glyphicon glyphicon-triangle-right"></span>Horario disponible</button>');
 						}else{
 							if($.trim($(this).text()).length==0){
-								$(this).append('<p class="pAdvertenciaHorario"><i class="icofont icofont-puzzle"></i> Nuevo horario: Lunes y Martes 7:00 a 8:00 a.m.</p>');
+								$(this).append('<p class="pAdvertenciaHorario"><i class="icofont icofont-social-envato"></i> Miércoles 8:00-9:00 am y 4:00-4:30 pm </p>');
 							}
-						} //fin de else if ==7
+						} 
 					}
-					//Miercoles y jueves de 3:30 a 4:30 pm
-					if( diaToca == 3 ||  diaToca == 4 ){
-						if( (parseInt($('#horaAsignarCalend24v2').text())==15 && minRecorrido>=30) || (parseInt($('#horaAsignarCalend24v2').text()) ==16 && minRecorrido<=30) ){
+					//Jueves 8:00 - 9:00 
+					if( diaToca == 4 ){
+						if( parseInt($('#horaAsignarCalend24v2').text())==8){
+							$(this).append('<button class="btn btn-success btn-outline btnHoraDisponiblev2"><span class="glyphicon glyphicon-triangle-right"></span>Horario disponible</button>');
+						}else if( parseInt($('#horaAsignarCalend24v2').text())==9 && minRecorrido<=0 ){
 							$(this).append('<button class="btn btn-success btn-outline btnHoraDisponiblev2"><span class="glyphicon glyphicon-triangle-right"></span>Horario disponible</button>');
 						}else{
 							if($.trim($(this).text()).length==0){
-								$(this).append('<p class="pAdvertenciaHorario"><i class="icofont icofont-puzzle"></i> Nuevo horario: Miércoles y Jueves 3:30 a 4:30 p.m.</p>');
+								$(this).append('<p class="pAdvertenciaHorario"><i class="icofont icofont-social-envato"></i> Miércoles 8:00-9:00 am y 4:00-4:30 pm </p>');
 							}
-						} //fin de else if ==7
+						} 
 					}
 					if( diaToca == 5 ||  diaToca == 6 ){
 						if($.trim($(this).text()).length==0){
-							$(this).append('<p class="pAdvertenciaHorario"><i class="icofont icofont-puzzle"></i> Nuevo horario: Viernes y Sábados no hay revaluaciones.</p>');
+							$(this).append('<p class="pAdvertenciaHorario"><i class="icofont icofont-social-envato"></i> Viernes y Sábados no hay revaluaciones.</p>');
 						}
 					}
 					}else{//else de conteo revaluados <=20
-							$(this).append('<p class="pAdvertenciaHorario"><i class="icofont icofont-puzzle"></i> Ya tiene más de 20 revaluados.</p>');
+							$(this).append('<p class="pAdvertenciaHorario"><i class="icofont icofont-social-envato"></i> Ya tiene más de 20 revaluados.</p>');
 					}
 					// Viernes y sábados bloquear
 					/* if( parseInt($('#horaAsignarCalend24v2').text())==7){
@@ -2153,11 +2177,13 @@ function diasHabilesv2(){
 	var diasFindesemana=semanasHabiles*2;
 	var diasHabiles= parseInt(numDias)+ parseInt(numDias/5)*2;
 	//console.log('días '+numDias + '\nSemanas ' + semanasHabiles+ '\nSábados y domingos ' + diasFindesemana+ '\nDías hábiles ' + diasHabiles);
-	var fechaDestino=moment().add(diasHabiles,'days'); console.log(fechaDestino)
+	var fechaDestino=moment().add(diasHabiles,'days'); console.log(fechaDestino.format('d'))
 	if(fechaDestino.format('d')=='0'){
 		$('#dtpControladorFechasv2').val(fechaDestino.add(1,'day').format('YYYY-MM-DD')).change();
+		$('#dtpFechaCitav3').val(fechaDestino.format('DD/MM/YYYY'));
 	}else{
 		$('#dtpControladorFechasv2').val(fechaDestino.format('YYYY-MM-DD')).change();
+		$('#dtpFechaCitav3').val(fechaDestino.format('DD/MM/YYYY'));
 	}
 	
 }

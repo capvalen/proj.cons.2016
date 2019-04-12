@@ -1337,13 +1337,13 @@ function solicitarDatosClientePanel(idCliente){
 		$('#datoClienteTitulo').text(dato.nombres.toLowerCase());
 		var edadCliente=moment().diff(moment(dato.cliFechaNacimiento, 'YYYY-MM-DD'), 'years');
 		//console.log(edadCliente)
-		if(dato.sexo=='F' && edadCliente<=16 ){ $('#mi_camara').find('.img-responsive').attr('src', 'images/repre_nina.png')}
-		else if(dato.sexo=='F' && edadCliente>16 && edadCliente<=40 ){ $('#mi_camara').find('.img-responsive').attr('src', 'images/repre_adulta.png')}
-		else if(dato.sexo=='F' && edadCliente>40 ){ $('#mi_camara').find('.img-responsive').attr('src', 'images/repre_mayora.png')}
+		if(dato.sexo=='F' && edadCliente<=16 ){ $('#mi_camara').find('.img-responsive').attr('src', 'images/repre_nina.png?version=1.0.1')}
+		else if(dato.sexo=='F' && edadCliente>16 && edadCliente<=40 ){ $('#mi_camara').find('.img-responsive').attr('src', 'images/repre_adulta.png?version=1.0.1')}
+		else if(dato.sexo=='F' && edadCliente>40 ){ $('#mi_camara').find('.img-responsive').attr('src', 'images/repre_mayora.png?version=1.0.1')}
 
-		if(dato.sexo=='M' && edadCliente<=16 ){ $('#mi_camara').find('.img-responsive').attr('src', 'images/repre_nino.png')}
-		else if(dato.sexo=='M' && edadCliente>16 && edadCliente<=40 ){ $('#mi_camara').find('.img-responsive').attr('src', 'images/repre_adulto.png')}
-		else if(dato.sexo=='M' && edadCliente>40 ){ $('#mi_camara').find('.img-responsive').attr('src', 'images/repre_mayor.png')}
+		if(dato.sexo=='M' && edadCliente<=16 ){ $('#mi_camara').find('.img-responsive').attr('src', 'images/repre_nino.png?version=1.0.1')}
+		else if(dato.sexo=='M' && edadCliente>16 && edadCliente<=40 ){ $('#mi_camara').find('.img-responsive').attr('src', 'images/repre_adulto.png?version=1.0.1')}
+		else if(dato.sexo=='M' && edadCliente>40 ){ $('#mi_camara').find('.img-responsive').attr('src', 'images/repre_mayor.png?version=1.0.1')}
 		datosGenerales=dato;	
 		console.log(datosGenerales);
 	});
