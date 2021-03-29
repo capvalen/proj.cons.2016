@@ -1517,12 +1517,11 @@ if(isset($_SESSION['usuario'])){?>
 							<option value='0'>Lugar de procedencia</option>
 							<?php 
 								// Llenado por php
-								mysql_query("set charset utf8;");
-								$log = mysql_query("call listarProcedencia();");
-								while($row = mysql_fetch_array($log))
-									{
+								mysqli_query($conect,"set charset utf8;");
+								$log = mysqli_query($conect, "call listarProcedencia();");
+								while($row = mysqli_fetch_array($log)){
 									echo'<option class="mayuscula" value="'.$row['idProcedencia'].'">'.$row['prodDetalle'].'</option>';
-									}
+								}
 							?>
 						</select>
 					</div>

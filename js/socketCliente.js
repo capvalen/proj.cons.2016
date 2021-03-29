@@ -530,7 +530,7 @@ function listadoPendientesParaHoy(idTipo) {
 // 	});
 // });
 function listadoDatosUsuario(){
-	$.ajax({url: 'php/solicitarDatosUsuario.php', type: "POST"}).success(function (resp) { //console.log(resp);
+	$.ajax({url: 'php/solicitarDatosUsuario.php', type: "POST"}).success(function (resp) { //	console.log(resp);
 		var dato=JSON.parse(resp);
 		usuario.idUsuario=dato.idUsuario;	
 		usuario.nombre=dato.usuNombre;

@@ -377,7 +377,7 @@ $('#btnBuscar').click(function(){
 				$('.modal-resultadosBusqueda').find('strong').html(JSON.parse(resp).length);
 				if(JSON.parse(resp).length==0){$('.modal-resultadosBusqueda').find('table').hide();}
 				else{$('.modal-resultadosBusqueda').find('table').show();}
-				$.each(JSON.parse(resp), function (index, element) { console.log(element)
+				$.each(JSON.parse(resp), function (index, element) { //console.log(element)
 					var cumple=moment(element.cliFechaNacimiento, "YYYY-MM-DD");	
 					cumple.locale('es');			
 					

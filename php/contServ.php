@@ -1,6 +1,6 @@
 <?php 
-	$conect = @mysql_connect("localhost","root","*123456*") or die("No se encontró el servidor");
-	mysql_select_db("consultorio",$conect)or die("No se encontró la base de datos");
-	mysql_query("set charset utf8;");
-
+	
+	$conect= mysqli_connect('localhost','root','')or die("No se ha podido establecer la conexion");
+	$sdb= mysqli_select_db($conect, 'consulto_orl_web')or die("La base de datos no existe");
+	$conect->set_charset("utf8");
  ?>

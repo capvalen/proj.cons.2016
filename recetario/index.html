@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ORL: Recetario</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap-icons.css">
+	<link rel="stylesheet" href="css/animate.min.css">
+	<link rel="stylesheet" href="css/alertify.min.css">
+	
+</head>
+<body>
+<style>
+.bg-dark{background-color: #000000!important;}
+.modal-backdrop.show { opacity: .8; }
+.close{color: #f90000; opacity: .7;}
+#contenidoReceta p{
+	margin-bottom: 0.2rem;
+}
+.flecha{
+	height: 22px;
+	background: url('images/path833.png') no-repeat ;
+	background-position-x: center;
+}
+@media print{
+	@page{
+		size: A5;
+		margin: 10px;
+	}
+}
+.alertify-notifier .ajs-message.ajs-error {
+	background: rgb(239 4 4 / 95%);
+	color: white;
+	border-radius: 2rem;
+}
+.alertify-notifier .ajs-message.ajs-warning {
+	background: rgb(255 143 29 / 95%);
+	color: white;
+	border-radius: 2rem;
+}
+.alertify-notifier .ajs-message {
+    background: rgb(29 57 255 / 95%);
+    color: white;
+    border-radius: 2rem;
+}
+</style>
+	<div class="w-100" id="app">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+			<span class="navbar-toggler"  data-toggle="collapse" data-target="#navbarSupportedContent" aria-expanded="false"><i class="bi bi-list"></i></span>
+			<a class="navbar-brand mr-auto" href="#">Consultorio ORL</a>
+
+		
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="#">Inicio</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#" @click="imprimirPlantilla">Guardar e Imprimir</a>
+					</li>
+				</ul>
+				
+			</div>
+		</nav>
+
+		<div class="container">
+			<div class="collapse show" id="collapseExample">
+				<h1>Recetas médicas</h1>
+				<div class="card card-body">
+					<label for="" ><strong><i class="bi bi-search"></i> Buscar por DNI o N° Historia Clínica</strong></label>
+					<div class="input-group mb-3" >
+						<input type="text" class="form-control" placeholder='DNI, Historial clínica' v-model="textoPrimero" v-on:keyup.enter="buscarPacientes();">
+						<div class="input-group-append">
+							<button class="btn btn-outline-primary" type="button" @click="buscarPacientes()" ><i class="bi bi-search"></i></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+			<div v-if="numHistoria!=null" class="container">
+				<p @click="volverPanel()" data-toggle="collapse" data-target="#collapseExample"><strong><a href="#!" class="text-warning"  ><i class="bi bi-arrow-up-short"></i> Mostrar Panel</strong></a></p>
+				<p class="my-2"><strong>N° Historia:</strong> <span>{{numHistoria}}</span></p>
+				<p class="my-2"><strong>Perteneciente a:</strong> <span>{{pacienteElegido}}</span></p>
+				<div class="d-flex justify-content-between">
+					<button class="btn btn-outline-secondary" @click="meterTexto"><i class="bi bi-pen"></i> Recetar</button>
+					<button class="btn btn-outline-secondary" @click="insertarLlave"><i class="bi bi-braces"></i> Llave</button>
+				</div>
+				<div id="contenidoReceta">
+					<div class="card mt-3" v-if="contenido.length>0">
+						<div class="card-body">
+							<div v-for="content in contenido">
+								<p v-if="content.esTexto==1">{{content.relleno}}</p>
+								<div v-if="content.esTexto==0" class="flecha w-100" > </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div v-if="vacio">
+				<p @click="volverPanel()"><strong><a href="#!" class="text-warning" data-toggle="collapse" data-target="#collapseExample" ><i class="bi bi-arrow-up-short"></i> Mostrar Panel</strong></a></p>
+				<p>No existen coindicencias con el texto buscado <strong>{{textoPrimero}}</strong></p>
+			</div>
+		</div>
+
+	
+	<!-- Modal para: -->
+	<div class='modal fade' id='modalTexto' tabindex='-1'>
+		<div class='modal-dialog modal-dialog-centered'>
+			<div class='modal-content'>
+				<div class='modal-body'>
+					<button type='button' class='close mt-n2' data-dismiss='modal' aria-label='Close'> <span aria-hidden='true'>&times;</span></button>
+					<div class="form-group">
+						<label for="my-textarea">Agregue texto</label>
+						<textarea id="my-textarea" class="form-control" name="" rows="3" v-model="textoActual"></textarea>
+					</div>
+					<div class='d-flex justify-content-end'>
+						<button type='button' class='btn btn-primary' @click="insertarTexto" data-dismiss="modal"><i class="bi bi-file-check"></i> Insertar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal para: -->
+	<div class='modal fade' id='modalResultados' tabindex='-1'>
+		<div class='modal-dialog modal-lg modal-dialog-centered'>
+			<div class='modal-content'>
+				<div class='modal-body'>
+					<button type='button' class='close' data-dismiss='modal' aria-label='Close'> <span aria-hidden='true'>&times;</span></button>
+					<h5 class='modal-title'>Seleccione un paciente</h5>
+					
+					<table class="table table-hover">
+						<thead class="thead-dark">
+							<tr>
+								<th>#</th>
+								<th>H.C.</th>
+								<th>Paciente</th>
+								<th>Paciente</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr v-for="(paciente, index) in pacientes" @click="escogerPaciente(paciente.histClinica, paciente.paciente)">
+								<td>{{index+1}}</td>
+								<td>{{paciente.histClinica}}</td>
+								<td>{{paciente.paciente}}</td>
+								<td><button class="btn btn-outline-primary btn-sm"><i class="bi bi-check2"></i></button></td>
+							</tr>
+						</tbody>
+					</table>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+	</div> <!-- finde app -->
+	
+	
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/vue_dev.js"></script>
+<script src="js/axios.min.js"></script>
+<script src="../js/jquery.printPage.js"></script>
+<script src="js/alertify.min.js"></script>
+
+<script>
+
+
+
+	var app = new Vue({
+  el: '#app',
+  data: {
+    numHistoria: null,
+		pacienteElegido: '',
+		claseOculta: 'animate__animated animate__fadeOutUp animate__faster', subOcultar:false,
+		contenido:[],
+		textoActual:'prueba 1',
+		textoPrimero:null, vacio:false,
+		pacientes:null
+  },
+	methods:{
+		buscarPacientes(){
+			$('#collapseExample').collapse('toggle')
+			if(this.textoPrimero==null){
+				app.vacio=true;
+				alertify.warning('<i class="bi bi-exclamation-diamond-fill"></i> Ingrese un texto para buscar.');
+				//Mostrar algo para volver a ingresar el texto
+			}
+			else if(this.textoPrimero.length>0){
+				alertify.notify('<i class="bi bi-search"></i> Buscando pacientes.');
+
+				axios.post('php/buscarCliente.php', {texto: this.textoPrimero})
+				.then((respuesta)=>{
+					console.log( respuesta.data );
+					if(respuesta.data.length==1){
+						app.numHistoria = respuesta.data[0].histClinica;
+						app.pacienteElegido= respuesta.data[0].paciente;
+						app.subOcultar=true;
+					}
+					else if(respuesta.data.length==0){
+						$('#collapseExample').collapse('toggle')
+						alertify.error('<i class="bi bi-exclamation-diamond-fill"></i> No existen coincidencias.').delay(15);
+						//console.log( 'no hay nada' );	
+					}else if(respuesta.data.length>0){
+						console.log( 'varios' );
+						app.pacientes= respuesta.data
+						$('#modalResultados').modal('show');
+					}
+				})
+				.catch((error)=>{ console.log( error );})
+			}
+		},
+		volverPanel(){
+			this.numHistoria=null;
+			this.pacienteElegido='';
+			this.vacio=false;
+		},
+		meterTexto(){ $('#modalTexto').modal('show'); },
+		insertarTexto(){
+			if(this.textoActual!=''){
+				this.contenido.push({esTexto:1, relleno:this.textoActual });
+				this.textoActual='';
+			}
+		},
+		escogerPaciente(num, pac){
+			this.numHistoria = num;
+			this.pacienteElegido= pac;
+			$('#modalResultados').modal('hide');
+		},
+		insertarLlave(){
+			if(this.contenido.length>0){ this.contenido.push({esTexto:0, relleno: ''}); }
+		},
+		formatearContenido(){
+			for (let index = 0; index < this.contenido.length; index++) {
+				let temp= this.contenido[index].relleno;
+				this.contenido[index].relleno = temp.replace(/\r\n|\r|\n/g,"\\n")
+			}
+		},
+		imprimirPlantilla(){
+			this.formatearContenido();
+			axios.post('php/guardarReceta.php', {hc: this.numHistoria, receta: this.contenido })
+			.then((respuesta)=>{
+				if(respuesta.data>0){
+					urlImpr="plantilla.php?hc="+app.numHistoria+"&receta="+respuesta.data;
+					console.log(urlImpr);	
+					loadPrintDocument(this,{
+						url: urlImpr,
+						attr: "href",
+						message:"Tu documento está siendo creado"
+					});
+				}else{
+					alertify.error('<i class="bi bi-exclamation-diamond-fill"></i> Error al guardar los datos, inténtelo nuevamente.').delay(15);
+				}
+			})
+			.catch((error)=>{ console.log( error );})
+		
+		}
+	},
+	mounted() {
+		$('#app').on('hide.bs.modal', '#modalResultados', function (e) {
+			if(app.numHistoria==null){
+				$('#collapseExample').collapse('toggle')
+			}
+		});
+	}
+})
+
+</script>
+</body>
+</html>
