@@ -22,7 +22,7 @@
 .flecha{
 	height: 22px;
 	background: url('images/path833.png') no-repeat ;
-	background-position-x: center;
+	background-position-x: left;
 }
 @media print{
 	@page{
@@ -91,7 +91,7 @@
 					<div class="card mt-3" v-if="contenido.length>0">
 						<div class="card-body">
 							<div v-for="content in contenido">
-								<p v-if="content.esTexto==1">{{content.relleno}}</p>
+								<p v-if="content.esTexto==1" v-html="formatear(content.relleno)"></p>
 								<div v-if="content.esTexto==0" class="flecha w-100" > </div>
 							</div>
 						</div>
@@ -257,6 +257,9 @@
 			})
 			.catch((error)=>{ console.log( error );})
 		
+		},
+		formatear(texto){
+			return texto.replace(/[\r\n]+/g,"<br>");
 		}
 	},
 	mounted() {

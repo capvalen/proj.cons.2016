@@ -74,9 +74,17 @@ if(isset($_SESSION['usuario'])){ ?>
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		<ul class="nav navbar-nav">
 			<li><a href="index.php"><i class="material-icons">home</i></a></li>
-			<li><a href="Cliente.php"><i class="material-icons">group</i> Clientes</a></li>
-			<li dropdown><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons">monetization_on</i> Economía <span class="caret"></span></a>
+			<li dropdown>
+				<a href="Cliente.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons">group</i> Clientes <span class="caret"></span></a>
 				<ul class="dropdown-menu">
+					<li><a href="recetario" ><span class="material-icons">
+description
+</span>Recetario</a></li>
+				</ul>
+			</li>
+			
+			<li dropdown><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons">monetization_on</i> Economía <span class="caret"></span></a>
+			<ul class="dropdown-menu">
 					<li><a href="#" id="ingresoExterno"><span class="glyphicon glyphicon-plus"></span> Ingreso externo</a></li>
 					<li><a href="#" id="egresoExterno"><span class="glyphicon glyphicon-minus"></span> Gasto externo</a></li>
 				</ul>

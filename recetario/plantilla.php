@@ -58,11 +58,11 @@ $posXActual = 40;
 for ($i=0; $i < count($recetaP) ; $i++) { 
 	if($recetaP[$i]->esTexto==1){
 		$pdf->SetX(15);
-		$pdf->MultiCell($mitad, 5, utf8_decode( $recetaP[$i]->relleno ));
+		$pdf->MultiCell($mitad, 7, utf8_decode( $recetaP[$i]->relleno ));
 	}else{
-		$pdf->Image( 'images/path833.png', 11, $posXActual, 30 );
+		$pdf->Image( 'images/path833.png', 16, $posXActual, 30 );
 	}
-	$posXActual+=5;
+	$posXActual+=7;
 }
 
 
@@ -78,11 +78,11 @@ $posXActual = 40;
 for ($i=0; $i < count($recetaP) ; $i++) { 
 	if($recetaP[$i]->esTexto==1){
 		$pdf->SetX($mitad+15);
-		$pdf->MultiCell($mitad, 5, utf8_decode( $recetaP[$i]->relleno ));
+		$pdf->MultiCell($mitad, 7, utf8_decode( $recetaP[$i]->relleno ));
 	}else{
-		$pdf->Image( 'images/path833.png', 11, $posXActual, 30 );
+		$pdf->Image( 'images/path833.png', $mitad+16, $posXActual, 30 );
 	}
-	$posXActual+=5;
+	$posXActual+=7;
 }
 
 
