@@ -1,6 +1,6 @@
 <?php 
 session_start();
-require_once 'php/contServ.php';
+require_once 'php/conexion.php';
 if(isset($_SESSION['usuario'])){ ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -77,9 +77,7 @@ if(isset($_SESSION['usuario'])){ ?>
 			<li dropdown>
 				<a href="Cliente.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons">group</i> Clientes <span class="caret"></span></a>
 				<ul class="dropdown-menu">
-					<li><a href="recetario" ><span class="material-icons">
-description
-</span>Recetario</a></li>
+					<li><a href="recetario" ><span class="material-icons"> description </span>Recetario</a></li>
 				</ul>
 			</li>
 			
@@ -238,8 +236,8 @@ description
 								<option value='0'>Lugar de procedencia</option>
 								<?php 
 									// Llenado por php
-									mysqli_query($conect, "set charset utf8;");
-									$log = mysqli_query($conect, "call listarProcedencia();");
+									mysqli_query($conection, "set charset utf8;");
+									$log = mysqli_query($conection, "call listarProcedencia();");
 									while($row = mysqli_fetch_array($log))
 										{
 										echo'<option class="mayuscula" value="'.$row['idProcedencia'].'">'.$row['prodDetalle'].'</option>';
