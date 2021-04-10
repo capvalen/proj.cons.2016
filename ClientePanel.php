@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'php/contServ.php';
+include 'php/conexion.php';
 if(isset($_SESSION['usuario'])){?>
 <!DOCTYPE html>
 <html lang="es">
@@ -1522,8 +1522,8 @@ if(isset($_SESSION['usuario'])){?>
 							<option value='0'>Lugar de procedencia</option>
 							<?php 
 								// Llenado por php
-								mysqli_query($conect,"set charset utf8;");
-								$log = mysqli_query($conect, "call listarProcedencia();");
+								mysqli_query($conection,"set charset utf8;");
+								$log = mysqli_query($conection, "call listarProcedencia();");
 								while($row = mysqli_fetch_array($log)){
 									echo'<option class="mayuscula" value="'.$row['idProcedencia'].'">'.$row['prodDetalle'].'</option>';
 								}
@@ -1773,7 +1773,7 @@ if(isset($_SESSION['usuario'])){?>
 <script src="js/bootstrap-switch.js"></script>
 <!-- <script src="./node_modules/socket.io-client/dist/socket.io.js"></script>  -->
 <script src="js/moment-precise-range.js"></script>
-<script src="js/socketCliente.js"></script>
+<script src="js/socketCliente.js?version=1.0.1"></script>
 <script src="js/webcam.js"></script>
 <script src="./js/bootstrap-material-datetimepicker.js?version=2.0.5"></script>
 <script>
