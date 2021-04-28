@@ -16,12 +16,13 @@ inner join cliente c on c.idCliente = r.idCliente
 where idReceta = {$nReceta} and r.idCliente = {$nHC}; ";
 $resultado=$esclavo->query($sql);
 $row=$resultado->fetch_assoc();
+//echo $sql;
 
 $recetaP=json_decode( $row['contReceta'] );
 //var_dump( $recetaP ); 
 
 $pdf = new FPDF();
-$pdf->SetTitle('Certificado INAPROF');
+$pdf->SetTitle('RECETA ORL');
 $pdf->AddPage('L');
 $pdf->SetAutoPageBreak(false);
 $mitad=$pdf->GetPageWidth()/2;
@@ -96,7 +97,7 @@ $pdf->Cell($mitad, 5, utf8_decode( "davidbalbinvilla@gmail.com" ));
 
 $pdf->Image( 'images/firma.png', $mitad-38, 180, 30 );
 
-$pdf->Output();
+$pdf->Output('I', "doc.pdf", true);
 
 function negro($pdf){ $pdf->SetTextColor(0,0,0); }
 function marron($pdf){ $pdf->SetTextColor(92,63,22); }

@@ -271,7 +271,7 @@ $('#btnGuardarMotivo').click(function(){
 		type: 'POST',
 		data: { idcliente: datosGenerales.idCliente,
 			motivo: datosGenerales.motivo.toUpperCase()}
-	}).success(function (resp) {
+	}).success(function (resp) { console.log( resp );
 		dato= JSON.parse(resp);
 
 		if (dato == null){

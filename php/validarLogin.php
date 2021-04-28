@@ -1,12 +1,12 @@
 <?php
 	session_start();
-	include 'contServ.php';
+	include 'conexion.php';
 
 	$usuario = $_POST['user'];
 	$pw = $_POST['pw'];
 	//mysqli_query("set charset utf8;");
 	
-	$log = mysqli_query($conect, "SELECT * FROM usuario WHERE usuNick='$usuario' AND usuPass=md5('$pw')");
+	$log = mysqli_query($conection, "SELECT * FROM usuario WHERE usuNick='$usuario' AND usuPass=md5('$pw')");
 	
 	if (mysqli_num_rows($log)>0) {
 		$row = mysqli_fetch_array($log);

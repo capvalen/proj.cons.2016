@@ -11,8 +11,9 @@ $fila =[];
 
 $sql="SELECT c.*, hc.idHistoriaClinica  FROM `cliente` c
 inner join historiaclinica hc on hc.idCliente = c.idCliente
+left join documentoidentidad d on d.idCliente = c.idCliente
 where concat(cliApellidoPaterno, ' ', cliApellidoMaterno, ' ', cliNombres ) like '%{$_POST['texto']}%'
-or hc.idHistoriaClinica = '{$_POST['texto']}' ;";
+or hc.idHistoriaClinica = '{$_POST['texto']}'  or d.NumeroDocumento = '{$_POST['texto']}' ;";
 //echo $sql;
 $resultado=$esclavo->query($sql);
 if($resultado->num_rows>0){ $i=0;

@@ -9,11 +9,10 @@ $idUsuario=$_SESSION['IdUsuario'];
 $sql= "call insertarHistoriaClinica (".$_POST['idcliente'].",'".$_POST['motivo']."',".$_SESSION['IdUsuario'].")";
 
 
-if ($llamadoSQL = $conection->query($sql)) { //Ejecución mas compleja con retorno de dato de sql del procedure.
-	/* obtener el array de objetos */
-	 echo json_encode(mysqli_fetch_array($llamadoSQL, MYSQL_ASSOC)); //sólo retorna los datos de una sola fila.
-
-}else{echo null;}
-
-
+$resultado=$cadena->query($sql);
+if($row=$resultado->fetch_assoc()){
+	echo json_encode($row);
+}else{
+	echo 'error';
+}
 ?>

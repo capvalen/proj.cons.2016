@@ -1,6 +1,8 @@
 <?php 
 require("conexion.php");
 
+if (!isset($_GET['fecha'])){ $_GET['fecha']==now();}
+
 $sql = mysqli_query($conection,"call reporteCajaDia('".$_GET['fecha']."');");
 $totalRow= mysqli_num_rows($sql);
 $sumaIngr=0;

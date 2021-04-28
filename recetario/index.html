@@ -13,11 +13,18 @@
 </head>
 <body>
 <style>
-.bg-dark{background-color: #000000!important;}
+.bg-light{background-color: #fff!important;}
+h1, h2,.navbar-light .navbar-brand{color: #275eda;}
+.navbar-toggler{padding: .35rem .35rem;}
+.navbar-light .navbar-toggler {
+	color: #275eda;
+	border-color: #275eda8a;
+}
+.navbar-light .navbar-brand:hover{color:#0038b7}
 .modal-backdrop.show { opacity: .8; }
 .close{color: #f90000; opacity: .7;}
 #contenidoReceta p{
-	margin-bottom: 0.2rem;
+	margin-bottom: 0.4rem;
 }
 .flecha{
 	height: 22px;
@@ -45,14 +52,23 @@
     color: white;
     border-radius: 2rem;
 }
+.bola{
+	width: 60px;
+	height: 60px;
+	background-color:#326df3;
+	font-size: 1.5rem;
+	color: white;
+	border-radius: 50%;
+}
+.divDescripcion{text-align: center; color: #3863c3;}
+.padreBolas{cursor: pointer;}
+label{color: #8e8e8e;}
 </style>
 	<div class="w-100" id="app">
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-			<span class="navbar-toggler"  data-toggle="collapse" data-target="#navbarSupportedContent" aria-expanded="false"><i class="bi bi-list"></i></span>
-			<a class="navbar-brand mr-auto" href="#">Consultorio ORL</a>
-
-		
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light mb-0">
+			
+			<a class="navbar-brand mr-auto ml-2" href="../Cliente.php"><i class="bi bi-x-diamond-fill"></i> Consultorio ORL</a>
+			<!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active">
 						<a class="nav-link" href="#">Inicio</a>
@@ -62,12 +78,14 @@
 					</li>
 				</ul>
 				
-			</div>
+			</div> -->
 		</nav>
+		<hr class="my-1">
+
 
 		<div class="container">
 			<div class="collapse show" id="collapseExample">
-				<h1>Recetas médicas</h1>
+				<h2>Recetas médicas</h2>
 				<div class="card card-body">
 					<label for="" ><strong><i class="bi bi-search"></i> Buscar por DNI o N° Historia Clínica</strong></label>
 					<div class="input-group mb-3" >
@@ -81,18 +99,34 @@
 		
 			<div v-if="numHistoria!=null" class="container">
 				<p @click="volverPanel()" data-toggle="collapse" data-target="#collapseExample"><strong><a href="#!" class="text-warning"  ><i class="bi bi-arrow-up-short"></i> Mostrar Panel</strong></a></p>
-				<p class="my-2"><strong>N° Historia:</strong> <span>{{numHistoria}}</span></p>
-				<p class="my-2"><strong>Perteneciente a:</strong> <span>{{pacienteElegido}}</span></p>
-				<div class="d-flex justify-content-between">
-					<button class="btn btn-outline-secondary" @click="meterTexto"><i class="bi bi-pen"></i> Recetar</button>
-					<button class="btn btn-outline-secondary" @click="insertarLlave"><i class="bi bi-braces"></i> Llave</button>
+				
+				<div class="row">
+					<!-- <div class="col padreBolas p-0 text-align-center" @click="meterTexto">
+						<div class="bola d-block mx-auto d-flex justify-content-center align-items-center"><i class="bi bi-chat-square-quote"></i></div>
+						<div class="divDescripcion d-block"><small>Recetario</small></div>
+					</div> -->
+					<div class="col padreBolas p-0 text-align-center" @click="meterTexto">
+						<div class="bola d-block mx-auto d-flex justify-content-center align-items-center"><i class="bi bi-pen"></i></div>
+						<div class="divDescripcion d-block"><small>Escribir</small></div>
+					</div>
+					<div class="col padreBolas p-0 text-align-center " @click="insertarLlave">
+						<div class="bola d-block mx-auto d-flex justify-content-center align-items-center"><i class="bi bi-braces"></i></div>
+						<div class="divDescripcion d-block "><small>Llave</small></div>
+					</div>
+					<div class="col padreBolas p-0 text-align-center " @click="imprimirPlantilla">
+						<div class="bola d-block mx-auto d-flex justify-content-center align-items-center"><i class="bi bi-printer"></i></div>
+						<div class="divDescripcion d-block "><small>Imprimir</small></div>
+					</div>
 				</div>
+				<p class="my-2><strong>N° Historia:</strong> <span>{{numHistoria}}</span></p>
+				<p class="my-2><strong>Perteneciente a:</strong> <span>{{pacienteElegido}}</span></p>
+
 				<div id="contenidoReceta">
-					<div class="card mt-3" v-if="contenido.length>0">
+					<div class="card my-3" v-if="contenido.length>0">
 						<div class="card-body">
-							<div v-for="content in contenido">
-								<p v-if="content.esTexto==1" v-html="formatear(content.relleno)"></p>
-								<div v-if="content.esTexto==0" class="flecha w-100" > </div>
+							<div v-for="(content, item) in contenido">
+								<p v-if="content.esTexto==1" v-html="formatear(content.relleno)" @click="editarItem(item, 1)"></p>
+								<div v-if="content.esTexto==0" class="flecha w-100" @click="editarItem(item, 0)"> </div>
 							</div>
 						</div>
 					</div>
@@ -113,11 +147,29 @@
 				<div class='modal-body'>
 					<button type='button' class='close mt-n2' data-dismiss='modal' aria-label='Close'> <span aria-hidden='true'>&times;</span></button>
 					<div class="form-group">
-						<label for="my-textarea">Agregue texto</label>
+						<label id="labelTextoEditar">Agregue texto</label>
 						<textarea id="my-textarea" class="form-control" name="" rows="3" v-model="textoActual"></textarea>
 					</div>
-					<div class='d-flex justify-content-end'>
-						<button type='button' class='btn btn-primary' @click="insertarTexto" data-dismiss="modal"><i class="bi bi-file-check"></i> Insertar</button>
+					<div class='d-flex justify-content-between'>
+						<button type='button' class='btn btn-outline-primary ml-auto' v-if="!cambiandoTextos" @click="insertarTexto" data-dismiss="modal"><i class="bi bi-file-check"></i> Insertar</button>
+						<button type='button' class='btn btn-outline-danger' v-if="cambiandoTextos" @click="borrarTexto" data-dismiss="modal"><i class="bi bi-file-check"></i> Borrar</button>
+						<button type='button' class='btn btn-outline-success' v-if="cambiandoTextos" @click="insertarTexto" data-dismiss="modal"><i class="bi bi-file-check"></i> Actualizar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal para: -->
+	<div class='modal fade' id='modalEliminarFlecha' tabindex='-1'>
+		<div class='modal-dialog modal-sm modal-dialog-centered'>
+			<div class='modal-content mx-5'>
+				<div class='modal-body'>
+					<button type='button' class='close' data-dismiss='modal' aria-label='Close'> <span aria-hidden='true'>&times;</span></button>
+					<h5 class='modal-title my-4'>¿Desea borrar la flecha?</h5>
+					
+					<div class='d-flex justify-content-between'>
+						<button type='button' class='btn btn-outline-secondary' data-dismiss="modal"><i class="bi bi-arrow-left-short"></i> No</button>
+						<button type='button' class='btn btn-outline-danger' data-dismiss="modal"><i class="bi bi-check2-all"></i> Sí</button>
 					</div>
 				</div>
 			</div>
@@ -179,7 +231,7 @@
 		contenido:[],
 		textoActual:'prueba 1',
 		textoPrimero:null, vacio:false,
-		pacientes:null
+		pacientes:null, cambiandoTextos:false, indiceSelect:-1
   },
 	methods:{
 		buscarPacientes(){
@@ -207,6 +259,8 @@
 					}else if(respuesta.data.length>0){
 						console.log( 'varios' );
 						app.pacientes= respuesta.data
+						app.cambiandoTextos=false;
+						$('#labelTextoEditar').text('Agregue texto')
 						$('#modalResultados').modal('show');
 					}
 				})
@@ -218,7 +272,7 @@
 			this.pacienteElegido='';
 			this.vacio=false;
 		},
-		meterTexto(){ $('#modalTexto').modal('show'); },
+		meterTexto(){  this.cambiandoTextos=false; $('#modalTexto').modal('show'); },
 		insertarTexto(){
 			if(this.textoActual!=''){
 				this.contenido.push({esTexto:1, relleno:this.textoActual });
@@ -236,16 +290,32 @@
 		formatearContenido(){
 			for (let index = 0; index < this.contenido.length; index++) {
 				let temp= this.contenido[index].relleno;
-				this.contenido[index].relleno = temp.replace(/\r\n|\r|\n/g,"\\n")
+				this.contenido[index].relleno = temp.replace(/\r\n|\r|\n/g,"<br/>")
 			}
+		},
+		editarItem(item, tipo){
+			console.log( item );
+			if(tipo==0){
+				$('#modalEliminarFlecha').modal('show');
+			}
+			else if(tipo==1){
+				this.cambiandoTextos=true;
+				this.indiceSelect=item;
+				$('#labelTextoEditar').text('Editar texto')
+				$('#modalTexto').modal('show');
+			}
+		},
+		borrarTexto(){
+			this.contenido.splice(this.indiceSelect,1)
 		},
 		imprimirPlantilla(){
 			this.formatearContenido();
 			axios.post('php/guardarReceta.php', {hc: this.numHistoria, receta: this.contenido })
 			.then((respuesta)=>{
 				if(respuesta.data>0){
-					urlImpr="plantilla.php?hc="+app.numHistoria+"&receta="+respuesta.data;
-					console.log(urlImpr);	
+					urlImpr= "plantillaDiv.php?hc="+app.numHistoria+"&receta="+respuesta.data;
+				//	window.location.href = urlImpr;
+					console.log(urlImpr,);	
 					loadPrintDocument(this,{
 						url: urlImpr,
 						attr: "href",
@@ -256,6 +326,11 @@
 				}
 			})
 			.catch((error)=>{ console.log( error );})
+			/* loadPrintDocument(this,{
+						url: 'plantillaDiv.php',
+						attr: "href",
+						message:"Tu documento está siendo creado"
+					}); */
 		
 		},
 		formatear(texto){
