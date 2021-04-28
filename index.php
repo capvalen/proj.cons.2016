@@ -1,92 +1,81 @@
-<?php 
-session_start();
-include 'php/contServ.php';
-if(isset($_SESSION['usuario'])){
-	echo '<script> window.location="Cliente.php"; </script>';
-}
- ?>
-
 <!DOCTYPE html>
-<html lang="es">
-<head >
-	<meta charset="utf-8">
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="css/icofont.css">
-	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Bienvenido: Infocat-Grifo</title>
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/inicio.css?version=1.0" rel="stylesheet">
-	<link href="css/animate.css" rel="stylesheet">
-	<link rel="shortcut icon" href="images/peto.png" />
-
-
+	<link href="css/bootstrap.4.6.min.css" rel="stylesheet">
 </head>
-
-<body >
-<style type="text/css">
-.form-control:focus{    border-color: #FFEB3B;box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 6px rgba(255, 193, 7, 0.55);}
-body{background: linear-gradient(90deg, #100b19 10%, #291c40 90%);}
-main{ margin-top:80px; padding:0 50px}
-.wello{padding:40px 50px; border-radius: 6px;padding-bottom: 58px;}
-.noselect {
-	-webkit-touch-callout: none; /* iOS Safari */
-	-webkit-user-select: none;   /* Chrome/Safari/Opera */
-	-khtml-user-select: none;    /* Konqueror */
-	-moz-user-select: none;      /* Firefox */
-	-ms-user-select: none;       /* Internet Explorer/Edge */
-	user-select: none;           /* Non-prefixed version, currently not supported by any browser */
-}
-input{height: 40px!important;}
-label{font-size: 14px!important}
-input::placeholder{font-size: 14px!important;}
-input{height: 45px!important; color: #673ab7!important;
-display: inline-block!important; font-size: 18px!important;
-    /* width: 95%!important; */}
-.icoTransparent{display: inline-block; color: #555; font-size: 16px;
-margin-left: -25px; opacity: 0.5}
-a{    color: #6d3cca;
-    font-weight: 700;}
-a:hover{color:#462782;}
+<body>
+<style>
+	body{
+		background-color: #310b4d;
+	}
+	.container{
+		z-index:20
+	}
+	h2{font-size: 2rem; font-weight: 300;}
+	input{
+		margin: 1.5rem 0;
+    background-color: #ffffff36!important;
+		color:white!important;
+		font-size: 1.2rem!important;
+		border: 1px solid #d5ceda7a!important;
+	}
+	input::placeholder{
+		text-align: left;
+		padding-left: 0.5rem;
+		color:white!important;
+		font-size: 1rem!important;
+	}
+	.btn-primary{
+		background-color: #23b348;
+		border: 1px solid #23b348;
+	}
+	.btn-primary:hover{
+		background-color: #159235;
+		border: 1px solid #159235;
+	}
+	.pie{line-height: 1; color: #f8f9fa91!important;}
+	a, a:hover{
+		color:#b36be0!important;
+	}
+	.ondas{
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 300px;
+		background: url('images/ondas.png');
+		background-repeat: no-repeat;
+		background-size: cover;
+		opacity: 0.5;
+		background-position: right top;
+		z-index:-1;
+	}
 </style>
-<main class="noselect">
-	<div class="container-fluid">
-		<div class="col-md-12">
-			<div class="wello login-box " style="color: #673ab7"  >
-				<div class="row">
-					<div class="col-xs-4"><img src="images/VirtualCorto.png" class="img-responsive" alt=""></div>
-					<div class="col-xs-8"><h3 class="text-center" style="margin-bottom: 0px;">Info-Cat </h3>
-						<div class="text-center"><span >App para «Consultorio ORL»</span></div>
-						<legend  style="color:#7956C1"><small style=" font-size: 70%;"></small></legend></div>
-				</div>
-				
-			<div class="form-group">
-				<label class="hidden" for="username"><i class="icofont icofont-user"></i> Usuario</label>
-				<input class="form-control text-center" value='' id="txtUser_app" placeholder="Usuario" type="text"  /><div class="icoTransparent"><i class="icofont icofont-user"></i> </div>
+<div class="container">
+	<div class="row d-flex justify-content-center mt-5 pt-5">
+		<div class="col-10 col-md-5 col-lg-4 text-light ">
+			<center><img src="images/VirtualCorto.png" class="img-fluid"></center>
+			<h2 class="text-center" >CONSULTORIO ORL</h2>
+			<p class="text-center" >Ingrese su usuario y contraseña</p>
+
+			<div class=" ">
+				<input class="form-control " value='' id="txtUser_app" placeholder="Usuario" type="text" autocomplete="nope" />
+				<input class="form-control " id="txtPassw" value='' placeholder="Contraseña" type="password" autocomplete="nope" />
+				<button class="btn btn-primary btn-block btn-lg" id="btnAcceder"> Iniciar sesión</button>
 			</div>
-			<div class="form-group">
-				<label class="hidden" for="password"><i class="icofont icofont-key"></i> Contraseña</label>
-				<input class="form-control text-center" id="txtPassw" value='' placeholder="Contraseña" type="password" /><div class="icoTransparent"><i class="icofont icofont-ui-text-loading"></i>
-			</div>
-			
-			<div class="form-group text-center"><br>
-				<button class="btn btn-danger btn-outline hidden" id="btnCancelar"><i class="icofont icofont-logout"></i> Cancelar</button>
-				<button class="btn btn-morado btn-outline btn-block btn-lg" id="btnAcceder"><div class="fa-spin sr-only"><i class="icofont icofont-spinner "></i> </div><i class="icofont icofont-key"></i> Iniciar sesión</button>
-			</div>
-			<div class="form-group text-center text-danger hidden" id="divError">Error en alguno de los datos, complételos todos cuidadosamente.</div>
-			
-			<div class="pull-left" ><small><?php include 'php/version.php' ?> | 2016 - <?php echo date("Y"); ?> <a href="https://facebook.com/pg/infocat.soluciones/photos/?tab=album&album_id=2015441245336874"><br>®  Info-cat</a></small></div>
-			</div>
+			<p class="pie mb-0 mt-2"><small>Versión: <?php include 'php/version.php' ?> </small></p>
+			<p class="pie mb-0"><small>© Derechos reservados  2016 - <?php echo date("Y");?></small></p>
+			<p class="pie mb-0"><small>Desarrollado por <a href="https://infocatsoluciones.com">Infocat Soluciones SAC ®</a></small></p>
 		</div>
 	</div>
-</main>
-</body>
-
+</div>
+<div class="ondas"></div>
+	
 <script src="js/jquery-2.2.4.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-
-<!-- <script src="./node_modules/socket.io/node_modules/socket.io-client/socket.io.js"></script> 
-<script src="js/socketCliente.js"></script>-->
 <script>
 	$(document).ready(function () {
 		$('#txtUser_app').val('');
@@ -128,4 +117,5 @@ a:hover{color:#462782;}
 		});
 	});
 </script>
+</body>
 </html>
