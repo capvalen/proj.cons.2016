@@ -525,7 +525,7 @@ if(isset($_SESSION['usuario'])){ ?>
 <script src="js/moment.js"></script>
 <script src="./node_modules/socket.io-client/dist/socket.io.js"></script> 
 <script src="js/moment-precise-range.js"></script> 
-<script src="js/socketCliente.js?version=1.0.8"></script>
+<script src="js/socketCliente.js?version=1.0.9"></script>
 <script src="js/bootstrap-switch.js"></script>
 
 

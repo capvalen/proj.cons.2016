@@ -71,7 +71,9 @@ if(tipo=='grabar'){
 		if(resp == null){
 			$("#contenidoErrorCliente").html(`Hubo un error intentando guardar, por favor, intente otra vez o comuníquelo a Soporte.`);
 
-		}else{//console.log(JSON.parse(resp).id);
+		}else{
+			//console.log('debo migrar')
+			console.log(JSON.parse(resp).id);
 			location.href = `ClientePanel.php?id=${JSON.parse(resp).id}&n=1`;
 		}
 		

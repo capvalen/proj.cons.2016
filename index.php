@@ -58,7 +58,7 @@
 <div class="container">
 	<div class="row d-flex justify-content-center mt-5 pt-5">
 		<div class="col-10 col-md-5 col-lg-4 text-light ">
-			<center><img src="images/VirtualCorto.png" class="img-fluid"></center>
+			<center><img src="images/logoLargo_transparente.png" class="img-fluid"></center>
 			<h2 class="text-center" >CONSULTORIO ORL</h2>
 			<p class="text-center" >Ingrese su usuario y contraseña</p>
 
@@ -68,8 +68,9 @@
 				<button class="btn btn-primary btn-block btn-lg" id="btnAcceder"> Iniciar sesión</button>
 			</div>
 			<p class="pie mb-0 mt-2"><small>Versión: <?php include 'php/version.php' ?> </small></p>
-			<p class="pie mb-0"><small>© Derechos reservados  2016 - <?php echo date("Y");?></small></p>
-			<p class="pie mb-0"><small>Desarrollado por <a href="https://infocatsoluciones.com">Infocat Soluciones SAC ®</a></small></p>
+			<p class="pie "><small>© Derechos reservados  2016 - <?php echo date("Y");?></small></p>
+			<center><img src="images/VirtualCorto.png" class="img-fluid"></center>
+			<p class="pie text-center"><small>Desarrollado por <a href="https://infocatsoluciones.com">Infocat Soluciones SAC ®</a></small></p>
 		</div>
 	</div>
 </div>

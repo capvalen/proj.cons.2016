@@ -2,11 +2,12 @@
 include 'conexion.php';
 
 $filas=array();
-$log = mysqli_query($conection,"call validarNombreExiste('".$_POST['nombre']."');");
-/*while($row = mysqli_fetch_array($log))
-{
-	$filas[]= array('mes' => $row['mes']); 
-}*/
- echo json_encode(mysqli_fetch_array($log, MYSQL_ASSOC)); //sólo retorna los datos.
+
+ $sql="call validarNombreExiste('".$_POST['nombre']."');";
+ $resultado=$cadena->query($sql);
+ $row=$resultado->fetch_assoc())
+	 
+ 
+ echo json_encode($row);
 ?>
  
