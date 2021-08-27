@@ -87,7 +87,7 @@ label{color: #8e8e8e;}
 			<div class="collapse show" id="collapseExample">
 				<h2>Recetas médicas</h2>
 				<div class="card card-body">
-					<label for="" ><strong><i class="bi bi-search"></i> Buscar por DNI o N° Historia Clínica</strong></label>
+					<label for="" ><span><i class="bi bi-search"></i> Buscar por DNI o N° Historia Clínica</span></label>
 					<div class="input-group mb-3" >
 						<input type="text" class="form-control" placeholder='DNI, Historial clínica' v-model="textoPrimero" v-on:keyup.enter="buscarPacientes();">
 						<div class="input-group-append">
@@ -117,9 +117,13 @@ label{color: #8e8e8e;}
 						<div class="bola d-block mx-auto d-flex justify-content-center align-items-center"><i class="bi bi-printer"></i></div>
 						<div class="divDescripcion d-block "><small>Imprimir</small></div>
 					</div>
+					<div class="col padreBolas p-0 text-align-center " @click="asignarFormatos">
+						<div class="bola d-block mx-auto d-flex justify-content-center align-items-center"><i class="bi bi-calendar3"></i></div>
+						<div class="divDescripcion d-block "><small>Formatos</small></div>
+					</div>
 				</div>
-				<p class="my-2><strong>N° Historia:</strong> <span>{{numHistoria}}</span></p>
-				<p class="my-2><strong>Perteneciente a:</strong> <span>{{pacienteElegido}}</span></p>
+				<p class="my-2"><strong>N° Historia:</strong> <span>{{numHistoria}}</span></p>
+				<p class="my-2"><strong>Perteneciente a:</strong> <span>{{pacienteElegido}}</span></p>
 
 				<div id="contenidoReceta">
 					<div class="card my-3" v-if="contenido.length>0">
@@ -207,6 +211,32 @@ label{color: #8e8e8e;}
 			</div>
 		</div>
 	</div>
+	<!-- Modal para: Asignar formatos -->
+	<div class='modal fade' id='modalSolicitudes' tabindex='-1'>
+		<div class='modal-dialog modal-lg modal-dialog-centered'>
+			<div class='modal-content'>
+				<div class='modal-body'>
+					<button type='button' class='close' data-dismiss='modal' aria-label='Close'> <span aria-hidden='true'>&times;</span></button>
+					<h5 class='modal-title'>Seleccione los formatos para asignar</h5>
+					<div>
+						<div class="form-check my-2">
+							<input class="form-check-input" type="checkbox" value="" id="chkBiopsias" v-model="solicitudPatologia">
+							<label class="form-check-label" for="chkBiopsias">
+								Patología quirúrgica - Biopsias
+							</label>
+						</div>
+						<div class="form-check my-2">
+							<input class="form-check-input" type="checkbox" value="" id="chkImagenes" v-model="solicitudImagenes">
+							<label class="form-check-label" for="chkImagenes">
+								Imágenes y pruebas Electrófisiológicas
+							</label>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
 
 	</div> <!-- finde app -->
 	
@@ -231,7 +261,7 @@ label{color: #8e8e8e;}
 		contenido:[],
 		textoActual:'prueba 1',
 		textoPrimero:null, vacio:false,
-		pacientes:null, cambiandoTextos:false, indiceSelect:-1
+		pacientes:null, cambiandoTextos:false, indiceSelect:-1, solicitudImagenes:false, solicitudPatologia:false
   },
 	methods:{
 		buscarPacientes(){
@@ -313,7 +343,7 @@ label{color: #8e8e8e;}
 			axios.post('php/guardarReceta.php', {hc: this.numHistoria, receta: this.contenido })
 			.then((respuesta)=>{
 				if(respuesta.data>0){
-					urlImpr= "plantillaDiv.php?hc="+app.numHistoria+"&receta="+respuesta.data;
+					urlImpr= "plantillaDiv.php?hc="+app.numHistoria+"&receta="+respuesta.data+"&solicitudImgs="+app.solicitudImagenes+"&solicitudPatologia="+app.solicitudPatologia;
 				//	window.location.href = urlImpr;
 					console.log(urlImpr,);	
 					loadPrintDocument(this,{
@@ -335,6 +365,9 @@ label{color: #8e8e8e;}
 		},
 		formatear(texto){
 			return texto.replace(/[\r\n]+/g,"<br>");
+		},
+		asignarFormatos(){
+			$('#modalSolicitudes').modal('show');
 		}
 	},
 	mounted() {
