@@ -68,7 +68,8 @@ $nReceta=$_GET['receta'];
 
 
 $sql="SELECT r.*, c.cliApellidoPaterno, c.cliApellidoMaterno, c.cliNombres, retornarDNI(c.idCliente) as dni, cliFechaNacimiento FROM `recetas` r 
-inner join cliente c on c.idCliente = r.idCliente
+inner join historiaclinica hc on hc.idHistoriaClinica = r.idCliente
+inner join cliente c on c.idCliente = hc.idCliente
 where idReceta = {$nReceta} and r.idCliente = {$nHC}; ";
 $resultado=$esclavo->query($sql);
 $row=$resultado->fetch_assoc();
@@ -226,7 +227,7 @@ $recetaP=json_decode( $row['contReceta'] );
 	</div>
 	<?php endif; ?>
 	<?php if($_GET['solicitudPatologia']=='true'): ?>
-	<div class="container-fluid mt-5 pt-5">
+	<div class="container-fluid mt-4 pt-4">
 		<div class="row mt-5 pt-5">
 			<div class="col">
 				<p class="text-center"><strong>SOLICITUD DE PATOLOGÍA QUIRÚRGICA - BIOPSIAS</strong></p>
